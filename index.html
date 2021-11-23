@@ -2409,13 +2409,17 @@ numbers of the corresponding year in the data set.</li>
 <li>Create a 12x1 structure array (one for each month; use <code>unique</code>
 again) with the fields: month, day, weekday and year. Of course,
 the month field only needs to contain a single string (character
-array). You might need to search for a built-in Matlab function
+array). The other fields should contain, for every date within the given month, 
+the respective days, weekdays and years (respectively).
+You might need to search for a built-in Matlab function
 that you can use to compare character arrays and cells.</li>
 
 <li>Check if there are any duplicate dates in the data set. Note that
 the original data is already in ascending order, and that the
-combination of the triplet (year, day, week) should be unique for
-any date, so you don't need to consider any of the text data. Try
+combination of the triplet (year, day, week) completele determines a date
+(i.e., the month and weekday of a date can be determined uniquely based
+on the triplet),
+ so you don't need to consider any of the text data. Try
 not to use a loop for locating the duplicates.</li>
 
 <li>Write the duplicate dates to a comma-separated-values (CSV) file
@@ -2797,7 +2801,7 @@ to find the zero location of a function of a scalar variable.  For
 instance:
 </p>
 <div class="org-src-container">
-<pre class="src src-fundamental">&gt;&gt; fzero(@log, 2)
+<pre class="src src-fundamental">&gt;&gt; fzero(@log, 2) <span style="color: #586e75;">       %First argument is the function, second argument an initial guess</span>
 
 ans =
 
@@ -2900,6 +2904,25 @@ Plot the function using <code>fplot</code>.
 </div>
 </div>
 
+
+<div id="outline-container-org5caac24" class="outline-4">
+<h4 id="org5caac24"><span class="section-number-4">5.5.2</span> Expected value</h4>
+<div class="outline-text-4" id="text-5-5-2">
+<p>
+Let \(X\), \(Y\) be independent gamma distributed random variables with shape parameter 5
+and scale parameter 2.  Write anonymous functions that return 
+</p>
+<ol class="org-ol">
+<li>\(\mathbb{E}[X]\)</li>
+<li>\(\text{Var}[X]\)</li>
+<li>\(\text{Cov}[X,Y]\)</li>
+</ol>
+by directly implementing the definitions of these operators (see Wikipedia if you forgot them). 
+You will need to use a built-in function to evaluate integrals.<br></br>
+</div>
+</div>
+
+<!-- Old exercise on expectation
 <div id="outline-container-org5caac24" class="outline-4">
 <h4 id="org5caac24"><span class="section-number-4">5.5.2</span> Expected value</h4>
 <div class="outline-text-4" id="text-5-5-2">
@@ -2919,6 +2942,8 @@ calculate
 </ol>
 </div>
 </div>
+
+-->
 
 <div id="outline-container-org8ced988" class="outline-4">
 <h4 id="org8ced988"><span class="section-number-4">5.5.3</span> Solving nonlinear equations</h4>

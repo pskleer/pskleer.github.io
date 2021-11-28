@@ -3009,10 +3009,7 @@ repeat the task above by also providing <code>fsolve</code> with the Jacobian
 (first derivative) of \(f(.)\). You cannot use an anonymous function
 for that. This time you have to write a m-file function to compute
 the function \(f\) (first output argument) and its Jacobian (second
-output argument). If you run the algorithm again (set the options
-'SpecifyObjectiveGradient and 'CheckGradients' to <code>true</code>), then you
-should see that the number of function evaluations is much smaller
-than in the case without the Jacobian. The partial derivatives of
+output argument). The partial derivatives of
 \(f\) are
 </p>
 \begin{equation*}
@@ -3026,6 +3023,14 @@ than in the case without the Jacobian. The partial derivatives of
 \end{equation*}
 <p>
 The implementation of this Jacobian is a bit tricky, but it's a good exercise to try!
+<i>Hint: The first three cases can be implementend by placing the respective Jacobian values on the diagonal
+of an appropriately chosen submatrix. First determine the column/row index vectors that form
+every submatrix. (There are four vectors that together can be used to construct every submatrix.)</i>
+<li>
+Run the algorithm again (set the options 'SpecifyObjectiveGradient and 'CheckGradients' to <code>true</code>), then you
+should see that the number of function evaluations is much smaller than in the case without the Jacobian.
+</li>
+
 </p></li>
 </ol>
 </div>

@@ -3567,11 +3567,7 @@ b = randn(m,1);
 <p>
 Verify that the matrix has rank 6, otherwise repeat the procedure.
 Note that the system \(Ax=b\) is under-determined: infinitely many
-solutions will exist.  Recall from your linear algebra course that any
-solution to the linear system \(Ax=b\) can be written as \(x = \tilde{x} + y\),
-where \(\tilde{x}\) is an arbitrary solution and \(y\) a homogeneous solution,
-which is in the null space of \(A\), i.e., \(Ay=0\).  In this exercise,
-you will create three different solutions to the system \(Ax=b\).
+solutions will exist.  
 </p>
 
 <ol class="org-ol">
@@ -3580,7 +3576,10 @@ you will create three different solutions to the system \(Ax=b\).
 
 <li><p>
 Find the particular solution \(x \in \mathbb{R}^{10}\) for which the
-first four elements are equal to zero. Note that if the rank of \(A\)
+first four elements are equal to zero. 
+
+<!--
+Note that if the rank of \(A\)
 is 6, then the null space has dimension 4. Hence, any vector \(y\) in
 the null space (use <code>null(A)</code>) can be written as a linear
 combination of 4 linearly independent vectors \(v^1,\dots,v^4\) in
@@ -3600,15 +3599,26 @@ x = \tilde{x} + y = \tilde{x} + V \alpha
 are zero, and you can ignore the other 6 entries of \(x\) and \(y\).
 Hence, you'll need to find the homogeneous solution \(y\) for which
 \(y_j = (V \alpha)_j = -\tilde{x}_j\), for \(j=1,2,3,4\).
+-->
 </p></li>
-
+<li>
+As a generalization of the previous question, write a function that for \(m\) given
+indices \(i_1,\dots,i_m\) returns a solution to \(Ax = b\) for which the variables
+\(x_{i_1},\dots,x_{i_m}\) are zero.
+</li>
 <li><p>
-Find the particular solution \(x\) that, among all solutions, has the
-smallest 2-norm: \(\lVert x \rVert_2 = \sqrt{x^T x}\).  Ideally, you
+Recall from your linear algebra course that any
+solution to the linear system \(Ax=b\) can be written as \(x = \tilde{x} + y\),
+where \(\tilde{x}\) is an arbitrary solution and \(y\) a homogeneous solution,
+which is in the null space of \(A\), i.e., \(Ay=0\). We use \(V\) to denote a basis 
+of the null space of \(A\), which contains \(n - m\) vectors of length \(n\). <br></br>
+
+We will find the particular solution \(x\) that, among all solutions, has the
+smallest 2-norm: \(\lVert x \rVert_2 = \sqrt{x^T x}\).  Ideally, one
 would like to choose \(x=0\) because its norm is 0, but \(x=0\) is not
-a solution to our linear system.  Again, a solution is always of
+a solution to our linear system.  A solution is always of
 the form \(x=\tilde{x} + y\) with \(y=V\alpha\), where \(V\) is the matrix with
-the linear independent vectors from the null space. The problem we
+the linear independent vectors from the null space of \(A\). The problem we
 want to solve is
 </p>
 \begin{equation*}

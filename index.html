@@ -2996,6 +2996,12 @@ output so that you can check the number of function evaluations
 (use <code>optimoptions</code> to set the option 'Display' to
 'iter-detailed').</li>
 
+<li>
+Write an anonymous function that takes as input an upper bound \(T\) on how many function evaluations
+<code>fsolve</code> may use, as well as the initial guess for <code>fsolve</code> to use, and outputs
+the solution \(x\) such that \(f(x) = 0\) as computed by <code>fsolve</code>.
+</li>
+
 <li><p>
 To illustrate that the algorithm is much more efficient if it can
 also use the first-order gradient (rather than estimating it), we

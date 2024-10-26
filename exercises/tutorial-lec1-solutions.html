@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Exercises Lecture 1 (Sections 3.1-3.5 in book)</title>
+<title>Solutions Lecture 1 (Sections 3.1-3.5)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -125,7 +125,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Exercises Lecture 1 (Sections 3.1-3.5 in book)</h1>
+<h1 class="title">Solutions Lecture 1 (Sections 3.1-3.5)</h1>
 </div>
 
 
@@ -144,13 +144,14 @@ window.Quarto = {
 
 <p><link rel="preconnect" href="https://fonts.googleapis.com"> <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""> <link href="https://fonts.googleapis.com/css2?family=Fira+Mono&amp;family=Fira+Sans&amp;display=swap" rel="stylesheet"></p>
 <p>Make sure to import Numpy to be able to use all its functionality.</p>
-<div id="03447ffc" class="cell" data-execution_count="1">
+<div id="7fec8f00" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p><b>Note that all the questions below should be solved without using for-loops.</b></p>
 <section id="question-1" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="question-1">Question 1</h4>
 <p>Create a <span class="math inline">3 \times 2</span> array <span class="math inline">M</span> of ones. Make sure the elements have data type <code>int</code>.</p>
-<div id="16452829" class="cell" data-execution_count="2">
+<div id="ac3bf514" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># If you don't specify the dtype, then the array will have </span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># dtype 'float64' (You can check this with the command: x.dtype)</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.ones((<span class="dv">3</span>,<span class="dv">2</span>),dtype<span class="op">=</span><span class="bu">int</span>)</span>
@@ -166,7 +167,7 @@ window.Quarto = {
 <section id="question-2" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="question-2">Question 2</h4>
 <p>Create the array <span class="math inline">x = [2, 4, 6, 8, ..., 100]</span> once with <code>arange()</code>, and once with <code>linspace()</code>.</p>
-<div id="4ecec58e" class="cell" data-execution_count="3">
+<div id="ed097408" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># With arange()</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.arange(<span class="dv">2</span>,<span class="dv">101</span>,<span class="dv">2</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)</span>
@@ -188,7 +189,7 @@ window.Quarto = {
 <section id="question-3" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="question-3">Question 3</h4>
 <p>Create the array <span class="math inline">x = [-1,-0.9,\dots,-0.1,0,0.1,\dots,0.9,1]</span>.</p>
-<div id="b28a9ef2" class="cell" data-execution_count="4">
+<div id="261f6d03" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># With arange()</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.arange(<span class="op">-</span><span class="dv">1</span>,<span class="fl">1.1</span>,<span class="fl">0.1</span>)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)</span>
@@ -211,7 +212,7 @@ window.Quarto = {
 <section id="question-4" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="question-4">Question 4</h4>
 <p>Consider the two-dimension array below and answer the following questions by using indexing.</p>
-<div id="213a3e57" class="cell" data-execution_count="5">
+<div id="84af2cb6" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>M <span class="op">=</span> np.array([[<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>],[<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">2</span>],[<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">2</span>],[<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">2</span>],[<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">2</span>],[<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>]])</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(M)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -227,7 +228,7 @@ window.Quarto = {
 <ol type="a">
 <li>Return the odd-numbered rows</li>
 </ol>
-<div id="4bfa8910" class="cell" data-execution_count="6">
+<div id="519e2e7e" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>M_odd <span class="op">=</span> M[<span class="dv">1</span>::<span class="dv">2</span>]</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(M_odd)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -240,7 +241,7 @@ window.Quarto = {
 <ol start="2" type="a">
 <li>Return the submatrix consisting of elements that are equal to <span class="math inline">2</span>.</li>
 </ol>
-<div id="ac55e920" class="cell" data-execution_count="7">
+<div id="a42f904c" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>M_2 <span class="op">=</span> M[<span class="dv">1</span>:<span class="dv">5</span>,<span class="dv">0</span>::<span class="dv">2</span>]</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(M_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -254,7 +255,7 @@ window.Quarto = {
 <ol start="3" type="a">
 <li>Return the submatrix consisting of the rows <span class="math inline">0,1,5</span> and columns <span class="math inline">1,3,4</span>.</li>
 </ol>
-<div id="20398e7a" class="cell" data-execution_count="8">
+<div id="2387b972" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>i <span class="op">=</span> [<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">5</span>]</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>j <span class="op">=</span> [<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">4</span>]</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -269,7 +270,7 @@ window.Quarto = {
 <section id="question-5" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="question-5">Question 5</h4>
 <p>Consider the following array.</p>
-<div id="ef8f972c" class="cell" data-execution_count="9">
+<div id="e443c7ad" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.array([<span class="dv">3</span>,<span class="dv">6</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">2</span>,<span class="dv">9</span>,<span class="dv">6</span>,<span class="dv">7</span>,<span class="dv">11</span>,<span class="dv">10</span>])</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -280,7 +281,7 @@ window.Quarto = {
 <ol type="a">
 <li>Use a Boolean mask to access all element whose value is smaller or equal than <span class="math inline">4</span>.</li>
 </ol>
-<div id="87650c1b" class="cell" data-execution_count="10">
+<div id="9097fffd" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>mask <span class="op">=</span> x <span class="op">&lt;=</span> <span class="dv">4</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x[mask])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -290,7 +291,7 @@ window.Quarto = {
 <ol start="2" type="a">
 <li>Use a Boolean mask to access all element whose value is in the interval <span class="math inline">[5,10]</span>.</li>
 </ol>
-<div id="8bd518d4" class="cell" data-execution_count="11">
+<div id="5780b698" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>mask <span class="op">=</span> (x <span class="op">&gt;=</span> <span class="dv">5</span>) <span class="op">&amp;</span> (x <span class="op">&lt;=</span> <span class="dv">10</span>)</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x[mask])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -301,7 +302,7 @@ window.Quarto = {
 <ol start="3" type="a">
 <li>Use a Boolean mask to access all element whose value is in the interval <span class="math inline">[2,4]</span> or <span class="math inline">[6,9]</span>.</li>
 </ol>
-<div id="517bac69" class="cell" data-execution_count="12">
+<div id="4681dd8b" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>mask <span class="op">=</span> ((x <span class="op">&gt;=</span> <span class="dv">2</span>) <span class="op">&amp;</span> (x <span class="op">&lt;=</span> <span class="dv">4</span>)) <span class="op">|</span> ((x <span class="op">&gt;=</span> <span class="dv">6</span>) <span class="op">&amp;</span> (x <span class="op">&lt;=</span> <span class="dv">9</span>)) </span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x[mask])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -315,7 +316,7 @@ window.Quarto = {
 <p><span class="math display">
 \left[\begin{matrix} 0 &amp; 1&amp; 2&amp; 3&amp; 0&amp; 1&amp; 2&amp; 3 \\ 0&amp; 1&amp; 2&amp; 3&amp; 0&amp; 1&amp; 2&amp; 3  \end{matrix} \right]
 </span></p>
-<div id="14cab1e0" class="cell" data-execution_count="13">
+<div id="ec3ce725" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.arange(<span class="dv">0</span>,<span class="dv">4</span>)</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.tile(x,(<span class="dv">2</span>,<span class="dv">2</span>))</span>
@@ -332,7 +333,7 @@ window.Quarto = {
 <p><span class="math display">
 \left[\begin{matrix} 1 &amp; 1&amp; 2&amp; 2&amp; 4&amp; 4 \\ 1&amp; 1&amp; 2&amp; 2&amp; 4&amp; 4  \end{matrix} \right]
 </span></p>
-<div id="c80d6a60" class="cell" data-execution_count="14">
+<div id="da1abf19" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.array([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">4</span>])</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>x_repeat <span class="op">=</span> np.repeat(x,<span class="dv">2</span>)</span>
@@ -352,7 +353,7 @@ window.Quarto = {
 <p><span class="math display">
 \left[\begin{matrix} 1 &amp; 1&amp; 0&amp; 0&amp; 0 \\ 1 &amp; 1&amp; 0&amp; 0&amp; 0 \\ 0 &amp; 0&amp; 1&amp; 1&amp; 1\\ 0 &amp; 0&amp; 1&amp; 1&amp; 1\\ 0 &amp; 0&amp; 1&amp; 1&amp; 1   \end{matrix} \right]
 </span></p>
-<div id="80622f9e" class="cell" data-execution_count="15">
+<div id="1205a024" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> blocks(m,n):</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    X1 <span class="op">=</span> np.ones((m,m),dtype<span class="op">=</span><span class="st">'int'</span>)</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    X2 <span class="op">=</span> np.ones((n,n),dtype<span class="op">=</span><span class="st">'int'</span>)</span>
@@ -392,7 +393,7 @@ window.Quarto = {
 1 &amp; 0&amp; 1&amp; 0&amp;1   
 \end{matrix} \right]
 </span></p>
-<div id="738b30d0" class="cell" data-execution_count="16">
+<div id="bfce0b06" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> checkerboard(n):</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> np.zeros((n,n),dtype<span class="op">=</span><span class="bu">int</span>)</span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    x[<span class="dv">0</span>::<span class="dv">2</span>,<span class="dv">0</span>::<span class="dv">2</span>] <span class="op">=</span> <span class="dv">1</span></span>
@@ -427,7 +428,7 @@ window.Quarto = {
 A =      \left[\begin{matrix} 1 &amp; 2&amp; 3\\ 5&amp; 6&amp; -7 \\ -9 &amp; 10 &amp; 11  \end{matrix} \right]
 </span></p>
 <p>using <code>rot90()</code>. The anti-diagnoal is obtained by going from the bottom-left to the top-right element, i.e., <span class="math inline">[-9,6,3]</span> in this case (and not <span class="math inline">[3,6,-9]</span>). Have a look at the <a href="https://numpy.org/doc/stable/reference/generated/numpy.rot90.html">documentation</a> of <code>rot90()</code>for details of how this function works.</p>
-<div id="464d67b6" class="cell" data-execution_count="17">
+<div id="18f248b4" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>   [ <span class="dv">1</span>,  <span class="dv">2</span>,  <span class="dv">3</span>],</span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>   [ <span class="dv">5</span>,  <span class="dv">6</span>,  <span class="op">-</span><span class="dv">7</span>],</span>

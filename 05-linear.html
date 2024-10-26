@@ -1,0 +1,1412 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.52">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>5&nbsp; Linear algebra and optimization – Computational Aspects in Econometrics - Python II module</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<link href="./A-errata.html" rel="next">
+<link href="./04-vectorization.html" rel="prev">
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./05-linear.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Linear algebra and optimization</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Computational Aspects in Econometrics - Python II module</a> 
+        <div class="sidebar-tools-main">
+    <a href="./Computational-Aspects-in-Econometrics---Python-II-module.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+</div>
+    </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">About</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-good-coding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Good coding practices</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-numpy-arrays.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">NumPy arrays</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-vectorization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Vectorization</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-linear.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Linear algebra and optimization</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./A-errata.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Corrections</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./B-function-basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Function basics</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#linear-algebra" id="toc-linear-algebra" class="nav-link active" data-scroll-target="#linear-algebra"><span class="header-section-number">5.1</span> Linear algebra</a>
+  <ul class="collapse">
+  <li><a href="#matrix-multiplications" id="toc-matrix-multiplications" class="nav-link" data-scroll-target="#matrix-multiplications"><span class="header-section-number">5.1.1</span> Matrix multiplications</a></li>
+  <li><a href="#matrix-properties" id="toc-matrix-properties" class="nav-link" data-scroll-target="#matrix-properties"><span class="header-section-number">5.1.2</span> Matrix properties</a></li>
+  <li><a href="#equation-solving" id="toc-equation-solving" class="nav-link" data-scroll-target="#equation-solving"><span class="header-section-number">5.1.3</span> Equation solving</a></li>
+  </ul></li>
+  <li><a href="#linear-optimization" id="toc-linear-optimization" class="nav-link" data-scroll-target="#linear-optimization"><span class="header-section-number">5.2</span> Linear optimization</a>
+  <ul class="collapse">
+  <li><a href="#explicit-input-data" id="toc-explicit-input-data" class="nav-link" data-scroll-target="#explicit-input-data"><span class="header-section-number">5.2.1</span> Explicit input data</a></li>
+  <li><a href="#implicit-input-data" id="toc-implicit-input-data" class="nav-link" data-scroll-target="#implicit-input-data"><span class="header-section-number">5.2.2</span> Implicit input data</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="sec-linear" class="quarto-section-identifier"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Linear algebra and optimization</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><link rel="preconnect" href="https://fonts.googleapis.com"> <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""> <link href="https://fonts.googleapis.com/css2?family=Fira+Mono&amp;family=Fira+Sans&amp;display=swap" rel="stylesheet"></p>
+<p>In this chapter we will see how Python can be used for performing linear algebra task, like solving systems of linear equations, and (integer) linear optimization.</p>
+<p>Linear algebra forms the basis of many statistical tasks like principle component analysis (PCA), which can be used to identify important properties/dimensions of large data sets. This typically makes, e.g., machine learning algorithms more efficient as this avoid the so-called curse of dimensionality.</p>
+<p>Applications of (integer) linear optimization range from scheduling, routing, transportation and food aid problems to solving Sudoku puzzles.</p>
+<p>Let us first again import NumPy. Later on we will also use its linear algebra package (or module) <code>linalg</code>.</p>
+<div id="8c09dc9c" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="linear-algebra" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="linear-algebra"><span class="header-section-number">5.1</span> Linear algebra</h2>
+<p>In this section we will often refer to one-dimensional arrays as row or column vectors, and to two-dimensional arrays as matrices.</p>
+<section id="matrix-multiplications" class="level3" data-number="5.1.1">
+<h3 data-number="5.1.1" class="anchored" data-anchor-id="matrix-multiplications"><span class="header-section-number">5.1.1</span> Matrix multiplications</h3>
+<p>Recall from <a href="04-vectorization.html#sec-multi-broadcast" class="quarto-xref"><span>Section 4.1.1</span></a> that for an <span class="math inline">m \times n</span> matrix <span class="math inline">A</span> and <span class="math inline">m \times 1</span> column vector <span class="math inline">x</span>, the command <code>A*x</code> gives a matrix in which every column of <span class="math inline">A</span> gets pointwise multiplied by the column vector <span class="math inline">x</span>, that is,</p>
+<p><span class="math display">\begin{align*}
+A*x  = &amp;  \left[
+\begin{matrix}
+a_{00}  &amp; a_{01} &amp; \dots &amp; a_{0(n-1)} \\
+a_{10}  &amp; a_{11} &amp; \dots &amp; a_{1(n-1)} \\
+\vdots &amp; \ddots &amp; \vdots \\
+a_{(m-1)0}  &amp; a_{(m-1)1}  &amp; \dots &amp; a_{(m-1)(n-1)}
+\end{matrix}
+\right]*\left[
+\begin{matrix}
+x_{0} \\ x_{1} \\ \vdots \\ x_{(m-1)} \\
+\end{matrix}
+\right] \\
+= &amp;
+\left[
+\begin{matrix}
+a_{00} \cdot x_0 &amp; a_{01} \cdot  x_0&amp; \dots &amp; a_{0(n-1)} \cdot  x_0\\
+a_{10} \cdot  x_1 &amp; a_{11} \cdot  x_1&amp; \dots &amp; a_{1(n-1)} \cdot  x_1\\
+\vdots &amp; \ddots &amp; \vdots \\
+a_{(m-1)0} \cdot  x_{m-1} &amp; a_{(m-1)1} \cdot  x_{m-1} &amp; \dots &amp; a_{(m-1)(n-1)} \cdot  x_{m-1}
+\end{matrix}
+\right]
+\end{align*}</span></p>
+<div id="42783504" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>,<span class="dv">2</span>],</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">3</span>,<span class="dv">4</span>]])</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.array([<span class="dv">1</span>,<span class="dv">5</span>])</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> x[:,<span class="va">None</span>] <span class="co"># Turn x into (2,1) shaped column vector</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'A = </span><span class="ch">\n</span><span class="st">'</span>, A)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'x = </span><span class="ch">\n</span><span class="st">'</span>, x)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'A*x = </span><span class="ch">\n</span><span class="st">'</span>, A<span class="op">*</span>x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>A = 
+ [[1 2]
+ [3 4]]
+x = 
+ [[1]
+ [5]]
+A*x = 
+ [[ 1  2]
+ [15 20]]</code></pre>
+</div>
+</div>
+<p>In the linear algebra sense, the multiplication <span class="math inline">Ax</span> gives an <span class="math inline">m \times 1</span> column vector defined by</p>
+<p><span class="math display">\begin{align*}
+Ax = &amp;  \left[
+\begin{matrix}
+a_{00}  &amp; a_{01} &amp; \dots &amp; a_{0(n-1)} \\
+a_{10}  &amp; a_{11} &amp; \dots &amp; a_{1(n-1)} \\
+\vdots &amp; \ddots &amp; \vdots \\
+a_{(m-1)0}  &amp; a_{(m-1)1}  &amp; \dots &amp; a_{(m-1)(n-1)}
+\end{matrix}
+\right]\left[
+\begin{matrix}
+x_{0} \\ x_{1} \\ \vdots \\ x_{(m-1)} \\
+\end{matrix}
+\right] \\
+= &amp;
+\left[
+\begin{matrix}
+a_{00}x_0 + a_{01}x_1 + \dots + a_{0(n-1)}x_{n-1}\\
+a_{10}x_0 + a_{11}x_1 + \dots + a_{1(n-1)}x_{n-1}\\
+\vdots  \\
+a_{(m-1)0}x_0 + a_{(m-1)1}x_1 + \dots + a_{(m-1)(n-1)}x_{n-1}\\
+\end{matrix}
+\right]
+\end{align*}</span></p>
+<p>This can be achieved in Python with the <code>@</code> (‘at’) operator, that is, by writing <code>A @ x</code> (the white spaces are not needed; they are included here for readability).</p>
+<div id="a2d87628" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'A = </span><span class="ch">\n</span><span class="st">'</span>, A)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'x = </span><span class="ch">\n</span><span class="st">'</span>, x)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Ax = </span><span class="ch">\n</span><span class="st">'</span>, A <span class="op">@</span> x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>A = 
+ [[1 2]
+ [3 4]]
+x = 
+ [[1]
+ [5]]
+Ax = 
+ [[11]
+ [23]]</code></pre>
+</div>
+</div>
+<p>If we talk about matrix multiplication, it will always be clear from context whether we mean <code>A*x</code> or <code>A @ x</code>.</p>
+<p>We can also use <code>@</code> to multiply a <span class="math inline">k \times m</span> and <span class="math inline">m \times n</span> matrix with each other in the linear algebra sense.</p>
+<div id="620655b3" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>,<span class="dv">2</span>],</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">3</span>,<span class="dv">4</span>],</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">3</span>,<span class="dv">7</span>]])</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> np.array([</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>[<span class="dv">2</span>,<span class="dv">5</span>,<span class="dv">1</span>,<span class="dv">7</span>],</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>[<span class="dv">3</span>,<span class="dv">4</span>,<span class="op">-</span><span class="dv">1</span>,<span class="dv">8</span>]])</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Note that k = 3, m = 2, n = 4</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'AB = </span><span class="ch">\n</span><span class="st">'</span>,A <span class="op">@</span> B)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>AB = 
+ [[ 8 13 -1 23]
+ [18 31 -1 53]
+ [27 43 -4 77]]</code></pre>
+</div>
+</div>
+<p>A special case of this is we we multiple a colunm vector</p>
+<p><span class="math display">
+x = \left[\begin{matrix} x_0\\ x_1 \\ \vdots \\x_{n-1} \end{matrix} \right]
+</span></p>
+<p>with its transpose (being a row vector) resulting in a matrix that contains <span class="math inline">x_ix_j</span> on position <span class="math inline">(i,j)</span>.</p>
+<div id="a42aa2a0" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.array([</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>],</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">2</span>],</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">4</span>]])</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'xx^T = </span><span class="ch">\n</span><span class="st">'</span>, x <span class="op">@</span> x.T)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>xx^T = 
+ [[ 1  2  4]
+ [ 2  4  8]
+ [ 4  8 16]]</code></pre>
+</div>
+</div>
+</section>
+<section id="matrix-properties" class="level3" data-number="5.1.2">
+<h3 data-number="5.1.2" class="anchored" data-anchor-id="matrix-properties"><span class="header-section-number">5.1.2</span> Matrix properties</h3>
+<p>Using the <code>linalg</code> subpackage from NumPy, we can compute various well-known properties of a matrix (that you should recall from your Linear Algebra course).</p>
+<ul>
+<li><code>linalg.matrix_rank(A)</code>: Computes rank of matrix <span class="math inline">A</span>.</li>
+<li><code>linalg.det(A)</code>: Computes determinant of square <span class="math inline">A</span>.</li>
+<li><code>linalg.eig(A):</code> Computes eigenvalues and (right) eigenvectors of matrix <span class="math inline">A</span>, i.e., values <span class="math inline">\lambda</span> that satisfy <span class="math inline">Av = \lambda v</span> for some (eigen)vector <span class="math inline">v</span>.</li>
+<li><code>linalg.inv(A)</code>: Computes the inverse matrix <span class="math inline">A^{-1}</span> of <span class="math inline">A</span>, that is, the matrix that satisfies <span class="math inline">A^{-1}A = AA^{-1} = I</span>, where <span class="math inline">I</span> is the identity matrix.</li>
+<li><code>linalg.norm(A)</code>: Computes the norm of matrix (or vector).</li>
+</ul>
+<p>We can access these function with the syntac <code>np.linalg.function_name(A)</code>.</p>
+<p>Finally, there is also the trace function <code>trace(A)</code> in NumPy that computes the trace of <span class="math inline">A</span>, i.e., the sum of the elements on the diagonal. This function is implemented directly in NumPy, so you don’t have to go to the subpackage <code>linalg</code> first.</p>
+<p>Let us look at some examples of these commands.</p>
+<div id="1027abdb" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>,<span class="dv">2</span>],</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">3</span>,<span class="dv">4</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="10fa3b90" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Rank of A</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Rank of A: '</span>, np.linalg.matrix_rank(A))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rank of A:  2</code></pre>
+</div>
+</div>
+<div id="9560ad17" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Determinant of A</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Determinant of A: '</span>, np.linalg.det(A))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Determinant of A:  -2.0000000000000004</code></pre>
+</div>
+</div>
+<div id="1fc87aaf" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Trace of A</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Trace of A: '</span>, np.trace(A))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Trace of A:  5</code></pre>
+</div>
+</div>
+<div id="e5a9a62f" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Inverse of A</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Inverse of A: </span><span class="ch">\n</span><span class="st">'</span>, np.linalg.inv(A))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Inverse of A: 
+ [[-2.   1. ]
+ [ 1.5 -0.5]]</code></pre>
+</div>
+</div>
+<p>The function <code>linalg.eigh()</code> is special in that it does not output one, but two arrays.</p>
+<p>The first array is one-dimensional and contains the eigenvalues <span class="math inline">[\lambda_0,\dots,\lambda_{n-1}]</span> of <span class="math inline">A</span>; the second array is two-dimensional, and contains the corresponding eigenvectors <span class="math inline">v^1,\dots,v^n</span> as columns of the matrix. The eigenvalues and eigenvectors are paired in the sense that <span class="math inline">Av^i = \lambda_iv^i</span> for <span class="math inline">i = 0,\dots,n-1</span>.</p>
+<div id="8aae8c8b" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Eigenvalues and eigenvectors of A</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>lambdas, V <span class="op">=</span> np.linalg.eig(A)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Eigenvalues of A: </span><span class="ch">\n</span><span class="st">'</span>, lambdas)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Matrix with eigenvectors of A: </span><span class="ch">\n</span><span class="st">'</span>, V)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Eigenvalues of A: 
+ [-0.37228132  5.37228132]
+Matrix with eigenvectors of A: 
+ [[-0.82456484 -0.41597356]
+ [ 0.56576746 -0.90937671]]</code></pre>
+</div>
+</div>
+<p>You can output only the eigenvalues or the eigenvectors by suppressing the other output argment with <code>*_</code>.</p>
+<div id="4817547c" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Only eigenvalues of A</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>lambdas, <span class="op">*</span>_ <span class="op">=</span> np.linalg.eig(A)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Only eigenvectors of A</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="op">*</span>_, V <span class="op">=</span> np.linalg.eig(A)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>If you want to recall how you can handle multiple outputs, and suppress the ones that your are not interested, have a look at <a href="B-function-basics.html" class="quarto-xref"><span>Appendix B</span></a>.</p>
+<p>Let us check that the eigenvalues and eigenvectors indeed satsify <span class="math inline">Av^i = \lambda_iv^i</span> for <span class="math inline">i = 0,1</span>.</p>
+<div id="15ba3730" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>v0 <span class="op">=</span> V[:,<span class="dv">0</span>] </span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>v1 <span class="op">=</span> V[:,<span class="dv">1</span>]</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Verify first eigenvector:'</span>, A <span class="op">@</span> v0 <span class="op">-</span> lambdas[<span class="dv">0</span>]<span class="op">*</span>v0)</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Verify second eigenvector:'</span>, A <span class="op">@</span> v1 <span class="op">-</span> lambdas[<span class="dv">1</span>]<span class="op">*</span>v1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Verify first eigenvector: [0.00000000e+00 5.55111512e-17]
+Verify second eigenvector: [0. 0.]</code></pre>
+</div>
+</div>
+<p>The function <code>linalg.norm(A)</code> computes the <span class="math inline">L^2</span>-norm of a matrix <span class="math inline">A = (a_{ij})_{i = 1,\dots,m, j = 1,\dots,n}</span>, also known as the Frobenius norm. It is defined as</p>
+<p><span class="math display">
+||A||_{\text{F}} = \sqrt{\sum_{i=0}^{m-1} \sum_{j = 0}^{n-1} a_{ij}^2 }.
+</span></p>
+<p>If you apply the function two a row or column vector <span class="math inline">x = [x_0,\dots,x_{n-1}]</span>, you get the usual <span class="math inline">L^2</span>-norm defined as</p>
+<p><span class="math display">
+||x||_{2} = \sqrt{\sum_{i=0}^{n-1} x_i^2 }.
+</span></p>
+<p>You can also use this function in a vectorized manner. For example, if you want to compute the <span class="math inline">L^2</span>-norm of every row in a matrix, you can use the <code>axis</code> keyword argument.</p>
+<div id="c88877e9" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>,<span class="dv">2</span>],</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">3</span>,<span class="dv">4</span>],</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">5</span>,<span class="dv">6</span>]])</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>row_norms <span class="op">=</span> np.linalg.norm(A,axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(row_norms)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[2.23606798 5.         7.81024968]</code></pre>
+</div>
+</div>
+</section>
+<section id="equation-solving" class="level3" data-number="5.1.3">
+<h3 data-number="5.1.3" class="anchored" data-anchor-id="equation-solving"><span class="header-section-number">5.1.3</span> Equation solving</h3>
+<p>For a given <span class="math inline">m \times n</span> matrix <span class="math inline">A = (a_{ij})</span> and <span class="math inline">m \times 1</span> column vector <span class="math inline">b = [b_0,\dots,b_{m-1}]^T,</span> perhaps the most important question in linear algebra is to compute an <span class="math inline">x = [x_0,\dots,x_{n-1}]^T</span> that satisfies <span class="math inline">Ax = b</span>, i.e., the linear systems of equalities <span class="math display">
+\begin{array}{rrrrcrrrl}
+a_{00}x_0 &amp;+&amp; a_{01}x_1 &amp;+&amp; \dots &amp;+&amp; a_{0(n-1)}x_{n-1} &amp;=&amp; b_0 \\
+a_{10}x_0 &amp;+&amp; a_{11}x_1 &amp;+&amp; \dots &amp;+&amp; a_{1(n-1)}x_{n-1} &amp;=&amp; b_1 \\
+&amp;&amp;&amp;&amp; \vdots &amp;&amp;&amp;&amp; \\
+a_{(m-1)0}x_0 &amp;+&amp; a_{(m-1)1}x_1 &amp;+&amp; \dots &amp;+&amp; a_{(m-1)(n-1)}x_{n-1} &amp;=&amp; b_{m-1}
+\end{array}.
+</span></p>
+<p>If <span class="math inline">A</span> is a square, invertible matrix then this can be done with <code>linalg.solve(A,b)</code>. This gives the unique solution <span class="math inline">x = A^{-1}b</span>.</p>
+<div id="58bfd00e" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>,<span class="dv">2</span>],</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">3</span>,<span class="dv">4</span>]])</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> np.array([[<span class="dv">1</span>],[<span class="dv">4</span>]])</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Solution to Ax = b: </span><span class="ch">\n</span><span class="st">'</span>, np.linalg.solve(A,b))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Solution to Ax = b: 
+ [[ 2. ]
+ [-0.5]]</code></pre>
+</div>
+</div>
+<p>In fact, you can compute <span class="math inline">x</span> directly as <span class="math inline">x = A^{-1}b</span> using the inverse of <span class="math inline">A</span> that we have seen earlier.</p>
+<div id="1f73f169" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Solution to Ax = b: </span><span class="ch">\n</span><span class="st">'</span>, np.linalg.inv(A) <span class="op">@</span> b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Solution to Ax = b: 
+ [[ 2. ]
+ [-0.5]]</code></pre>
+</div>
+</div>
+<p>If the system is overdetermined, then there is not necessarily a unique solution. This can happen when there are more constraints than variables, i.e., when <span class="math inline">m &gt; n</span>. In this case, we can find a solution <span class="math inline">x</span> that is approximately optimal with the <i>least squares method</i>. It finds a solution <span class="math inline">x</span> that solves the (non-linear) problem <span class="math display">
+\min_x ||Ax - b||_2.
+</span> The least squares method can be executed with <code>linalg.lstsq(A,b)</code>; we will see this method in the next chapter, when we consider non-linear optimization problems. This function can also be used to solve underdetermined systems, where <span class="math inline">n &gt; m</span>.</p>
+<!--
+
+::: {#ca0f75cb .cell execution_count=17}
+``` {.python .cell-code}
+A = np.array([
+[1,2],
+[3,4],
+[5,6]])
+
+b = np.array([[1],[4],[7]])
+
+print('Least squares solution to Ax = b: \n', np.linalg.lstsq(A,b))
+```
+
+::: {.cell-output .cell-output-stdout}
+```
+Least squares solution to Ax = b: 
+ (array([[ 2. ],
+       [-0.5]]), array([2.25833675e-31]), 2, array([9.52551809, 0.51430058]))
+```
+:::
+
+::: {.cell-output .cell-output-stderr}
+```
+C:\Users\pskleer\AppData\Local\Temp\ipykernel_13856\1181936453.py:8: FutureWarning:
+
+`rcond` parameter will change to the default of machine precision times ``max(M, N)`` where M and N are the input matrix dimensions.
+To use the future default and silence this warning we advise to pass `rcond=None`, to keep using the old, explicitly pass `rcond=-1`.
+
+```
+:::
+:::
+
+
+-->
+</section>
+</section>
+<section id="linear-optimization" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="linear-optimization"><span class="header-section-number">5.2</span> Linear optimization</h2>
+<p>Recall that in a <i>linear optimization problem</i> the goal is to compute a vector <span class="math inline">x = [x_0,\dots,x_{n-1}]</span> of decision variables that maximizes, or minimizes, a linear objective function subject to a collection of linear constraints, which can either be a <span class="math inline">\leq</span>, <span class="math inline">\geq</span> or <span class="math inline">=</span> constraint.</p>
+<!--
+An example is 
+
+$$
+\begin{array}{lrrrrrrl}
+\text{max } & z  = & 15x_{1} &+ &20x_{2} & & & \\ 
+\text{s.t.} & & 2x_1 &+ & 2x_2& \leq & 8\frac{1}{2} & \\ 
+& & x_1 &+ & 2x_2& \leq & 6 & \\
+ && x_1 &+ & x_2& = & 4\frac{1}{4} & \\  
+ & &x_1 & &  & \geq & 0 & \\ 
+ &  && & x_2 & \geq & 0 & 
+\end{array}
+$$
+-->
+<p>In this section we will consider a general linear optimization problem of the form <span class="math display">
+\begin{array}{ll}
+\min &amp; c^Tx \\
+{\rm s.t.} &amp; Ax = b \\
+&amp; Wx \leq z \\
+&amp; \ell \leq x \leq u
+\end{array}
+</span> where <span class="math inline">c, \ell, u \in \mathbb{R}^n</span>, <span class="math inline">A \in \mathbb{R}^{m \times n}</span>, <span class="math inline">b \in \mathbb{R}^m</span>, <span class="math inline">U \in \mathbb{R}^{k \times n}</span>, and <span class="math inline">z \in \mathbb{R}^k</span> are the input data, or input parameters.</p>
+<p>Written out this means we have a system with <span class="math inline">m</span> equality constraints, <span class="math inline">k</span> inequality constraints and upper and lower bounds on the decision variables.</p>
+<p><span class="math display">
+\begin{array}{rrrcrrlll}
+\min &amp;  c_1 x_1 &amp;+&amp; \cdots&amp; + &amp; c_nx_n&amp; &amp; &amp; \\
+{\rm s.t.} &amp;  a_{01}x_0&amp; +&amp; \cdots&amp; +&amp; a_{0(n-1)} x_{n-1} &amp;= &amp;b_0 &amp;\\
+&amp; &amp; &amp; \vdots &amp; &amp; &amp; &amp; \\
+&amp;  a_{(m-1)1}x_0&amp; +&amp; \cdots&amp; +&amp; a_{(m-1)(n-1)} x_{n-1} &amp;= &amp;b_{m-1}&amp; \\
+&amp; w_{01}x_0&amp; +&amp; \cdots&amp; +&amp; w_{0(n-1)} x_{n-1} &amp;\leq &amp;z_0 &amp;\\
+&amp;  &amp; &amp; \vdots &amp; &amp; &amp; &amp; &amp;\\
+&amp;  w_{(k-1)1}x_0&amp; +&amp; \cdots&amp; +&amp; w_{(k-1)(n-1)} x_{n-1} &amp;\leq &amp;z_{k-1} &amp; \\
+\ell_0 \leq &amp; x_0  &amp;   &amp;&amp; &amp;  &amp;  \leq &amp; u_0&amp;  \\
+&amp;   &amp;   &amp; \ddots &amp; &amp;  &amp;   &amp; &amp;  \\
+\ell_{n-1} \leq &amp;   &amp;   &amp; &amp; &amp;  x_{n-1} &amp;  \leq &amp; u_{n-1}&amp;  \\
+\end{array}
+</span></p>
+<p>You can model a <span class="math inline">\geq</span> constraint by multiplying it with <span class="math inline">-1</span>, so that it turns into a <span class="math inline">\leq</span> constraint.</p>
+<p>If, in addition, we require that <span class="math inline">x_i \in \mathbb{N}</span> for <span class="math inline">i = 1,\dots,n</span>, i.e., that the variables are integral, then we call the above problem an <i>integer linear optimization problem</i>.</p>
+<p>We will look at two packages that can be used to solve (integer) linear optimization problems. The difference is that the first package <code>linprog</code> allows us to explicitly input the data <span class="math inline">c, A, B, \ell</span> and <span class="math inline">u</span>, whereas the second package <code>pulp</code> allows us to define constraints one-by-one. The latter is more convenient if the input data his not given explicitly.</p>
+<section id="explicit-input-data" class="level3" data-number="5.2.1">
+<h3 data-number="5.2.1" class="anchored" data-anchor-id="explicit-input-data"><span class="header-section-number">5.2.1</span> Explicit input data</h3>
+<p>If the input data is given explicitly, we can solve linear optimization problems quickly with the <code>linprog</code> module, which is part of the <code>optimize</code> package of <a href="https://scipy.org/">SciPy</a>. We will see more functionality of SciPy in later chapters of this book.</p>
+<p>We can import <code>linprog</code> as follows:</p>
+<div id="1fc34fe8" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> linprog</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This package is suitable for solving problem of the general form above. We will implement the following example:</p>
+<p><span class="math display">
+\begin{array}{lrrrrrrl}
+\text{max } &amp; z  = &amp; 15x_{1} &amp;+ &amp;20x_{2} &amp; &amp; &amp; \\
+\text{s.t.} &amp; &amp; 2x_1 &amp;+ &amp; 2x_2&amp; \leq &amp; 8\frac{1}{2} &amp; \\
+&amp; &amp; x_1 &amp;+ &amp; 2x_2&amp; \leq &amp; 6 &amp; \\
+&amp;&amp; 12x_1 &amp;+ &amp; 17x_2&amp; = &amp; 51 &amp; \\  
+&amp; &amp;x_1 &amp; &amp;  &amp; \geq &amp; 0 &amp; \\
+&amp;  &amp;&amp; &amp; x_2 &amp; \geq &amp; 0 &amp;
+\end{array}
+</span></p>
+<p>Because <code>linprog</code> works with explicitly input data, we first define these. We define all the input data as NumPy arrays, but you can actually also use plain lists for this.</p>
+<p>Note that we multiply the objective function <span class="math inline">c</span> with <span class="math inline">-1</span>, so that our maximization problem turns into a minimization problem.</p>
+<div id="9b5faf4b" class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Define input data</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Coefficients of the objective function</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> np.array([<span class="op">-</span><span class="dv">15</span>, <span class="op">-</span><span class="dv">20</span>])  <span class="co"># Minimize -15x1 - 20x2</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Coefficients of the equality constraints (Ax = b)</span></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([[<span class="dv">12</span>, <span class="dv">17</span>]]) <span class="co"># 12x1 + 17x2 = 51</span></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> np.array([<span class="dv">51</span>])</span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Coefficients of the inequality constraints (Ux &lt;= z)</span></span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>U <span class="op">=</span> np.array([</span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>[<span class="dv">2</span>, <span class="dv">2</span>],  <span class="co"># 2x1 + 2x2 &lt;= 8.5</span></span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>, <span class="dv">2</span>]]) <span class="co"># x1 + 2x2 &lt;= 6</span></span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> np.array([[<span class="fl">8.5</span>], [<span class="dv">6</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The bounds on <span class="math inline">x_i</span> have to be inputted as tuple <span class="math inline">(\ell_i,u_i)</span>. If the lower or upper bound is not present, meaning either <span class="math inline">\ell_i = -\infty</span> or <span class="math inline">u_i = + \infty</span>, you can replace the entry with <code>None</code>.</p>
+<div id="ceb3db18" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Bounds for the variables x1 and x2 (l = 0, u = infinity)</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>x1_bounds <span class="op">=</span> (<span class="dv">0</span>, <span class="va">None</span>)  <span class="co"># x1 &gt;= 0</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>x2_bounds <span class="op">=</span> (<span class="dv">0</span>, <span class="va">None</span>)  <span class="co"># x2 &gt;= 0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We can solve the problem with <code>linprogr()</code> It takes input arguments</p>
+<ul>
+<li><code>c</code> : The vector with objective function coefficients</li>
+<li><code>A_eq</code> : The constraint matrix for the equality constraints</li>
+<li><code>b_eq</code> : The right hand side vector of the equality constraints</li>
+<li><code>A_ub</code> : The constraint matrix for the inequality constraints</li>
+<li><code>b_ub</code> : The right hand side vector of the inequality constraints</li>
+<li><code>bounds</code> : List of tuples with each tuple having the upper and lower bound for the corresponding variable</li>
+</ul>
+<p>Note that <code>A_eq</code> and <code>b_eq</code> can be left out as input arguments if there are no equality constraints; the same holds for <code>A_ub</code> and <code>b_ub</code>.</p>
+<div id="5c1a6aa7" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Solve the linear programming problem</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="co"># (You can use \ to continue command on next line)</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> linprog(c, A_eq<span class="op">=</span>A, b_eq<span class="op">=</span> b,  <span class="op">\</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>                    A_ub<span class="op">=</span>U, b_ub<span class="op">=</span>z, <span class="op">\</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>                    bounds<span class="op">=</span>[x1_bounds, x2_bounds])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The <code>result</code> variable contains various aspects of the solution. The two most important for us are</p>
+<ul>
+<li><code>result.x</code> : The optimal solution <span class="math inline">x</span></li>
+<li><code>result.fun</code> : The function value attained by the the optimal solution.</li>
+</ul>
+<div id="079bd998" class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Output the results</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The problem is solved by'</span>, result.x, <span class="op">\</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>      <span class="st">'with objective function value'</span>, result.fun)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>The problem is solved by [4.25 0.  ] with objective function value -63.75</code></pre>
+</div>
+</div>
+<p>If we want to solution to be integral, we add the input argument <code>integrality=1</code>. See the <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.linprog.html">documentation</a> to read about this and to find more options.</p>
+<div id="d498b880" class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Solve the integer linear optimization problem</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="co"># (You can use \ to continue command on next line)</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>result_integral <span class="op">=</span> linprog(c, A_eq<span class="op">=</span>A, b_eq<span class="op">=</span> b,  <span class="op">\</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>                    A_ub<span class="op">=</span>U, b_ub<span class="op">=</span>z, <span class="op">\</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>                    bounds<span class="op">=</span>[x1_bounds, x2_bounds], <span class="op">\</span></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>                    integrality<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>                    </span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Output the results</span></span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The problem is solved by'</span>, result_integral.x, <span class="op">\</span></span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>      <span class="st">'with objective function value'</span>, result_integral.fun)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>The problem is solved by [0. 3.] with objective function value -60.0</code></pre>
+</div>
+</div>
+<p>The complete code of this section can be found below.</p>
+<div id="1a06b1b3" class="cell" data-execution_count="24">
+<details class="code-fold">
+<summary>Show complete code for linear optimization with linprog</summary>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> linprog</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="co">## Define input data</span></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Coefficients of the objective function</span></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> np.array([<span class="op">-</span><span class="dv">15</span>, <span class="op">-</span><span class="dv">20</span>])  <span class="co"># Minimize -15x1 - 20x2</span></span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Coefficients of the equality constraints (Ax = b)</span></span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([[<span class="dv">12</span>, <span class="dv">17</span>]]) <span class="co"># 12x1 + 17x2 = 51</span></span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> np.array([<span class="dv">51</span>])</span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Coefficients of the inequality constraints (Ux &lt;= z)</span></span>
+<span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a>U <span class="op">=</span> np.array([</span>
+<span id="cb38-16"><a href="#cb38-16" aria-hidden="true" tabindex="-1"></a>[<span class="dv">2</span>, <span class="dv">2</span>],  <span class="co"># 2x1 + 2x2 &lt;= 8.5</span></span>
+<span id="cb38-17"><a href="#cb38-17" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>, <span class="dv">2</span>]]) <span class="co"># x1 + 2x2 &lt;= 6</span></span>
+<span id="cb38-18"><a href="#cb38-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-19"><a href="#cb38-19" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> np.array([[<span class="fl">8.5</span>], [<span class="dv">6</span>]])</span>
+<span id="cb38-20"><a href="#cb38-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-21"><a href="#cb38-21" aria-hidden="true" tabindex="-1"></a><span class="co">## Bounds for the variables x1 and x2 (l = 0, u = infinity)</span></span>
+<span id="cb38-22"><a href="#cb38-22" aria-hidden="true" tabindex="-1"></a>x1_bounds <span class="op">=</span> (<span class="dv">0</span>, <span class="va">None</span>)  <span class="co"># x1 &gt;= 0</span></span>
+<span id="cb38-23"><a href="#cb38-23" aria-hidden="true" tabindex="-1"></a>x2_bounds <span class="op">=</span> (<span class="dv">0</span>, <span class="va">None</span>)  <span class="co"># x2 &gt;= 0</span></span>
+<span id="cb38-24"><a href="#cb38-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-25"><a href="#cb38-25" aria-hidden="true" tabindex="-1"></a><span class="co">## Solve the linear optimization problem</span></span>
+<span id="cb38-26"><a href="#cb38-26" aria-hidden="true" tabindex="-1"></a><span class="co">## (You can use \ to continue command on next line)</span></span>
+<span id="cb38-27"><a href="#cb38-27" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> linprog(c, A_eq<span class="op">=</span>A, b_eq<span class="op">=</span> b,  <span class="op">\</span></span>
+<span id="cb38-28"><a href="#cb38-28" aria-hidden="true" tabindex="-1"></a>                    A_ub<span class="op">=</span>U, b_ub<span class="op">=</span>z, <span class="op">\</span></span>
+<span id="cb38-29"><a href="#cb38-29" aria-hidden="true" tabindex="-1"></a>                    bounds<span class="op">=</span>[x1_bounds, x2_bounds])</span>
+<span id="cb38-30"><a href="#cb38-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-31"><a href="#cb38-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Output the results</span></span>
+<span id="cb38-32"><a href="#cb38-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The linear optimization problem is solved by'</span>, result.x, <span class="op">\</span></span>
+<span id="cb38-33"><a href="#cb38-33" aria-hidden="true" tabindex="-1"></a>      <span class="st">'with objective function value'</span>, result.fun)</span>
+<span id="cb38-34"><a href="#cb38-34" aria-hidden="true" tabindex="-1"></a>                    </span>
+<span id="cb38-35"><a href="#cb38-35" aria-hidden="true" tabindex="-1"></a><span class="co">##################################                </span></span>
+<span id="cb38-36"><a href="#cb38-36" aria-hidden="true" tabindex="-1"></a><span class="co">## With integrality constraints ##</span></span>
+<span id="cb38-37"><a href="#cb38-37" aria-hidden="true" tabindex="-1"></a><span class="co">##################################  </span></span>
+<span id="cb38-38"><a href="#cb38-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-39"><a href="#cb38-39" aria-hidden="true" tabindex="-1"></a><span class="co"># Solve the problem</span></span>
+<span id="cb38-40"><a href="#cb38-40" aria-hidden="true" tabindex="-1"></a>result_integral <span class="op">=</span> linprog(c, A_eq<span class="op">=</span>A, b_eq<span class="op">=</span> b,  <span class="op">\</span></span>
+<span id="cb38-41"><a href="#cb38-41" aria-hidden="true" tabindex="-1"></a>                    A_ub<span class="op">=</span>U, b_ub<span class="op">=</span>z, <span class="op">\</span></span>
+<span id="cb38-42"><a href="#cb38-42" aria-hidden="true" tabindex="-1"></a>                    bounds<span class="op">=</span>[x1_bounds, x2_bounds], <span class="op">\</span></span>
+<span id="cb38-43"><a href="#cb38-43" aria-hidden="true" tabindex="-1"></a>                    integrality<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb38-44"><a href="#cb38-44" aria-hidden="true" tabindex="-1"></a>                    </span>
+<span id="cb38-45"><a href="#cb38-45" aria-hidden="true" tabindex="-1"></a><span class="co"># Output the results</span></span>
+<span id="cb38-46"><a href="#cb38-46" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The integer linear optimization problem is solved by'</span>, result_integral.x, <span class="op">\</span></span>
+<span id="cb38-47"><a href="#cb38-47" aria-hidden="true" tabindex="-1"></a>      <span class="st">'with objective function value'</span>, result_integral.fun)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="implicit-input-data" class="level3" data-number="5.2.2">
+<h3 data-number="5.2.2" class="anchored" data-anchor-id="implicit-input-data"><span class="header-section-number">5.2.2</span> Implicit input data</h3>
+<p>If the constraints are not given explicitly, creating the input data matrices like <span class="math inline">A</span> and <span class="math inline">U</span> can be quite tedious. In this case, it works better to define the constraints directly, based on the given problem description.</p>
+<p>In this section we will consider the <i>maximum weight bipartite matching problem</i>. We are given a (complete) bipartite graph <span class="math inline">G = (V,W,E)</span> with node sets <span class="math inline">V = \{0,\dots,n-1\}</span> and <span class="math inline">W = \{0,\dots,n-1\}</span> and edges <span class="math inline">ij \in E = \{ab : a \in V, b \in W\}</span> connecting the nodes <span class="math inline">i \in V</span> with <span class="math inline">j \in W</span>. Every such edge has a weight <span class="math inline">w_{ij}</span>. We want to match up every node in <span class="math inline">V</span> with a node in <span class="math inline">W</span> so that the total summed weight of the selected edges is maximal.</p>
+<p>We introduce (binary) decision variables <span class="math inline">x_{ij}</span> with the interpretation that <span class="math inline">x_{ij} = 1</span> if <span class="math inline">i</span> and <span class="math inline">j</span> get matched, and <span class="math inline">x_{ij} = 0</span> otherwise. The constraints then mean that every node <span class="math inline">i \in V</span> should get matched up with precisely one <span class="math inline">j \in W</span> and vice versa.</p>
+<p><span class="math display">
+\begin{array}{lllll}
+\max &amp; \displaystyle \sum_{i=0}^{n-1} \sum_{j=0}^{n-1} w_{ij}x_{ij} &amp; &amp; \\
+\rm{s.t. } &amp; \displaystyle \sum_{i=0}^{n-1} x_{ij} &amp; =&amp; 1 &amp; \text{for } j = 0,\dots,n-1 \\
+&amp;\displaystyle  \sum_{j=0}^{n-1} x_{ij} &amp; = &amp;1 &amp; \text{for } i = 0,\dots,n-1\\
+&amp; x_{ij}  &amp;\geq &amp; 0 &amp; \text{for all } i,j = 0,\dots,n-1 \\
+&amp; x_{ij} &amp; \in &amp; \{0,1\} &amp; \text{for all } i,j = 0,\dots,n-1
+\end{array}
+</span></p>
+<p>In fact, the last conditions defining the decisions variables to be binary, are redundant: If we leave them out then the optimal solution that is found will satisfy them regardless (you might have seen this in a Combinatorial Optimization course). For now, we will ignore this mathematical fact, and define the decision variables as binary variables.</p>
+<p>Defining the constraint matrix explicitly is quite a hassle, and given that many of its entries are zero, it is not very efficient for Python to store it explicitly, so using <code>linprog</code> here is not very convenient.</p>
+<p>Instead, in this section we will use the <code>pulp</code> package to solve this problem.</p>
+<div id="24e60c94" class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pulp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We create some input data (weights) for the problem that we are going to build.</p>
+<div id="a82153ad" class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Size of the node sets</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">4</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Weights of the edges ij</span></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> np.arange(<span class="dv">1</span>,n<span class="op">**</span><span class="dv">2</span><span class="op">+</span><span class="dv">1</span>).reshape(n,n)</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(w) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[ 1  2  3  4]
+ [ 5  6  7  8]
+ [ 9 10 11 12]
+ [13 14 15 16]]</code></pre>
+</div>
+</div>
+<p><b>Problem instantiation.</b> We first initialize the problem object that we want to solve with <code>LpProblem()</code> that takes as input:</p>
+<ul>
+<li>Problem name: String variable</li>
+<li>Problem type: Maximization (<code>pulp.LpMaximize</code>), or minimization (<code>pulp.LpMinimize</code>).</li>
+</ul>
+<div id="67596797" class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>prob <span class="op">=</span> pulp.LpProblem(<span class="st">"Weighted_Bipartite_Matching"</span>, pulp.LpMaximize)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>As opposed to <code>linprog</code> we need to explicitly instantiate the decision variables, so that we can use them later to add constraints to our problem.</p>
+<p><b>Decision variables.</b> A decision variable <span class="math inline">y</span> can be instantiated with <code>LpVariable()</code> that takes as input</p>
+<ul>
+<li>Variable name: String being name of variable</li>
+<li>Variable category: Keyword argument <code>cat</code> being Binary, Integer or Continuous (default if <code>cat</code> is not specified).</li>
+</ul>
+<div id="d86281a3" class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>pulp.LpVariable(<span class="st">'y'</span>,cat<span class="op">=</span><span class="st">'Binary'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>To initiate our decision variables we need to loop over the indices <span class="math inline">i</span> and <span class="math inline">j</span>, which can be done as follows. Note that the syntax <code>f"y_{i}_{j}"</code> allows us to incorporate/format the loop indices <span class="math inline">i</span> and <span class="math inline">j</span> into the variable name (which is a string).</p>
+<div id="055f15c9" class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.zeros((n,n), dtype<span class="op">=</span><span class="bu">object</span>) <span class="co"># Data type of variable is 'object'</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>        x[i,j] <span class="op">=</span> pulp.LpVariable(<span class="ss">f"x_</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">_</span><span class="sc">{</span>j<span class="sc">}</span><span class="ss">"</span>, cat<span class="op">=</span><span class="st">'Binary'</span>)      </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This can be done more compactly using list comprehension, which is a quick alternative for doing the for-loops explicitly. Avoiding for-loops altogether here is not possible, because variables cannot be generated in a vectorized manner if we want to give them all a separate name.</p>
+<div id="51b780d6" class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># With list comprehension</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.array([[pulp.LpVariable(<span class="ss">f"x_</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">_</span><span class="sc">{</span>j<span class="sc">}</span><span class="ss">"</span>, cat<span class="op">=</span><span class="st">'Binary'</span>) <span class="op">\</span></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>               <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n)] <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(n)])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>In both cases we have created an <span class="math inline">n \times n</span> NumPy array whose elements are decision variables <span class="math inline">x_{ij}</span>.</p>
+<div id="c8b9f8eb" class="cell" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print names of decision variables</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[x_0_0 x_0_1 x_0_2 x_0_3]
+ [x_1_0 x_1_1 x_1_2 x_1_3]
+ [x_2_0 x_2_1 x_2_2 x_2_3]
+ [x_3_0 x_3_1 x_3_2 x_3_3]]</code></pre>
+</div>
+</div>
+<p>We will use these variables to define the objective function and constraints.</p>
+<p><b>Objective function.</b> We next construct the objective function <span class="math display">
+\begin{array}{lllll}
+\max &amp; \displaystyle \sum_{i=0}^{n-1} \sum_{j=0}^{n-1} w_{ij}x_{ij} &amp; &amp;
+\end{array}
+</span> Because both the weight matrix <code>w</code> and the decision variables <code>x</code> are stored in NumPy arrays, we can do a pointwise multiplication of these arrays, and sum up the elements of the resulting array, to get the objective.</p>
+<p>Summing up decision variables in arrays, in our case the array <code>w*x</code>, can be done using <code>lpSum()</code> within Pulp. To add the objective to the problem, and later constraints, we use the syntax <code>prob += [objective]</code> where <code>[objective]</code> contains the objective function expresssion in terms of the decision variables that we instantiated. You should think of the syntax <code>+=</code> as adding something to the instantiated problem <code>prob</code>.</p>
+<div id="6551cbe0" class="cell" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>prob <span class="op">+=</span> pulp.lpSum(w<span class="op">*</span>x)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Note that we write <code>lpSum()</code> and not <code>LpSum()</code> with a capital L. This has to do with the fact that <code>lpSum()</code> is a function, whereas <code>LpProblem</code> and <code>LpVariable</code> are classes (that have different naming conventions in Python modules).</p>
+<div id="f3b01c58" class="cell" data-execution_count="33">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print objective function</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(prob.objective)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>x_0_0 + 2*x_0_1 + 3*x_0_2 + 4*x_0_3 + 5*x_1_0 + 6*x_1_1 + 7*x_1_2 + 8*x_1_3 + 9*x_2_0 + 10*x_2_1 + 11*x_2_2 + 12*x_2_3 + 13*x_3_0 + 14*x_3_1 + 15*x_3_2 + 16*x_3_3</code></pre>
+</div>
+</div>
+<p><br></p>
+<p><b>Constraints.</b> Finally, we add the constraints <span class="math display">
+\begin{array}{lllll}
+&amp; \displaystyle \sum_{i=0}^{n-1} x_{ij} &amp; =&amp; 1 &amp; \text{for } j = 0,\dots,n-1 \\
+&amp;\displaystyle  \sum_{j=0}^{n-1} x_{ij} &amp; = &amp;1 &amp; \text{for } i = 0,\dots,n-1
+\end{array}
+</span> to the problem, which can also be done with the <code>prob += [constraint]</code> syntax, where <code>[constraint]</code> is the constraint we want to add. We can add our constraints as follows.</p>
+<div id="6c1fe1d2" class="cell" data-execution_count="34">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>    prob <span class="op">+=</span> pulp.lpSum([x[i,j] <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n)]) <span class="op">==</span> <span class="dv">1</span></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>    prob <span class="op">+=</span> pulp.lpSum([x[i,j] <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(n)]) <span class="op">==</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>To print the constraints, we need to realize that they are stored in an (ordered) dictionary. We can print the keys and values of this dictipnary as follows.</p>
+<div id="098aafd1" class="cell" data-execution_count="35">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print constraints</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> key, value <span class="kw">in</span> prob.constraints.items():</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>key<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>value<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>_C1: x_0_0 + x_1_0 + x_2_0 + x_3_0 = 1
+_C2: x_0_1 + x_1_1 + x_2_1 + x_3_1 = 1
+_C3: x_0_2 + x_1_2 + x_2_2 + x_3_2 = 1
+_C4: x_0_3 + x_1_3 + x_2_3 + x_3_3 = 1
+_C5: x_0_0 + x_0_1 + x_0_2 + x_0_3 = 1
+_C6: x_1_0 + x_1_1 + x_1_2 + x_1_3 = 1
+_C7: x_2_0 + x_2_1 + x_2_2 + x_2_3 = 1
+_C8: x_3_0 + x_3_1 + x_3_2 + x_3_3 = 1</code></pre>
+</div>
+</div>
+<p><br></p>
+<p><b> Solving the problem.</b> We solve the problem with the <code>solve()</code> function.</p>
+<p>We can access the values of the objective function and the variables using <code>pulp.value()</code>. The objective function of the problem is stored in <code>prob.objective</code>, and so its value in the optimized model can be accessed with <code>pulp.value(prob.objective)</code>.</p>
+<p>We want to represent the optial matching nicely in a binary matrix. Unfortunately, printing the values of the optimized model is difficult to do without for-loops since the function <code>pulp.value(x[i,j])</code> that returns the value of variable <span class="math inline">x_{ij}</span> only works for numbers and not lists or arrays.</p>
+<div id="90cc7d9a" class="cell" data-execution_count="36">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Solve the problem</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>prob.solve()</span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Store the results in matrix 'matching'</span></span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a>matching <span class="op">=</span> np.zeros((n,n), dtype<span class="op">=</span><span class="bu">int</span>)</span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a>        matching[i,j] <span class="op">=</span> pulp.value(x[i,j])</span>
+<span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-10"><a href="#cb54-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Print solution        </span></span>
+<span id="cb54-11"><a href="#cb54-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The optimal matching is: </span><span class="ch">\n</span><span class="st">"</span>, matching)</span>
+<span id="cb54-12"><a href="#cb54-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Optimal value of the objective function: </span><span class="sc">{</span>pulp<span class="sc">.</span>value(prob.objective)<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>The optimal matching is: 
+ [[1 0 0 0]
+ [0 1 0 0]
+ [0 0 0 1]
+ [0 0 1 0]]
+Optimal value of the objective function: 34.0</code></pre>
+</div>
+</div>
+<p>The complete code of this section can be found below.</p>
+<div id="8eed11ee" class="cell" data-execution_count="37">
+<details class="code-fold">
+<summary>Show complete code for linear optimization with Pulp</summary>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pulp</span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Size of the node sets (input data)</span></span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">4</span></span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Weights of the edges ij (input data)</span></span>
+<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> np.arange(<span class="dv">1</span>,n<span class="op">**</span><span class="dv">2</span><span class="op">+</span><span class="dv">1</span>).reshape(n,n)</span>
+<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-9"><a href="#cb56-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Instantiate problem</span></span>
+<span id="cb56-10"><a href="#cb56-10" aria-hidden="true" tabindex="-1"></a>prob <span class="op">=</span> pulp.LpProblem(<span class="st">"Weighted_Bipartite_Matching"</span>, pulp.LpMaximize)</span>
+<span id="cb56-11"><a href="#cb56-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-12"><a href="#cb56-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Instantiate decision variables and store in NumPy array</span></span>
+<span id="cb56-13"><a href="#cb56-13" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.array([[pulp.LpVariable(<span class="ss">f"x_</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">_</span><span class="sc">{</span>j<span class="sc">}</span><span class="ss">"</span>, cat<span class="op">=</span><span class="st">'Binary'</span>) <span class="op">\</span></span>
+<span id="cb56-14"><a href="#cb56-14" aria-hidden="true" tabindex="-1"></a>               <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n)] <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(n)])</span>
+<span id="cb56-15"><a href="#cb56-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-16"><a href="#cb56-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Set objective function</span></span>
+<span id="cb56-17"><a href="#cb56-17" aria-hidden="true" tabindex="-1"></a>prob <span class="op">+=</span> pulp.lpSum(w<span class="op">*</span>x)  </span>
+<span id="cb56-18"><a href="#cb56-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-19"><a href="#cb56-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Set constraints</span></span>
+<span id="cb56-20"><a href="#cb56-20" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb56-21"><a href="#cb56-21" aria-hidden="true" tabindex="-1"></a>    prob <span class="op">+=</span> pulp.lpSum([x[i,j] <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n)]) <span class="op">==</span> <span class="dv">1</span></span>
+<span id="cb56-22"><a href="#cb56-22" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb56-23"><a href="#cb56-23" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb56-24"><a href="#cb56-24" aria-hidden="true" tabindex="-1"></a>    prob <span class="op">+=</span> pulp.lpSum([x[i,j] <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(n)]) <span class="op">==</span> <span class="dv">1</span></span>
+<span id="cb56-25"><a href="#cb56-25" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb56-26"><a href="#cb56-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Store the results in matrix 'matching'</span></span>
+<span id="cb56-27"><a href="#cb56-27" aria-hidden="true" tabindex="-1"></a>matching <span class="op">=</span> np.zeros((n,n), dtype<span class="op">=</span><span class="bu">int</span>)</span>
+<span id="cb56-28"><a href="#cb56-28" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb56-29"><a href="#cb56-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb56-30"><a href="#cb56-30" aria-hidden="true" tabindex="-1"></a>        matching[i,j] <span class="op">=</span> pulp.value(x[i,j])</span>
+<span id="cb56-31"><a href="#cb56-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-32"><a href="#cb56-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Print solution and objective value</span></span>
+<span id="cb56-33"><a href="#cb56-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The optimal matching is: </span><span class="ch">\n</span><span class="st">"</span>, matching)</span>
+<span id="cb56-34"><a href="#cb56-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Optimal value of the objective function: </span><span class="sc">{</span>pulp<span class="sc">.</span>value(prob.objective)<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/pskleer2\.github\.io");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./04-vectorization.html" class="pagination-link" aria-label="Vectorization">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Vectorization</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./A-errata.html" class="pagination-link" aria-label="Corrections">
+        <span class="nav-page-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Corrections</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

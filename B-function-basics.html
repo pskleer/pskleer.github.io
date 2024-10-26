@@ -213,7 +213,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="getting-specific-output-arguments" class="level2" data-number="B.1">
 <h2 data-number="B.1" class="anchored" data-anchor-id="getting-specific-output-arguments"><span class="header-section-number">B.1</span> Getting specific output arguments</h2>
 <p>Suppose we have a function that takes two inputs, and yields four outputs.</p>
-<div id="ed9db7a4" class="cell" data-execution_count="1">
+<div id="038ee772" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(a,b):</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> a <span class="op">+</span> b, a <span class="op">-</span> b, a<span class="op">*</span>b, a<span class="op">/</span>b</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -221,7 +221,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>There are various ways to get one or more specific outputs from Python.</p>
-<div id="c13119c5" class="cell" data-execution_count="2">
+<div id="a34412ae" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Returns all output variables in tuple</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>output <span class="op">=</span> f(a,b)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -230,7 +230,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>(8, 2, 15, 1.6666666666666667)</code></pre>
 </div>
 </div>
-<div id="0563c0e2" class="cell" data-execution_count="3">
+<div id="789a09d5" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Store outputs in variables w, x, y and z</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>w, x, y, z <span class="op">=</span> f(a,b)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -240,7 +240,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>We can suppress one or more output arguments using <code>_</code>.</p>
-<div id="57094f43" class="cell" data-execution_count="4">
+<div id="db9d26d3" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Only store first and last output</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>w, _, _, z <span class="op">=</span> f(a,b)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -250,7 +250,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>If we only want the first output, and suppress the other ones, we can use <code>*_</code></p>
-<div id="f19444b8" class="cell" data-execution_count="5">
+<div id="5017d355" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Only store first output</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>x, <span class="op">*</span>_ <span class="op">=</span> f(a,b) <span class="co"># This is the same as x, _, _, _ = f(a,b)</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -260,7 +260,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>If we only want the first two outputs, and suppress the remaining ones, we can do something similar.</p>
-<div id="20b9552a" class="cell" data-execution_count="6">
+<div id="392a1251" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Only store first output</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>w, x, <span class="op">*</span>_ <span class="op">=</span> f(a,b) <span class="co"># This is the same as w, x, _, _ = f(a,b)</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -270,7 +270,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>If we only want the last output, we can do the following.</p>
-<div id="13d9d6e7" class="cell" data-execution_count="7">
+<div id="b8a2a552" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Only store last output</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="op">*</span>_, z <span class="op">=</span> f(a,b) <span class="co"># This is the same as _, _, _, z = f(a,b)</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -279,8 +279,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>1.6666666666666667</code></pre>
 </div>
 </div>
-<p>Also here, if we would like the last two outputs, we an do the following.</p>
-<div id="c8437597" class="cell" data-execution_count="8">
+<p>Also here, if we would like the last two outputs, we can do the following.</p>
+<div id="da39ec73" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Only store last output</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="op">*</span>_, y, z <span class="op">=</span> f(a,b) <span class="co"># This is the same as _, _, y, z = f(a,b)</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>

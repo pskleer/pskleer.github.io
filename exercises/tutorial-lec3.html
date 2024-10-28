@@ -144,19 +144,19 @@ window.Quarto = {
 
 <p><link rel="preconnect" href="https://fonts.googleapis.com"> <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""> <link href="https://fonts.googleapis.com/css2?family=Fira+Mono&amp;family=Fira+Sans&amp;display=swap" rel="stylesheet"></p>
 <p>Make sure to import Numpy, and the linear optimization packages <code>linprog</code> and <code>pulp</code>, to be able to do all exercises.</p>
-<div id="cdb697dc" class="cell" data-execution_count="1">
+<div id="dbef03ea" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> linprog</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pulp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="question-1" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="question-1">Question 1</h4>
-<p>Suppose that <span class="math inline">m \geq n</span> and that <span class="math inline">A \in \mathbb{R}^{m \times n}</span> and <span class="math inline">b \in \mathbb{R}^{m}</span>. If the columns of <span class="math inline">A</span> are independent, i.e., if the rank of <span class="math inline">A</span> is <span class="math inline">n</span>, then the least squares solution to <span class="math display">
+<p>Suppose that <span class="math inline">m \geq n</span> and that <span class="math inline">A \in \mathbb{R}^{m \times n}</span> and <span class="math inline">b \in \mathbb{R}^{m}</span>. If the columns of <span class="math inline">A</span> are independent, i.e., if the rank of <span class="math inline">A</span> is <span class="math inline">n</span>, then the unique least squares solution to <span class="math display">
 \min_x ||Ax - b||_2.
-</span> is given by <span class="math inline">x^* = (A^TA)^{-1}A^Tb</span>.</p>
+</span> is given by <span class="math inline">x^* = (A^TA)^{-1}A^Tb</span>. (We need the assumption that <span class="math inline">m \geq n</span> to guarantee that (A<sup>TA)</sup>{-1} exists.)</p>
 <p>Write a function that takes as input a matrix <span class="math inline">A</span> and vector <span class="math inline">b</span>. It should return the least squares solution <span class="math inline">x^*</span> if <span class="math inline">A</span> has full rank, and a message saying that <span class="math inline">A</span> is not of full rank if not. You may use an if/else-statement for this case distinction.</p>
 <p>It should give the following output on the inputs below.</p>
-<div id="aa4569ee" class="cell" data-execution_count="3">
+<div id="2331b894" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a> [<span class="fl">0.61776137</span>, <span class="fl">0.9880466</span>,  <span class="fl">0.93526716</span>],</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a> [<span class="fl">0.25839379</span>, <span class="fl">0.66983101</span>, <span class="fl">0.55140378</span>],</span>
@@ -178,7 +178,7 @@ window.Quarto = {
  [ 1.3285266 ]]</code></pre>
 </div>
 </div>
-<div id="603d5630" class="cell" data-execution_count="4">
+<div id="59efc3be" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a> [<span class="fl">0.61776137</span>, <span class="fl">0.9880466</span>,  <span class="fl">0.9880466</span>],</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a> [<span class="fl">0.25839379</span>, <span class="fl">0.66983101</span>, <span class="fl">0.66983101</span>],</span>
@@ -202,7 +202,7 @@ x_i = \frac{\text{det}(A_i)}{\text{det}(A)} \ \ \ \text{ for } i = 0,\dots,n-1,
 </span> where <span class="math inline">A_i</span> is the matrix <span class="math inline">A</span> in which column <span class="math inline">i</span> is replaced by <span class="math inline">b</span>.</p>
 <p>Write a function <code>cramer(A,b)</code> that computes the solution <span class="math inline">x</span> according to Cramer’s rule (you may use one for-loop in your implementation).</p>
 <p>Your function should give the following output on the given input.</p>
-<div id="7d1da52f" class="cell" data-execution_count="6">
+<div id="83a43326" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a> [<span class="fl">0.61776137</span>, <span class="fl">0.9880466</span>,  <span class="fl">0.93526716</span>],</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a> [<span class="fl">0.25839379</span>, <span class="fl">0.66983101</span>, <span class="fl">0.55140378</span>],</span>
@@ -228,7 +228,7 @@ x_i = \frac{\text{det}(A_i)}{\text{det}(A)} \ \ \ \text{ for } i = 0,\dots,n-1,
 <p>One way to obtain a solution to an underdetermined system <span class="math inline">Ax = b</span>, where <span class="math inline">n &gt; m</span>, is to pick a list of indices <span class="math inline">R \subseteq \{0,\dots,n-1\}</span> of size <span class="math inline">|R| = m</span>. Set <span class="math inline">x_i = 0</span> for all <span class="math inline">i \notin R</span> (there are <span class="math inline">n - m</span> of such variables), and determine the values in <span class="math inline">x_R = (x_i)_{i \in R}</span> by solving the system <span class="math inline">Bx_R = b</span>, where <span class="math inline">B</span> is the matrix containing the columns of <span class="math inline">A</span> corresponding to the indices in <span class="math inline">R</span>.</p>
 <p>Write a function <code>underdetermined(A,b,R)</code> that takes as input arrays <span class="math inline">A,b</span> and a list <span class="math inline">R</span> as above, and returns a solution <span class="math inline">x \in \mathbb{R}^n</span> to <span class="math inline">Ax = b</span> satisfying the above description.</p>
 <p>Your function should give the following output on the given input.</p>
-<div id="939ed7de" class="cell" data-execution_count="8">
+<div id="7df9ec2c" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a> [<span class="fl">0.83</span>, <span class="fl">0.43</span>, <span class="fl">0.16</span>, <span class="fl">0.01</span>, <span class="fl">0.86</span>, <span class="fl">0.87</span>, <span class="fl">0.36</span>, <span class="fl">0.68</span>],</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a> [<span class="fl">0.29</span>, <span class="fl">0.81</span>, <span class="fl">0.78</span>, <span class="fl">0.97</span>, <span class="fl">0.2</span>,  <span class="fl">0.28</span>, <span class="fl">0.44</span>, <span class="fl">0.07</span>],</span>
@@ -276,7 +276,7 @@ y_i = \frac{\displaystyle \sum_{j=i}^{n-1} x_j}{\displaystyle \sum_{j=0}^{n-1} x
 </span> i.e., <span class="math inline">y_i</span> is the fraction that the last <span class="math inline">i</span> numbers contribute to the sum of all numbers in <span class="math inline">x</span>.</li>
 </ol>
 <p>Your functions in <span class="math inline">a)-c)</span> should give the following output on the indicated input.</p>
-<div id="6de3fe2f" class="cell" data-execution_count="12">
+<div id="c56bec80" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Stylized data in which there is clear correlation </span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># between feature 0 and 1 (but not with the others)</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">10</span></span>
@@ -353,7 +353,7 @@ w_1 &amp; w_2 &amp; w_3 &amp; w_4 &amp; w_5 &amp; w_6 &amp; w_7 &amp; w_8 &amp; 
 \end{matrix}
 \right].
 </span></p>
-<div id="5b08c924" class="cell" data-execution_count="14">
+<div id="7f68284e" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">3</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> np.arange(<span class="dv">1</span>,n<span class="op">**</span><span class="dv">2</span><span class="op">+</span><span class="dv">1</span>)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> np.arange(n<span class="op">**</span><span class="dv">2</span><span class="op">+</span><span class="dv">1</span>,<span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>)</span>
@@ -371,7 +371,7 @@ w_1 &amp; w_2 &amp; w_3 &amp; w_4 &amp; w_5 &amp; w_6 &amp; w_7 &amp; w_8 &amp; 
 <section id="question-6" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="question-6">Question 6</h4>
 <p>Implement and solve the problem from Question 5 with the PuLP package, i.e., write the function <code>knapsack_pulp(n,v,w,W,r)</code> that yields the same output.</p>
-<div id="e3bbf0ae" class="cell" data-execution_count="16">
+<div id="f5cde512" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">3</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> np.arange(<span class="dv">1</span>,n<span class="op">**</span><span class="dv">2</span><span class="op">+</span><span class="dv">1</span>)</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> np.arange(n<span class="op">**</span><span class="dv">2</span><span class="op">+</span><span class="dv">1</span>,<span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>)</span>

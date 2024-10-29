@@ -1,35 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://pskleer2.github.io/index.html</loc>
+    <loc>https://pskleer.github.io/index.html</loc>
     <lastmod>2024-10-18T20:37:16.616Z</lastmod>
   </url>
   <url>
-    <loc>https://pskleer2.github.io/02-good-coding.html</loc>
-    <lastmod>2024-10-18T16:08:36.542Z</lastmod>
+    <loc>https://pskleer.github.io/02-good-coding.html</loc>
+    <lastmod>2024-10-28T20:43:49.194Z</lastmod>
   </url>
   <url>
-    <loc>https://pskleer2.github.io/03-numpy-arrays.html</loc>
+    <loc>https://pskleer.github.io/03-numpy-arrays.html</loc>
     <lastmod>2024-10-23T14:04:56.025Z</lastmod>
   </url>
   <url>
-    <loc>https://pskleer2.github.io/04-vectorization.html</loc>
+    <loc>https://pskleer.github.io/04-vectorization.html</loc>
     <lastmod>2024-10-27T07:58:04.792Z</lastmod>
   </url>
   <url>
-    <loc>https://pskleer2.github.io/05-linear.html</loc>
+    <loc>https://pskleer.github.io/05-linear.html</loc>
     <lastmod>2024-10-28T10:50:04.840Z</lastmod>
   </url>
   <url>
-    <loc>https://pskleer2.github.io/A-errata.html</loc>
+    <loc>https://pskleer.github.io/06-nonlinear.html</loc>
+    <lastmod>2024-10-29T19:31:39.238Z</lastmod>
+  </url>
+  <url>
+    <loc>https://pskleer.github.io/A-errata.html</loc>
     <lastmod>2024-10-26T12:30:32.921Z</lastmod>
   </url>
   <url>
-    <loc>https://pskleer2.github.io/B-function-basics.html</loc>
+    <loc>https://pskleer.github.io/B-function-basics.html</loc>
     <lastmod>2024-10-28T08:22:59.033Z</lastmod>
   </url>
   <url>
-    <loc>https://pskleer2.github.io/Computational-Aspects-in-Econometrics---Python-II-module.pdf</loc>
-    <lastmod>2024-10-28T10:53:25.703Z</lastmod>
+    <loc>https://pskleer.github.io/Computational-Aspects-in-Econometrics---Python-II-module.pdf</loc>
+    <lastmod>2024-10-29T19:36:48.958Z</lastmod>
   </url>
 </urlset>

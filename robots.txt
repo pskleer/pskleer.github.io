@@ -1,1 +1,1 @@
-Sitemap: https://pskleer2.github.io/sitemap.xml
+Sitemap: https://pskleer.github.io/sitemap.xml

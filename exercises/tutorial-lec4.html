@@ -144,7 +144,7 @@ window.Quarto = {
 
 <p><link rel="preconnect" href="https://fonts.googleapis.com"> <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""> <link href="https://fonts.googleapis.com/css2?family=Fira+Mono&amp;family=Fira+Sans&amp;display=swap" rel="stylesheet"></p>
 <p>Make sure to import Numpy and the <code>optimize</code> module from SciPy.</p>
-<div id="39de8a1e" class="cell" data-execution_count="1">
+<div id="34e45be3" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.optimize <span class="im">as</span> optimize</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -152,7 +152,7 @@ window.Quarto = {
 <h4 class="unnumbered anchored" data-anchor-id="question-1">Question 1</h4>
 <p>Execute <code>fsolve()</code> with initial guesses in <span class="math inline">[-10,-9.5,-9,\dots,9,9.5,10]</span> to find roots of the function <span class="math inline">f(x) = x \cdot \cos(x)</span>. You may use a for-loop to iterate over the initial guesses. Store the found roots in a list called <code>roots</code>.</p>
 <p>The output list <code>roots</code> should look like this. Recall that <code>fsolve()</code> returns an array with one element (which you can access by indexing it at position <span class="math inline">0</span>).</p>
-<div id="a4e51f0d" class="cell" data-execution_count="2">
+<div id="6b35b01d" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-stdout">
 <pre><code>[-10.995574287564276, 1.5707963267948954, -7.853981633974491, -7.853981633974483, -7.853981633974498, -7.853981633974479, -7.853981633974455, -7.853981633974483, -4.712388980384539, -4.71238898038469, -4.71238898038469, -4.71238898038469, -4.71238898038469, 1.5707963267948966, -1.5707963267948966, -1.570796326794901, -1.5707963267948974, -1.5707963267948966, -1.5707963267948961, 0.0, 0.0, 0.0, 1.5707963267948961, 1.5707963267948966, 1.5707963267948974, 1.570796326794901, 1.5707963267948966, -1.5707963267948966, 4.71238898038469, 4.71238898038469, 4.71238898038469, 4.71238898038469, 4.712388980384539, 7.853981633974483, 7.853981633974455, 7.853981633974479, 7.853981633974498, 7.853981633974483, 7.853981633974491, -7.853981633974483, 10.995574287564276]</code></pre>
 </div>
@@ -162,15 +162,15 @@ window.Quarto = {
 <h4 class="unnumbered anchored" data-anchor-id="question-2">Question 2</h4>
 <p>We will write a function that can compute a root of a polynomial function.</p>
 <ol type="a">
-<li>Write a function that takes as input an array <span class="math inline">x = [x_0,\dots,x_{n-1}]</span> and an array of coefficients <span class="math inline">a = [a_0,\dots,a_{n-1}]</span>. It should return the function <span class="math inline">f(x) = \sum_{i=0}^{n-1} a_i x^i</span>.</li>
+<li>Write a function that takes as input a number <span class="math inline">x</span> and an array of coefficients <span class="math inline">a = [a_0,\dots,a_{n-1}]</span>. It should return the function <span class="math inline">f(x) = \sum_{i=0}^{n-1} a_i x^i</span>.</li>
 </ol>
-<p>The derivative of <span class="math inline">f</span> is given by <span class="math inline">\sum_{i=1}^{n-1} i \cdot a_ix^{i-1}</span>.</p>
+<p>The derivative of <span class="math inline">f</span> is given by <span class="math inline">f(x) = \sum_{i=1}^{n-1} i \cdot a_ix^{i-1}</span>.</p>
 <ol start="2" type="a">
-<li><p>Write a function <code>f_deriv</code> that takes as input an array <span class="math inline">x = [x_0,\dots,x_{n-1}]</span> and an array of coefficients <span class="math inline">a = [a_0,\dots,a_{n-1}]</span>. It should return the derivative <span class="math inline">f'(x)</span> of <span class="math inline">f</span> in the point <span class="math inline">x</span>.</p></li>
+<li><p>Write a function <code>f_deriv</code> that takes as input a number <span class="math inline">x</span> and an array of coefficients <span class="math inline">a = [a_0,\dots,a_{n-1}]</span>. It should return the derivative <span class="math inline">f'(x)</span> of <span class="math inline">f</span> in the point <span class="math inline">x</span>.</p></li>
 <li><p>Write a function <code>root_polynomial</code> that takes as input an array of coefficients <span class="math inline">a = [a_0,\dots,a_{n-1}]</span> and an initial guess <span class="math inline">r</span>. It should output a root of the function <span class="math inline">f</span> if one is found, and a message saying no root was found otherwise. Use <code>root_scalar()</code> with Newton’s method and initial guess <span class="math inline">r</span>. <br><br> The output property <code>converged</code> of <code>root_scalar()</code> tells you whether or not Newton’s method has found a root. Also, you will need to use the <code>args</code> keyword argument.</p></li>
 </ol>
 <p>Your functions should give the following output on the input below.</p>
-<div id="a9b100f6" class="cell" data-execution_count="4">
+<div id="4a3865b5" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First polynomial</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> np.array([<span class="fl">1.5</span>, <span class="dv">0</span>, <span class="op">-</span><span class="fl">2.5</span>, <span class="fl">0.3</span>, <span class="dv">1</span>])</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="fl">1.5</span></span>
@@ -212,7 +212,7 @@ x_1 - \cos(\tfrac{\pi}{2} x_2)
 <li><p>Write a function <code>circle()</code>that takes as input a one-dimensional array <span class="math inline">\rho = [\rho_0,\dots,\rho_{k-1}]</span> and outputs the points <span class="math inline">[2\cos(\rho_i),2\sin(\rho_i)]</span> on the rows of a <span class="math inline">k \times 2</span> array. Do not use for-loops.</p></li>
 <li><p>For <span class="math inline">k = 50</span> evenly spaced values of <span class="math inline">\rho \in [0,2\pi]</span>, use <code>root()</code> to find a root of the system <span class="math inline">f(x) = 0</span> with initial guess <span class="math inline">[2\cos(\rho),2\sin(\rho)]</span>, Jacobian information, and the <code>'hybr'</code> method. For every value of <span class="math inline">\rho</span> the output should be a short message including 1) the value of <span class="math inline">\rho</span> and 2) the root that was found, or a message that no root was found. <br><br> Have a look at the output message of the function <code>root()</code> to see how you can determine whether the method found a root or not. <br><br> For <span class="math inline">k = 50</span> evenly spaced points in <span class="math inline">[0,2\pi]</span> your output should look like this. As you can see, all of the three roots of the system are sometimes found, and also sometimes no root is found.</p></li>
 </ol>
-<div id="38f605c3" class="cell" data-execution_count="5">
+<div id="26c05dff" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-stdout">
 <pre><code>For guess = [2. 0.], found root is [1.5781495e-12 1.0000000e+00]
 For guess = [1.98358003 0.25575432], found root is [-2.57655834e-14  1.00000000e+00]
@@ -274,7 +274,7 @@ f(x) = f(x_0,\dots,x_{n-1}) = x^TAx + b^Tx + c = \sum_{i = 0}^{n-1} \sum_{j = 0}
 </span> that takes as input a one-dimensional array <span class="math inline">x</span>. The gradient of this function is given by <span class="math inline">\nabla f(x) = Ax + b</span>.</p>
 <p>Write a function <code>quadratic_minimizer</code> that takes as input <span class="math inline">A,b</span> and <span class="math inline">c</span>. It should compute a (local) minimizer of the function <span class="math inline">f</span> using <code>minimize()</code> with gradient information, the <code>'CG'</code> method, and initial guess <span class="math inline">x = [1,1,\dots,1]</span>.</p>
 <p>It should give the following output on the given input.</p>
-<div id="efd22a67" class="cell" data-execution_count="7">
+<div id="bde2b098" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example usage</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([[<span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">0</span>], [<span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">0</span>], [<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">5</span>]])</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> np.array([<span class="op">-</span><span class="dv">1</span>, <span class="op">-</span><span class="dv">4</span>, <span class="dv">1</span>])</span>
@@ -289,7 +289,7 @@ Function value at optimal point: 6.0</code></pre>
 </div>
 </div>
 <p>Because the matrix <span class="math inline">A</span> is symmetric and has positive eigenvalues, the function <span class="math inline">f</span> is convex, meaning that an optimal solution can be found at the point where the gradient is the all-zeros vector, that is, <span class="math inline">x^* = -A^{-1}b</span>. This is indeed the solution that we found.</p>
-<div id="46f7b1b1" class="cell" data-execution_count="8">
+<div id="71af6c2c" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>eig_A, _ <span class="op">=</span> np.linalg.eig(A)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"The eigenvalues of A are </span><span class="sc">{</span>eig_A<span class="sc">}</span><span class="ss">"</span>)</span>
@@ -317,7 +317,7 @@ Function value at point where gradient is zero: 6.0</code></pre>
 \end{array}
 </span></p>
 <p>using <code>minimize()</code> with the <code>'trust-constr'</code> method. Take <span class="math inline">a</span> as the initial guess. You may assume that <span class="math inline">\sum_i w_ia_i \leq W</span>, so that this problem always has a solution.<br><br> <i>Hint:</i> You may want to have a look at the <code>constraints</code> keyword argument in the documentation of <code>minimize()</code> to see how you can input additional arguments to a constraint.</p>
-<div id="d5aa4224" class="cell" data-execution_count="10">
+<div id="f52a76ee" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">7</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> np.array([<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">7</span>])</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> np.array([<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">6</span>,<span class="dv">8</span>,<span class="dv">1</span>,<span class="dv">9</span>])</span>

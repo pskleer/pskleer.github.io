@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Solutions Lecture 5 (Chapter 7)</title>
+<title>Exercises Lecture 5 (Chapter 7)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -125,7 +125,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Solutions Lecture 5 (Chapter 7)</h1>
+<h1 class="title">Exercises Lecture 5 (Chapter 7)</h1>
 </div>
 
 
@@ -144,7 +144,7 @@ window.Quarto = {
 
 <p><link rel="preconnect" href="https://fonts.googleapis.com"> <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""> <link href="https://fonts.googleapis.com/css2?family=Fira+Mono&amp;family=Fira+Sans&amp;display=swap" rel="stylesheet"></p>
 <p>Make sure to import Numpy, SciPy and Matplotlib to be able to complete all the exercises.</p>
-<div id="99dbed4b" class="cell" data-execution_count="1">
+<div id="8f667767" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.optimize <span class="im">as</span> optimize</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -152,7 +152,7 @@ window.Quarto = {
 <section id="question-1" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="question-1">Question 1</h4>
 <p>Plot the function <span class="math inline">f(x) = x \cdot cos(x)</span> on the interval <span class="math inline">[-10,10]</span> and indicate all the roots of this function with a dot. <br><br> To compute all the roots in the interval <span class="math inline">[-10,10]</span> use your solution to Question 1 from the Exercises corresponding to Lecture 4. <br><br> Your plot should look like this.</p>
-<div id="06816700" class="cell" data-execution_count="2">
+<div id="4b781fff" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -165,7 +165,7 @@ window.Quarto = {
 <section id="question-2" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="question-2">Question 2</h4>
 <p>For a one-dimensional array <span class="math inline">x</span>, we can make a histogram of the values in <span class="math inline">x</span> using <code>plt.hist()</code> as the next example illustrates. We can use the <code>bins</code> keyword argument to specify in how many “bins” the values should be divided.</p>
-<div id="53f3e4cd" class="cell" data-execution_count="3">
+<div id="c1bf4bff" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.array([<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">2</span>,<span class="dv">6</span>,<span class="dv">5</span>,<span class="dv">4</span>,<span class="dv">8</span>,<span class="dv">8</span>,<span class="dv">8</span>,<span class="dv">7</span>,<span class="dv">6</span>,<span class="dv">5</span>,<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">2</span>,<span class="dv">5</span>])</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create figure</span></span>
@@ -191,7 +191,7 @@ window.Quarto = {
 </div>
 <p>It is well known that if we draw many samples from a probability distribution, then the histogram of these samples should converge to the probability density function of the distribution. We will test this for the normal distribution.</p>
 <p>The following code generates an array <code>samples</code> with <span class="math inline">n = 900</span> samples from the normal distribution with mean <span class="math inline">0</span> and standard deviation <span class="math inline">1</span>. We will see more on sample generation in a later chapter of this book. For now, we will only need to work with the vector <code>samples</code>.</p>
-<div id="98e4b01b" class="cell" data-execution_count="4">
+<div id="3d019bcd" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mean of the distribution</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>mean <span class="op">=</span> <span class="dv">0</span>    </span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -203,11 +203,11 @@ window.Quarto = {
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>samples <span class="op">=</span> np.random.normal(mean, std_dev, n) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We will generate nine figures that show that the more samples we put in the histogram, the more the histogram will look like a bell-shaped normal distribution curve. <br><br> To this end, create a figure using <code>plt.subplots()</code> with nine subplots where plot <span class="math inline">i</span> contains the first <span class="math inline">100i</span> samples of <code>samples</code> in a histogram with <span class="math inline">25</span> bins. Avoid unnecessary repetition as much as possible. <br><br> Your figure should look like the one below. Note that because of the randomness involved in the sample generation, your histograms do not have to look exactly the same. What is important is that the figures (seem to) converge to the bell-shaped curve.</p>
-<div id="5deea557" class="cell" data-execution_count="5">
+<div id="62627958" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="tutorial-lec5_files/figure-html/cell-6-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="649" height="661"></p>
+<p><img src="tutorial-lec5_files/figure-html/cell-6-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="661" height="661"></p>
 </figure>
 </div>
 </div>
@@ -218,7 +218,7 @@ window.Quarto = {
 <p>Write a function <code>plot_average</code> that takes as input a two-dimensional array and two numbers <span class="math inline">a</span> and <span class="math inline">b</span>. Every row contains function values of <span class="math inline">n</span> evenly-spaced points on the interval <span class="math inline">[a,b]</span>, that is, of points in <code>x = np.linspace(a,b,n)</code>. In other words, row <span class="math inline">i = 1,\dots,m</span> of the array are the function values <span class="math inline">y_{ij} = f_i(x_j)</span>, of some function <span class="math inline">f_i</span>, for <span class="math inline">j = 1,\dots,n</span>. <br><br> The function <code>plot_average</code> should output a figure that has subplots of all the functions next to each other on the interval <span class="math inline">[a,b]</span>. Under these plots, in the same figure, there should be a plot with the average of the functions, which is for <span class="math inline">j = 1,\dots,n</span> the function defined by <span class="math display">
 \bar{f}(x_j) = \frac{1}{m} \sum_i f_i(x_j)
 </span> where <span class="math inline">m</span> is the number of rows (or functions <span class="math inline">f_i</span>) of the input array. <br><br> Your function should look like this for the given input. Also here, the numerical values in the plots might be different because of the randomness in the data generation.</p>
-<div id="494aa6f1" class="cell" data-execution_count="7">
+<div id="5886ec2c" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate some random data from [0,1]</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.random.rand(<span class="dv">3</span>,<span class="dv">50</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="op">-</span><span class="dv">2</span></span>
@@ -237,7 +237,7 @@ window.Quarto = {
 <section id="question-4" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="question-4">Question 4</h4>
 <p>It is not always possible to use the matrices <span class="math inline">X</span> and <span class="math inline">Y</span> generated by <code>mgrid</code> directly for visualization of bivariate functions. For example, suppose that the function <span class="math inline">f : \mathbb{R}^2 \rightarrow \mathbb{R}</span> is defined by taking as input an array of shape <span class="math inline">(1,2)</span> containing two elements.</p>
-<div id="675b361c" class="cell" data-execution_count="8">
+<div id="a967d74e" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x):</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x[:,<span class="dv">0</span>]<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> x[:,<span class="dv">1</span>]<span class="op">**</span><span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -245,7 +245,7 @@ window.Quarto = {
 <ol type="a">
 <li>Write a function <code>grid_list</code> that takes as input matrices <span class="math inline">X</span> and <span class="math inline">Y</span>. It should output all the two-dimensional points <span class="math inline">[X[i,j], Y[i,j]]</span> on the rows of an array. Do this by reshaping the matrices <span class="math inline">X</span> and <span class="math inline">Y</span> in combination with stacking. <br><br> Your function should give the following output on the given input.</li>
 </ol>
-<div id="f7255fc8" class="cell" data-execution_count="10">
+<div id="f7df83a0" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="dv">3</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="fl">5.1</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>step <span class="op">=</span> <span class="fl">0.2</span></span>
@@ -380,7 +380,7 @@ window.Quarto = {
 <ol start="2" type="a">
 <li>Make a contour plot of the function <span class="math inline">f</span> (as defined in this exercise) using <code>plt.contourf()</code> with <span class="math inline">25</span> levels on the interval <span class="math inline">[1,3] \times [1,3]</span> with discretization step size <span class="math inline">0.01</span>. <br><br> Do this by computing the function values <span class="math inline">Z[i,j]</span> of every grid point <span class="math inline">(i,j)</span> after applying <code>grid_list</code> to the desired grid, and then reshape the function value vector into a two-dimensional array again (so that <span class="math inline">Z[i,j]</span> corresponds to <span class="math inline">X[i,j]^2 + Y[i,j]^2</span>). <br><br> Your plot should look like this.</li>
 </ol>
-<div id="6c14ec90" class="cell" data-execution_count="11">
+<div id="f6644e51" class="cell" data-execution_count="11">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">

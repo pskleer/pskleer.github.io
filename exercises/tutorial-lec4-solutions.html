@@ -144,7 +144,7 @@ window.Quarto = {
 
 <p><link rel="preconnect" href="https://fonts.googleapis.com"> <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""> <link href="https://fonts.googleapis.com/css2?family=Fira+Mono&amp;family=Fira+Sans&amp;display=swap" rel="stylesheet"></p>
 <p>Make sure to import Numpy and the <code>optimize</code> module from SciPy.</p>
-<div id="980584d9" class="cell" data-execution_count="1">
+<div id="b80bb96d" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.optimize <span class="im">as</span> optimize</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -152,12 +152,12 @@ window.Quarto = {
 <h4 class="unnumbered anchored" data-anchor-id="question-1">Question 1</h4>
 <p>Execute <code>fsolve()</code> with initial guesses in <span class="math inline">[-10,-9.5,-9,\dots,9,9.5,10]</span> to find roots of the function <span class="math inline">f(x) = x \cdot \cos(x)</span>. You may use a for-loop to iterate over the initial guesses. Store the found roots in a list called <code>roots</code>.</p>
 <p>The output list <code>roots</code> should look like this. Recall that <code>fsolve()</code> returns an array with one element (which you can access by indexing it at position <span class="math inline">0</span>).</p>
-<div id="e5314571" class="cell" data-execution_count="2">
+<div id="4c82a64c" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-stdout">
 <pre><code>[-10.995574287564276, 1.5707963267948954, -7.853981633974491, -7.853981633974483, -7.853981633974498, -7.853981633974479, -7.853981633974455, -7.853981633974483, -4.712388980384539, -4.71238898038469, -4.71238898038469, -4.71238898038469, -4.71238898038469, 1.5707963267948966, -1.5707963267948966, -1.570796326794901, -1.5707963267948974, -1.5707963267948966, -1.5707963267948961, 0.0, 0.0, 0.0, 1.5707963267948961, 1.5707963267948966, 1.5707963267948974, 1.570796326794901, 1.5707963267948966, -1.5707963267948966, 4.71238898038469, 4.71238898038469, 4.71238898038469, 4.71238898038469, 4.712388980384539, 7.853981633974483, 7.853981633974455, 7.853981633974479, 7.853981633974498, 7.853981633974483, 7.853981633974491, -7.853981633974483, 10.995574287564276]</code></pre>
 </div>
 </div>
-<div id="dcce986e" class="cell" data-execution_count="3">
+<div id="e37cd117" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x):</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x<span class="op">*</span>np.cos(x)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -180,7 +180,7 @@ window.Quarto = {
 <ol type="a">
 <li>Write a function that takes as input a number <span class="math inline">x</span> and an array of coefficients <span class="math inline">a = [a_0,\dots,a_{n-1}]</span>. It should return the function <span class="math inline">f(x) = \sum_{i=0}^{n-1} a_i x^i</span>.</li>
 </ol>
-<div id="95ec4be2" class="cell" data-execution_count="4">
+<div id="7a695bd7" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x,a):</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> np.size(a)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.<span class="bu">sum</span>(a<span class="op">*</span>(x<span class="op">**</span>np.arange(<span class="dv">0</span>,n)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -189,7 +189,7 @@ window.Quarto = {
 <ol start="2" type="a">
 <li>Write a function <code>f_deriv</code> that takes as input a number <span class="math inline">x</span> and an array of coefficients <span class="math inline">a = [a_0,\dots,a_{n-1}]</span>. It should return the derivative <span class="math inline">f'(x)</span> of <span class="math inline">f</span> in the point <span class="math inline">x</span>.</li>
 </ol>
-<div id="2318c078" class="cell" data-execution_count="5">
+<div id="e8a5c041" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f_deriv(x,a):</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> np.size(a)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.<span class="bu">sum</span>(np.arange(<span class="dv">1</span>,n)<span class="op">*</span>a[<span class="dv">1</span>:]<span class="op">*</span>x<span class="op">**</span>np.arange(<span class="dv">0</span>,n<span class="op">-</span><span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -198,7 +198,7 @@ window.Quarto = {
 <li>Write a function <code>root_polynomial</code> that takes as input an array of coefficients <span class="math inline">a = [a_0,\dots,a_{n-1}]</span> and an initial guess <span class="math inline">r</span>. It should output a root of the function <span class="math inline">f</span> if one is found, and a message saying no root was found otherwise. Use <code>root_scalar()</code> with Newton’s method and initial guess <span class="math inline">r</span>. <br><br> The output property <code>converged</code> of <code>root_scalar()</code> tells you whether or not Newton’s method has found a root. Also, you will need to use the <code>args</code> keyword argument.</li>
 </ol>
 <p>Your functions should give the following output on the input below.</p>
-<div id="5187dd05" class="cell" data-execution_count="7">
+<div id="827cdb25" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First polynomial</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> np.array([<span class="fl">1.5</span>, <span class="dv">0</span>, <span class="op">-</span><span class="fl">2.5</span>, <span class="fl">0.3</span>, <span class="dv">1</span>])</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="fl">1.5</span></span>
@@ -217,7 +217,7 @@ window.Quarto = {
 No root was found; it might be that no root exists.</code></pre>
 </div>
 </div>
-<div id="fe9fcccd" class="cell" data-execution_count="8">
+<div id="09e37709" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> root_polynomial(a,r):</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> optimize.root_scalar(f, args<span class="op">=</span>(a), x0<span class="op">=</span>r, method<span class="op">=</span><span class="st">'newton'</span>,</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>                                                        fprime<span class="op">=</span>f_deriv)</span>
@@ -262,7 +262,7 @@ x_1 - \cos(\tfrac{\pi}{2} x_2)
 <ol type="a">
 <li>Implement <span class="math inline">f</span> and its Jacobian as Python functions called <code>f</code> and <code>jac_f</code>.</li>
 </ol>
-<div id="a587957b" class="cell" data-execution_count="9">
+<div id="1cb414ee" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x):</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.array([x[<span class="dv">0</span>]<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> x[<span class="dv">1</span>] <span class="op">+</span> <span class="dv">1</span>, x[<span class="dv">0</span>] <span class="op">-</span> np.cos(np.pi <span class="op">/</span> <span class="dv">2</span> <span class="op">*</span> x[<span class="dv">1</span>])])</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -273,7 +273,7 @@ x_1 - \cos(\tfrac{\pi}{2} x_2)
 <ol start="2" type="a">
 <li>Write a function <code>circle()</code>that takes as input a one-dimensional array <span class="math inline">\rho = [\rho_0,\dots,\rho_{k-1}]</span> and outputs the points <span class="math inline">[2\cos(\rho_i),2\sin(\rho_i)]</span> on the rows of a <span class="math inline">k \times 2</span> array. Do not use for-loops.</li>
 </ol>
-<div id="5fbf891f" class="cell" data-execution_count="10">
+<div id="316d8600" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> circle(rho):</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> np.array([np.cos(rho), np.sin(rho)]).T</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">2</span> <span class="op">*</span> x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -281,7 +281,7 @@ x_1 - \cos(\tfrac{\pi}{2} x_2)
 <ol start="3" type="a">
 <li>For <span class="math inline">k = 50</span> evenly spaced values of <span class="math inline">\rho \in [0,2\pi]</span>, use <code>root()</code> to find a root of the system <span class="math inline">f(x) = 0</span> with initial guess <span class="math inline">[2\cos(\rho),2\sin(\rho)]</span>, Jacobian information, and the <code>'hybr'</code> method. For every value of <span class="math inline">\rho</span> the output should be a short message including 1) the value of <span class="math inline">\rho</span> and 2) the root that was found, or a message that no root was found. <br><br> Have a look at the output message of the function <code>root()</code> to see how you can determine whether the method found a root or not. <br><br> For <span class="math inline">k = 50</span> evenly spaced points in <span class="math inline">[0,2\pi]</span> your output should look like this. As you can see, all of the three roots of the system are sometimes found, and also sometimes no root is found.</li>
 </ol>
-<div id="44e395d2" class="cell" data-execution_count="11">
+<div id="29317063" class="cell" data-execution_count="11">
 <div class="cell-output cell-output-stdout">
 <pre><code>For guess = [2. 0.], found root is [1.5781495e-12 1.0000000e+00]
 For guess = [1.98358003 0.25575432], found root is [-2.57655834e-14  1.00000000e+00]
@@ -335,7 +335,7 @@ For guess = [ 1.98358003 -0.25575432], found root is [-9.27679759e-14  1.0000000
 For guess = [ 2.0000000e+00 -4.8985872e-16], found root is [1.57814971e-12 1.00000000e+00]</code></pre>
 </div>
 </div>
-<div id="5bfbdfbd" class="cell" data-execution_count="12">
+<div id="d8dd3852" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Evenly spaced points in the interval [0,2*pi]</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>k <span class="op">=</span> <span class="dv">50</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>rho <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="dv">2</span><span class="op">*</span>np.pi,k)</span>
@@ -411,7 +411,7 @@ f(x) = f(x_0,\dots,x_{n-1}) = x^TAx + b^Tx + c = \sum_{i = 0}^{n-1} \sum_{j = 0}
 </span> that takes as input a one-dimensional array <span class="math inline">x</span>. The gradient of this function is given by <span class="math inline">\nabla f(x) = Ax + b</span>.</p>
 <p>Write a function <code>quadratic_minimizer</code> that takes as input <span class="math inline">A,b</span> and <span class="math inline">c</span>. It should compute a (local) minimizer of the function <span class="math inline">f</span> using <code>minimize()</code> with gradient information, the <code>'CG'</code> method, and initial guess <span class="math inline">x = [1,1,\dots,1]</span>.</p>
 <p>It should give the following output on the given input.</p>
-<div id="d0115160" class="cell" data-execution_count="14">
+<div id="8ad1a20f" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example usage</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([[<span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">0</span>], [<span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">0</span>], [<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">5</span>]])</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> np.array([<span class="op">-</span><span class="dv">1</span>, <span class="op">-</span><span class="dv">4</span>, <span class="dv">1</span>])</span>
@@ -425,35 +425,41 @@ f(x) = f(x_0,\dots,x_{n-1}) = x^TAx + b^Tx + c = \sum_{i = 0}^{n-1} \sum_{j = 0}
 Function value at optimal point: 6.0</code></pre>
 </div>
 </div>
-<div id="431af973" class="cell" data-execution_count="15">
+<div id="b8225502" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x, A, b, c):</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x.T <span class="op">@</span> (A <span class="op">@</span> x) <span class="op">+</span> b <span class="op">@</span> x <span class="op">+</span> c</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gradient_f(x, A, b, c):</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> A <span class="op">@</span> x <span class="op">+</span> b</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> quadratic_minimizer(A, b, c):</span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> np.shape(A)[<span class="dv">0</span>]</span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>    guess <span class="op">=</span> np.ones(n)</span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> optimize.minimize(f, guess, args<span class="op">=</span>(A, b, c), </span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>                                    jac<span class="op">=</span>gradient_f, method<span class="op">=</span><span class="st">'CG'</span>)</span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result</span>
-<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Example usage</span></span>
-<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([[<span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">0</span>], [<span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">0</span>], [<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">5</span>]])</span>
-<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> np.array([<span class="op">-</span><span class="dv">1</span>, <span class="op">-</span><span class="dv">4</span>, <span class="dv">1</span>])</span>
-<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> <span class="dv">6</span></span>
-<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> quadratic_minimizer(A, b, c)</span>
-<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Optimal solution:"</span>, result.x)</span>
-<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Function value at optimal point:"</span>, result.fun)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co">#The arguments in 'args' of optimize.minimize() are sent </span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="co"># to both f and gradient_f. That is why c is also an input</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="co"># argument of gradient_f, although it is not used.</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Otherwise, Python will say that gradient_f is receiving </span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="co"># too many inputs.</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gradient_f(x, A, b, c): </span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> A <span class="op">@</span> x <span class="op">+</span> b</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> quadratic_minimizer(A, b, c):</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> np.shape(A)[<span class="dv">0</span>]</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>    guess <span class="op">=</span> np.ones(n)</span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>    result <span class="op">=</span> optimize.minimize(f, guess, args<span class="op">=</span>(A, b, c), </span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>                                    jac<span class="op">=</span>gradient_f, method<span class="op">=</span><span class="st">'CG'</span>)</span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result</span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Example usage</span></span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([[<span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">0</span>], [<span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">0</span>], [<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">5</span>]])</span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> np.array([<span class="op">-</span><span class="dv">1</span>, <span class="op">-</span><span class="dv">4</span>, <span class="dv">1</span>])</span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> <span class="dv">6</span></span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> quadratic_minimizer(A, b, c)</span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Optimal solution:"</span>, result.x)</span>
+<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Function value at optimal point:"</span>, result.fun)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Optimal solution: [ 0.33333333  1.         -0.2       ]
 Function value at optimal point: 6.0</code></pre>
 </div>
 </div>
 <p>Because the matrix <span class="math inline">A</span> is symmetric and has positive eigenvalues, the function <span class="math inline">f</span> is convex, meaning that an optimal solution can be found at the point where the gradient is the all-zeros vector, that is, <span class="math inline">x^* = -A^{-1}b</span>. This is indeed the solution that we found.</p>
-<div id="6e705d45" class="cell" data-execution_count="16">
+<div id="5f17b6e1" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>eig_A, _ <span class="op">=</span> np.linalg.eig(A)</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"The eigenvalues of A are </span><span class="sc">{</span>eig_A<span class="sc">}</span><span class="ss">"</span>)</span>
@@ -481,7 +487,7 @@ Function value at point where gradient is zero: 6.0</code></pre>
 \end{array}
 </span></p>
 <p>using <code>minimize()</code> with the <code>'trust-constr'</code> method. Take <span class="math inline">a</span> as the initial guess. You may assume that <span class="math inline">\sum_i w_ia_i \leq W</span>, so that this problem always has a solution.<br><br> <i>Hint:</i> You may want to have a look at the <code>constraints</code> keyword argument in the documentation of <code>minimize()</code> to see how you can input additional arguments to a constraint.</p>
-<div id="547667c0" class="cell" data-execution_count="17">
+<div id="8d4b0d94" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x):</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span> np.linalg.norm(x)</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    </span>
@@ -496,20 +502,22 @@ Function value at point where gradient is zero: 6.0</code></pre>
 <span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>                                    x0<span class="op">=</span>a, method<span class="op">=</span><span class="st">'trust-constr'</span>)</span>
 <span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> result.x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="bc64bcc0" class="cell" data-execution_count="18">
+<div id="1eb384e8" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">7</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> np.array([<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">7</span>])</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> np.array([<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">6</span>,<span class="dv">8</span>,<span class="dv">1</span>,<span class="dv">9</span>])</span>
 <span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> np.array([<span class="dv">0</span>,<span class="dv">6</span>,<span class="dv">5</span>,<span class="dv">4</span>,<span class="dv">6</span>,<span class="dv">5</span>,<span class="dv">3</span>])</span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>W <span class="op">=</span> <span class="dv">2</span><span class="op">*</span>np.<span class="bu">sum</span>(a)</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>W <span class="op">=</span> <span class="dv">2</span><span class="op">*</span>np.<span class="bu">sum</span>(w<span class="op">*</span>a)</span>
 <span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(capacitated_norm(a,b,w,W))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> capacitated_norm(a,b,w,W)</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.around(x, decimals<span class="op">=</span><span class="dv">2</span>) <span class="co"># Round solution to two decimals</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[ 0.97618582 -0.89189189  0.25675676  3.40540541  0.10810811 -0.74324324
-  6.55405406]</code></pre>
+<pre><code>[1.   0.   1.   6.   6.67 0.   9.  ]</code></pre>
 </div>
 </div>
-<div id="3b91d71b" class="cell" data-execution_count="19">
+<div id="4b57ebea" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x):</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span> np.linalg.norm(x)</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    </span>
@@ -542,12 +550,14 @@ Function value at point where gradient is zero: 6.0</code></pre>
 <span id="cb25-30"><a href="#cb25-30" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> np.array([<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">7</span>])</span>
 <span id="cb25-31"><a href="#cb25-31" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> np.array([<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">6</span>,<span class="dv">8</span>,<span class="dv">1</span>,<span class="dv">9</span>])</span>
 <span id="cb25-32"><a href="#cb25-32" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> np.array([<span class="dv">0</span>,<span class="dv">6</span>,<span class="dv">5</span>,<span class="dv">4</span>,<span class="dv">6</span>,<span class="dv">5</span>,<span class="dv">3</span>])</span>
-<span id="cb25-33"><a href="#cb25-33" aria-hidden="true" tabindex="-1"></a>W <span class="op">=</span> <span class="dv">2</span><span class="op">*</span>np.<span class="bu">sum</span>(a)</span>
+<span id="cb25-33"><a href="#cb25-33" aria-hidden="true" tabindex="-1"></a>W <span class="op">=</span> <span class="dv">2</span><span class="op">*</span>np.<span class="bu">sum</span>(w<span class="op">*</span>a)</span>
 <span id="cb25-34"><a href="#cb25-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-35"><a href="#cb25-35" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(capacitated_norm(a,b,w,W))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb25-35"><a href="#cb25-35" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> capacitated_norm(a,b,w,W)</span>
+<span id="cb25-36"><a href="#cb25-36" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.around(x, decimals<span class="op">=</span><span class="dv">2</span>) <span class="co"># Round solution to two decimals</span></span>
+<span id="cb25-37"><a href="#cb25-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-38"><a href="#cb25-38" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[ 0.97618582 -0.89189189  0.25675676  3.40540541  0.10810811 -0.74324324
-  6.55405406]</code></pre>
+<pre><code>[1.   0.   1.   6.   6.67 0.   9.  ]</code></pre>
 </div>
 </div>
 </section>

@@ -291,7 +291,7 @@ f_{n-1}(x) = 0
 </span></p>
 <p>When there is only one (nonlinear) equation in one variable, we will also see ways to specify the interval in which the solution to the respective problems should be searched for.</p>
 <p>The Python package <a href="https://lectures.scientific-python.org/">SciPy</a> contains all the functions we will need to achieve these goals, in particular, the <code>optimize</code> submodule. We import it under the alias <code>optimize</code> for convenience, and also import NumPy.</p>
-<div id="710dcd57" class="cell" data-execution_count="1">
+<div id="feda5624" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.optimize <span class="im">as</span> optimize</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -311,7 +311,12 @@ f_{n-1}(x) = 0
 <p>As an example, suppose we want to find the root of the equation <span class="math display">
 f(x) = x^2 + 2\cdot x - 1,
 </span> that is plotted below. You do not have to look at the code generating this figure (but it is included for completeness).</p>
-<div id="16809a92" class="cell" data-execution_count="2">
+<style>
+.cell-output-display {
+  background-color: #ffffff;
+}
+</style>
+<div id="e96beb47" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Show code generating the plot below</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -360,7 +365,7 @@ f(x) = x^2 + 2\cdot x - 1,
 <li><b>Keyword arguments</b>: Use <code>func</code> for the function and <code>x0</code> for the initial guess.</li>
 <li><b>Positional arguments</b>: Input function followed by initial guess, without keywords.</li>
 </ul>
-<div id="9adfefcf" class="cell" data-execution_count="3">
+<div id="4dc3cdaf" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x):</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>x <span class="op">-</span> <span class="dv">1</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -391,7 +396,7 @@ A root of the function f is given by 0.41421356237309503</code></pre>
 <p>Because different root finding and optimization methods use a different keyword argument for the function of interest (e.g., <code>func</code>, <code>fun</code>, <code>f</code>), we will introduce the convention in this chapter that the first input argument of any SciPy function that we use is the function we want to find the root of, or optimize over, and all other input arguments will have a keyword (such as <code>x0</code>). The order of the keyword input arguments is not relevant, as long as they come after the function, which is the first input argument.</p>
 </blockquote>
 <p>The choice of initial guess can determine which root we end up in. The function <span class="math inline">f</span> has two roots as can be seen from the figure. If we start with another initial guess, such as <code>guess=4</code>, we find the other root of <span class="math inline">f</span>.</p>
-<div id="832d2524" class="cell" data-execution_count="4">
+<div id="cd5d3ebd" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x):</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>x <span class="op">-</span> <span class="dv">1</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -405,7 +410,7 @@ A root of the function f is given by 0.41421356237309503</code></pre>
 </div>
 <p>If the function <span class="math inline">f</span> would have had multiple input arguments, than <code>fsolve()</code> interprets the first argument of <span class="math inline">f</span> as being the unknown variable that it needs to compute. Any remaining arguments of <span class="math inline">f</span> should be specified in the <code>args</code> keyword argument.</p>
 <p>For example, suppose that we would have defined <span class="math inline">g(x,a,b,c) = a\cdot x^2 + b\cdot x + c</span>. Then executing <code>x_root = optimize.fsolve(g,x0=guess)</code> will result in an error because <code>fsolve()</code> cannot determine a root <span class="math inline">x</span> if it does not know the values of <span class="math inline">a,b</span> and <span class="math inline">c</span>. Therefore, we need to specify these additional inputs in the <code>args</code> keyword argument of <code>fsolve()</code>.</p>
-<div id="ea42a104" class="cell" data-execution_count="5">
+<div id="35ea96a3" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> g(x,a,b,c):</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> a<span class="op">*</span>x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> b<span class="op">*</span>x <span class="op">+</span> c</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -420,7 +425,7 @@ A root of the function f is given by 0.41421356237309503</code></pre>
 </div>
 </div>
 <p>We could have also stored the parameters <span class="math inline">a,b,c</span> in an array so that <span class="math inline">g</span> would have only had one additional input argument. This is illustrated below.</p>
-<div id="c0a2765e" class="cell" data-execution_count="6">
+<div id="1194c479" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> g(x,coeff):</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> coeff[<span class="dv">0</span>]<span class="op">*</span>x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> coeff[<span class="dv">1</span>]<span class="op">*</span>x <span class="op">+</span> coeff[<span class="dv">2</span>]</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -444,7 +449,7 @@ We emphasize that the order of the input arguments is important here. The functi
 <p>Whereas <code>fsolve()</code> uses one fixed method in the background to find a root, <code>root_scalar()</code> allows the user to choose from a collection of methods. Some methods might perform better than others, depending on the type of function you are trying to find a root of. You can specify which method you want to use with the <code>method</code> keyword argument. Some methods require additional keyword arguments to be specified; see the <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.root_scalar.html">documentation</a>.</p>
 <p>One such additional keyword argument is <code>bracket</code>, that allows you to specify the interval, or bracket, <span class="math inline">[a,b]</span> in which the root should be searched for. This does, however, come with the requirement that the function values in the points <span class="math inline">a</span> and <span class="math inline">b</span> should have a different sign: Either <span class="math inline">f(a) &lt; 0 &lt; f(b)</span> or <span class="math inline">f(b) &lt; 0 &lt; f(a)</span>. The reason is that this guarantees, by the <a href="https://en.wikipedia.org/wiki/Intermediate_value_theorem">Intermediate Value Theorem</a>, that there is at least one root in the interval <span class="math inline">[a,b]</span>. If the bracket does not satisfy this condition, then Python will raise an error (try this yourself).</p>
 <p>Let us look at an example where we use the <a href="https://en.wikipedia.org/wiki/Bisection_method">Bisection method</a>, called <code>'bisect'</code> in SciPy, with interval <span class="math inline">[0,4]</span>. The order in which you place the keyword argument <code>bracket</code> and <code>method</code> does not matter.</p>
-<div id="5d015a71" class="cell" data-execution_count="7">
+<div id="51c61ddb" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x):</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>x <span class="op">-</span> <span class="dv">1</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -461,14 +466,14 @@ We emphasize that the order of the input arguments is important here. The functi
 </div>
 </div>
 <p>Note that Python returns a lot of information regarding the root finding process. For example, it tells us whether the process has converged, meaning it found a point that satisfies <span class="math inline">f(x) = 0</span> up to a default precision. You can access these properties with the syntax <code>result.property_name</code> where <code>property_name</code> is the property of interest.</p>
-<div id="c64c617d" class="cell" data-execution_count="8">
+<div id="dafb9dff" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The root finding process converged:"</span>, result.converged)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>The root finding process converged: True</code></pre>
 </div>
 </div>
 <p>For us, the most important property is <code>root</code>, which gives the value of the root.</p>
-<div id="8fc1748d" class="cell" data-execution_count="9">
+<div id="949e1bfc" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"A root of the function f is given by"</span>, result.root)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>A root of the function f is given by 0.41421356237151485</code></pre>
@@ -487,7 +492,7 @@ x_{i+1} = x_i - \frac{f(x_i)}{f'(x_i)}
 </ul>
 <p>Let us look at an example of using Newton’s method. The derivative <span class="math inline">f'</span> should be defined as a function and can be entered in the <code>fprime</code> keyword argument. The initial guess is inputted in the <code>x0</code> keyword argument.</p>
 <p>For our function <span class="math inline">f(x) = x^2 + 2x - 1</span> we have <span class="math inline">f'(x) = 2(x+1)</span>.</p>
-<div id="f41ceee3" class="cell" data-execution_count="10">
+<div id="ca5fd8cd" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x):</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>x <span class="op">-</span> <span class="dv">1</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    </span>
@@ -528,7 +533,7 @@ x_0 + x_1 &amp;=&amp; 1 \\
 \end{array}\right..
 </span></p>
 <p>That is, we have <span class="math inline">f_0(x_0,x_1) = x_0^2 + x_1^2 -4</span> and <span class="math inline">f_1(x_0,x_1) = x_0 + x_1  - 1</span>, and want to solve <span class="math inline">f_0(x) = 0, f_1(x) = 0</span>. The array <span class="math inline">[f_0(x),f_1(x)]</span> can be defined as a function in the following way.</p>
-<div id="d6a1e500" class="cell" data-execution_count="11">
+<div id="4089afa2" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x):</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Input  : Array x = [x_0, x_1]</span></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Output : Array f = [f_0(x), f_1(x)]</span></span>
@@ -538,7 +543,7 @@ x_0 + x_1 &amp;=&amp; 1 \\
 </div>
 <p>We emphasize that here the array <span class="math inline">x = [x_0,x_1]</span> is the input of the function, and not <span class="math inline">x_0</span> and <span class="math inline">x_1</span> separately. If we would define <span class="math inline">f</span> as a function of two inputs, i.e., <code>f(x_0,x_1)</code>, then <code>fsolve()</code> would want to find a root with respect to its first argument <code>x_0</code> only, which is not what we want.</p>
 <p>Using <code>fsolve()</code> to do the root finding gives us the following solution.</p>
-<div id="79ca2ca4" class="cell" data-execution_count="12">
+<div id="d6d2ec3e" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>guess <span class="op">=</span> np.array([<span class="dv">1</span>,<span class="dv">1</span>]) <span class="co"># Our initial guess</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>root <span class="op">=</span> optimize.fsolve(f, x0<span class="op">=</span>guess)</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -555,7 +560,7 @@ a\cdot x_0^2 + x_1^2 &amp;=&amp; 4 \\
 x_0 + b\cdot x_1 &amp;=&amp; 1 \\
 \end{array}\right..
 </span></p>
-<div id="c1d42ea7" class="cell" data-execution_count="13">
+<div id="f2effbca" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x,a,b):</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.array([a<span class="op">*</span>x[<span class="dv">0</span>]<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> x[<span class="dv">1</span>]<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="dv">4</span>, x[<span class="dv">0</span>] <span class="op">+</span> b<span class="op">*</span>x[<span class="dv">1</span>] <span class="op">-</span> <span class="dv">1</span>]) </span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    </span>
@@ -571,7 +576,7 @@ x_0 + b\cdot x_1 &amp;=&amp; 1 \\
 <p>You can double-check that the root <span class="math inline">x^*</span> you found is indeed a root by plugging the solution into the system of equations, i.e., checking if it satisfies <span class="math display">
 f(x^*) = [f_0(x^*), \dots,  f_{n-1}(x^*)] = [0,\dots,0].
 </span></p>
-<div id="b164c0ca" class="cell" data-execution_count="14">
+<div id="e9075471" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(f(x_root,a,b)) <span class="co"># Both coordinates approximately equal to zero</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[9.59232693e-14 0.00000000e+00]</code></pre>
@@ -604,7 +609,7 @@ J(f) =
 J(f) = \begin{bmatrix} 2x_0 &amp; 2x_1\\ 1 &amp; 1\end{bmatrix}.
 </span></p>
 <p>Just as in the univariate case when using Newton’s method, we need to input an initial guess and the Jacobian matrix, where the latter should be defined as a function. The Jacobian is inputted in the <code>jac</code> keyword argument; the initial guess in <code>x0</code>.</p>
-<div id="0ad52f14" class="cell" data-execution_count="15">
+<div id="8af30ee0" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x):    </span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.array([x[<span class="dv">0</span>]<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> x[<span class="dv">1</span>]<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="dv">4</span>, x[<span class="dv">0</span>] <span class="op">+</span> x[<span class="dv">1</span>] <span class="op">-</span> <span class="dv">1</span>]) </span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -631,7 +636,7 @@ J(f) = \begin{bmatrix} 2x_0 &amp; 2x_1\\ 1 &amp; 1\end{bmatrix}.
 </div>
 </div>
 <p>We can access the properties of the result of the root finding procedure with the syntax <code>result.property_name</code> where <code>property_name</code> is the property of interest. Here the root is given by the property <code>x</code>.</p>
-<div id="6a0b7a10" class="cell" data-execution_count="16">
+<div id="8cc9fa57" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"A root of the function f is given by"</span>, result.x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>A root of the function f is given by [ 1.82287566 -0.82287566]</code></pre>
@@ -655,7 +660,7 @@ f_1(x)&amp; =&amp; (x - \pi + 0.1)^2 &amp;=&amp; 0 \\
 f_2(x)&amp; =&amp; (x - \pi) &amp;=&amp; 0
 \end{array}\right..
 </span> Without the <span class="math inline">0.1</span>-term, this system would have the unique solution <span class="math inline">x = \pi</span>, but this small perturbation causes it to become infeasible. We can still find an approximately optimal solution with the least squares method. The number <span class="math inline">\pi</span> can be accessed in NumPy using <code>np.pi</code>.</p>
-<div id="2ebe2c7b" class="cell" data-execution_count="17">
+<div id="98b2f7b4" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> system(x):</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.array([np.sin(x[<span class="dv">0</span>]), (x[<span class="dv">0</span>]<span class="op">-</span>np.pi <span class="op">+</span> <span class="fl">0.1</span>)<span class="op">**</span><span class="dv">2</span>, x[<span class="dv">0</span>] <span class="op">-</span> np.pi])</span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    </span>
@@ -669,7 +674,7 @@ f_2(x)&amp; =&amp; (x - \pi) &amp;=&amp; 0
 </div>
 <p>Although <code>optimize.least_squares</code> often works well, it does not necessarily compute a root of the function even if one exists. What it actually does, is compute a local minimum of the residual function.</p>
 <p>Let us illustrate this with an example. Consider the function <span class="math inline">f(x) = x^4 + 0.3x^3 - 2.5x^2 + 1.5</span>, which has two (real) roots as can be seen from the figure below.</p>
-<div id="41d3fe9b" class="cell" data-execution_count="18">
+<div id="0cedafc2" class="cell" data-execution_count="18">
 <details class="code-fold">
 <summary>Show code generating the plot below</summary>
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -714,7 +719,7 @@ f_2(x)&amp; =&amp; (x - \pi) &amp;=&amp; 0
 </div>
 <p><br></p>
 <p>We execute both Newton’s and the least squares method with the same initial guess.</p>
-<div id="190fd355" class="cell" data-execution_count="19">
+<div id="3ebb0eba" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Function f</span></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x):</span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (x<span class="op">**</span><span class="dv">4</span> <span class="op">+</span> <span class="fl">0.3</span><span class="op">*</span>x<span class="op">**</span><span class="dv">3</span> <span class="op">-</span> <span class="fl">2.5</span><span class="op">*</span>x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="fl">1.5</span>)</span>
@@ -746,7 +751,7 @@ Root found by least squares method:
 R(f) = \min_x (x^4 + 0.3x^3 - 2.5x^2 + 1.5)^2.
 </span></p>
 <p>The function <span class="math inline">g(x) = f(x)^2 = (x^4 + 0.3x^3 - 2.5x^2 + 1.5)^2</span> is plotted below. As you can see, it has a local minimum around <span class="math inline">1</span>. Because we started out with the initial guess <span class="math inline">1.5</span>, the least squares method gets stuck in this local minimum.</p>
-<div id="82a4e833" class="cell" data-execution_count="20">
+<div id="8ffb0e1a" class="cell" data-execution_count="20">
 <details class="code-fold">
 <summary>Show code generating the plot below</summary>
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -792,7 +797,7 @@ R(f) = \min_x (x^4 + 0.3x^3 - 2.5x^2 + 1.5)^2.
 <p><br> To close this section, we again emphasize that no method is guaranteed to always find a root for every function. For example, <code>fsolve()</code> is also not able to find a root of the function <span class="math inline">f</span> in this section (try this yourself).</p>
 <!--
 
-::: {#889b6d5c .cell execution_count=21}
+::: {#8077b6f5 .cell execution_count=21}
 ``` {.python .cell-code}
 # Function f
 def f(x):
@@ -844,7 +849,7 @@ The iteration is not making good progress, as measured by the
 <h3 data-number="6.2.1" class="anchored" data-anchor-id="univariate-function-1"><span class="header-section-number">6.2.1</span> Univariate function</h3>
 <p>If <span class="math inline">f : \mathbb{R} \rightarrow \mathbb{R}</span> is a univariate function then the easiest-to-use functions for minimization are <code>fmin()</code> and <code>minimize_scalar()</code> from the <code>optimize</code> module. We emphasize that these functions find a local minimum of the function <span class="math inline">f</span>, which might or might not be a global minimum.</p>
 <p>The function <code>fmin()</code> works similar as <code>fsolve()</code> in that it requires an initial guess.</p>
-<div id="34e709e4" class="cell" data-execution_count="22">
+<div id="3a39015e" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x):</span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x<span class="op">**</span><span class="dv">4</span> <span class="op">+</span> <span class="fl">0.3</span><span class="op">*</span>x<span class="op">**</span><span class="dv">3</span> <span class="op">-</span> <span class="fl">2.5</span><span class="op">*</span>x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="fl">1.5</span></span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -861,7 +866,7 @@ The minimum found is x = [1.01118164]</code></pre>
 </div>
 </div>
 <p>With a different initial guess the method is able to find the global minimum; see the figure in the previous section. Furthermore, you can suppress the output message of <code>fmin()</code> by setting the keyword argument <code>disp=False</code>; see the <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.fmin.html">documentation</a> of <code>fmin()</code>.</p>
-<div id="7fe0232b" class="cell" data-execution_count="23">
+<div id="d95d43e4" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>guess<span class="op">=-</span><span class="fl">1.5</span></span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>x_min <span class="op">=</span> optimize.fmin(f,x0<span class="op">=</span>guess,disp<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -871,7 +876,7 @@ The minimum found is x = [1.01118164]</code></pre>
 </div>
 </div>
 <p>The function <code>minimize_scalar()</code> gives more flexibility in terms of input arguments. First of all, we can execute it without any additional arguments, but then it more easily gets stuck in a local minimum.</p>
-<div id="7208d254" class="cell" data-execution_count="24">
+<div id="aa51ff95" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> optimize.minimize_scalar(f)</span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(result)</span>
 <span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -891,7 +896,7 @@ The minimum found  is x = 1.011179780213775</code></pre>
 </div>
 </div>
 <p>We can also set an interval in which we want to find a minimum using the <code>bounds</code> keyword argument. Note that in the example below, the function <code>minimize_scalar()</code> does not get stuck in the local minimum around <span class="math inline">1</span>.</p>
-<div id="b5ccf9d1" class="cell" data-execution_count="25">
+<div id="1164903c" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>interval <span class="op">=</span> [<span class="op">-</span><span class="dv">2</span>,<span class="dv">2</span>]</span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> optimize.minimize_scalar(f,bounds<span class="op">=</span>interval)</span>
 <span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -907,7 +912,7 @@ The minimum found  is x = 1.011179780213775</code></pre>
 <p>For multivariate functions, we can use the <code>minimize()</code> function from <code>optimize</code>, being the analogue of <code>root()</code> for root finding. This function can take into account derivative, or gradient, information with certain methods. The gradient of <span class="math inline">f</span> is given by <span class="math display">
 \nabla f(x) = \left[\frac{\partial f}{\partial x_0}, \dots, \frac{\partial f}{\partial x_{n-1}} \right].
 </span> We can input the gradient again with the keyword argument <code>jac</code>. The default method that <code>minimize()</code> uses is <code>'BFGS'</code> and this method can use gradient information. You can choose your own method with the <code>method</code> keyword argument; see the <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html">documentation</a>.</p>
-<div id="0a61288f" class="cell" data-execution_count="26">
+<div id="6abde8ee" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the function</span></span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x):</span>
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (x[<span class="dv">0</span>] <span class="op">-</span> <span class="dv">3</span>)<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> (x[<span class="dv">1</span>] <span class="op">+</span> <span class="dv">4</span>)<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="dv">1</span></span>
@@ -935,7 +940,7 @@ Function value at minimum: -1.0</code></pre>
 <h3 data-number="6.2.3" class="anchored" data-anchor-id="constrained-optimization"><span class="header-section-number">6.2.3</span> Constrained optimization</h3>
 <p>Just as with <code>minimize_scalar()</code> the function <code>minimize()</code> can also include interval information using the <code>bounds</code> keyword argument. The syntax for this argument is a list of tuples that for every variable in <span class="math inline">x = [x_0,\dots,x_{n-1}]</span> contains the lower and upper bound value for the variable. Recall that this is the same way how variable bounds were specified in the <code>linprog</code> package for solving (integer) linear optimization problems.</p>
 <p>That is, if we have the constraints <span class="math inline">\ell_i \leq x_i \leq u_i</span> for <span class="math inline">i = 0,\dots,n-1</span>, then the input for <code>bounds</code> is <code>[(l_0, u_0), (l_1, u_1), ..., (l_{n-1},u_{n-1})]</code>. Just as in <code>linprog</code> you can set an upper or lower bound equal to <code>None</code> to model that the lower bound is <span class="math inline">-\infty</span>, or that the upper bound is <span class="math inline">+\infty</span>.</p>
-<div id="2708bb78" class="cell" data-execution_count="27">
+<div id="dc8b7303" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the function</span></span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x):</span>
 <span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (x[<span class="dv">0</span>] <span class="op">-</span> <span class="dv">3</span>)<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> (x[<span class="dv">1</span>] <span class="op">+</span> <span class="dv">4</span>)<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="dv">1</span></span>
@@ -983,7 +988,7 @@ Function value at minimum: 4.0</code></pre>
 \end{array}
 </span></p>
 <p>Then we have <span class="math inline">g_0(x) = x_0 + x_1 - 5</span> and <span class="math inline">h_0(x) = x_0 - 2x_1 - 3</span>.</p>
-<div id="536cb50d" class="cell" data-execution_count="28">
+<div id="75bd60af" class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define functions of constraints</span></span>
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> g(x):</span>
 <span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x[<span class="dv">0</span>] <span class="op">+</span> x[<span class="dv">1</span>] <span class="op">-</span> <span class="dv">5</span></span>
@@ -996,7 +1001,7 @@ Function value at minimum: 4.0</code></pre>
 <span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a>        {<span class="st">'type'</span> : <span class="st">'eq'</span>, <span class="st">'fun'</span> : h})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Let us now do the optimization using these constraints.</p>
-<div id="d94d8ad6" class="cell" data-execution_count="29">
+<div id="35aa8603" class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x):</span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x[<span class="dv">0</span>]<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> x[<span class="dv">1</span>]<span class="op">**</span><span class="dv">2</span></span>
 <span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a></span>

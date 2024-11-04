@@ -275,11 +275,11 @@ window.Quarto = {
 
 
 <p><link rel="preconnect" href="https://fonts.googleapis.com"> <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""> <link href="https://fonts.googleapis.com/css2?family=Fira+Mono&amp;family=Fira+Sans&amp;display=swap" rel="stylesheet"></p>
-<p>In this chapter we will explain the basics for plotting functions and data, for which we will use the <code>matplotlib.pyplot</code> (sub)package. We import it under the name <code>plt</code>. You might wonder why we use the name <code>plt</code> and not the perhaps more obvious choise <code>plot</code>. This is because <code>plot()</code> is a command that we will be using, so we do not want to create any conflicts with this function when executing a Python script.</p>
+<p>In this chapter we will explain the basics for plotting functions and data, for which we will use the <code>matplotlib.pyplot</code> (sub)package. We import it under the alias <code>plt</code>. You might wonder why we use the name <code>plt</code> and not the perhaps more obvious choice <code>plot</code>. This is because <code>plot()</code> is a command that we will be using, so we do not want to create any conflicts with this function when executing a Python script.</p>
 <section id="basic-plotting" class="level2" data-number="7.1">
 <h2 data-number="7.1" class="anchored" data-anchor-id="basic-plotting"><span class="header-section-number">7.1</span> Basic plotting</h2>
-<p>In this section we will explain step-by-step how to generate the figure that we have seen in the previous two sections. We start with plotting the function <span class="math inline">f(x) = x^2 + 2x -1</span> for some values of <span class="math inline">x</span> in a two-dimensional figure.</p>
-<div id="4e0ff1ea" class="cell" data-execution_count="1">
+<p>In this section we will explain step-by-step how to generate a nice looking figure containing a visualization of a one-dimensional function. We start with plotting the function <span class="math inline">f(x) = x^2 + 2x -1</span> for some values of <span class="math inline">x</span> in a two-dimensional figure.</p>
+<div id="ac217378" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -313,7 +313,7 @@ window.Quarto = {
 <p><br><br></p>
 <p>You can view the figure in the Plots pane (or tab) in Spyder.</p>
 <blockquote class="blockquote">
-<p>If the resolution of the plots in the Plots pane is bad, you can increase it by going to “Tools &gt; Preferences &gt; IPython console &gt; Graphics &gt; Inline backend &gt; Resolution” and set the resolution to, for example, 300 dpi.</p>
+<p>If the resolution of the plots in the Plots pane does not seem good enough, you can increase it by going to “Tools &gt; Preferences &gt; IPython console &gt; Graphics &gt; Inline backend &gt; Resolution” and set the resolution to, for example, 300 dpi.</p>
 </blockquote>
 <blockquote class="blockquote">
 <p>You can get the Plots pane in fullscreen by going to the button with the three horizontal lines in the top right corner and choose “Undock”. You can “Dock” the pane again as well if you want to leave the fullscreen mode.</p>
@@ -336,7 +336,7 @@ y = f(x) &amp; = [f(x_1),f(x_2),f(x_3),f(x_4),f(x_5),f(x_6),f(x_7)]  \\
 </span></p>
 <p>Next, we create an (empty) figure using the command <code>plt.figure()</code>. Then comes the most important command, <code>plt.plot(x,y)</code>, that plots the elements in the vector <span class="math inline">x</span> against the elements in the vector <span class="math inline">y = f(x)</span>, and connects consecutive combinations <span class="math inline">(x_i,y_i)</span> and <span class="math inline">(x_{i+1},y_{i+1})</span> with a line segment. For example, we have <span class="math inline">(x_1,y_1) = (-3,2)</span> and <span class="math inline">(x_2,y_2) = (-2,-1)</span>. The left most line segment is formed by connecting these points.</p>
 <p>If you only want to plot the points <span class="math inline">(x_i,y_i)</span>, and not the line segments, you can use <code>plt.scatter(x,y)</code> instead of <code>plt.plot(x,y)</code>.</p>
-<div id="c455737a" class="cell" data-execution_count="2">
+<div id="8e5bb9b6" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -355,7 +355,10 @@ y = f(x) &amp; = [f(x_1),f(x_2),f(x_3),f(x_4),f(x_5),f(x_6),f(x_7)]  \\
 <span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>plt.figure()</span>
 <span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the plot</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>plt.scatter(x, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>plt.scatter(x, y)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the plot</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -364,9 +367,9 @@ y = f(x) &amp; = [f(x_1),f(x_2),f(x_3),f(x_4),f(x_5),f(x_6),f(x_7)]  \\
 </div>
 </div>
 </div>
-<p><br><br> Observe that the (blue) line in the figure that was generated using <code>plt.plot(x,y)</code> is not as “smooth” as in the figures in the previous sections, where the function does not (visibly) have these segments. To get a smoother function line, we can include more points in the vector <span class="math inline">x</span>. This can be done, for example, with the <code>linspace()</code> function that we have seen in Chapter 3.</p>
+<p><br><br> Observe that the (blue) line in the figure that was generated using <code>plt.plot(x,y)</code> is not very “smooth”, i.e., the function visibly is connected by line segments. To get a smoother function line, we can include more points in the vector <span class="math inline">x</span>. This can be done, for example, with the <code>linspace()</code> function that we have seen in Chapter 3.</p>
 <p>Let us plot again the function <span class="math inline">f</span>, but this time with <span class="math inline">600</span> elements in <span class="math inline">x</span> in the interval <span class="math inline">[-3,3]</span>. We use <code>plt.plot()</code> again, instead of <code>plt.scatter()</code>. We now obtain a much smoother function line.</p>
-<div id="dab952da" class="cell" data-execution_count="3">
+<div id="5049d09d" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -385,7 +388,10 @@ y = f(x) &amp; = [f(x_1),f(x_2),f(x_3),f(x_4),f(x_5),f(x_6),f(x_7)]  \\
 <span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>plt.figure()</span>
 <span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the plot</span></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>plt.plot(x, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>plt.plot(x, y)</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the plot</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -396,7 +402,7 @@ y = f(x) &amp; = [f(x_1),f(x_2),f(x_3),f(x_4),f(x_5),f(x_6),f(x_7)]  \\
 </div>
 <p><br><br> You can add a legend for the line/points that you plot by using the label argument of <code>plt.plot()</code>. For example we can add the function description using <code>plt.plot(x,y,label='$f(x) = x^2 + 2x - 1$')</code>. This is in particular useful if you plot multiple functions in one figure, as the example below illustrates. There we plot the functions <span class="math inline">f</span> and <span class="math inline">g</span>, with <span class="math inline">g(x) = 3x</span> a new function. To have the labels appear in the legend of the figure, you need to add a legend to the figure with <code>plt.legend()</code>.</p>
 <p>If you want to add labels to the horizontal and vertical axis, you can use the commands <code>plt.xlabel()</code> and <code>plt.ylabel()</code>.</p>
-<div id="9f5a9d78" class="cell" data-execution_count="4">
+<div id="00e5f79e" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -428,7 +434,10 @@ y = f(x) &amp; = [f(x_1),f(x_2),f(x_3),f(x_4),f(x_5),f(x_6),f(x_7)]  \\
 <span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Function value'</span>)</span>
 <span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the legend with the specified labels</span></span>
-<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>plt.legend()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the plot</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -439,7 +448,7 @@ y = f(x) &amp; = [f(x_1),f(x_2),f(x_3),f(x_4),f(x_5),f(x_6),f(x_7)]  \\
 </div>
 <p><br><br> You might observe that the range on the vertical axis changed now that we added a second function to the plot. When we only plotted the function <span class="math inline">f</span>, the vertical axis ranged from <span class="math inline">-2</span> to <span class="math inline">14,</span> but now with the function <span class="math inline">g</span> added to it, it ranges from <span class="math inline">-10</span> to <span class="math inline">15</span>.</p>
 <p>You can fix the range <span class="math inline">[c,d]</span> on the vertical axis using the command <code>plt.ylim(c,d)</code>, and to fix the range of the horizontal axis to <span class="math inline">[a,b]</span>, you can use <code>plt.xlim(a,b)</code>. In the figure below, we fix the vertical range to <span class="math inline">[c,d] = [-10,14]</span> and the horizontal axis to <span class="math inline">[a,b] = [-3,3]</span>.</p>
-<div id="e788df1f" class="cell" data-execution_count="5">
+<div id="6c3d6381" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -475,7 +484,10 @@ y = f(x) &amp; = [f(x_1),f(x_2),f(x_3),f(x_4),f(x_5),f(x_6),f(x_7)]  \\
 <span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Fix the range of the axes</span></span>
 <span id="cb5-35"><a href="#cb5-35" aria-hidden="true" tabindex="-1"></a>plt.xlim(<span class="op">-</span><span class="dv">3</span>,<span class="dv">3</span>)</span>
-<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="op">-</span><span class="dv">10</span>,<span class="dv">14</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="op">-</span><span class="dv">10</span>,<span class="dv">14</span>)</span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the plot</span></span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -485,7 +497,7 @@ y = f(x) &amp; = [f(x_1),f(x_2),f(x_3),f(x_4),f(x_5),f(x_6),f(x_7)]  \\
 </div>
 </div>
 <p><br><br> Finally, you can also add a title to the plot using the command <code>plt.title()</code> as well as a grid in the background of the figure using <code>plt.grid()</code>. These are illustrated in the figure below.</p>
-<div id="902ed644" class="cell" data-execution_count="6">
+<div id="80f317e9" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -527,7 +539,10 @@ y = f(x) &amp; = [f(x_1),f(x_2),f(x_3),f(x_4),f(x_5),f(x_6),f(x_7)]  \\
 <span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'A first plot in Python of two functions'</span>)</span>
 <span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Add grid to the background</span></span>
-<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>plt.grid()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>plt.grid()</span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the plot</span></span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -540,15 +555,15 @@ y = f(x) &amp; = [f(x_1),f(x_2),f(x_3),f(x_4),f(x_5),f(x_6),f(x_7)]  \\
 </section>
 <section id="subplots" class="level2" data-number="7.2">
 <h2 data-number="7.2" class="anchored" data-anchor-id="subplots"><span class="header-section-number">7.2</span> Subplots</h2>
-<p>In this section we will describe how you can create multiple subplots in one figure using the <code>subplots()</code> function. There are various ways to do this. You can to this in a predefined grid or on a plot-by-plot basis.</p>
+<p>In this section we will describe how you can create multiple subplots in one figure. There are various ways to do this, e.g., in a predefined grid or on a plot-by-plot basis.</p>
 <section id="fixed-grid" class="level3" data-number="7.2.1">
 <h3 data-number="7.2.1" class="anchored" data-anchor-id="fixed-grid"><span class="header-section-number">7.2.1</span> Fixed grid</h3>
-<p>We start with explaining the basics of the <code>subplots()</code> functoin. The syntax for creating a figure with a predefined grid on which plots can be placed is as follows.</p>
-<div id="bad9ffc8" class="cell" data-execution_count="7">
+<p>We start with explaining the basics of the <code>subplots()</code> function. The syntax for creating a figure with a predefined grid on which plots can be placed is as follows.</p>
+<div id="204acded" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> <span class="dv">2</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">3</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create figure with six subplots in an n x m fashion</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create figure with six subplots in an n x m grid</span></span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(m,n)</span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -561,17 +576,18 @@ y = f(x) &amp; = [f(x_1),f(x_2),f(x_3),f(x_4),f(x_5),f(x_6),f(x_7)]  \\
 </div>
 </div>
 <p><br></p>
-<p>This creates a figure object, with name <code>fig</code> in this case, and a <span class="math inline">2 \times 3</span> array <code>ax</code> with so-called Axes objects. We are going to fill in the plots on the positions of the <code>ax</code> array.</p>
-<div id="cddcae92" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.shape(ax))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This creates a figure object, with name <code>fig</code> in this case, and a <span class="math inline">2 \times 3</span> array <code>ax</code> with so-called Axes objects that is place inside the figure. We are going to place the plots on the positions of the <code>ax</code> array.</p>
+<div id="60cc02c7" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Shape of array</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.shape(ax))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>(2, 3)</code></pre>
 </div>
 </div>
 <p>The fact that arrays can also store other objects besided numbers, is something we also already saw when using the <code>pulp</code> package for linear optimization in Chapter 5.</p>
 <p>One might argue that the figure above is visually not very appealing, especially because the horizontally adjacent plots are very close to each other. You can get more control over the size of the figure (in which the plots are placed) by using the <code>figsize</code> keyword whose argument should be a tuple <span class="math inline">(w,h)</span> indicating the width <span class="math inline">w</span> and the height <span class="math inline">h</span> of the figure.</p>
-<p>Note that the input arguments of <code>figsize</code> are perhaps a bit counterintuitive, as for the shape of a NumPy array (like the command above) the first number is always the “height” of the matrix, and the second number the “width”, but this is the other way around for the shape of a figure.</p>
-<div id="14103fa6" class="cell" data-execution_count="9">
+<p>Note that the input arguments of <code>figsize</code> are perhaps a bit counterintuitive, as for the shape of a NumPy array (like the command above) the first number is always the “height” of the matrix, and the second number the “width”, but this is the other way around for the measurements of a figure.</p>
+<div id="83aca3aa" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters for figure with n x m subplots</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>m, n <span class="op">=</span> <span class="dv">2</span>, <span class="dv">3</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -581,7 +597,8 @@ y = f(x) &amp; = [f(x_1),f(x_2),f(x_3),f(x_4),f(x_5),f(x_6),f(x_7)]  \\
 <span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Create figure with six subplots in a 2 x 3 fashion</span></span>
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(m,n, figsize<span class="op">=</span>(w,h))</span>
 <span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the plot</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -591,7 +608,7 @@ y = f(x) &amp; = [f(x_1),f(x_2),f(x_3),f(x_4),f(x_5),f(x_6),f(x_7)]  \\
 </div>
 </div>
 <p><br> It usually also helps to put in the command <code>plt.tight_layout()</code> that prevents plots within a figure from overlapping by addings some spacing between them.</p>
-<div id="38630152" class="cell" data-execution_count="10">
+<div id="ed7efed9" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters for figure with n x m subplots</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>m, n <span class="op">=</span> <span class="dv">2</span>, <span class="dv">3</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -601,9 +618,11 @@ y = f(x) &amp; = [f(x_1),f(x_2),f(x_3),f(x_4),f(x_5),f(x_6),f(x_7)]  \\
 <span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Create figure with six subplots in a 2 x 3 fashion</span></span>
 <span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(m,n, figsize<span class="op">=</span>(w,h))</span>
 <span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Tighten layout</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Show the plot</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -612,8 +631,8 @@ y = f(x) &amp; = [f(x_1),f(x_2),f(x_3),f(x_4),f(x_5),f(x_6),f(x_7)]  \\
 </div>
 </div>
 </div>
-<p><br> We continue by explaining how you can add plotting information to the indiviual plots in the figure. For this, we will switch to a figure with a <span class="math inline">2 \times 2</span> array for in total four subplots.</p>
-<div id="7dea02bf" class="cell" data-execution_count="11">
+<p><br> We continue by explaining how you can add information to the indiviual plots in the figure. For this, we will switch to a figure with a <span class="math inline">2 \times 2</span> array for in total four subplots.</p>
+<div id="5fd88eca" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters for figure with n x m subplots</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">2</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -637,9 +656,9 @@ y = f(x) &amp; = [f(x_1),f(x_2),f(x_3),f(x_4),f(x_5),f(x_6),f(x_7)]  \\
 </div>
 </div>
 <p><br> You can access the individual plot at position <span class="math inline">(i,j)</span> of the array <code>ax</code> using <code>ax[i,j]</code>, and set properties of it using <code>ax[i,j].plot_option</code> where <code>plot_option</code> is a plotting command.</p>
-<p>Sometimes you need to use a slightly different command than when you plot a single plot a figure. For many commands, you need to add <code>set_</code> to it. For example, instead of <code>plt.xlim(a,b)</code> you need to use <code>ax[i,j].set_xlim(a,b)</code>.</p>
-<p>To set the title of the whole figure you can use <code>fig.suptitle()</code> instead of <code>plt.title()</code>.</p>
-<div id="2ed78b9d" class="cell" data-execution_count="12">
+<p>Sometimes you need to use a slightly different command than when you plot a single plot in a figure. For many commands, you need to add <code>set_</code> to it. For example, instead of <code>plt.xlim(a,b)</code> you need to use <code>ax[i,j].set_xlim(a,b)</code>.</p>
+<p>To set the title of the whole figure, when named <code>fig</code>, you can use <code>fig.suptitle()</code> instead of <code>plt.title()</code>.</p>
+<div id="815c0467" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define function to plot</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x):</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x<span class="op">**</span><span class="dv">2</span></span>
@@ -685,7 +704,7 @@ y = f(x) &amp; = [f(x_1),f(x_2),f(x_3),f(x_4),f(x_5),f(x_6),f(x_7)]  \\
 <section id="iterative-adding" class="level3" data-number="7.2.2">
 <h3 data-number="7.2.2" class="anchored" data-anchor-id="iterative-adding"><span class="header-section-number">7.2.2</span> Iterative adding</h3>
 <p>Instead of predefining a grid in which the subplots will appear, it is also possible to add subplots in a more dynamic, iterative fashion to a grid using <code>add_subplot()</code>. The function typically gives you a bit more flexibility.</p>
-<p>For example, we can create four plots of which one spans the whole first “row”, and three smaller plots underneath. The numbering of the subplots follows the largest axis changing fasted principle, so the subplots are placed first along the first row, then the second row, etc.</p>
+<p>For example, we can create four plots of which one spans the whole first “row” and that has three smaller plots underneath it. The numbering of the subplots follows the largest axis changing fasted principle, so the subplots are placed first along the first row, then the second row, etc.</p>
 <p>If we would have a <span class="math inline">2 \times 3</span> grid, then the numbering of the subplots would be as follows:</p>
 <p><span class="math display">
 \left[
@@ -695,10 +714,11 @@ y = f(x) &amp; = [f(x_1),f(x_2),f(x_3),f(x_4),f(x_5),f(x_6),f(x_7)]  \\
 \end{array}
 \right]
 </span></p>
+<p>Note that the counting start at <span class="math inline">1</span> instead of <span class="math inline">0</span>, as is more common in Python.</p>
 <p>After having created a figure, we can add subplots to an <span class="math inline">m \times n</span> grid using <code>fig.add_subplot(m,n,(p,q))</code>. The tuple <code>(p,q)</code> indicates that we want to place the subplot on positions <span class="math inline">p</span> through <span class="math inline">q</span> in the figure. If there is only one position <span class="math inline">p</span> at which you want to place the subplot, you can use <code>(p)</code>, or simply <code>p</code>, as the third argument of <code>add_subplot()</code>.</p>
 <p>To avoid unnecessary repetition, it can often help to plot subplots using a for-loop. We will illustrate this for the figure below, in which we plot the function <span class="math inline">f(x) = \sin(x)</span> on the first row or our grid, and its first three derivatives in smaller subplots under it.</p>
-<p>You can make the plot look nicer by adding labels, legends, different line colors, etc.</p>
-<div id="684ae36b" class="cell" data-execution_count="13">
+<p>You can make the plot look nicer by adding labels, legends, different line colors, a grid, etc.</p>
+<div id="b2801ec5" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define x-range</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">5</span>,<span class="dv">5</span>,<span class="dv">600</span>)</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -720,13 +740,13 @@ y = f(x) &amp; = [f(x_1),f(x_2),f(x_3),f(x_4),f(x_5),f(x_6),f(x_7)]  \\
 <span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>m, n <span class="op">=</span> <span class="dv">2</span>, <span class="dv">3</span></span>
 <span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Add first subplot</span></span>
-<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>ax_f <span class="op">=</span> fig.add_subplot(m,n,(<span class="dv">1</span>,<span class="dv">3</span>))</span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>ax_f <span class="op">=</span> fig.add_subplot(m,n,(<span class="dv">1</span>,n))</span>
 <span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>ax_f.plot(x,y)</span>
 <span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>ax_f.set_title(function_names[<span class="dv">0</span>])</span>
 <span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Add derivatives</span></span>
-<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>):</span>
-<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>    ax_deriv <span class="op">=</span> fig.add_subplot(m,n,<span class="dv">4</span><span class="op">+</span>i)</span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>    ax_deriv <span class="op">=</span> fig.add_subplot(m,n,n<span class="op">+</span><span class="dv">1</span><span class="op">+</span>i)</span>
 <span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>    ax_deriv.plot(x,deriv[i])</span>
 <span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a>    ax_deriv.set_title(function_names[<span class="dv">1</span><span class="op">+</span>i])</span>
 <span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a>    </span>
@@ -750,13 +770,13 @@ y = f(x) &amp; = [f(x_1),f(x_2),f(x_3),f(x_4),f(x_5),f(x_6),f(x_7)]  \\
 <p>In Python it is also possible to plot a function with two variables, a so-called bivariate function. For example, consider <span class="math inline">z = f(x,y) = x^2 + y^2</span> that we would like to visualize on the <span class="math inline">(x,y)</span>-domain <span class="math inline">[0,4] \times [3,8]</span>.</p>
 <p>Before going into the plotting commands we discuss in more detail how to efficiently compute the function values on the specified domain.</p>
 <p>Just as with two-dimensional plotting, the idea is that we want compute the function values on a fine-grained discretization of the desired domain. In two dimensions, we can create such a discretization easily using the <code>mgrid</code> function from NumPy.</p>
-<p>Suppose we discretize <span class="math inline">[0,4] \times [3,8]</span> by considering all the integer combinations. We can do this with <code>mgrid</code> by specifying for both dimensions the range that we are interested using index slicing.</p>
-<div id="733b13dc" class="cell" data-execution_count="14">
+<p>Suppose we discretize <span class="math inline">[0,4] \times [3,8]</span> by considering all the integer combinations. We can do this with <code>mgrid</code> by specifying for both dimensions the range that we are interested in using index slicing.</p>
+<div id="c0281809" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Note that the end index is not included</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>X, Y <span class="op">=</span> np.mgrid[<span class="dv">0</span>:<span class="dv">5</span>, <span class="dv">3</span>:<span class="dv">9</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>If you input two ranges then the output are two matrices. You could also use this function for higher dimensional problems.</p>
-<div id="e7b7f8a5" class="cell" data-execution_count="15">
+<p>If you input two ranges then the output are two matrices. You could also use this function for higher-dimensional problems.</p>
+<div id="f9d4cb19" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"X = </span><span class="ch">\n</span><span class="st">"</span>, X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>X = 
@@ -767,7 +787,7 @@ y = f(x) &amp; = [f(x_1),f(x_2),f(x_3),f(x_4),f(x_5),f(x_6),f(x_7)]  \\
  [4 4 4 4 4 4]]</code></pre>
 </div>
 </div>
-<div id="d074041b" class="cell" data-execution_count="16">
+<div id="309ac72c" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Y = </span><span class="ch">\n</span><span class="st">"</span>, Y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Y = 
@@ -789,8 +809,8 @@ y = f(x) &amp; = [f(x_1),f(x_2),f(x_3),f(x_4),f(x_5),f(x_6),f(x_7)]  \\
 \end{array}
 </span></p>
 <p>To be precise, the matrix <span class="math inline">X</span> contains the first element of every coordinate <span class="math inline">(i,j) \in [a,b] \times [c,d]</span>, that is, the value <span class="math inline">i,</span> and <span class="math inline">Y</span> contains the second element, that is, the value <span class="math inline">j</span>.</p>
-<p>The same can be achieved with the function <code>meshgrid()</code> that takes as input the discretized ranges of <span class="math inline">x</span> and <span class="math inline">y</span>.</p>
-<div id="3f08f7c2" class="cell" data-execution_count="17">
+<p>The same can be achieved with the function <code>meshgrid()</code> that takes as input the discretized ranges of <span class="math inline">x</span> and <span class="math inline">y</span>. Here the matrix <code>X</code> and <code>Y</code> are tranposed compared to the output of <code>mgrid</code>.</p>
+<div id="ebdc09db" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.arange(<span class="dv">0</span>,<span class="dv">5</span>)</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.arange(<span class="dv">3</span>,<span class="dv">9</span>)</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -815,8 +835,8 @@ Y =
  [8 8 8 8 8]]</code></pre>
 </div>
 </div>
-<p>If we now want to compute the function values in the points <span class="math inline">(i,j)</span>, we can simply do the following</p>
-<div id="9a5413df" class="cell" data-execution_count="18">
+<p>If we now want to compute the function values in the points <span class="math inline">(i,j)</span>, we can simply use <code>Z = X**2 + Y**2</code>. Note that <code>**</code> is a vectorized operation that is pointwise applied when executed on a two-dimensional array. So <code>X**2</code> gives the squares of all the <span class="math inline">x</span>-coordinate of all the grid points, and <code>Y**2</code> the squares of all the <span class="math inline">y</span>-coordinates. In other words, for a grid point <span class="math inline">(i,j)</span> we get <span class="math inline">Z[i,j] = X[i,j]**2 + Y[i,j]**2</span>.</p>
+<div id="f2965c80" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute function values of f(x,y) = x^2 + y^2</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>Z <span class="op">=</span> X<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> Y<span class="op">**</span><span class="dv">2</span> <span class="co"># For every (i,j), computes i**2 + j**2</span></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -831,8 +851,8 @@ Y =
  [64 65 68 73 80]]</code></pre>
 </div>
 </div>
-<p>We can also do this by defining the function <span class="math inline">f</span>. Note that <code>**</code> is a vectorized operation that is pointwise applied when executed on a two-dimensional array.</p>
-<div id="4476141a" class="cell" data-execution_count="19">
+<p>We can also do this by defining the function <span class="math inline">f</span>.</p>
+<div id="762014b2" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define function</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x,y):</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> y<span class="op">**</span><span class="dv">2</span></span>
@@ -852,7 +872,7 @@ Y =
 </div>
 </div>
 <p>We can create a more fine-grained plot by including more points in the ranges of the <span class="math inline">x</span>- and <span class="math inline">y</span>-values. Again, this can be done using slicing notation.</p>
-<div id="d3bd643c" class="cell" data-execution_count="20">
+<div id="c61db160" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define function</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x,y):</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> y<span class="op">**</span><span class="dv">2</span></span>
@@ -910,10 +930,10 @@ f(X,Y) =
 </div>
 <section id="contour-plot" class="level3" data-number="7.3.1">
 <h3 data-number="7.3.1" class="anchored" data-anchor-id="contour-plot"><span class="header-section-number">7.3.1</span> Contour plot</h3>
-<p>One way to visualize a function <span class="math inline">f : \mathbb{R}^2 \rightarrow \mathbb{R}</span> is using a contour plot with <code>plt.contour()</code>. What such a plot does is that it creates a two-dimensional plot where for any given value <span class="math inline">z_0 \in \mathbb{R}</span> it plots all points <span class="math inline">(x,y) \in \mathbb{R}^2</span> for which <span class="math inline">f(x,y) = z_0</span> with the same color.</p>
-<p>The function <code>plt.contour()</code> takes as input the arrays <span class="math inline">X, Y</span> and <span class="math inline">Z</span> (the order is important here). Python plots the point <span class="math inline">(X[i,i],Y[i,j])</span> and assigns a common color to all such points with the same function value (i.e., the same <span class="math inline">Z[i,j]</span>-value).</p>
+<p>One way to visualize a function <span class="math inline">f : \mathbb{R}^2 \rightarrow \mathbb{R}</span> is by using a contour plot with <code>plt.contour()</code>. What such a plot does is that it creates a two-dimensional plot where for given values <span class="math inline">z_0 \in \mathbb{R}</span> it plots all points <span class="math inline">(x,y) \in \mathbb{R}^2</span> for which <span class="math inline">f(x,y) = z_0</span> with the same color.</p>
+<p>The function <code>plt.contour()</code> takes as input the arrays <span class="math inline">X, Y</span> and <span class="math inline">Z</span>. The input order is important here. Python plots the point <span class="math inline">(X[i,i],Y[i,j])</span> and assigns a common color to all such points with the same function value (i.e., the same <span class="math inline">Z[i,j]</span>-value).</p>
 <p>The <code>levels</code> keyword argument determines how many different colors, i.e., <span class="math inline">z_0</span>-values, are plotted. For this Python uses a so-called colormap that has a shifting scale indicating a shift in the value of <span class="math inline">z_0</span>. You can plot a color legend with <code>plt.colorbar()</code>.</p>
-<div id="0df8f17b" class="cell" data-execution_count="21">
+<div id="2864401d" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define function</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x,y):</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> y<span class="op">**</span><span class="dv">2</span></span>
@@ -949,8 +969,8 @@ f(X,Y) =
 </div>
 </div>
 </div>
-<p><br> The same plot as above with <span class="math inline">100</span> color levels is given below.</p>
-<div id="fdcd1ce9" class="cell" data-execution_count="22">
+<p><br> The same plot as above with <span class="math inline">50</span> color levels is given below.</p>
+<div id="cce6df2d" class="cell" data-execution_count="22">
 <details class="code-fold">
 <summary>Show code generating the plot below</summary>
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define function</span></span>
@@ -990,7 +1010,7 @@ f(X,Y) =
 </div>
 </div>
 <p><br> You can also choose to fill up the white space between the different contour lines. Then you should use <code>plt.contourf()</code> instead of <code>plt.contour()</code>. The same plot with <span class="math inline">50</span> color levels and <code>plt.contourf()</code> is given below. <br></p>
-<div id="6f62a1bb" class="cell" data-execution_count="23">
+<div id="a41efdd3" class="cell" data-execution_count="23">
 <details class="code-fold">
 <summary>Show code generating the plot below</summary>
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define function</span></span>
@@ -1031,7 +1051,7 @@ f(X,Y) =
 </div>
 <p><br> Finally, you can change the color chosen by Python using the <code>cmap</code> keyword argument. There are various color maps available; see the <a href="https://matplotlib.org/stable/users/explain/colors/colormaps.html">documentation</a>.</p>
 <p>Below we have plotted the figure above with the <i>inferno</i> colormap.</p>
-<div id="f00a96eb" class="cell" data-execution_count="24">
+<div id="c56bc724" class="cell" data-execution_count="24">
 <details class="code-fold">
 <summary>Show code generating the plot below</summary>
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define function</span></span>
@@ -1073,8 +1093,8 @@ f(X,Y) =
 </section>
 <section id="d-plot" class="level3" data-number="7.3.2">
 <h3 data-number="7.3.2" class="anchored" data-anchor-id="d-plot"><span class="header-section-number">7.3.2</span> 3D plot</h3>
-<p>Another way of visualizing a bivariate function is using a 3D plot, in which we have an <span class="math inline">x-</span>, <span class="math inline">y-</span> and <span class="math inline">z-</span>axis. This you can do, e.g., with the <code>plot_surface()</code> function. To use this function we have to explicitly create an Axes object (plot), which we call <code>ax</code>, with three axes using <code>ax = plt.axes(projection='3d')</code>.</p>
-<div id="bfc76406" class="cell" data-execution_count="25">
+<p>Another way of visualizing a bivariate function is using a 3D plot, in which we have an <span class="math inline">x</span>-, <span class="math inline">y</span>- and <span class="math inline">z</span>-axis. This you can do, e.g., with the <code>plot_surface()</code> function. To use this function we have to explicitly create an Axes object (plot), which we call <code>ax</code>, with three axes using <code>ax = plt.axes(projection='3d')</code>.</p>
+<div id="df904ff5" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define function</span></span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x,y):</span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> y<span class="op">**</span><span class="dv">2</span></span>

@@ -144,7 +144,7 @@ window.Quarto = {
 
 <p><link rel="preconnect" href="https://fonts.googleapis.com"> <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""> <link href="https://fonts.googleapis.com/css2?family=Fira+Mono&amp;family=Fira+Sans&amp;display=swap" rel="stylesheet"></p>
 <p>Make sure to import Numpy, SciPy and Matplotlib to be able to complete all the exercises.</p>
-<div id="9ff9b6c3" class="cell" data-execution_count="1">
+<div id="3721f05e" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.optimize <span class="im">as</span> optimize</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -155,24 +155,24 @@ window.Quarto = {
 <p>If <span class="math inline">U_0</span> and <span class="math inline">U_1</span> are uniform random variables on <span class="math inline">[0,1]</span>, then <span class="math display">
 Z_0 = \sqrt{-2\cdot\ln(U_0)}\cos(2\pi U_1)
 </span> and <span class="math display">
-Z_1 = \sqrt{-2\cdot\ln(U_0)}\sin(2\pi U_2)
+Z_1 = \sqrt{-2\cdot\ln(U_0)}\sin(2\pi U_1)
 </span> are random variables that follow a normal distribution.</p>
 <ol type="a">
 <li><p>Write a function <code>unif_to_norm</code> that takes as input parameters <span class="math inline">m</span> and <span class="math inline">n</span> and returns two <span class="math inline">m \times n</span> two-dimensional arrays <span class="math inline">z_0</span> and <span class="math inline">z_1</span>, where every <code>z_0[i,j]</code> is a sample according to the formula <span class="math inline">Z_0</span> and every <code>z_1[i,j]</code> a sample according to the formula of <span class="math inline">Z_1</span>. <br><br> That is, you should generate samples from the uniform distribution and transform them to samples from the normal distribution using the formulas above.</p></li>
 <li><p>See if your function works for <span class="math inline">m = 10</span> and <span class="math inline">n = 100</span> and do a sanity check by computing the mean (should be close to zero) and standard deviation (should be close to 1) of all elements in <code>z0</code> and <code>z1</code>.</p></li>
 </ol>
-<div id="3df1b568" class="cell" data-execution_count="3">
+<div id="2a1cbc8a" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>m, n <span class="op">=</span> <span class="dv">10</span>, <span class="dv">100</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>z0, z1 <span class="op">=</span> unif_to_norm(m,n)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="8a7b2032" class="cell" data-execution_count="4">
+<div id="056a4ef5" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-stdout">
-<pre><code>Mean of elements in z0 is: -0.050313679741913885
-Standard deviation of elements in z0 is: 1.029247016960882 
+<pre><code>Mean of elements in z0 is: -0.015406523210107735
+Standard deviation of elements in z0 is: 1.0046997979308685 
 
-Mean of elements in z1 is: -0.027201045159231253
-Standard deviation of elements in z1 is: 0.9887266653281195</code></pre>
+Mean of elements in z1 is: -0.02071742567164498
+Standard deviation of elements in z1 is: 1.0105054516399095</code></pre>
 </div>
 </div>
 </section>
@@ -182,7 +182,7 @@ Standard deviation of elements in z1 is: 0.9887266653281195</code></pre>
 <ol type="a">
 <li>Write a function <code>index_sample(x)</code> that, for given nonnegative input vector <span class="math inline">x = [x_0,\dots,x_{n-1}]</span> with <span class="math inline">\sum_i x_i = 1</span>, returns an index <span class="math inline">i \in \{0,\dots,n-1\}</span> with probability <span class="math inline">x_i</span>. As a source of randomness, you are only allowed to use the <code>np.random.rand()</code> function. Do not use for-loops. <br> <i>Hint: Identify every index with a subinterval of <span class="math inline">[0,1]</span>, and recall that <code>np.argmax()</code> applied to a Boolean vector returns the location of the first <code>True</code> element.</i></li>
 </ol>
-<div id="d62c7c9c" class="cell" data-execution_count="6">
+<div id="34f19164" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fix randomness</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">3</span>) </span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -198,7 +198,7 @@ Standard deviation of elements in z1 is: 0.9887266653281195</code></pre>
 <ol start="2" type="a">
 <li>Vectorize your function to <code>index_samples(x,k)</code> so that it can return <span class="math inline">k</span> sampled indices according to the probabilities in <span class="math inline">x</span>. Do not use for-loops.</li>
 </ol>
-<div id="5589e0bc" class="cell" data-execution_count="8">
+<div id="88ed4b2f" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fix randomness</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">3</span>) </span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -229,7 +229,7 @@ f_{\beta}(x) = \left\{
 \min_{i=0,\dots,n-1} x_i^t
 </span> for <span class="math inline">t = 1,\dots,T</span>. Do not use for-loops.<br> <i>Hint: Both the <code>scale</code> and <code>size</code> parameters of <code>np.random.exponential</code> allow arrays as input; see the documentation. </i></li>
 </ol>
-<div id="eedb4b13" class="cell" data-execution_count="10">
+<div id="aa40eff7" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">3</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>beta <span class="op">=</span> np.array([<span class="dv">5</span>,<span class="dv">2</span>,<span class="dv">3</span>])</span>
@@ -245,7 +245,7 @@ f_{\beta}(x) = \left\{
 <ol start="2" type="a">
 <li>Write a function <code>exp_fit()</code> that takes as input an array of numbers, and fits an exponential distribution (of the form above) to these numbers. Do this by using the <code>fit()</code> method for an exponential distribution object in <code>stats</code>, which you can read about in the <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.expon.html">documentation</a>. <br><br> The output of your function should be the scale parameter of the fitted exponential distribution, where the exponential distribution is as introduced in the beginning of this question. Make sure you lock the location parameter to be <span class="math inline">0</span>.</li>
 </ol>
-<div id="87273a9b" class="cell" data-execution_count="12">
+<div id="207d0a53" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>beta <span class="op">=</span> np.array([<span class="dv">5</span>,<span class="dv">2</span>,<span class="dv">3</span>])</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> <span class="dv">10000000</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>min_data <span class="op">=</span> min_samples(beta,T)</span>
@@ -273,7 +273,7 @@ p^* = \text{argmax}_p \, p \cdot \mathbb{P}(X \geq p).
 <ol type="a">
 <li>Write a function <code>monopoly_price</code> that takes as input a continuous distribution (<code>stats.rv_continous</code> object) and a number <span class="math inline">\alpha \in (0,1)</span>. It should return the monopoly price by solving the equation <span class="math inline">(3)</span> above. Use the <code>brentq</code> method for root finding in your solution with as left-bracket <span class="math inline">0</span>, and right-bracket the point <span class="math inline">\bar{p}</span> for which <span class="math inline">F^{-1}(\bar{p}) = \alpha</span>.</li>
 </ol>
-<div id="edfe2b48" class="cell" data-execution_count="14">
+<div id="5a89173c" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate instance of halfnormal distribution</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>distribution <span class="op">=</span> scipy.stats.halfnorm()</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -291,7 +291,7 @@ p^* = \text{argmax}_p \, p \cdot \mathbb{P}(X \geq p).
 <ol start="2" type="a">
 <li>Write a function <code>revenue_plot</code> that takes as input a continuous distribution (<code>stats.rv_continous</code> object) and a number <span class="math inline">\alpha \in (0,1)</span>. It should return a plot of the revenue function <span class="math inline">g(p) = p \cdot \mathbb{P}(X \geq p)</span> on the interval <span class="math inline">[0,\bar{p}]</span> with <span class="math inline">\bar{p}</span> such that <span class="math inline">F^{-1}(\bar{p}) = \alpha</span>. Obtain the monopoly price found using the function <code>monopoly_price</code> and add it to your figure with a dot.</li>
 </ol>
-<div id="070eadf3" class="cell" data-execution_count="16">
+<div id="60724853" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>distribution <span class="op">=</span> scipy.stats.halfnorm()</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>alpha <span class="op">=</span> <span class="fl">0.99</span> </span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -324,7 +324,7 @@ e^{j}_i = \left\{ \begin{array}{ll}
 <ol type="a">
 <li>Write a function <code>partial_sums</code> that for a number <span class="math inline">n</span> and vector of column indices <span class="math inline">c = [c_0,\dots,c_{K-1}] \in \{0,\dots,n-1\}</span>, returns a two-dimensional array whose rows are <span class="math inline">x^{(1)},\dots,x^{(K)}.</span> Do not use for-loops.</li>
 </ol>
-<div id="e1f8f9f6" class="cell" data-execution_count="18">
+<div id="a45c70ab" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> [<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">6</span>]</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">7</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -348,7 +348,7 @@ d_{ij} = |yAx - y^{(\ell)}Ax^{(k)}|
 </span> Think about an appropriate way to input the vectors yourself. Do not use for-loops in your function.</p></li>
 <li><p>Take <span class="math inline">n = 100</span> and <span class="math inline">x = y = \frac{1}{n} (1,1,\dots,1)</span>. Generate resp. <span class="math inline">K = 10</span> samples of <span class="math inline">x</span>, corresponding to <span class="math inline">c_0,\dots,c_{9}</span>, and <span class="math inline">L = 12</span> samples of <span class="math inline">y</span>, corresponding to <span class="math inline">r_0,\dots,r_{11}</span>. Take <span class="math inline">A</span> a randomly generated <span class="math inline">n \times n</span> matrix with entries in <span class="math inline">\{1,2,3,\dots,50\}</span> and apply your function from the previous question to it.</p></li>
 </ol>
-<div id="6dedd571" class="cell" data-execution_count="21">
+<div id="cb565b4d" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>D <span class="op">=</span> differences(x,y,X,Y,A)</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>D <span class="op">=</span> np.around(D,decimals<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>

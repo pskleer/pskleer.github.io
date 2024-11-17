@@ -59,7 +59,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
-<link href="./A-errata.html" rel="next">
+<link href="./09-data-fitting.html" rel="next">
 <link href="./07-visualization.html" rel="prev">
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-html/quarto.js"></script>
@@ -211,6 +211,12 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Probability theory</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-data-fitting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Statistics and data fitting</span></span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
@@ -285,7 +291,7 @@ window.Quarto = {
 <p>There are various ways to generate random variables and sets in Python. Throughout this chapter we will rely on basic concepts from probability theory such as probability density function (pdf) and cumulative density function (cdf).</p>
 <p>Furthermore, we will be working with the <a href="https://en.wikipedia.org/wiki/Normal_distribution">normal</a>, <a href="https://en.wikipedia.org/wiki/Continuous_uniform_distribution">uniform </a> and other distributions. Familiarity with those is assumed. Whenever you run into a mathematical or probabilistic aspect you do not understand, please look it up and otherwise ask the teacher about it.</p>
 <p>We will use functionality from the <code>random</code> subpackage of NumPy. This subpackage is not to be confused with the <code>random</code> package of Python, which has a lot of similar functionality.</p>
-<div id="c9d15e5c" class="cell" data-execution_count="1">
+<div id="d35f0c68" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="samples" class="level3" data-number="8.1.1">
@@ -293,48 +299,48 @@ window.Quarto = {
 <p>The <code>random</code> subpackage has functions that can generate so-called <i>pseudo-random numbers</i>. Informally speaking, these numbers “behave” as random numbers when performing numerical experiments with them, but they are not truly random (which can be an issue, e.g., if you would use such numbers of cryptographic purposes).</p>
 <p>We next discuss some functions to generate random numbers from well-known distributions.</p>
 <p><code>np.random.rand(m,n)</code>: Generate an <span class="math inline">m \times n</span> two-dimensional array with numbers uniformly drawn form the interval <span class="math inline">[0,1]</span> (i.e., every number is equally likely).</p>
-<div id="0f67b262" class="cell" data-execution_count="2">
+<div id="68c27117" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>m,n <span class="op">=</span> <span class="dv">2</span>, <span class="dv">4</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>M <span class="op">=</span> np.random.rand(m,n)</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(M)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[[0.11074625 0.3624493  0.8956253  0.47811953]
- [0.89064039 0.15875541 0.1096586  0.73170792]]</code></pre>
+<pre><code>[[0.20865176 0.92414908 0.81764082 0.2853281 ]
+ [0.41996465 0.27270455 0.03580805 0.04448207]]</code></pre>
 </div>
 </div>
 <p>When <span class="math inline">m</span> and <span class="math inline">n</span> are not inputted, a single random number is returned.</p>
-<div id="559b8177" class="cell" data-execution_count="3">
+<div id="bd400a8c" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.random.rand()</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>0.8131813295119863</code></pre>
+<pre><code>0.4748328365815989</code></pre>
 </div>
 </div>
 <p><code>np.random.randn(m,n)</code>: Generates an <span class="math inline">m \times n</span> two-dimensional array with numbers drawn from the normal distribution with mean <span class="math inline">\mu = 0</span> and standard deviation <span class="math inline">\sigma = 1</span>.</p>
-<div id="65be37e3" class="cell" data-execution_count="4">
+<div id="d301ad02" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>m,n <span class="op">=</span> <span class="dv">3</span>, <span class="dv">5</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>M <span class="op">=</span> np.random.randn(m,n)</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(M)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[[-3.10160332  0.83878397 -0.28057211 -0.03491556  1.53685558]
- [-2.01443686 -0.15813262  0.19970286  0.48769671  0.91458819]
- [-0.18506333 -1.12035163  1.49280895 -1.58684075 -0.618051  ]]</code></pre>
+<pre><code>[[-1.16177657  0.94783155 -1.82415572 -0.17399246  1.95784779]
+ [ 1.41470431 -0.1992327  -1.07500306  1.55903842 -0.22552828]
+ [ 1.00880348  0.71579485  0.99321045 -0.18919631  0.09091634]]</code></pre>
 </div>
 </div>
 <p>We conclude with sampling numbers from the discrete uniform distribution over a set <span class="math inline">\{a,a+1,\dots,b-1\}</span>. Here every number <span class="math inline">i</span> in this discrete interval is generated with equal probability <span class="math inline">1/(b - a)</span>.</p>
 <p><code>np.random.randint(a,b,(m,n))</code>: Generates an <span class="math inline">m \times n</span> two-dimensional array with numbers drawn from the discrete uniform distribution on <span class="math inline">\{a,a+1,\dots,b-1\}</span>.</p>
-<div id="427f0b81" class="cell" data-execution_count="5">
+<div id="968a65f9" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>a, b <span class="op">=</span> <span class="dv">4</span>, <span class="dv">10</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>m,n <span class="op">=</span> <span class="dv">3</span>, <span class="dv">15</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>M <span class="op">=</span> np.random.randint(a,b,(m,n))</span>
 <span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(M)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[[8 5 8 9 9 5 9 5 5 8 8 7 6 5 4]
- [9 9 6 7 9 5 6 4 5 9 7 9 4 8 4]
- [6 6 8 9 7 5 8 9 9 8 6 7 5 6 7]]</code></pre>
+<pre><code>[[6 6 4 9 4 8 9 7 5 9 8 6 4 9 4]
+ [6 9 8 8 9 4 6 7 9 7 8 5 5 4 5]
+ [5 4 7 5 6 6 8 8 4 9 5 8 9 4 7]]</code></pre>
 </div>
 </div>
 <p>For almost every well-known probability distribution we can get samples from its distribution. See the <a href="https://numpy.org/doc/2.0/reference/random/generator.html#distributions">documentation</a> for a list of all the distributions.</p>
@@ -347,7 +353,7 @@ window.Quarto = {
 <figcaption>Documentation for generating normally distributed samples</figcaption>
 </figure>
 </div>
-<div id="b716e012" class="cell" data-execution_count="6">
+<div id="33315c1f" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>mu <span class="op">=</span> <span class="dv">1</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>sigma <span class="op">=</span> <span class="dv">2</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -355,11 +361,11 @@ window.Quarto = {
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(samples)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>-0.8961354109974116</code></pre>
+<pre><code>0.05781933894914304</code></pre>
 </div>
 </div>
 <p>This function also allows vectorized inputs: If we input an array of means and standard deviations, then a sample for every combination is generated.</p>
-<div id="97690003" class="cell" data-execution_count="7">
+<div id="bd762f20" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>mu <span class="op">=</span> np.array([<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>])</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>sigma <span class="op">=</span> np.array([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">2</span>])</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -367,11 +373,11 @@ window.Quarto = {
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(samples)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[-0.80990356 -0.01330101  9.37337064  3.48812685]</code></pre>
+<pre><code>[0.23217355 6.86786931 2.58521256 2.15381302]</code></pre>
 </div>
 </div>
 <p>Finally, if you want to have <span class="math inline">m</span> samples from all combinations of location and scale parameters, you can specify this in the <code>size</code> keyword argument by setting it to <code>(m,n)</code> where <span class="math inline">n</span> is the common length of the location and scale array. For every scale-location combination, the <span class="math inline">m</span> samples of this combination can be found in a column of the output.</p>
-<div id="3075ed84" class="cell" data-execution_count="8">
+<div id="925a95b9" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>mu <span class="op">=</span> np.array([<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>])</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>sigma <span class="op">=</span> np.array([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">2</span>])</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -382,16 +388,16 @@ window.Quarto = {
 <span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(samples)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[[ 0.1477358   1.45927764  1.0443952   3.98921591]
- [-1.03926557 -0.46933736  4.77629885  1.23648593]
- [ 0.88388065  1.58327106  8.77946888  3.09710209]]</code></pre>
+<pre><code>[[-0.0733758   0.28038591  0.31069046  2.39170043]
+ [-2.00243941  3.18270714  6.25898672  3.49146821]
+ [ 1.12533407  1.05503739 -0.06858507  0.43449935]]</code></pre>
 </div>
 </div>
 </section>
 <section id="subsets" class="level3" data-number="8.1.2">
 <h3 data-number="8.1.2" class="anchored" data-anchor-id="subsets"><span class="header-section-number">8.1.2</span> Subsets</h3>
 <p>Next to the generation of random numbers, it is also possible to generate random subsets of elements of a given array using the <code>choice()</code> function. It takes as input an array from which we want to obtain a subset and we an set the size of the subset that we want to have using the <code>size</code> keyword argument.</p>
-<div id="eab7f5b5" class="cell" data-execution_count="9">
+<div id="d1d7bc9b" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>k <span class="op">=</span> <span class="dv">15</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.arange(<span class="dv">0</span>,<span class="dv">11</span>,<span class="dv">1</span>)</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -399,11 +405,11 @@ window.Quarto = {
 <span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(subset)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[8 9 2 1 2 4 8 5 9 5 1 9 6 2 4]</code></pre>
+<pre><code>[0 7 6 3 0 1 4 4 2 6 7 4 0 6 8]</code></pre>
 </div>
 </div>
 <p>As can be seen from the output above, some numbers appear twice in the subset, meaning that <code>choice()</code> samples a subset <i>with replacement</i>. If you want to sample without replacement, you can set the keyword <code>replace</code> to <code>False</code>.</p>
-<div id="7ca756c5" class="cell" data-execution_count="10">
+<div id="7178d05e" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>k <span class="op">=</span> <span class="dv">8</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.arange(<span class="dv">0</span>,<span class="dv">11</span>,<span class="dv">1</span>)</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -411,11 +417,11 @@ window.Quarto = {
 <span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(subset)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[ 1  8  0 10  4  3  2  9]</code></pre>
+<pre><code>[ 7  9 10  4  6  0  2  1]</code></pre>
 </div>
 </div>
 <p>Finally, you can also specify the probability with which every element should be samples using the keyword argument <code>p</code>.</p>
-<div id="c0ab8b5d" class="cell" data-execution_count="11">
+<div id="f0007b52" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>k <span class="op">=</span> <span class="dv">8</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Set {0,1,2,...,9}</span></span>
@@ -430,20 +436,20 @@ window.Quarto = {
 <span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Only 0, 1, 9 have positive probabilities</span></span>
 <span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(subset)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[9 1 1 1 9 1 1 0]</code></pre>
+<pre><code>[1 9 0 0 1 0 0 1]</code></pre>
 </div>
 </div>
 <p>There is also the <code>permutation()</code> function that returns the elements in an array in a random order. That is, it creates a so-called random permutation of the elements in the array.</p>
-<div id="bdf11096" class="cell" data-execution_count="12">
+<div id="f4425b67" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>x_perm <span class="op">=</span> np.random.permutation(x)</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x_perm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[0 9 2 5 7 8 1 3 4 6]</code></pre>
+<pre><code>[5 2 9 0 8 6 3 4 7 1]</code></pre>
 </div>
 </div>
 <p>If you would apply this function on a two-dimensional array, it returns the same array in which the rows are randomly permuted (i.e., the inner lists are randomly permuted).</p>
-<div id="2dd31492" class="cell" data-execution_count="13">
+<div id="db447a59" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.arange(<span class="dv">0</span>,<span class="dv">18</span>,<span class="dv">1</span>).reshape(<span class="dv">3</span>,<span class="dv">6</span>)</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>x_perm <span class="op">=</span> np.random.permutation(X)</span>
@@ -451,8 +457,8 @@ window.Quarto = {
 <span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x_perm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[ 0  1  2  3  4  5]
- [12 13 14 15 16 17]
- [ 6  7  8  9 10 11]]</code></pre>
+ [ 6  7  8  9 10 11]
+ [12 13 14 15 16 17]]</code></pre>
 </div>
 </div>
 </section>
@@ -460,18 +466,18 @@ window.Quarto = {
 <h3 data-number="8.1.3" class="anchored" data-anchor-id="seed"><span class="header-section-number">8.1.3</span> Seed</h3>
 <p>When writing code that involves random numbers of objects, it can sometimes be useful to “fix” the randomness in the script, e.g., when debugging. This can be done by setting a so-called random seed using the <code>seed()</code> function.</p>
 <p>For sake of comparison, let us first generate two random numbers from <span class="math inline">[0,1]</span>.</p>
-<div id="c2ac94cb" class="cell" data-execution_count="14">
+<div id="63737789" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> np.random.rand()</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> np.random.rand()</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a,b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>0.5229524751134788 0.3595430843730376</code></pre>
+<pre><code>0.4080076955168802 0.5244926764292066</code></pre>
 </div>
 </div>
 <p>If you rerun the code above it will give different outputs every time. Try this yourself by copying the code into Spyder.</p>
 <p>We next do the same, but with a fixed seed <span class="math inline">s</span> using <code>seed(s)</code>. Different choices of <span class="math inline">s</span> fix the randomness in a different way. If you copy the code below into Spyder and rerun it a couple of times, the output will always be the same.</p>
-<div id="48c38bd6" class="cell" data-execution_count="15">
+<div id="12754a94" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Set seed to be s = 3</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">3</span>)</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -488,7 +494,7 @@ window.Quarto = {
 <section id="probability-distributions" class="level2" data-number="8.2">
 <h2 data-number="8.2" class="anchored" data-anchor-id="probability-distributions"><span class="header-section-number">8.2</span> Probability distributions</h2>
 <p>The <code>stats</code> module of SciPy has many built-in probability distributions. Each distribution can be seen as an object on which various methods can be performed (such accessing its probability density function or summary statistics like the mean and median). You should think of an ‘object’ in the context of object oriented programming, see, e.g., <a href="https://tisem-eds.github.io/prog/10-object-oriented-programming.html">here</a> to recall the basics of this paradigm.</p>
-<div id="5a9d2628" class="cell" data-execution_count="16">
+<div id="47e8e542" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>In this section we will focus on continuous probability distributions. SciPy also has many built-in discete probability distributions.</p>
@@ -505,7 +511,7 @@ f(x) = \frac{1}{\sqrt{2\pi\sigma^2} } e^{-\frac{(x-\mu)^2}{2\sigma^2}}
 </figure>
 </div>
 <p>All distributions have default values for these parameters, which are typically <code>loc=0</code> and <code>scale = 1</code>.</p>
-<div id="f865d436" class="cell" data-execution_count="17">
+<div id="7702e761" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create normal distribution object with mu=0, sigma=1</span></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>dist_norm <span class="op">=</span> scipy.stats.norm(loc<span class="op">=</span><span class="dv">0</span>, scale<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -517,14 +523,14 @@ f(x) = \frac{1}{\sqrt{2\pi\sigma^2} } e^{-\frac{(x-\mu)^2}{2\sigma^2}}
 <li><code>dist_name.sf(x)</code>: Value <span class="math inline">S(x)</span> where <span class="math inline">S</span> is the survival function <span class="math inline">(1 - F)</span> of the distribution.</li>
 <li><code>dist_name.ppf(alpha)</code>: Returns <span class="math inline">x</span> so that <span class="math inline">F^{-1}(x) = \alpha</span> where <span class="math inline">\alpha \in (0,1)</span>.</li>
 </ul>
-<div id="d9ed6a3f" class="cell" data-execution_count="18">
+<div id="73fcaf97" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">1</span></span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(dist_norm.pdf(x))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>0.24197072451914337</code></pre>
 </div>
 </div>
-<div id="701a3967" class="cell" data-execution_count="19">
+<div id="9ecec716" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>alpha <span class="op">=</span> <span class="dv">1</span><span class="op">/</span><span class="dv">2</span></span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(dist_norm.ppf(alpha))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -537,7 +543,7 @@ f(x) = \frac{1}{\sqrt{2\pi\sigma^2} } e^{-\frac{(x-\mu)^2}{2\sigma^2}}
   background-color: #ffffff;
 }
 </style>
-<div id="c55df16a" class="cell" data-execution_count="20">
+<div id="d1b8abba" class="cell" data-execution_count="20">
 <details class="code-fold">
 <summary>Show code generating the plot below</summary>
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -585,7 +591,7 @@ f(x) = \frac{1}{\sqrt{2\pi\sigma^2} } e^{-\frac{(x-\mu)^2}{2\sigma^2}}
 <li><code>dist_name.var()</code>: Returns variance of the distribution</li>
 <li><code>dist_name.median():</code> Returns median of the distribution</li>
 </ul>
-<div id="789e23c3" class="cell" data-execution_count="21">
+<div id="e714a3cb" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>dist_norm <span class="op">=</span> scipy.stats.norm(loc<span class="op">=</span><span class="dv">0</span>,scale<span class="op">=</span><span class="dv">2</span>)</span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>mean <span class="op">=</span>  dist_norm.mean()</span>
@@ -614,7 +620,7 @@ Median of the distribution is 0.0</code></pre>
 </figure>
 </div>
 <p>Here the <code>scale</code> and <code>loc</code> parameters result in a uniform distribution on the interval <code>[loc, loc + scale]</code>.</p>
-<div id="b0ed3242" class="cell" data-execution_count="22">
+<div id="7ad95793" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Uniform distribution on [3,3+4] = [3,7]</span></span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>dist_unif <span class="op">=</span> scipy.stats.uniform(<span class="dv">3</span>,<span class="dv">4</span>) </span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -626,7 +632,7 @@ Median of the distribution is 0.0</code></pre>
 </div>
 </div>
 <p>Some distributions have an unbounded support. In the case of the Normal distribution, we have <span class="math inline">a = -\infty</span> and <span class="math inline">b = \infty</span>. For the Exponential Distribution, we have <span class="math inline">a = 0</span> and <span class="math inline">b = \infty</span>.</p>
-<div id="e853cefd" class="cell" data-execution_count="23">
+<div id="6ec9c407" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>dist_norm <span class="op">=</span> scipy.stats.norm(loc<span class="op">=</span><span class="dv">0</span>, scale<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>a,b <span class="op">=</span> dist_norm.support()</span>
@@ -637,7 +643,7 @@ Median of the distribution is 0.0</code></pre>
 <pre><code>The Normal distribution is supported on the interval [-inf,inf]</code></pre>
 </div>
 </div>
-<div id="f9d0ddc0" class="cell" data-execution_count="24">
+<div id="d2418444" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>dist_exp <span class="op">=</span> scipy.stats.expon(loc<span class="op">=</span><span class="dv">0</span>,scale<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>a,b <span class="op">=</span> dist_exp.support()</span>
@@ -649,7 +655,7 @@ Median of the distribution is 0.0</code></pre>
 </div>
 </div>
 <p>The value <code>inf</code> that <span class="math inline">b</span> has in the example above is in fact a number within NumPy, namely <code>np.inf</code>. Let us check that the upper bound of the exponential distribution is indeed <code>np.inf</code>.</p>
-<div id="8cb91f0c" class="cell" data-execution_count="25">
+<div id="0d561aa8" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>statement <span class="op">=</span> (b <span class="op">==</span> np.inf)</span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(statement)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -661,7 +667,7 @@ Median of the distribution is 0.0</code></pre>
 <h3 data-number="8.2.1" class="anchored" data-anchor-id="distributions-as-input-arguments"><span class="header-section-number">8.2.1</span> Distributions as input arguments</h3>
 <p>Distributional objects can also serve as input arguments of a function. In that case, you can access the methods of the object inside the function.</p>
 <p>Suppose we want to write a function that outputs a message saying whether or not the mean or the median of a distribution is larger. We can do this as follows for an arbitrary distribution.</p>
-<div id="c74b74ea" class="cell" data-execution_count="26">
+<div id="28048cc3" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mean_median(dist):</span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> dist.mean() <span class="op">&lt;</span> dist.median():</span>
 <span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"The mean is smaller than the median"</span></span>
@@ -671,7 +677,7 @@ Median of the distribution is 0.0</code></pre>
 <span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"The mean is larger than the median."</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>In the function above, the input argument <code>dist</code> is a distribution object whose methods <code>mean()</code> and <code>median()</code> we access within the function.</p>
-<div id="fde9f4f0" class="cell" data-execution_count="27">
+<div id="ab095fdf" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>dist_norm <span class="op">=</span> scipy.stats.norm(loc<span class="op">=</span><span class="dv">1</span>,scale<span class="op">=</span><span class="dv">2</span>)</span>
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>comparison  <span class="op">=</span> mean_median(dist_norm)</span>
@@ -1113,8 +1119,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./A-errata.html" class="pagination-link" aria-label="Corrections and changes">
-        <span class="nav-page-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Corrections and changes</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./09-data-fitting.html" class="pagination-link" aria-label="Statistics and data fitting">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Statistics and data fitting</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

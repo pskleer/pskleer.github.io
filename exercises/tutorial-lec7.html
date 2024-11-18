@@ -144,7 +144,7 @@ window.Quarto = {
 
 <p><link rel="preconnect" href="https://fonts.googleapis.com"> <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""> <link href="https://fonts.googleapis.com/css2?family=Fira+Mono&amp;family=Fira+Sans&amp;display=swap" rel="stylesheet"></p>
 <p>Make sure to import Numpy, SciPy and Matplotlib to be able to complete all the exercises.</p>
-<div id="2bf19cdb" class="cell" data-execution_count="1">
+<div id="932fd35e" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.optimize <span class="im">as</span> optimize</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.interpolate <span class="im">as</span> interpolate</span>
@@ -164,7 +164,7 @@ window.Quarto = {
 <li><p>Create a function <code>unif_samples</code> that takes as input two one-dimensional arrays <span class="math inline">a = [a_0,\dots,a_{m-1}]</span> and <span class="math inline">b = [b_0,\dots,b_{m-1}]</span>, and a number <span class="math inline">n</span>. It should output a two-dimensional <span class="math inline">m \times n</span> array where row <span class="math inline">i</span> contains <span class="math inline">n</span> samples from the (continuous) uniform distribution on <span class="math inline">[a_i,b_i]</span> for <span class="math inline">i = 0,\dots,m-1</span>.<br> <i>Hint: Have a look at Chapter 8.2.1 how to generate samples from different distributions from the same family and a look at the <a href="https://numpy.org/doc/2.0/reference/random/generated/numpy.random.uniform.html">documentation</a> here to check out the keyword arguments of <code>np.random.uniform</code>. </i></p></li>
 </ol>
 <p>Test your functions from b) and c) by applying them to the test input below.</p>
-<div id="2045fb1a" class="cell" data-execution_count="4">
+<div id="601547fa" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fix random seed</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> <span class="dv">3</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>np.random.seed(s)</span>
@@ -201,7 +201,7 @@ f(x_i,\beta) = \alpha + \beta_0x_{i0} + \dots + \beta_{n-1}x_{i(n-1)}.
 <li>The sum of the squared errors <span class="math inline">\sum_{i=0}^{m-1} (y_i - f(x_i,\beta))^2</span>.<br><br></li>
 </ul>
 <p>Test your function on the following input. <!-- Code below was used to generate the input x and y --></p>
-<div id="d1b9db2f" class="cell" data-execution_count="7">
+<div id="6b5d6a5d" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.array([</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>       [ <span class="fl">1.012</span>,  <span class="fl">1.008</span>,  <span class="fl">0.996</span>,  <span class="fl">0.998</span>],</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>       [ <span class="fl">1.992</span>,  <span class="fl">1.996</span>,  <span class="fl">2.015</span>,  <span class="fl">1.995</span>],</span>
@@ -227,7 +227,7 @@ f(x_i,\beta) = \alpha + \beta_0x_{i0} + \dots + \beta_{n-1}x_{i(n-1)}.
 <span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Sum of squares error:"</span>,error)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Fitted parameters: [1.99  1.258 2.584 4.449 0.71 ]
-Sum of squares error: 0.06058960181952422</code></pre>
+Sum of squares error: 0.0005592236239135366</code></pre>
 </div>
 </div>
 <p>Instead of minimizing the sum of squares we will next search for coefficients that minimize the sum of the absolute differences for <span class="math inline">m</span> given data points. That is, we want find an array <span class="math inline">\beta</span> that minimizes the expression <span class="math display">
@@ -237,7 +237,7 @@ Sum of squares error: 0.06058960181952422</code></pre>
 <li><p>Write a function <code>abs_regression()</code> that takes as input data points <span class="math inline">(x_i,y_i)</span>, as in part a), and outputs the fitted array <span class="math inline">\beta</span> that solves the minimization problem above, as well as the sum of the absolute errors for the optimal <span class="math inline">\beta</span>. Use <code>optimize.minimize()</code> in your solution with again the all-ones vector as initial guess.</p></li>
 <li><p>Test your functions in parts a) and b) on the input data below (that contains one “outlier”).</p></li>
 </ol>
-<div id="b8f41fb1" class="cell" data-execution_count="9">
+<div id="72d0f859" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># x_i data</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.array([ <span class="fl">1.124</span>,  <span class="fl">1.965</span>,  <span class="fl">3.162</span>,  <span class="fl">4.381</span>,  <span class="fl">4.941</span>,  </span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                <span class="fl">5.941</span>,  <span class="fl">7.395</span>,  <span class="fl">8.192</span>, <span class="fl">8.883</span>, <span class="fl">10.136</span>])</span>
@@ -259,14 +259,14 @@ Sum of squares error: 0.06058960181952422</code></pre>
 <span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Sum of absolute differences fit gives beta="</span>, </span>
 <span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>        beta_abs, <span class="st">"with error"</span>, error_abs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Sum of squares fit gives beta= [1.223 0.905] with error 17.747921095703788
+<pre><code>Sum of squares fit gives beta= [1.223 0.905] with error 88.69264159225709
 Sum of absolute differences fit gives beta= [-0.091  0.997] with error 11.590128506427407</code></pre>
 </div>
 </div>
 <ol start="4" type="a">
 <li>Plot the fitted lines in a figure together with the data points. The figure should look like this:</li>
 </ol>
-<div id="eef2a30c" class="cell" data-execution_count="10">
+<div id="f5360ac3" class="cell" data-execution_count="10">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -287,7 +287,7 @@ Sum of absolute differences fit gives beta= [-0.091  0.997] with error 11.590128
 <p>This can be useful if you want to find the important features in your data set. Let us first generate some synthetic data to explain what is meant with “important” features. Note that in the code below each row <span class="math display">
 x_i = [x_{i0}, x_{i1}, x_{i2}, x_{i3}, x_{i4}]
 </span> in the array <span class="math inline">x</span> is considered a data point five elements, each representing a feature.</p>
-<div id="d9ca8ced" class="cell" data-execution_count="11">
+<div id="93eb8b22" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fix random seed</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">3</span>)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -317,7 +317,7 @@ x_i = [x_{i0}, x_{i1}, x_{i2}, x_{i3}, x_{i4}]
 <li><p>Write a function <code>lasso_regression()</code> that takes as input a two-dimensional array <span class="math inline">x</span> whose rows represent the data <span class="math inline">x_i</span> for <span class="math inline">0 = 1,\dots,m-1</span>, a one-dimensional array <span class="math inline">y = [y_0,\dots,y_{m-1}]</span>, and a constant <span class="math inline">\gamma \geq 0</span>. It should output the fitted array <span class="math inline">\beta</span> that solves the minimization problem above, as well as the Lasso error. Use <code>optimize.minimize()</code> in your solution with again the all-ones vector as initial guess.</p></li>
 <li><p>Test your function on the synthetic data generated above for <span class="math inline">\gamma \in \{0, 0.1, 0.2, \dots, 0.9\}</span>, and output a <span class="math inline">10 \times 5</span> array with the values of the fitted <span class="math inline">\beta</span> for <span class="math inline">\gamma_i = 0.1 \cdot i</span> on row <span class="math inline">i</span>. You may use a for-loop here. <br><br> Your output should look like below.</p></li>
 </ol>
-<div id="162a984d" class="cell" data-execution_count="13">
+<div id="b12c232d" class="cell" data-execution_count="13">
 <div class="cell-output cell-output-stdout">
 <pre><code>[[ 2.42   1.413  0.49   3.445 -1.85 ]
  [ 2.329  1.409  0.382  3.372 -1.578]
@@ -332,7 +332,7 @@ x_i = [x_{i0}, x_{i1}, x_{i2}, x_{i3}, x_{i4}]
 </div>
 </div>
 <p>As <span class="math inline">\gamma</span> increases we see that <span class="math inline">\beta_2, \beta_4 \rightarrow 0</span>. Be aware though, that if you choose <span class="math inline">\gamma</span> too large, then other <span class="math inline">\beta_i</span> values might also converge to <span class="math inline">0</span>. As an extreme case, if <span class="math inline">\gamma = 1000</span>, then all coefficients will be <span class="math inline">0</span>. Do you understand why?</p>
-<div id="5d1ea6fe" class="cell" data-execution_count="14">
+<div id="c7a10c95" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>beta_fit, error_fit <span class="op">=</span> lasso_regression(x,y,<span class="dv">1000</span>)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(beta_fit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -345,7 +345,7 @@ x_i = [x_{i0}, x_{i1}, x_{i2}, x_{i3}, x_{i4}]
 <section id="question-4" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="question-4">Question 4</h4>
 <p>Reproduce the figure below, that displays interpolation of the function <span class="math inline">f(x) = \cos(x)</span> using piecewise polynomials of degrees <span class="math inline">k = 0,1,2,3</span> on the intervals between the given data points. The <span class="math inline">x</span>-value of the data points (the dots) are <span class="math inline">[-10, -7, -3, -1, 0, 1, 3, 7, 8, 10]</span>.</p>
-<div id="4bd9c215" class="cell" data-execution_count="15">
+<div id="c11c56b3" class="cell" data-execution_count="15">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -362,7 +362,7 @@ x_i = [x_{i0}, x_{i1}, x_{i2}, x_{i3}, x_{i4}]
 </span> where <span class="math inline">f(x,\mu,\sigma)</span> is the probability density function of the normal distribution with mean <span class="math inline">\mu</span> and standard deviation <span class="math inline">\sigma</span>. The idea is that the parameters maximizing the function above are the ones that are most likely to yield the samples in the array <span class="math inline">x</span>.</p>
 <p>Write a function <code>norm_likelihood()</code> that takes as input a one-dimensional array <span class="math inline">x = [x_0,\dots,x_{n-1}]</span> of samples, and outputs parameters <span class="math inline">\mu</span> and <span class="math inline">\sigma</span> that maximize the function <span class="math inline">L</span> above for the given <span class="math inline">x</span>. Use the <code>minimize()</code> method for optimizing <span class="math inline">L</span> and take as initial guess the mean and standard deviation of the vector <span class="math inline">x</span>.</p>
 <p>Test your function on the input below.</p>
-<div id="65ee71fd" class="cell" data-execution_count="17">
+<div id="642ac4f2" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fix random seed</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">3</span>)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -377,7 +377,7 @@ x_i = [x_{i0}, x_{i1}, x_{i2}, x_{i3}, x_{i4}]
 </div>
 </div>
 <p>The (rounded) solution found is the same as the one found by the <code>fit()</code> function.</p>
-<div id="dca6d287" class="cell" data-execution_count="18">
+<div id="24a32620" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Comparison with fit()</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> scipy.stats.norm.fit(x)</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Solution found by fit() function:"</span>,y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>

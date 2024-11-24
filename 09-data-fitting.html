@@ -223,6 +223,12 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Learning problems</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-higher-dimensional.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Higher-dimensional arrays</span></span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
@@ -306,7 +312,7 @@ P(x,y) = \frac{\displaystyle \sum_{i=0}^{n-1} (x_i - \bar{x})(y_i - \bar{y})}{\d
 </span></p>
 <p>where <span class="math inline">\bar{x}</span> and <span class="math inline">\bar{y}</span> are the means (or averages) of the vectors <span class="math inline">x</span> and <span class="math inline">y</span>, respectively. It holds that <span class="math inline">P(x,y) \in [-1,1]</span> with the interpretation that the larger <span class="math inline">|P(x,y)|</span> is, the more correlation (positive or negative) the arrays have.</p>
 <p>NumPy has a built-in function <code>corrcoef()</code> to compute the Pearson coefficient of the arrays <span class="math inline">x</span> and <span class="math inline">y</span>. In fact, this function works in a vectorized way. If we input a two-dimensional array, then this function computes the Pearson coefficient for every pair of rows of the array.</p>
-<div id="a4d121b9" class="cell" data-execution_count="1">
+<div id="bddfa5cf" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.stats</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -327,7 +333,7 @@ P(x,y) = \frac{\displaystyle \sum_{i=0}^{n-1} (x_i - \bar{x})(y_i - \bar{y})}{\d
 </div>
 </div>
 <p>Note that there will always be ones on the diagonal as the first row is perfectly correlated with itself, and that this matrix is symmetric since <span class="math inline">P(X,Y) = P(Y,X)</span>. Let us also add a feature (age) which is not really correlated with the other two features and recompute the Pearson coefficients.</p>
-<div id="79680483" class="cell" data-execution_count="2">
+<div id="d79cf73a" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Heights</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.array([<span class="dv">187</span>, <span class="dv">174</span>, <span class="dv">179</span>, <span class="dv">192</span>, <span class="dv">188</span>, <span class="dv">160</span>, <span class="dv">179</span>, <span class="dv">168</span>, <span class="dv">168</span>, <span class="dv">174</span>])</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -358,7 +364,7 @@ P(x,y) = \frac{\displaystyle \sum_{i=0}^{n-1} (x_i - \bar{x})(y_i - \bar{y})}{\d
 <p>There are other factors that determine whether the Pearson or Spearman coefficient is more suitable, but we omit those here.</p>
 <p>Suppose we have collected data about the number of hours that students study for an exam and their grade. One might expect that students who have studied more hours also have obtained a higher grade, but it is not to be expected that this relation is linear. For example, studying a double number of hours is not always guaranteed to double your grade.</p>
 <p>We have collected some data in the arrays <code>hours</code> and <code>grade</code> with <code>hours[i]</code> denoting the number of hours that student <span class="math inline">i</span> studied, and <code>grade[i]</code> the grade this student obtained. That data is visualized below as well. Note that in the figure one can see a monotone relation between the features (study hours and grade), but this relation is not linear.</p>
-<div id="914ef62f" class="cell" data-execution_count="3">
+<div id="c3a4f73c" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Study hours </span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>hours <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">6</span>, <span class="dv">10</span>, <span class="dv">14</span>, <span class="dv">12</span>,  <span class="dv">15</span>, <span class="dv">18</span>, <span class="dv">20</span>])</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -370,7 +376,7 @@ P(x,y) = \frac{\displaystyle \sum_{i=0}^{n-1} (x_i - \bar{x})(y_i - \bar{y})}{\d
   background-color: #ffffff;
 }
 </style>
-<div id="d650bfa3" class="cell" data-execution_count="4">
+<div id="e2b30b2e" class="cell" data-execution_count="4">
 <details class="code-fold">
 <summary>Show code generating the plot below</summary>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -407,7 +413,7 @@ P(x,y) = \frac{\displaystyle \sum_{i=0}^{n-1} (x_i - \bar{x})(y_i - \bar{y})}{\d
 </div>
 </div>
 <p>The determine the Spearman rank coefficient, we first compute the ranks of the data of the features. The smallest value in a feature array gets rank <span class="math inline">1</span>, the second smallest rank <span class="math inline">2</span>, etc. This can be done with the <code>rankdata()</code> function from the <code>stats</code> module.</p>
-<div id="bf24fe82" class="cell" data-execution_count="5">
+<div id="023b1997" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ranks of study hours values</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>ranks_hours <span class="op">=</span> scipy.stats.rankdata(hours)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -418,7 +424,7 @@ P(x,y) = \frac{\displaystyle \sum_{i=0}^{n-1} (x_i - \bar{x})(y_i - \bar{y})}{\d
 </div>
 </div>
 <p>Note that when a number appears multiple times in the array, then an average rank is computed.</p>
-<div id="05078b0a" class="cell" data-execution_count="6">
+<div id="de0fd2cc" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ranks of grade values</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>ranks_grades <span class="op">=</span> scipy.stats.rankdata(grade)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -429,7 +435,7 @@ P(x,y) = \frac{\displaystyle \sum_{i=0}^{n-1} (x_i - \bar{x})(y_i - \bar{y})}{\d
 </div>
 </div>
 <p>After having computed the ranks, the Spearman rank coefficient is obtained by computing the Pearson correlation coefficients of the rank arrays.</p>
-<div id="d6e8b54f" class="cell" data-execution_count="7">
+<div id="7163aa3a" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>rank_data <span class="op">=</span> np.vstack((ranks_hours,ranks_grades))</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>S <span class="op">=</span> np.corrcoef(rank_data)</span>
@@ -441,7 +447,7 @@ P(x,y) = \frac{\displaystyle \sum_{i=0}^{n-1} (x_i - \bar{x})(y_i - \bar{y})}{\d
 </div>
 </div>
 <p>There is a built-in function <code>spearmanr()</code> that carries out the two steps mentioned above. This function is vectorized in the sense that if we put in a two-dimensional array, then every column is interpreted as the data corresponding to a feature, and the correlation between different columns is computed. If the data of a feature is given as a row, we can set the <code>axis</code> keyword argument to <code>axis=1</code>.</p>
-<div id="b36131d9" class="cell" data-execution_count="8">
+<div id="c7fe4bba" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Study hours </span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>hours <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">6</span>, <span class="dv">10</span>, <span class="dv">14</span>, <span class="dv">12</span>,  <span class="dv">15</span>, <span class="dv">18</span>, <span class="dv">20</span>])</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -458,14 +464,14 @@ P(x,y) = \frac{\displaystyle \sum_{i=0}^{n-1} (x_i - \bar{x})(y_i - \bar{y})}{\d
 </div>
 </div>
 <p>This function <code>spearmanr()</code> outputs the Spearman rank coefficient and a <span class="math inline">p</span>-value. You can read about the latter in the documentation. The rank coefficient is stored in the <code>statistic</code> attribute.</p>
-<div id="e4d4f196" class="cell" data-execution_count="9">
+<div id="7a670a5e" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(S.statistic)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>0.9811843713228874</code></pre>
 </div>
 </div>
 <p>Alternatively, you can suppress the <span class="math inline">p</span>-value output argument to only get the rank coefficient.</p>
-<div id="3e042134" class="cell" data-execution_count="10">
+<div id="47d4b65f" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>S, _ <span class="op">=</span> scipy.stats.spearmanr(data,axis<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(S)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -520,7 +526,7 @@ y_1 - f(x_1,\beta) \\
 y_{m-1} - f(x_{m-1},\beta)
 \end{pmatrix}.
 </span> This function will serve as the input for <code>least_squares()</code>. To keep the code clean, we create a separate Python function for <span class="math inline">f</span>.</p>
-<div id="c2879a33" class="cell" data-execution_count="11">
+<div id="ee5cd679" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.optimize <span class="im">as</span> optimize</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Function f</span></span>
@@ -533,7 +539,7 @@ y_{m-1} - f(x_{m-1},\beta)
 </div>
 <p>It is important that <span class="math inline">\beta</span> is the first input argument of <code>model()</code> as this will be the array that we optimize over when looking for a least squares solution. For the function <span class="math inline">f</span>, we could have also reversed the input arguments.</p>
 <p>We next generate some synthetic <span class="math inline">(x_i,y_i)</span> data points.</p>
-<div id="9ab1573b" class="cell" data-execution_count="12">
+<div id="d8b3bccf" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fix random seed</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -545,7 +551,7 @@ y_{m-1} - f(x_{m-1},\beta)
 <span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.arange(<span class="dv">1</span>,m<span class="op">+</span><span class="dv">1</span>) <span class="op">+</span> <span class="fl">0.25</span><span class="op">*</span>np.random.randn(m)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Next, we perform <code>least_squares</code> on the linear model define above. Recall that this function needs an initial guess for the parameters in <span class="math inline">\beta</span> to be fitted. Also, we need to use the <code>args</code> keyword argument to specify <span class="math inline">x</span> and <span class="math inline">y</span>, which are the additional input arguments of our <code>model()</code> function that are fixed (i.e., are not optimized over).</p>
-<div id="dee42298" class="cell" data-execution_count="13">
+<div id="890ddaaf" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set initial guess</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>guess <span class="op">=</span> np.array([<span class="dv">2</span>,<span class="dv">2</span>])</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -575,7 +581,7 @@ y_{m-1} - f(x_{m-1},\beta)
 </div>
 </div>
 <p>The values in <span class="math inline">\beta</span> can be found in the <code>x</code> attribute</p>
-<div id="3d8f8f59" class="cell" data-execution_count="14">
+<div id="46c4b092" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>beta <span class="op">=</span> result.x</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(beta)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -589,7 +595,7 @@ y_{m-1} - f(x_{m-1},\beta)
   background-color: #ffffff;
 }
 </style>
-<div id="ebffbca7" class="cell" data-execution_count="15">
+<div id="0305343d" class="cell" data-execution_count="15">
 <details class="code-fold">
 <summary>Show code generating the plot below</summary>
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Determine x- and y-values for the fitted line</span></span>
@@ -635,7 +641,7 @@ y_{m-1} - f(x_{m-1},\beta)
 </div>
 </div>
 <p>One should recall that because of the fact that <span class="math inline">f</span> is linear in the parameters in <span class="math inline">\beta</span>, we could have also used the <code>linalg.lstsq()</code> function from Numpy. Although you do not need to fully understand the code below, we include it here for sake of reference.</p>
-<div id="8f82238c" class="cell" data-execution_count="16">
+<div id="2de2efc7" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create left hand side matrix of system above</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.vstack((np.ones(m),x)).T</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -654,7 +660,7 @@ y_{m-1} - f(x_{m-1},\beta)
 y_i = \left(\frac{\beta_0 + \sqrt{x_i}}{\beta_1\sqrt{x_i}} \right)^2 + \epsilon_i
 </span> for <span class="math inline">i = 0,\dots,m-1</span>. Note that also here <span class="math inline">n = 1</span> and <span class="math inline">k = 2</span>.</p>
 <p>Carrying out the same steps as above we obtain the following code to fit this function on given synthetic <span class="math inline">(x_i,y_i)</span> data points.</p>
-<div id="c9d94913" class="cell" data-execution_count="17">
+<div id="a55e12a3" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fix random seed</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -695,7 +701,7 @@ y_i = \left(\frac{\beta_0 + \sqrt{x_i}}{\beta_1\sqrt{x_i}} \right)^2 + \epsilon_
   background-color: #ffffff;
 }
 </style>
-<div id="f66c713b" class="cell" data-execution_count="18">
+<div id="24dbabb2" class="cell" data-execution_count="18">
 <details class="code-fold">
 <summary>Show code generating the plot below</summary>
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Determine x- and y-values for the fitted line</span></span>
@@ -743,7 +749,7 @@ y_i = \left(\frac{\beta_0 + \sqrt{x_i}}{\beta_1\sqrt{x_i}} \right)^2 + \epsilon_
 <section id="interpolation" class="level3" data-number="9.2.2">
 <h3 data-number="9.2.2" class="anchored" data-anchor-id="interpolation"><span class="header-section-number">9.2.2</span> Interpolation</h3>
 <p>If we want to create a function that goes exactly through given data points, we can do this with interpolation. Suppose we have some data points from the function <span class="math inline">f(x) = \sin(x)</span> given below.</p>
-<div id="fd963ce0" class="cell" data-execution_count="19">
+<div id="8c56beff" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x):</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.sin(x)</span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>    </span>
@@ -752,7 +758,7 @@ y_i = \left(\frac{\beta_0 + \sqrt{x_i}}{\beta_1\sqrt{x_i}} \right)^2 + \epsilon_
 <span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> f(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Let us plot the sine function and the data points that we created.</p>
-<div id="1a7ff01a" class="cell" data-execution_count="20">
+<div id="fc4e9e18" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># x-range for plotting</span></span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>x_plot <span class="op">=</span> np.linspace(np.<span class="bu">min</span>(x), np.<span class="bu">max</span>(x), <span class="dv">1000</span>) <span class="co"># Define range based on data points</span></span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -786,7 +792,7 @@ y_i = \left(\frac{\beta_0 + \sqrt{x_i}}{\beta_1\sqrt{x_i}} \right)^2 + \epsilon_
 <p>Furthermore, the keyword argument <code>k</code> allows you to choose the degree of the polynomial on every segment formed by two consecutive data points.</p>
 <p>Below we create an interpolation that is a linear between any two data point, i.e., we have <span class="math inline">k = 1.</span> In other words, this form of interpolation simply connects consecutive data points with a straight line segment.</p>
 <p>The <code>make_interp_spline()</code> function creates an object that acts as a function, i.e., we can input a scalar or array into it and get back the function values in inputted points.</p>
-<div id="6892cffb" class="cell" data-execution_count="21">
+<div id="5ce985ab" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.interpolate <span class="im">as</span> interpolate</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Creates a so-called BSpline object</span></span>
@@ -805,7 +811,7 @@ y_i = \left(\frac{\beta_0 + \sqrt{x_i}}{\beta_1\sqrt{x_i}} \right)^2 + \epsilon_
   background-color: #ffffff;
 }
 </style>
-<div id="c4e5ae2d" class="cell" data-execution_count="22">
+<div id="9dfa594e" class="cell" data-execution_count="22">
 <details class="code-fold">
 <summary>Show code generating the plot below</summary>
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># x-range for plotting</span></span>
@@ -845,7 +851,7 @@ y_i = \left(\frac{\beta_0 + \sqrt{x_i}}{\beta_1\sqrt{x_i}} \right)^2 + \epsilon_
 <h3 data-number="9.2.3" class="anchored" data-anchor-id="distributional-fitting"><span class="header-section-number">9.2.3</span> Distributional fitting</h3>
 <p>It is possible to fit the parameters of a known distribution to given data samples using the <code>fit()</code> function of a distribution object. For example, suppose you suspect your data comes from a normal distribution, but do not know its mean and standard deviation.</p>
 <p>Below we generate some data from a normal distribution.</p>
-<div id="e2554ea8" class="cell" data-execution_count="23">
+<div id="53c980d1" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fix randomness</span></span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">3</span>)</span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -856,7 +862,7 @@ y_i = \left(\frac{\beta_0 + \sqrt{x_i}}{\beta_1\sqrt{x_i}} \right)^2 + \epsilon_
 <p>Now pretend we are given <code>x</code> but do not know the <code>loc</code> and <code>scale</code> parameters that were used to create this array. We can fit the data in <span class="math inline">x</span> on a normal distribution with the <code>fit()</code> function from the <code>stats</code> module. The output of this function is a tuple with the fitted parameters of the distribution, typically the first one being the location and the second one the scale parameter.</p>
 <p>The syntax for the <code>fit()</code> function is <code>scipy.stats.distribution_name.fit()</code> where <code>distribution_name</code> is the name of the distribution that we want to fit the data on; see <a href="https://docs.scipy.org/doc/scipy/reference/stats.html#continuous-distributions">here</a> all the available options.</p>
 <p>Let us fit the data on a normal distribution, with <code>norm</code> as choice for <code>distribution_name</code>.</p>
-<div id="39032469" class="cell" data-execution_count="24">
+<div id="79b905ea" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>parameters <span class="op">=</span> scipy.stats.norm.fit(samples)</span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(parameters)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -864,7 +870,7 @@ y_i = \left(\frac{\beta_0 + \sqrt{x_i}}{\beta_1\sqrt{x_i}} \right)^2 + \epsilon_
 <pre><code>(5.051852998942502, 3.0252056971538166)</code></pre>
 </div>
 </div>
-<div id="e6779b73" class="cell" data-execution_count="25">
+<div id="5585c4c0" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Estimated mean is"</span>, parameters[<span class="dv">0</span>])</span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Estimated standard deviation is"</span>, parameters[<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -873,7 +879,7 @@ Estimated standard deviation is 3.0252056971538166</code></pre>
 </div>
 </div>
 <p>If you know one of the scale or location parameters, you can fix these using the <code>floc</code> or <code>fscale</code> keyword arguments. For example, suppose we know that the mean of the data that the distribution was generated from is equal to <span class="math inline">5</span>, then we can set <code>floc=5</code>.</p>
-<div id="38a7a1b8" class="cell" data-execution_count="26">
+<div id="c9368b83" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>mu, sigma <span class="op">=</span> scipy.stats.norm.fit(x, floc<span class="op">=</span><span class="dv">5</span>)</span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Estimated mean is"</span>, mu)</span>
@@ -886,7 +892,7 @@ Estimated standard deviation is 3.3806170189140663</code></pre>
 <p>The fit function uses (as default) the maximium likelihood esitmation method to determine the distributional parameters that fit the data best.</p>
 <p>To inspect whether the returned fitted parameters accurately represents the data, we can visualize the data samples and the fitted distribution in a histogram. We plot the samples using <code>plt.hist()</code>. We have seen this function before in one of the exercises.</p>
 <p>The first input argument of the <code>hist()</code> function is the list of samples for which we want to create the histogram. The <code>bins</code> keyword argument specifies the number of bars in the histogram, and <code>density=True</code> rescales the histogram so that the total area of the bars equal <span class="math inline">1</span> (which is the same value you get by integrating the area under the probability density function of a distribution).</p>
-<div id="7e2ea47d" class="cell" data-execution_count="27">
+<div id="da6bb20f" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit data</span></span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>mu, sigma <span class="op">=</span> scipy.stats.norm.fit(samples)</span>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a></span>

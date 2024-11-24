@@ -10,7 +10,7 @@
   </url>
   <url>
     <loc>https://pskleer.github.io/03-numpy-arrays.html</loc>
-    <lastmod>2024-11-03T12:28:01.141Z</lastmod>
+    <lastmod>2024-11-22T20:22:08.734Z</lastmod>
   </url>
   <url>
     <loc>https://pskleer.github.io/04-vectorization.html</loc>
@@ -30,7 +30,7 @@
   </url>
   <url>
     <loc>https://pskleer.github.io/08-probability.html</loc>
-    <lastmod>2024-11-13T14:55:37.791Z</lastmod>
+    <lastmod>2024-11-24T18:13:00.969Z</lastmod>
   </url>
   <url>
     <loc>https://pskleer.github.io/09-data-fitting.html</loc>
@@ -38,7 +38,11 @@
   </url>
   <url>
     <loc>https://pskleer.github.io/10-learning.html</loc>
-    <lastmod>2024-11-20T09:41:01.789Z</lastmod>
+    <lastmod>2024-11-24T22:41:02.728Z</lastmod>
+  </url>
+  <url>
+    <loc>https://pskleer.github.io/11-higher-dimensional.html</loc>
+    <lastmod>2024-11-24T22:39:38.433Z</lastmod>
   </url>
   <url>
     <loc>https://pskleer.github.io/A-errata.html</loc>
@@ -50,6 +54,6 @@
   </url>
   <url>
     <loc>https://pskleer.github.io/Computational-Aspects-in-Econometrics---Python-II-module.pdf</loc>
-    <lastmod>2024-11-20T09:52:45.984Z</lastmod>
+    <lastmod>2024-11-24T22:47:45.633Z</lastmod>
   </url>
 </urlset>

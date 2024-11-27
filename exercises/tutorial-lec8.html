@@ -144,7 +144,7 @@ window.Quarto = {
 
 <p><link rel="preconnect" href="https://fonts.googleapis.com"> <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""> <link href="https://fonts.googleapis.com/css2?family=Fira+Mono&amp;family=Fira+Sans&amp;display=swap" rel="stylesheet"></p>
 <p>Make sure to import Numpy, Matplotlib and Scikit-learn to be able to complete all the exercises.</p>
-<div id="a55f613f" class="cell" data-execution_count="1">
+<div id="1952f2ff" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -173,7 +173,7 @@ y_i= \left\{
 </span> Note that the first <span class="math inline">m</span> rows of <span class="math inline">x</span> correspond to the data points in <span class="math inline">D_0</span>, and the second <span class="math inline">m</span> rows to the data points in <span class="math inline">D_1</span>. Do not use for-loops.</p></li>
 <li><p>Test your function on the following input by re-creating the figure below.</p></li>
 </ol>
-<div id="3b2ed3d4" class="cell" data-execution_count="3">
+<div id="72561964" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Fix randomness</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">3</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -187,7 +187,7 @@ y_i= \left\{
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>x_data, y_data <span class="op">=</span> synthetic_data(mu1,sigma1,mu2,sigma2,m)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="8a7efc85" class="cell" data-execution_count="4">
+<div id="23dba049" class="cell" data-execution_count="4">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -203,7 +203,7 @@ f(z) = \frac{1}{1 + e^{-p(z)}}
 <li><p>Write a function <code>multi_feature_logistic_regression()</code> that takes as input an <span class="math inline">m \times n</span> two-dimensional array <span class="math inline">x</span> whose rows represent data points, and an <span class="math inline">m</span>-dimensional binary vector <span class="math inline">y</span> with one label per data point. It should output an array <span class="math inline">[\alpha,\beta_0,\dots,\beta_{n-1}]</span> with the fitted coefficients of the function <span class="math inline">f</span> above, as well as an array containing the predicted labels for each data point given by the <code>predict()</code> method. <br><br> Use the <code>fit()</code> function on an instance of <code>LogisticRegression</code> to carry out this task. Set the <code>penalty</code> keyword argument to be <code>'l1'</code>. This penalty option only works with certain solvers, which you can set with the <code>solver</code> keyword argument. Check out the documentation of <code>LogisticRegression</code> to find a suitable solver.</p></li>
 <li><p>Test your function on the data generated in part b).</p></li>
 </ol>
-<div id="f69f8cf3" class="cell" data-execution_count="6">
+<div id="8f0ca46a" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>p_coef, y_pred <span class="op">=</span> multi_feature_logistic_regression(x_data,y_data)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Coefficients of function p are"</span>, p_coef)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -211,7 +211,7 @@ f(z) = \frac{1}{1 + e^{-p(z)}}
 </div>
 </div>
 <p>Also create the confusion matrix of the outputted predicted labels (in comparison with the true labels), i.e., the <span class="math inline">(i,j)</span>-th entry of the matrix contains the number of data points whose true label was <span class="math inline">i</span> and whose predicted label is <span class="math inline">j</span>. The matrix should be the following:</p>
-<div id="12dad058" class="cell" data-execution_count="7">
+<div id="312b47e0" class="cell" data-execution_count="7">
 <div class="cell-output cell-output-stdout">
 <pre><code>[[23  2]
  [ 1 24]]</code></pre>
@@ -220,7 +220,7 @@ f(z) = \frac{1}{1 + e^{-p(z)}}
 <ol start="5" type="a">
 <li>Create the plot below where all data points with predicted and true label <span class="math inline">0</span> are red, all data points with predicted and true label <span class="math inline">1</span> are blue, and all data points whose predicted label is different from its true label are black.</li>
 </ol>
-<div id="f34d67c0" class="cell" data-execution_count="8">
+<div id="40272bd2" class="cell" data-execution_count="8">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -238,7 +238,7 @@ f(z) = \frac{1}{1 + e^{-p(z)}}
 <li>Write a function <code>init_centers()</code> that takes as input an array <span class="math inline">x</span> as above, and a number <span class="math inline">K</span>. It should output a matrix containing <span class="math inline">K</span> rows chosen uniformly at random from the rows in <span class="math inline">x</span> (without replacement). That is, every row is equally likely to be chosen.<br> <i>Hint: A function from Section 8.1.2 might be useful here.</i></li>
 </ol>
 <p>Test your function on the input data below.</p>
-<div id="03d2b3b2" class="cell" data-execution_count="10">
+<div id="698c6593" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fix randomness</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">3</span>)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -263,7 +263,7 @@ f(z) = \frac{1}{1 + e^{-p(z)}}
 <li>Write a function <code>closest()</code> that takes as input an <span class="math inline">n \times d</span> array whose rows represent data points <span class="math inline">x_i</span>, and a <span class="math inline">K \times d</span> array whose rows represent centers <span class="math inline">c_0,\dots,c_{K-1}</span>. It should output an <span class="math inline">n</span>-dimensional array indicating on position <span class="math inline">i</span> the label/index in <span class="math inline">\{0,1,\dots,K-1\}</span> of the center that is closest to <span class="math inline">x_i</span> for <span class="math inline">i = 0,\dots,n-1</span>. <br><br> You are allowed to use the <code>distance_matrix</code> function from the <code>scipy.spatial</code> module; check the <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.distance_matrix.html">documentation</a> to see how this function works. The function <code>np.argmin()</code> might also be useful in your solution. Do not use for-loops in your solution.</li>
 </ol>
 <p>Test your function on the <code>x</code> and <code>centers</code> arrays generated in the test input of part a).</p>
-<div id="41f75afa" class="cell" data-execution_count="12">
+<div id="55032d85" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>label_closest <span class="op">=</span> closest(x,centers)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(label_closest)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -277,7 +277,7 @@ f(z) = \frac{1}{1 + e^{-p(z)}}
 <li>Write a function <code>new()</code> taking as input the <span class="math inline">n \times d</span> and <span class="math inline">n</span>-dimensional arrays described above, and outputs a <span class="math inline">K \times d</span> array with the <span class="math inline">\hat{c}_k</span> centers as its rows. You are allowed to use one for-loop in your solution. <i> You may assume that the input data is so that <span class="math inline">|G_k| &gt; 0</span> for any <span class="math inline">k</span>, i.e., every center has at least one data point that is closest to it.</i></li>
 </ol>
 <p>Test your function on the <code>x</code> array from the test input of part a), with labels the <code>label_closest</code> array generated in the test input of part b).</p>
-<div id="ed21d161" class="cell" data-execution_count="14">
+<div id="da4a3a1e" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>new_center <span class="op">=</span> new(x,label_closest)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(new_center)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -292,37 +292,40 @@ f(z) = \frac{1}{1 + e^{-p(z)}}
 <li>Write a function <code>kmeans()</code> that takes as input an <span class="math inline">n \times d</span> array whose rows represent data points <span class="math inline">x_i \in \mathbb{R}^d</span> for <span class="math inline">i = 0,\dots,n-1</span>, a number of clusters <span class="math inline">K</span> and a number of iterations <span class="math inline">T</span>. It should perform <span class="math inline">T</span> iterations of the <span class="math inline">K</span>-means algorithm (as in Section 10.2.2), where the initial centers are randomly chosen using your function from part a), and where the functions in parts b) and c) are subsequently performed for <span class="math inline">T</span> iterations. <br><br> Your function should output the final centers as well as an array of labels indicating the closest center for every data point at the end of the algorithm.</li>
 </ol>
 <p>Test your function on the input below, which is the <code>make_blobs</code> data used in Section 10.2.</p>
-<div id="6e28c6ee" class="cell" data-execution_count="16">
+<div id="d81114bf" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> make_blobs</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Data generation</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="dv">5</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Fix randomness</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">3</span>)</span>
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>x_data, _ <span class="op">=</span> make_blobs(</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>     n_samples<span class="op">=</span><span class="dv">200</span>, <span class="co"># n = 200</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>     n_features<span class="op">=</span><span class="dv">2</span>, <span class="co"># d = 2</span></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>     centers<span class="op">=</span>np.array([[<span class="op">-</span>r,<span class="op">-</span>r],[<span class="op">-</span>r,r],[r,r],[r,<span class="op">-</span>r]]), </span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>     cluster_std<span class="op">=</span><span class="fl">2.5</span>, </span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>     random_state<span class="op">=</span><span class="dv">32</span>, </span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Number of iterations</span></span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Data generation</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="dv">5</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>x_data, _ <span class="op">=</span> make_blobs(</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>     n_samples<span class="op">=</span><span class="dv">200</span>, <span class="co"># n = 200</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>     n_features<span class="op">=</span><span class="dv">2</span>, <span class="co"># d = 2</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>     centers<span class="op">=</span>np.array([[<span class="op">-</span>r,<span class="op">-</span>r],[<span class="op">-</span>r,r],[r,r],[r,<span class="op">-</span>r]]), </span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>     cluster_std<span class="op">=</span><span class="fl">2.5</span>, </span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>     random_state<span class="op">=</span><span class="dv">32</span>, </span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Choice of number of clusters to look for</span></span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>K <span class="op">=</span> <span class="dv">4</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Number of iterations</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> <span class="dv">100</span></span>
 <span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Run K-means algorithm</span></span>
-<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>centers, label_closest <span class="op">=</span> kmeans(x_data,K,T)</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Choice of number of clusters to look for</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>K <span class="op">=</span> <span class="dv">4</span></span>
 <span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Print found centers</span></span>
-<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The final centers are </span><span class="ch">\n</span><span class="st">"</span>, centers)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Run K-means algorithm</span></span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>centers, label_closest <span class="op">=</span> kmeans(x_data,K,T)</span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Print found centers</span></span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The final centers are </span><span class="ch">\n</span><span class="st">"</span>, centers)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>The final centers are 
- [[ 5.187  4.922]
+ [[-4.747 -4.874]
  [-4.527  5.368]
- [ 4.502 -5.287]
- [-4.747 -4.874]]</code></pre>
+ [ 5.187  4.922]
+ [ 4.502 -5.287]]</code></pre>
 </div>
 </div>
 <p>Note that these centers are fairly close to the centers chosen to generate the synthetic data with.</p>
@@ -340,7 +343,7 @@ f(z) = \frac{1}{1 + e^{-p(z)}}
 <ol type="a">
 <li>Using your function <code>closest()</code> from Exercise 2b), define a function <code>sse()</code> that takes as input an <span class="math inline">n \times d</span> array <span class="math inline">x</span> whose rows represent data points <span class="math inline">x_i \in \mathbb{R}^d</span>, and a <span class="math inline">K \times d</span> array whose rows represent clusters <span class="math inline">c_0,\dots,c_{K-1}</span>. It should output the SSE error function defined above. Do not use a for-loop. <br><br> <i>As a hint, try to understand the piece of code below first. Use the underlying idea to create a matrix whose rows are <span class="math inline">x_i - c_{k_i}</span> for <span class="math inline">i = 0,\dots,n-1</span>, where <span class="math inline">k_i</span> is the index of the center closest to <span class="math inline">x_i</span>.</i></li>
 </ol>
-<div id="25ea39fd" class="cell" data-execution_count="17">
+<div id="4ff6a7ee" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> np.array([[<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">6</span>],[<span class="dv">8</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">5</span>],[<span class="dv">6</span>,<span class="dv">1</span>,<span class="dv">7</span>,<span class="dv">9</span>,<span class="dv">8</span>],[<span class="dv">41</span>,<span class="dv">1</span>,<span class="dv">17</span>,<span class="dv">9</span>,<span class="dv">18</span>]])</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>indices <span class="op">=</span> np.array([<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>])</span>
@@ -356,7 +359,7 @@ f(z) = \frac{1}{1 + e^{-p(z)}}
 </div>
 </div>
 <p>Test your function using the <code>x_data</code> and <code>centers</code> arrays from the test input of Exercise 2d). It should give the following output.</p>
-<div id="cb6586b4" class="cell" data-execution_count="19">
+<div id="9e862bd5" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>error <span class="op">=</span> sse(x_data,centers)</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(error)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -367,7 +370,7 @@ f(z) = \frac{1}{1 + e^{-p(z)}}
 <li>Write a function <code>optimal_K</code> that takes as input an <span class="math inline">n \times d</span> array <span class="math inline">x</span> whose rows represent data points <span class="math inline">x_i \in \mathbb{R}^d</span>, and numbers <span class="math inline">K_{\max}</span> and <span class="math inline">T</span>. It should output a scatter plot with for every <span class="math inline">K = 1,\dots,K_{\max}</span> the SSE computed using the centers outputted by <code>kmeans(x,K,T)</code> where <code>kmeans()</code> is the function you constructed in Exercise 2d).</li>
 </ol>
 <p>Test your function for <span class="math inline">K_{\max} = 10</span>, <span class="math inline">T = 100</span>, and as <span class="math inline">x</span> the array <code>x_data</code> created in the test input of Exercise 2d). Your figure should look like below. Can you give an interpretation of what you see in the figure?</p>
-<div id="893b432e" class="cell" data-execution_count="21">
+<div id="73666a03" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Input parameters</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> <span class="dv">100</span></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>Kmax <span class="op">=</span> <span class="dv">10</span></span>

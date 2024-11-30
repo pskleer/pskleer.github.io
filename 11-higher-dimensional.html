@@ -263,8 +263,13 @@ window.Quarto = {
    
   <ul>
   <li><a href="#creating-arrays" id="toc-creating-arrays" class="nav-link active" data-scroll-target="#creating-arrays"><span class="header-section-number">11.1</span> Creating arrays</a></li>
-  <li><a href="#axis-operations" id="toc-axis-operations" class="nav-link" data-scroll-target="#axis-operations"><span class="header-section-number">11.2</span> Axis operations</a></li>
-  <li><a href="#itertools" id="toc-itertools" class="nav-link" data-scroll-target="#itertools"><span class="header-section-number">11.3</span> Itertools</a></li>
+  <li><a href="#itertools" id="toc-itertools" class="nav-link" data-scroll-target="#itertools"><span class="header-section-number">11.2</span> Itertools</a></li>
+  <li><a href="#axis-operations" id="toc-axis-operations" class="nav-link" data-scroll-target="#axis-operations"><span class="header-section-number">11.3</span> Axis operations</a>
+  <ul class="collapse">
+  <li><a href="#arithmetic-operations" id="toc-arithmetic-operations" class="nav-link" data-scroll-target="#arithmetic-operations"><span class="header-section-number">11.3.1</span> Arithmetic operations</a></li>
+  <li><a href="#reshaping" id="toc-reshaping" class="nav-link" data-scroll-target="#reshaping"><span class="header-section-number">11.3.2</span> Reshaping</a></li>
+  </ul></li>
+  <li><a href="#unpacking" id="toc-unpacking" class="nav-link" data-scroll-target="#unpacking"><span class="header-section-number">11.4</span> Unpacking</a></li>
   </ul>
 </nav>
     </div>
@@ -292,14 +297,14 @@ window.Quarto = {
 
 <p><link rel="preconnect" href="https://fonts.googleapis.com"> <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""> <link href="https://fonts.googleapis.com/css2?family=Fira+Mono&amp;family=Fira+Sans&amp;display=swap" rel="stylesheet"></p>
 <p>In this chapter we will look at arrays whose dimension is three or higher, as opposed to the one- and two-dimensional arrays we have seen so far. Many Python functions that we have seen also can be used on higher dimensional arrays.</p>
-<div id="eb3582e8" class="cell" data-execution_count="1">
+<div id="110af04a" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="creating-arrays" class="level2" data-number="11.1">
 <h2 data-number="11.1" class="anchored" data-anchor-id="creating-arrays"><span class="header-section-number">11.1</span> Creating arrays</h2>
 <p>Recall that a two-dimensional array is a list of one-dimensional lists. In the same way a three-dimensional array is a list of two-dimenional arrays (which in turn are lists of one-dimensional arrays). A four-dimensional array is a list of three-dimensional arrays, etc.</p>
 <p>Let us create a three-dimensional array.</p>
-<div id="0b87827e" class="cell" data-execution_count="2">
+<div id="ad60e52a" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">10</span>,<span class="dv">5</span>,<span class="dv">2</span>,<span class="dv">5</span>],</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">19</span>,<span class="dv">3</span>,<span class="dv">16</span>,<span class="dv">1</span>],</span>
@@ -321,14 +326,22 @@ window.Quarto = {
 </div>
 </div>
 <p>Note that the shape of <span class="math inline">A</span> is <span class="math inline">2 \times 3 \times 4</span>. This is because the outer list consists of two lists (the two-dimensional arrays), and every one of those lists contains again three lists (the one-dimensional arrays), and these in turn all have <span class="math inline">4</span> elements.</p>
-<div id="e334adeb" class="cell" data-execution_count="3">
+<div id="31ba8ff2" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The shape of A is "</span>, np.shape(A))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>The shape of A is  (2, 3, 4)</code></pre>
 </div>
 </div>
+<p>Below we have given a visual representation of the array above, with the idea that the white boxes represent the first two-dimensional array, and the shaded boxes the second two-dimensional array.</p>
+<p>We have also indicated the axes corresponding to the dimensions of the array in the figure below. The outer list corresponds to the <span class="math inline">0</span>-axis, the first inner list to the <span class="math inline">1</span>-axis, etc. We will come back to those later in this chapter.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/3d-array-with-axes.png" class="img-fluid figure-img" style="width:85.0%"></p>
+<figcaption>Three-dimensional <span class="math inline">2 \times 3 \times 4</span> array.</figcaption>
+</figure>
+</div>
 <p>We can index three-dimensional arrays in a similar way as we do two-dimensional arrays.</p>
-<div id="29f010a1" class="cell" data-execution_count="4">
+<div id="56218a00" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print two-dimensional array at index 0</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(A[<span class="dv">0</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -337,22 +350,32 @@ window.Quarto = {
  [ 9  5  2  4]]</code></pre>
 </div>
 </div>
-<div id="b099edd9" class="cell" data-execution_count="5">
+<div id="92b125e7" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print row at index 2 of two-dimensional aray at index 1</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(A[<span class="dv">1</span>,<span class="dv">2</span>,:])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[7 7 3 8]</code></pre>
 </div>
 </div>
-<div id="429c24a0" class="cell" data-execution_count="6">
+<div id="813c32ea" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print element at index 0 of row A[1,2]</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(A[<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">3</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>4</code></pre>
 </div>
 </div>
+<p>An overview of all the indices of a <span class="math inline">2 \times 3 \times 4</span> array is given in the figure below.</p>
+<!--
+![Three-dimensional $2 \times 3 \times 4$ array.](figs/3d-array-indices.png){width=85%}
+-->
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/3d-array-indices-bold.png" class="img-fluid figure-img" style="width:95.0%"></p>
+<figcaption>Visualization of indices of <span class="math inline">2 \times 3 \times 4</span> array.</figcaption>
+</figure>
+</div>
 <p>We can also use index slicing.</p>
-<div id="3e1f865b" class="cell" data-execution_count="7">
+<div id="739f7236" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print from both two-dimensional arrays</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="co"># the rows at indices 0 and 1</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># and columns at indices 1 and 2</span></span>
@@ -366,7 +389,7 @@ window.Quarto = {
 </div>
 </div>
 <p>We can also create special arrays in higher dimensions, like the all-ones array.</p>
-<div id="6464192a" class="cell" data-execution_count="8">
+<div id="6ff6a5d8" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create 3 x 4 x 2 array with ones (works with np.zeros() as well)</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> np.ones((<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">2</span>))</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -389,7 +412,7 @@ window.Quarto = {
 </div>
 </div>
 <p>Also, concepts like broadcasting work in higher dimensions. Below we add a two-dimensional array to a three-dimensional array, in which case the two-dimensional array gets added to each of the three inner two-dimensional arrays.</p>
-<div id="a95e39e3" class="cell" data-execution_count="9">
+<div id="2d70a68c" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>C <span class="op">=</span> np.array([</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  [<span class="dv">0</span>, <span class="dv">0</span>],</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  [<span class="dv">2</span>, <span class="dv">2</span>],</span>
@@ -414,8 +437,8 @@ window.Quarto = {
   [2. 2.]]]</code></pre>
 </div>
 </div>
-<p>Functions like <code>mgrid</code> also work in higher dimensions. For example, we can create a three dimensional grid of all points in <span class="math inline">\{1,2\} \times \{2,3,4\} \times \{4,5,6\}</span> as follows.</p>
-<div id="b846207e" class="cell" data-execution_count="10">
+<p>Functions like <code>mgrid</code> also work in higher dimensions. For example, we can create a three-dimensional grid of all points in <span class="math inline">\{1,2\} \times \{2,3,4\} \times \{4,5,6\}</span> as follows.</p>
+<div id="30a47b89" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Recall that the end index of a slice is not included</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>X, Y, Z <span class="op">=</span> np.mgrid[<span class="dv">1</span>:<span class="dv">3</span>,<span class="dv">2</span>:<span class="dv">5</span>,<span class="dv">4</span>:<span class="dv">7</span>] </span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -449,96 +472,22 @@ Z =
   [4 5 6]]]</code></pre>
 </div>
 </div>
-<p>Every point <span class="math inline">(X_{ijk}, Y_{ijk},Z_{ijk})</span> now corresponds to a grid point in <span class="math inline">\{1,2\} \times \{2,3,4\} \times \{4,5,6\}</span>. You can also create a more fine-grained grid, by including more points in every slice using a step size.</p>
+<p>For every (feasible) combination of indices <span class="math inline">(i,j,k)</span>, the point <span class="math inline">(X_{ijk}, Y_{ijk},Z_{ijk})</span> now corresponds to a grid point in <span class="math inline">\{1,2\} \times \{2,3,4\} \times \{4,5,6\}</span>. You can also create a more fine-grained grid, by including more points in every slice using a step size.</p>
 </section>
-<section id="axis-operations" class="level2" data-number="11.2">
-<h2 data-number="11.2" class="anchored" data-anchor-id="axis-operations"><span class="header-section-number">11.2</span> Axis operations</h2>
-<p>We can also perform operations along axes in higher dimensional arrays. The outer list of an array corresponds to the <span class="math inline">0</span>-axis, the second outer list to the <span class="math inline">1</span>-axis, etc. Below we give a visualization of the axes for three-dimensional arrays.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="figs/three-dimensional-array.png" class="img-fluid figure-img" style="width:70.0%"></p>
-<figcaption>Three-dimensional array; modification of <a href="https://media.geeksforgeeks.org/wp-content/uploads/20240911183848/3d-array-in-c.webp">this figure</a>.</figcaption>
-</figure>
-</div>
-<p>If you perform an operation like summing elements along an axis of a <span class="math inline">k</span>-dimensional array, you end up with a <span class="math inline">(k-1)</span>-dimensional array.</p>
-<div id="483fbb5c" class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">10</span>,<span class="dv">5</span>,<span class="dv">2</span>,<span class="dv">5</span>],</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">19</span>,<span class="dv">3</span>,<span class="dv">16</span>,<span class="dv">1</span>],</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">9</span>,<span class="dv">5</span>,<span class="dv">2</span>,<span class="dv">4</span>]],</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">11</span>,<span class="dv">2</span>,<span class="dv">9</span>,<span class="dv">2</span>],</span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>[<span class="dv">29</span>,<span class="dv">2</span>,<span class="dv">89</span>,<span class="dv">9</span>],</span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>[<span class="dv">7</span>,<span class="dv">7</span>,<span class="dv">3</span>,<span class="dv">8</span>]</span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>]])</span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"A = </span><span class="ch">\n</span><span class="st">"</span>,A)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>A = 
- [[[10  5  2  5]
-  [19  3 16  1]
-  [ 9  5  2  4]]
-
- [[11  2  9  2]
-  [29  2 89  9]
-  [ 7  7  3  8]]]</code></pre>
-</div>
-</div>
-<div id="0cc6af73" class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Summing along 0-axis: </span><span class="ch">\n</span><span class="st">"</span>, np.<span class="bu">sum</span>(A, axis<span class="op">=</span><span class="dv">0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Summing along 0-axis: 
- [[ 21   7  11   7]
- [ 48   5 105  10]
- [ 16  12   5  12]]</code></pre>
-</div>
-</div>
-<div id="2ac02bfb" class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Summing along 1-axis: </span><span class="ch">\n</span><span class="st">"</span>, np.<span class="bu">sum</span>(A, axis<span class="op">=</span><span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Summing along 1-axis: 
- [[ 38  13  20  10]
- [ 47  11 101  19]]</code></pre>
-</div>
-</div>
-<div id="b61b90ee" class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Summing along 2-axis: </span><span class="ch">\n</span><span class="st">"</span>, np.<span class="bu">sum</span>(A, axis<span class="op">=</span><span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Summing along 2-axis: 
- [[ 22  39  20]
- [ 24 129  25]]</code></pre>
-</div>
-</div>
-<p>Note that in the last command, Python sums along the second axis, reducing the original <span class="math inline">2 \times 3 \times 4</span> array to a <span class="math inline">2 \times 3</span> array.</p>
-<p>You can also fix the dimensions, so that the new array after summing remains a <span class="math inline">k</span>-dimensional array. You can achieve this by setting the keyword argument <code>keepdims</code> to <code>True</code> (the default is <code>False</code>).</p>
-<div id="afc645ce" class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Summing along 2-axis fixing dimension: </span><span class="ch">\n</span><span class="st">"</span>, </span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>                        np.<span class="bu">sum</span>(A, axis<span class="op">=</span><span class="dv">2</span>, keepdims<span class="op">=</span><span class="va">True</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Summing along 2-axis fixing dimension: 
- [[[ 22]
-  [ 39]
-  [ 20]]
-
- [[ 24]
-  [129]
-  [ 25]]]</code></pre>
-</div>
-</div>
-</section>
-<section id="itertools" class="level2" data-number="11.3">
-<h2 data-number="11.3" class="anchored" data-anchor-id="itertools"><span class="header-section-number">11.3</span> Itertools</h2>
+<section id="itertools" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="itertools"><span class="header-section-number">11.2</span> Itertools</h2>
 <p>A tool that is useful for enumerating all points in a higher-dimensional set is the <code>itertools</code> package.</p>
-<div id="26e6e44a" class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> itertools</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="3dfe1391" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> itertools</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Let’s consider again the set of points in <span class="math inline">\{1,2\} \times \{2,3,4\} \times \{4,5,6\}</span>. We can enumerate over all such points using the <code>product</code> function, that takes as input the ranges of the individual coordinates and outputs all possible combinations as tuples.</p>
-<div id="d74801cb" class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.array([<span class="dv">1</span>,<span class="dv">2</span>])</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.array([<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>])</span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> np.array([<span class="dv">4</span>,<span class="dv">6</span>])</span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> point <span class="kw">in</span> itertools.product(x,y,z):</span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(point)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cd30c14a" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.array([<span class="dv">1</span>,<span class="dv">2</span>])</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.array([<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>])</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> np.array([<span class="dv">4</span>,<span class="dv">6</span>])</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> point <span class="kw">in</span> itertools.product(x,y,z):</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(point)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>(1, 2, 4)
 (1, 2, 6)
@@ -555,13 +504,13 @@ Z =
 </div>
 </div>
 <p>You can also have the combinations be returned as arrays.</p>
-<div id="b02d925f" class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.array([<span class="dv">1</span>,<span class="dv">2</span>])</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.array([<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>])</span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> np.array([<span class="dv">4</span>,<span class="dv">6</span>])</span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> point <span class="kw">in</span> itertools.product(x,y,z):</span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(np.array(point))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="4083f129" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.array([<span class="dv">1</span>,<span class="dv">2</span>])</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.array([<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>])</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> np.array([<span class="dv">4</span>,<span class="dv">6</span>])</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> point <span class="kw">in</span> itertools.product(x,y,z):</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(np.array(point))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1 2 4]
 [1 2 6]
@@ -578,12 +527,12 @@ Z =
 </div>
 </div>
 <p>If the sets of all coordinates are the same, you can also use the <code>repeat</code> keyword argument. Suppose we want to enumerate all points in the set <span class="math inline">\{1,3,5\}^4</span>. Then we can do the following.</p>
-<div id="36886868" class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> np.array([<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">5</span>])</span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>k <span class="op">=</span> <span class="dv">4</span></span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> point <span class="kw">in</span> itertools.product(a, repeat<span class="op">=</span>k):</span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(point)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="a59aadea" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> np.array([<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">5</span>])</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>k <span class="op">=</span> <span class="dv">4</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> point <span class="kw">in</span> itertools.product(a, repeat<span class="op">=</span>k):</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(point)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>(1, 1, 1, 1)
 (1, 1, 1, 3)
@@ -669,27 +618,27 @@ Z =
 </div>
 </div>
 <p>Note that the <code>product</code> function gives a convenient way to enumerate over all entries in a <span class="math inline">k</span>-dimensional array that has size <span class="math inline">n</span> in all dimensions.</p>
-<div id="37cbedd7" class="cell" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([</span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">10</span>,<span class="dv">5</span>,<span class="dv">4</span>],</span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">19</span>,<span class="dv">3</span>,<span class="dv">1</span>],</span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">9</span>,<span class="dv">5</span>,<span class="dv">7</span>]</span>
-<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>],</span>
-<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">11</span>,<span class="dv">2</span>,<span class="dv">3</span>],</span>
-<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>[<span class="dv">29</span>,<span class="dv">2</span>,<span class="dv">1</span>],</span>
-<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>[<span class="dv">7</span>,<span class="dv">7</span>,<span class="dv">0</span>]</span>
-<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>],</span>
-<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">11</span>,<span class="dv">2</span>,<span class="dv">3</span>],</span>
-<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a>[<span class="dv">29</span>,<span class="dv">12</span>,<span class="dv">1</span>],</span>
-<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a>[<span class="dv">17</span>,<span class="dv">70</span>,<span class="dv">0</span>]</span>
-<span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a>]])</span>
-<span id="cb37-14"><a href="#cb37-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-15"><a href="#cb37-15" aria-hidden="true" tabindex="-1"></a>k <span class="op">=</span> np.ndim(A)</span>
-<span id="cb37-16"><a href="#cb37-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-17"><a href="#cb37-17" aria-hidden="true" tabindex="-1"></a>n, <span class="op">*</span>_ <span class="op">=</span> np.shape(A)</span>
-<span id="cb37-18"><a href="#cb37-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-19"><a href="#cb37-19" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> point <span class="kw">in</span> itertools.product(<span class="bu">range</span>(n),repeat<span class="op">=</span>k):</span>
-<span id="cb37-20"><a href="#cb37-20" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(A[point])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="f0e07a8c" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">10</span>,<span class="dv">5</span>,<span class="dv">4</span>],</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">19</span>,<span class="dv">3</span>,<span class="dv">1</span>],</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">9</span>,<span class="dv">5</span>,<span class="dv">7</span>]</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>],</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">11</span>,<span class="dv">2</span>,<span class="dv">3</span>],</span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>[<span class="dv">29</span>,<span class="dv">2</span>,<span class="dv">1</span>],</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>[<span class="dv">7</span>,<span class="dv">7</span>,<span class="dv">0</span>]</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>],</span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">11</span>,<span class="dv">2</span>,<span class="dv">3</span>],</span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>[<span class="dv">29</span>,<span class="dv">12</span>,<span class="dv">1</span>],</span>
+<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>[<span class="dv">17</span>,<span class="dv">70</span>,<span class="dv">0</span>]</span>
+<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>]])</span>
+<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a>k <span class="op">=</span> np.ndim(A) <span class="co"># Number of dimensions</span></span>
+<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a>n, <span class="op">*</span>_ <span class="op">=</span> np.shape(A) <span class="co"># Common size of every dimension</span></span>
+<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> point <span class="kw">in</span> itertools.product(<span class="bu">range</span>(n),repeat<span class="op">=</span>k):</span>
+<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(A[point]) <span class="co"># Print entry as position 'point'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>10
 5
@@ -718,6 +667,298 @@ Z =
 17
 70
 0</code></pre>
+</div>
+</div>
+</section>
+<section id="axis-operations" class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="axis-operations"><span class="header-section-number">11.3</span> Axis operations</h2>
+<p>We can also perform operations along axes in higher dimensional arrays. The outer list of an array corresponds to the <span class="math inline">0</span>-axis, the second outer list to the <span class="math inline">1</span>-axis, etc.</p>
+<p>Below we again give the visualization of the axes of a three-dimensional array, where the coordinates in the boxes represent the position of an element in the array.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/3d-array-indices-bold.png" class="img-fluid figure-img" style="width:95.0%"></p>
+<figcaption>Visualization of indices of <span class="math inline">2 \times 3 \times 4</span> array.</figcaption>
+</figure>
+</div>
+<!--
+![Three-dimensional array; modification of <a href="https://media.geeksforgeeks.org/wp-content/uploads/20240911183848/3d-array-in-c.webp">this figure</a>.](figs/three-dimensional-array.png){width=70%}
+-->
+<section id="arithmetic-operations" class="level3" data-number="11.3.1">
+<h3 data-number="11.3.1" class="anchored" data-anchor-id="arithmetic-operations"><span class="header-section-number">11.3.1</span> Arithmetic operations</h3>
+<p>If you perform an operation like summing elements along an axis of a <span class="math inline">k</span>-dimensional array, you end up with a <span class="math inline">(k-1)</span>-dimensional array.</p>
+<div id="ca3446a5" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">10</span>,<span class="dv">5</span>,<span class="dv">2</span>,<span class="dv">5</span>],</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">19</span>,<span class="dv">3</span>,<span class="dv">16</span>,<span class="dv">1</span>],</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">9</span>,<span class="dv">5</span>,<span class="dv">2</span>,<span class="dv">4</span>]],</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">11</span>,<span class="dv">2</span>,<span class="dv">9</span>,<span class="dv">2</span>],</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>[<span class="dv">29</span>,<span class="dv">2</span>,<span class="dv">89</span>,<span class="dv">9</span>],</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>[<span class="dv">7</span>,<span class="dv">7</span>,<span class="dv">3</span>,<span class="dv">8</span>]</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>]])</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"A = </span><span class="ch">\n</span><span class="st">"</span>,A)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>A = 
+ [[[10  5  2  5]
+  [19  3 16  1]
+  [ 9  5  2  4]]
+
+ [[11  2  9  2]
+  [29  2 89  9]
+  [ 7  7  3  8]]]</code></pre>
+</div>
+</div>
+<div id="54f79268" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Summing along 0-axis: </span><span class="ch">\n</span><span class="st">"</span>, np.<span class="bu">sum</span>(A, axis<span class="op">=</span><span class="dv">0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Summing along 0-axis: 
+ [[ 21   7  11   7]
+ [ 48   5 105  10]
+ [ 16  12   5  12]]</code></pre>
+</div>
+</div>
+<div id="7bdea87e" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Summing along 1-axis: </span><span class="ch">\n</span><span class="st">"</span>, np.<span class="bu">sum</span>(A, axis<span class="op">=</span><span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Summing along 1-axis: 
+ [[ 38  13  20  10]
+ [ 47  11 101  19]]</code></pre>
+</div>
+</div>
+<div id="5e45af67" class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Summing along 2-axis: </span><span class="ch">\n</span><span class="st">"</span>, np.<span class="bu">sum</span>(A, axis<span class="op">=</span><span class="dv">2</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Summing along 2-axis: 
+ [[ 22  39  20]
+ [ 24 129  25]]</code></pre>
+</div>
+</div>
+<p>Note that in the last command, Python sums along the second axis, reducing the original <span class="math inline">2 \times 3 \times 4</span> array to a <span class="math inline">2 \times 3</span> array.</p>
+<p>You can also fix the dimensions, so that the new array after summing remains a <span class="math inline">k</span>-dimensional array. You can achieve this by setting the keyword argument <code>keepdims</code> to <code>True</code> (the default is <code>False</code>).</p>
+<div id="ab4b6120" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Summing along 2-axis fixing dimension: </span><span class="ch">\n</span><span class="st">"</span>, </span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>                        np.<span class="bu">sum</span>(A, axis<span class="op">=</span><span class="dv">2</span>, keepdims<span class="op">=</span><span class="va">True</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Summing along 2-axis fixing dimension: 
+ [[[ 22]
+  [ 39]
+  [ 20]]
+
+ [[ 24]
+  [129]
+  [ 25]]]</code></pre>
+</div>
+</div>
+</section>
+<section id="reshaping" class="level3" data-number="11.3.2">
+<h3 data-number="11.3.2" class="anchored" data-anchor-id="reshaping"><span class="header-section-number">11.3.2</span> Reshaping</h3>
+<p>We can also shape higher dimensional arrays into other higher dimensional arrays. In earlier chapters, we have seen how to reshape a two-dimensional array into a two-dimensional array of a different shape, or into a one-dimensional array.</p>
+<div id="a01e598e" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([[<span class="dv">5</span>,<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">2</span>],[<span class="dv">5</span>,<span class="dv">2</span>,<span class="dv">9</span>,<span class="dv">3</span>,<span class="dv">8</span>,<span class="dv">5</span>]])</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"A = </span><span class="ch">\n</span><span class="st">"</span>,A)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>A = 
+ [[5 1 3 2 3 2]
+ [5 2 9 3 8 5]]</code></pre>
+</div>
+</div>
+<div id="e24c3c75" class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> A.flatten() <span class="co"># Turn A into one-dimensional array of shape (12,)</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"x = </span><span class="ch">\n</span><span class="st">"</span>,x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>x = 
+ [5 1 3 2 3 2 5 2 9 3 8 5]</code></pre>
+</div>
+</div>
+<div id="bb32bb0d" class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> A.reshape(<span class="dv">1</span>,<span class="dv">12</span>) <span class="co"># Turn A into two-dimensional array of shape (1,12)</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"y = </span><span class="ch">\n</span><span class="st">"</span>,y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>y = 
+ [[5 1 3 2 3 2 5 2 9 3 8 5]]</code></pre>
+</div>
+</div>
+<div id="d9de0bfe" class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> A.reshape(<span class="dv">4</span>,<span class="dv">3</span>) <span class="co"># Reshape A to 4 x 3 array</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"B = </span><span class="ch">\n</span><span class="st">"</span>,B)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>B = 
+ [[5 1 3]
+ [2 3 2]
+ [5 2 9]
+ [3 8 5]]</code></pre>
+</div>
+</div>
+<p>Recall that reshaping happens according to the <i>largest axis (index) changing fastest</i> principle. This means that when reshaping <span class="math inline">A</span> into <span class="math inline">B</span>, the matrix <span class="math inline">B</span> gets filled in a row-by-row fashion (starting with the lowest row index) by placing in it the elements from <span class="math inline">A</span> taken row-by-row.</p>
+<p>That is, we fill the entries in <span class="math inline">B</span> in the order <span class="math display">
+(0,0), (0,1), (0,2), (1,0), (1,1), (1,2), (2,0), (2,1), (2,2), (3,0), (3,1), (3,2)
+</span> with the elements of <span class="math inline">A</span> taken in the order <span class="math display">
+(0,0), (0,1), (0,2), (0,3), (0,4), (0,5), (1,0), (1,1), (1,2), (1,3), (1,4), (1,5).
+</span></p>
+<p>We can also reshape, e.g., a three-dimensional array <span class="math inline">A</span> into a two-dimensional array <span class="math inline">B</span>. Because of the <i>largest axis (index) changing fastest</i> principle, this means the matrix <span class="math inline">B</span> is again filled in a row-by-row fashion (i.e., along the <span class="math inline">1</span>-axis first; note that <span class="math inline">B</span> has a <span class="math inline">0</span>- and <span class="math inline">1</span>-axis only).</p>
+<p>The <i>largest axis (index) changing fastest</i> principle also applies to <span class="math inline">A</span>, meaning that we start taking the entries from <span class="math inline">A</span> first along its <span class="math inline">2</span>-axis, with index <span class="math inline">0</span> for both the <span class="math inline">0</span>- and <span class="math inline">1</span>-axis. In other words, we start by taking entries from row <code>A[0,0,:]</code>.</p>
+<p>More conrete, we first take the entries <span class="math inline">10,5,2</span> form the row <code>A[0,0,:]</code> and place them on the first row of <span class="math inline">B</span>. Then we take the last element from this row, <span class="math inline">5</span>, and move up one index on the <span class="math inline">1</span>-axis (to the second row of the first two-dimensional array), and take the entries <span class="math inline">19</span> and <span class="math inline">3</span>. Together with the <span class="math inline">5</span> from the first row, these entries are placed on the second row of <span class="math inline">B</span>. Once we have exhausted all the entries of the first two-dimensional array of <span class="math inline">A</span>, we switch to the second two-dimensional array, i.e., we increase the index along the <span class="math inline">0</span>-axis by one.</p>
+<div id="b4df60d8" class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">10</span>,<span class="dv">5</span>,<span class="dv">2</span>,<span class="dv">5</span>],</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">19</span>,<span class="dv">3</span>,<span class="dv">16</span>,<span class="dv">1</span>],</span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>[<span class="dv">9</span>,<span class="dv">5</span>,<span class="dv">2</span>,<span class="dv">4</span>]],</span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">11</span>,<span class="dv">2</span>,<span class="dv">9</span>,<span class="dv">2</span>],</span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>[<span class="dv">29</span>,<span class="dv">2</span>,<span class="dv">89</span>,<span class="dv">9</span>],</span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a>[<span class="dv">7</span>,<span class="dv">7</span>,<span class="dv">3</span>,<span class="dv">8</span>]</span>
+<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a>]])</span>
+<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"A = </span><span class="ch">\n</span><span class="st">"</span>,A)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>A = 
+ [[[10  5  2  5]
+  [19  3 16  1]
+  [ 9  5  2  4]]
+
+ [[11  2  9  2]
+  [29  2 89  9]
+  [ 7  7  3  8]]]</code></pre>
+</div>
+</div>
+<div id="c1e7caed" class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> A.reshape((<span class="dv">8</span>,<span class="dv">3</span>))</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Reshaping A into 8 x 3 array B = </span><span class="ch">\n</span><span class="st">"</span>,B)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Reshaping A into 8 x 3 array B = 
+ [[10  5  2]
+ [ 5 19  3]
+ [16  1  9]
+ [ 5  2  4]
+ [11  2  9]
+ [ 2 29  2]
+ [89  9  7]
+ [ 7  3  8]]</code></pre>
+</div>
+</div>
+<p>We can also reshape a three-dimensional array into another three-dimensional array (with the same number of elements). Make sure you understand how, in the example below, the entries of <span class="math inline">A</span> are used to fill the array <span class="math inline">B</span>.</p>
+<div id="a48b12ce" class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>C <span class="op">=</span> A.reshape((<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">6</span>))</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Reshaping A into 2 x 2 x 6 array C = </span><span class="ch">\n</span><span class="st">"</span>,C)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Reshaping A into 2 x 2 x 6 array C = 
+ [[[10  5  2  5 19  3]
+  [16  1  9  5  2  4]]
+
+ [[11  2  9  2 29  2]
+  [89  9  7  7  3  8]]]</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="unpacking" class="level2" data-number="11.4">
+<h2 data-number="11.4" class="anchored" data-anchor-id="unpacking"><span class="header-section-number">11.4</span> Unpacking</h2>
+<p>Sometimes the <i>number</i> of input arguments of a function only becomes clear after a user has set some input data.</p>
+<p>For example, suppose we want to generate a <span class="math inline">k</span>-dimensional grid, i.e., the points in <span class="math display">
+\prod_{i=0}^{k-1}\ \{a_i,a_i+1,\dots,b_i-1,b_i\}
+</span> for given values of <span class="math inline">a_0,\dots,a_{k-1},b_0,\dots,b_{k-1}</span> with the <code>meshgrid()</code> function from NumPy. The <code>meshgrid()</code> function takes as input <span class="math inline">k</span> ranges, and then generates a <span class="math inline">k</span>-dimensional grid with those ranges. We have already seen the function <code>mgrid()</code> in an earlier chapter that achieves the same, but whose syntax is different.</p>
+<p>Below all the points in the set <span class="math display">
+\{1,2,3\} \times \{9,10\} = \{(1,9),(1,10),(2,9),(2,10),(3,9),(3,10)\}
+</span> are generated. The first coordinate <span class="math inline">i</span> of every point <span class="math inline">(i,j) \in \{1,2,3\} \times \{9,10\}</span> is stored in the first two-dimensional array, and the second coordinate <span class="math inline">j</span> in the second two-dimensional array. The sampe principle applies for higher-dimensional grids.</p>
+<div id="0998b955" class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># a_0 = 1, b_0 = 3, a_1 = 9, b_1 = 10</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>range1 <span class="op">=</span> np.array([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>]) <span class="co"># np.arange(1,3+1)</span></span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>range2 <span class="op">=</span> np.array([<span class="dv">9</span>,<span class="dv">10</span>]) <span class="co"># np.arange(9,10+1)</span></span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.meshgrid(range1,range2)</span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[array([[1, 2, 3],
+       [1, 2, 3]]), array([[ 9,  9,  9],
+       [10, 10, 10]])]</code></pre>
+</div>
+</div>
+<p>Suppose now we want to generate a three-dimensional grid <span class="math inline">\{1,2,3\} \times \{9,10\} \times \{5,6\}</span>, then we need to add another range variable <code>range3</code>, but also adjust the variable <code>x</code> by adding the new range to it as input argument.</p>
+<div id="a949b0f9" class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>range1 <span class="op">=</span> np.array([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>])</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>range2 <span class="op">=</span> np.array([<span class="dv">9</span>,<span class="dv">10</span>])</span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>range3 <span class="op">=</span> np.array([<span class="dv">5</span>,<span class="dv">6</span>])</span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.meshgrid(range1,range2,range3)</span>
+<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[array([[[1, 1],
+        [2, 2],
+        [3, 3]],
+
+       [[1, 1],
+        [2, 2],
+        [3, 3]]]), array([[[ 9,  9],
+        [ 9,  9],
+        [ 9,  9]],
+
+       [[10, 10],
+        [10, 10],
+        [10, 10]]]), array([[[5, 6],
+        [5, 6],
+        [5, 6]],
+
+       [[5, 6],
+        [5, 6],
+        [5, 6]]])]</code></pre>
+</div>
+</div>
+<p>We can avoid having to adjust <span class="math inline">x</span>, if we instead store the ranges in a list (or array). We name this list <code>ranges</code> here. We can <i>unpack</i> the elements in the list <code>ranges</code> as input arguments of the <code>meshgrid()</code> function using <code>*ranges</code>.</p>
+<p>Unpacking the elements of a list or array, done with the <code>*</code>, means that the first element in the list, in our case the array with the first range, becomes the first input argument of <code>meshgrid()</code>, the second element of the list becomes the second input argument, etc.</p>
+<p>We show this in the code below, which gives the same output as the code above.</p>
+<div id="e4bd844b" class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>ranges <span class="op">=</span> [np.array([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>]),np.array([<span class="dv">9</span>,<span class="dv">10</span>]),np.array([<span class="dv">5</span>,<span class="dv">6</span>])]</span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.meshgrid(<span class="op">*</span>ranges)</span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[array([[[1, 1],
+        [2, 2],
+        [3, 3]],
+
+       [[1, 1],
+        [2, 2],
+        [3, 3]]]), array([[[ 9,  9],
+        [ 9,  9],
+        [ 9,  9]],
+
+       [[10, 10],
+        [10, 10],
+        [10, 10]]]), array([[[5, 6],
+        [5, 6],
+        [5, 6]],
+
+       [[5, 6],
+        [5, 6],
+        [5, 6]]])]</code></pre>
+</div>
+</div>
+<p>The use of unpacking is especially useful if the number of ranges only becomes clear after some input parameter has been chosen. For example, suppose we want to generate the <span class="math inline">k</span>-dimensional binary grid <span class="math inline">\{0,1\}^k</span>.</p>
+<p>In the code below we only have to adjust the value of <span class="math inline">k</span> if we want to increase the dimension of the grid. This you can not achieve without the use of unpacking, in general.</p>
+<p>We first generate a two-dimensional array (recall this is a list of lists) <code>ranges</code>, where each of the <span class="math inline">k</span> rows of this array is the two-element list <span class="math inline">[0,1]</span>. We then unpack these ranges as input arguments of <code>meshgrid()</code> using <code>*ranges</code>.</p>
+<div id="e4d686c8" class="cell" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>k <span class="op">=</span> <span class="dv">3</span></span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>ranges <span class="op">=</span> np.hstack((np.zeros((k,<span class="dv">1</span>)),np.ones((k,<span class="dv">1</span>))))</span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.meshgrid(<span class="op">*</span>ranges)</span>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[array([[[0., 0.],
+        [1., 1.]],
+
+       [[0., 0.],
+        [1., 1.]]]), array([[[0., 0.],
+        [0., 0.]],
+
+       [[1., 1.],
+        [1., 1.]]]), array([[[0., 1.],
+        [0., 1.]],
+
+       [[0., 1.],
+        [0., 1.]]])]</code></pre>
 </div>
 </div>
 

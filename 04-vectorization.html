@@ -299,7 +299,7 @@ window.Quarto = {
 
 <p><link rel="preconnect" href="https://fonts.googleapis.com"> <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""> <link href="https://fonts.googleapis.com/css2?family=Fira+Mono&amp;family=Fira+Sans&amp;display=swap" rel="stylesheet"></p>
 <p>In this chapter we will explore the power of NumPy arrays by studying the concept of <i>vectorization</i>. Let us first import the NumPy package.</p>
-<div id="5ec43507" class="cell" data-execution_count="1">
+<div id="6309234b" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The idea of vectorization is that functions are designed so that they can efficiently handle multiple inputs simultaneously.</p>
@@ -311,7 +311,7 @@ H(x) =
               \end{array}
 \right..
 </span> That is, the function returns <span class="math inline">1</span> if <span class="math inline">x</span> is nonnegative, and <span class="math inline">0</span> otherwise. If we are only interested in computing <span class="math inline">H(x)</span> for a single value <span class="math inline">x</span>, then the following function suffices.</p>
-<div id="cced172c" class="cell" data-execution_count="2">
+<div id="e042f10b" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Heavyside function</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> Heavyside(x):</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> x <span class="op">&gt;=</span> <span class="dv">0</span>:</span>
@@ -327,7 +327,7 @@ H(-3) = 0</code></pre>
 </div>
 </div>
 <p>Suppose now that we would want to compute the value <span class="math inline">H(x)</span> for many values given in an array <span class="math inline">x = [x_0,\dots,x_{n-1}]</span>; this you would need to do, e.g., if you want to visualize a function. One way to do this is to use a for-loop and append the value of <span class="math inline">H(x_i)</span> to an (initially empty) list in iteration <span class="math inline">i</span>.</p>
-<div id="884d14a5" class="cell" data-execution_count="3">
+<div id="81fc724c" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">8</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.arange(<span class="op">-</span>n,n)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -342,7 +342,7 @@ H(-3) = 0</code></pre>
 </div>
 <p>As mentioned earlier, for-loops are typically very time-inefficient and should be avoided whenever possible. It would be better if we could instead use another approach that can compute the function values more efficiently.</p>
 <p>One approach to avoid the for-loop is with a Boolean statement. Recall from Chapter 2 that for an array <span class="math inline">x</span>, the command <code>x &gt;= 0</code> will return a Boolean array containing True at position <span class="math inline">i</span> if <span class="math inline">x_i \geq 0</span>, and False if not. This command is an example of a vectorized operation: Although, mathematically speaking, it is defined to compare a number <span class="math inline">x</span> with <span class="math inline">0</span>, the command also works if <span class="math inline">x</span> is an array, in which case each of its elements get compared to <span class="math inline">0</span>.</p>
-<div id="fdc267b5" class="cell" data-execution_count="4">
+<div id="ad1eb562" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>comparison <span class="op">=</span> (x <span class="op">&gt;=</span> <span class="dv">0</span>) <span class="co"># Compare each element in x with 0</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(comparison)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -352,7 +352,7 @@ H(-3) = 0</code></pre>
 </div>
 <p>The statement <code>x &gt;= 0</code> returns a Boolean array containing True and False, but the Heavyside function should ouput <span class="math inline">1</span> and <span class="math inline">0</span>, respectively. To achieve this, we can convert the Boolean array to an array with ones and zeros.</p>
 <p>This can be done with the <code>astype()</code> method, or by a clever multiplication: In Python, multiplying True with <span class="math inline">1</span> gives <span class="math inline">1</span>, and False with <span class="math inline">1</span> gives <span class="math inline">0</span>. Note that these are also examples of vectorized operations. For example, in the latter case, we multiply an array with one number, which Python executes by multiplying every element in the array with that number.</p>
-<div id="67f70613" class="cell" data-execution_count="5">
+<div id="bdffe6e5" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert Boolean values to integers (True becomes 1, False becomes 0)</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>H <span class="op">=</span> comparison.astype(<span class="st">'int'</span>)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(H)</span>
@@ -366,7 +366,7 @@ H(-3) = 0</code></pre>
 </div>
 </div>
 <p>This means we can define the <i>vectorized</i> Heavyside function as follows, using the “multiplication with one” approach. We actually need less code for the vectorized version than in the original approach.</p>
-<div id="60b5250c" class="cell" data-execution_count="6">
+<div id="b5b10506" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vectorized Heavyside function</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> Heavyside(x):</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (x <span class="op">&gt;=</span> <span class="dv">0</span>)<span class="op">*</span><span class="dv">1</span></span>
@@ -384,7 +384,7 @@ H(-3) = 0</code></pre>
 <p>We remark that vectorizing a function should not result in additional for-loops, but should exploit the functionality that Python, and in particular NumPy, have to offer. We will see many examples of this later in this chapter.</p>
 <p>In this course, you will typically be told which types of input data your function should be able to handle, so, e.g., it could be that you have to write a function that performs mathematical operations on a one-dimensional array, but that it should be able to handle two-dimensional arrays as well (again, in which case your function should compute the function value for every row of that array).</p>
 <p>As an example of what you should not do, the following definition of the Heavyside function is also able to handle “higher dimensional” inputs, but it does so by looping over the elements of the input, which makes it again a slow function. To summarize, you should not “hide” additional for-loops in the function itself.</p>
-<div id="99dc9c50" class="cell" data-execution_count="7">
+<div id="233dac28" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Heavyside function</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> Heavyside(x):</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    h <span class="op">=</span> []</span>
@@ -407,7 +407,7 @@ H(-3) = 0</code></pre>
 <h2 data-number="4.1" class="anchored" data-anchor-id="arithmetic-operations"><span class="header-section-number">4.1</span> Arithmetic operations</h2>
 <p>All basic arithmetic operations (addition, substraction, division, multiplication and comparison) are vectorized in Python. We will illustrate this with the addition operation <code>+</code>, but the same commands can be applied to the other arithmetic operations <code>-</code>, <code>/</code>, <code>*</code>, and <code>&gt;=, ==, &lt;=, !=</code>.</p>
 <p>The addition operation <code>+</code> can be used to add two numbers together, as you well know. It can also add two arrays, i.e., it works as well for one- and two-dimensional arrays if they have the same shape. This is the usual addition operation you learn about when studying linear algebra.</p>
-<div id="9ac3adb3" class="cell" data-execution_count="8">
+<div id="7eefda74" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.array([<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">7</span>])</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.array([<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">3</span>])</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -417,7 +417,7 @@ H(-3) = 0</code></pre>
  [ 3  8 10]</code></pre>
 </div>
 </div>
-<div id="71037ce6" class="cell" data-execution_count="9">
+<div id="e5d557c6" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([[<span class="dv">1</span>,<span class="dv">2</span>],[<span class="dv">1</span>,<span class="dv">4</span>]])</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> np.array([[<span class="dv">7</span>,<span class="dv">9</span>],[<span class="dv">3</span>,<span class="dv">4</span>]])</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -429,7 +429,7 @@ H(-3) = 0</code></pre>
 </div>
 </div>
 <p>Python is also able to handle addition of arrays of different shapes in certain cases, using the concept of <i>broadcasting</i> that we have seen before. For example, we can add a single number to any array, in which case Python adds this number to every element in the array. This can be seen as an instance of vectorization.</p>
-<div id="67310997" class="cell" data-execution_count="10">
+<div id="58037278" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> <span class="dv">5</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'A + c =</span><span class="ch">\n</span><span class="st">'</span>, A<span class="op">+</span>c)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -466,7 +466,7 @@ a_{(m-1)0} + x_0 &amp; a_{m1} + x_1 &amp; \dots &amp; a_{(m-1)(n-1)} + x_{n-1}
 \right]
 \end{align*}</span></p>
 <p>In the example below, we have <span class="math inline">m = 3</span> and <span class="math inline">n = 2</span>.</p>
-<div id="ff2b1d73" class="cell" data-execution_count="11">
+<div id="aee5691a" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.array([<span class="dv">10</span>,<span class="dv">12</span>])</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Shape of x:'</span>, np.shape(x))</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -488,7 +488,7 @@ A + x =
 <p>Note that the shape of <span class="math inline">x</span> is <span class="math inline">(n,)</span> which is the syntax that Python uses to denote that <span class="math inline">x</span> only has one dimension. <br><br> You can define <span class="math inline">x = [x_0,\dots,x_{n-1}]</span> explicitly as a row vector of shape <span class="math inline">(1,n)</span> by defining <code>x = np.array([[x_0,...,x_{n-1}]])</code>, that is, with double brackets. It is sometimes needed to change the shape of an array from <span class="math inline">(n,)</span> to <span class="math inline">(1,n)</span> or <span class="math inline">(n,1)</span> to be able to use a function from NumPy.</p>
 </blockquote>
 <p>Addition works in the same way if we define <span class="math inline">x</span> explicitly as an array of shape <span class="math inline">(1,n)</span>.</p>
-<div id="f58e97c2" class="cell" data-execution_count="12">
+<div id="ee323c1f" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.array([[<span class="dv">10</span>,<span class="dv">12</span>]])</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Shape of x:'</span>, np.shape(x))</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -530,7 +530,7 @@ a_{(m-1)0} + x_{m-1} &amp; a_{(m-1)1} + x_{m-1} &amp; \dots &amp; a_{(m-1)(n-1)}
 \end{matrix}
 \right]
 \end{align*}</span></p>
-<div id="5da1acab" class="cell" data-execution_count="13">
+<div id="4b05c27c" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.array([[<span class="dv">10</span>],[<span class="dv">12</span>],[<span class="dv">14</span>]])</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Shape of x:'</span>, np.shape(x))</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -589,7 +589,7 @@ a_{(m-1)0}x_0 + a_{(m-1)1}x_1 + \dots + a_{(m-1)(n-1)}x_{n-1}\\
 <li>Power computation: <code>sqrt()</code>, <code>abs()</code>, <code>power()</code></li>
 </ul>
 <p>You access them using <code>np.function_name()</code>. Let us look at some examples; you can check out the documentation of the other functions yourself.</p>
-<div id="d9b94b2a" class="cell" data-execution_count="14">
+<div id="d0f565cf" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.array([<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">6</span>])</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute sin(i) for every element i in x</span></span>
@@ -599,7 +599,7 @@ a_{(m-1)0}x_0 + a_{(m-1)1}x_1 + \dots + a_{(m-1)(n-1)}x_{n-1}\\
 <pre><code>[ 0.90929743  0.84147098 -0.2794155 ]</code></pre>
 </div>
 </div>
-<div id="d69edf12" class="cell" data-execution_count="15">
+<div id="65b28067" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([[<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">6</span>],[<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">3</span>]])</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute e^i for every element i in A</span></span>
@@ -610,7 +610,7 @@ a_{(m-1)0}x_0 + a_{(m-1)1}x_1 + \dots + a_{(m-1)(n-1)}x_{n-1}\\
  [  2.71828183   2.71828183  20.08553692]]</code></pre>
 </div>
 </div>
-<div id="02c9a073" class="cell" data-execution_count="16">
+<div id="fdfe4906" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.array([<span class="fl">1.249583</span>, <span class="fl">3.110294</span>, <span class="fl">4.51139</span>])</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Round every number in x to two decimals</span></span>
@@ -620,7 +620,7 @@ a_{(m-1)0}x_0 + a_{(m-1)1}x_1 + \dots + a_{(m-1)(n-1)}x_{n-1}\\
 <pre><code>[1.25 3.11 4.51]</code></pre>
 </div>
 </div>
-<div id="04c44a57" class="cell" data-execution_count="17">
+<div id="acb05029" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.array([<span class="dv">10</span>,<span class="dv">9</span>,<span class="dv">4</span>]) </span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.array([<span class="dv">2</span>,<span class="dv">4</span>,<span class="dv">5</span>])</span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -633,7 +633,7 @@ a_{(m-1)0}x_0 + a_{(m-1)1}x_1 + \dots + a_{(m-1)(n-1)}x_{n-1}\\
 </div>
 </div>
 <p><code>np.divmod()</code> outputs two arrays: the divisors and the remainder. For example, looking at <code>x[1] = 9</code> and <code>y[1] = 4</code>: the number <span class="math inline">4</span> fits twice in <span class="math inline">9</span>, after which <span class="math inline">1</span> is left, i.e., <span class="math inline">9 = 2 \cdot 4 + 1</span>. The number <span class="math inline">2</span> appears in the second position of the first array, and the remainder <span class="math inline">1</span> in the second position of the second array.</p>
-<div id="42c35880" class="cell" data-execution_count="18">
+<div id="4776d28f" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([[<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">6</span>],[<span class="dv">4</span>,<span class="dv">2</span>,<span class="dv">3</span>]])</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> np.array([[<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>],[<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>]])</span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -669,7 +669,7 @@ a_{(m-1)0}x_0 + a_{(m-1)1}x_1 + \dots + a_{(m-1)(n-1)}x_{n-1}\\
  [0.99 0.16 0.47 0.71]
  [0.34 0.7  0.75 0.82]]
 -->
-<div id="d9fbca52" class="cell" data-execution_count="19">
+<div id="c6c9c2a6" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.array([<span class="fl">0.89</span>, <span class="fl">0.5</span>,  <span class="fl">0.57</span>, <span class="fl">0.34</span>])</span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort and print the elements in x</span></span>
@@ -680,7 +680,7 @@ a_{(m-1)0}x_0 + a_{(m-1)1}x_1 + \dots + a_{(m-1)(n-1)}x_{n-1}\\
 </div>
 </div>
 <p>It is not possible to use <code>sort()</code> to sort in descending order, i.e., largest to smallest, but this can be accomplished by reversing the sorted array. We can do this using index slicing with a step size of <span class="math inline">-1</span>, starting at position <span class="math inline">-1</span>, meaning that Python goes backwards through the array.</p>
-<div id="392459e1" class="cell" data-execution_count="20">
+<div id="4d4ddee1" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Access x from beginning till end with step size -1</span></span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>x_descending <span class="op">=</span> x_ascending[<span class="op">-</span><span class="dv">1</span>::<span class="op">-</span><span class="dv">1</span>] </span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -691,7 +691,7 @@ a_{(m-1)0}x_0 + a_{(m-1)1}x_1 + \dots + a_{(m-1)(n-1)}x_{n-1}\\
 </div>
 <p>Vectorizing the (ascending) sort operation means we want to have a function that can take as input a two-dimensional array, and return for every row (or column) the sorted list of numbers. It turns out that <code>sort()</code> can do this right away, by adding an additional keyword argument <code>axis</code>.</p>
 <p>Adding <code>axis=0</code> means that Python will sort the numbers in every column, i.e., along the <span class="math inline">0</span>-axis, and <code>axis=1</code> will sort numbers in every row, i.e., along the <span class="math inline">1</span>-axis.</p>
-<div id="6e4b226e" class="cell" data-execution_count="21">
+<div id="e8f7aff0" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([</span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a> [<span class="fl">0.89</span>, <span class="fl">0.5</span>,  <span class="fl">0.57</span>, <span class="fl">0.34</span>],</span>
 <span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a> [<span class="fl">0.61</span>, <span class="fl">0.12</span>, <span class="fl">0.04</span>, <span class="fl">1.</span>  ],</span>
@@ -708,7 +708,7 @@ a_{(m-1)0}x_0 + a_{(m-1)1}x_1 + \dots + a_{(m-1)(n-1)}x_{n-1}\\
  [0.9  0.84 0.57 1.  ]]</code></pre>
 </div>
 </div>
-<div id="6864afa2" class="cell" data-execution_count="22">
+<div id="37c055d2" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort elements in every row</span></span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>A_row_ordered <span class="op">=</span> np.sort(A,axis<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(A_row_ordered)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -721,7 +721,7 @@ a_{(m-1)0}x_0 + a_{(m-1)1}x_1 + \dots + a_{(m-1)(n-1)}x_{n-1}\\
 </div>
 <p>We remark that <code>sort()</code> creates a copy, and not a view of the original matrix (see Chapter 3.7).</p>
 <p>Another useful sorting function is <code>argsort()</code> that, for a given array <span class="math inline">x = [x_0,\dots,x_{n-1}]</span> outputs an array whose <span class="math inline">i</span>-th element is the position of the number in <span class="math inline">x</span> that appears in place <span class="math inline">i</span> in the ordered array <code>np.sort(x)</code>.</p>
-<div id="f4d3536d" class="cell" data-execution_count="23">
+<div id="3a53753f" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.array([<span class="fl">0.89</span>, <span class="fl">0.5</span>,  <span class="fl">0.57</span>, <span class="fl">0.34</span>])</span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Position in original array or elements in ordered list</span></span>
@@ -737,7 +737,7 @@ a_{(m-1)0}x_0 + a_{(m-1)1}x_1 + \dots + a_{(m-1)(n-1)}x_{n-1}\\
 </div>
 <p>In the example above, in the ordered list <code>np.sort(x)</code> the first number is 0.34, which appears at position <span class="math inline">3</span> in <span class="math inline">x</span>; the second number is 0.5, which appears at position 1 in <span class="math inline">x</span>, the third number is <span class="math inline">0.57</span> which appears in position <span class="math inline">2</span> in <span class="math inline">x</span>; and the fourth number is <span class="math inline">0.89</span>, which appears in position <span class="math inline">0</span> in <span class="math inline">x</span>.</p>
 <p>This function also works for two-dimensional arrays. For example, determining the relative order of the elements in every column can be done by adding <code>axis=0</code> (and similarly in every row by using <code>axis=1</code>).</p>
-<div id="8c0bc284" class="cell" data-execution_count="24">
+<div id="84ee0840" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([</span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a> [<span class="fl">0.89</span>, <span class="fl">0.5</span>,  <span class="fl">0.57</span>, <span class="fl">0.34</span>],</span>
 <span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a> [<span class="fl">0.61</span>, <span class="fl">0.12</span>, <span class="fl">0.04</span>, <span class="fl">1.</span>  ],</span>
@@ -764,14 +764,14 @@ a_{(m-1)0}x_0 + a_{(m-1)1}x_1 + \dots + a_{(m-1)(n-1)}x_{n-1}\\
 <li>Maximum and minimum: <code>max()</code>, <code>min()</code>.</li>
 </ul>
 <p>We will illustrate the use of these six functions using <code>max()</code>, but the same code applies to all other functions (if the task at hand is mathematically well-defined).</p>
-<div id="c9f8f00a" class="cell" data-execution_count="25">
+<div id="ea7bf060" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([</span>
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">6</span>],</span>
 <span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">4</span>,<span class="dv">2</span>,<span class="dv">3</span>]</span>
 <span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>If we apply the <code>max()</code> function directly to a (two-dimensional) array, it will give the maximum value in the whole array.</p>
-<div id="c35c22d7" class="cell" data-execution_count="26">
+<div id="36189bf9" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Gives maximum of all elements in A</span></span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>A_max <span class="op">=</span> np.<span class="bu">max</span>(A)</span>
 <span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -781,7 +781,7 @@ a_{(m-1)0}x_0 + a_{(m-1)1}x_1 + \dots + a_{(m-1)(n-1)}x_{n-1}\\
 </div>
 </div>
 <p>If we add the <code>axis</code> keyword argument, we can either obtain the maximum of every row, or every column.</p>
-<div id="afaf4024" class="cell" data-execution_count="27">
+<div id="fe8f9531" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Gives maximum of every column</span></span>
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>A_column_max <span class="op">=</span> np.<span class="bu">max</span>(A,axis<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -790,7 +790,7 @@ a_{(m-1)0}x_0 + a_{(m-1)1}x_1 + \dots + a_{(m-1)(n-1)}x_{n-1}\\
 <pre><code>[4 3 6]</code></pre>
 </div>
 </div>
-<div id="0e7c552d" class="cell" data-execution_count="28">
+<div id="fba17ac1" class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Gives max of every row</span></span>
 <span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>A_row_max <span class="op">=</span> np.<span class="bu">max</span>(A,axis<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -800,7 +800,7 @@ a_{(m-1)0}x_0 + a_{(m-1)1}x_1 + \dots + a_{(m-1)(n-1)}x_{n-1}\\
 </div>
 </div>
 <p>Another useful function is <code>argmax()</code> than can return the index (position) at which the maximum in an array is attained.</p>
-<div id="e5953e76" class="cell" data-execution_count="29">
+<div id="89aee8f8" class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Gives position of maximum in every column</span></span>
 <span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>A_col_argmax <span class="op">=</span> np.argmax(A,axis<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -809,7 +809,7 @@ a_{(m-1)0}x_0 + a_{(m-1)1}x_1 + \dots + a_{(m-1)(n-1)}x_{n-1}\\
 <pre><code>[1 0 0]</code></pre>
 </div>
 </div>
-<div id="6408c6c0" class="cell" data-execution_count="30">
+<div id="5e348865" class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Gives position of maximum in every row</span></span>
 <span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>A_row_argmax <span class="op">=</span> np.argmax(A,axis<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -819,7 +819,7 @@ a_{(m-1)0}x_0 + a_{(m-1)1}x_1 + \dots + a_{(m-1)(n-1)}x_{n-1}\\
 </div>
 </div>
 <p>Note that the array containing the positions of the maxima is given as a row array. If you want to turn this into a column array (because the rows are ordered vertically in a two-dimensional array), recall you can do this as follows.</p>
-<div id="afea4dc0" class="cell" data-execution_count="31">
+<div id="55f06689" class="cell" data-execution_count="31">
 <div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>A_row_argmax <span class="op">=</span> A_row_argmax[:,<span class="va">None</span>]</span>
 <span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(A_row_argmax)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -830,7 +830,7 @@ a_{(m-1)0}x_0 + a_{(m-1)1}x_1 + \dots + a_{(m-1)(n-1)}x_{n-1}\\
 </div>
 <p>If we try <code>np.argmax(A)</code> without using the <code>axis</code> keyword argument, then Python first flattens the matrix into a one-dimensional array, after which it returns the position of the maximum in the flattened array. Note that this flattening happens according to the largest index changing fasted principle (so it it places all the rows after each other, and not all the columns under each other).</p>
 <p>Also note that if the maximum is attained in multiple places, then Python only returns the position of the first element that attains the maximum.</p>
-<div id="c8c08ab7" class="cell" data-execution_count="32">
+<div id="3cabe9e2" class="cell" data-execution_count="32">
 <div class="sourceCode cell-code" id="cb61"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Gives position of maximum </span></span>
 <span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> np.array([</span>
 <span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>],</span>
@@ -854,7 +854,7 @@ a_{(m-1)0}x_0 + a_{(m-1)1}x_1 + \dots + a_{(m-1)(n-1)}x_{n-1}\\
 <p><span class="math display">
 x_{\text{cumsum}} = [1, 1 + 4, 1 + 4 + 2, 1 + 4 + 2 + 5] = [1,5,7,12].
 </span></p>
-<div id="1dd2bb51" class="cell" data-execution_count="33">
+<div id="37e360bc" class="cell" data-execution_count="33">
 <div class="sourceCode cell-code" id="cb63"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.array([<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">2</span>,<span class="dv">5</span>])</span>
 <span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Cumulative sum of x</span></span>
@@ -869,7 +869,7 @@ x_{\text{cumsum}} = [1, 1 + 4, 1 + 4 + 2, 1 + 4 + 2 + 5] = [1,5,7,12].
 <p><span class="math display">
 x_{\text{cumprod}} = [1, 1 \cdot 4, 1 \cdot 4 \cdot 2, 1 \cdot 4 \cdot 2 \cdot 5] = [1,4,8,40].
 </span></p>
-<div id="50d2d6d8" class="cell" data-execution_count="34">
+<div id="ec14f4a5" class="cell" data-execution_count="34">
 <div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.array([<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">2</span>,<span class="dv">5</span>])</span>
 <span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Cumulative product of x</span></span>

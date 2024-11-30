@@ -44,7 +44,7 @@
     "href": "02-good-coding.html",
     "title": "2  Good coding practices",
     "section": "",
-    "text": "2.1 Efficient computations\nPerhaps the most important topic of this course is that of efficient computation, i.e., to make efficient use of the mathematical functionality that Python has to offer, in particular the functionality of the NumPy package.\nThe way to think of this is as follows: Many of the mathematical tasks and exercises that we will see could, in theory, be solved using for- and/or while-loops, as well as if/else-statements. However, there are often more efficient functions programmed in the NumPy package in Python that can carry out these task in a quicker way using less code!\nLet us look at an example. Suppose I am given a vector x = [x_1,\\dots,x_n] \\in \\mathbb{R}^n, and I want to compute the L^2-norm \n||x||_2 = \\sqrt{\\sum_{i=1}^n x_i^2}\n of this vector. One way to solve this directly would be by using a for-loop to compute the sum inside the square root, and then take the square root of this number. We will illustrate this next for the vector x = [1,2,3,\\dots,300.000].\n# Length of vector\nn = 300000\n\n# Compute inner summation of ||x||_2\ninner_sum = 0\nfor i in range(1,n+1):\n    inner_sum = inner_sum + i**2\n\n# Take square root\ntwo_norm = (inner_sum)**(0.5)\n\n# Print value of two-norm\nprint(two_norm)\n\n94868566.97584295\nAnother way to do this is to define the vector x efficiently making use of the arange() function in Numpy, followed by the linalg.norm() function that can compute the L^2-norm for us directly. We will see these functions in more detail in a subsequent chapter.\nIt is standard convention to import the Numpy package under the alias np.\n#Import Numpy package under the alias np\nimport numpy as np\n\n# Length of vector\nn = 300000\n\n# Define vector x as array using arange() function\nx = np.arange(1,n+1)\n\n# Compute two-norm with built-in function\ntwo_norm = np.linalg.norm(x)\n\n# Print value of two-norm\nprint(two_norm)\n\n94868566.97584295\nThis is a much cleaner, and in fact faster, way to compute the L^2-norm of the vector x. Especially for large values of n, the second piece of code that exploits the Numpy functionality can be much faster! The Python code below (which we will not discuss) illustrates this comparison by timing how long both approaches require to compute the norm for n = 30.000.000 (i.e., thirty million). If you run the code below on your own device, you might get different outputs, but, in general, there should be a significant (multiplicative) difference in execution time.\nCode that times execution of the two approaches above\nimport numpy as np\nimport time\n\n## Computing norm with for-loop\n\n# We determine the time it takes to input the code between start and end\nstart = time.time()\n\n# Length of vector\nn = 30000000\n\n# Compute inner summation of ||x||_2\ninner_sum = 0\nfor i in range(1,n+1):\n    inner_sum = inner_sum + i**2\n\n# Take square root\ntwo_norm = (inner_sum)**(0.5)\n\nend = time.time()\n\n# Time difference\nloop_time = end - start\nprint('%.10f seconds needed for computing norm' % (loop_time), \n      'with for-loop')\n\n## Computing norm with Numpy functions\n\n#We determine the time it takes to input the code between start and end\nstart = time.time()\n\n# Length of vector\nn = 30000000\n\n# Define vector x as array using arange() function\nx = np.arange(1,n+1)\n\n# Compute two-norm with built-in function\ntwo_norm = np.linalg.norm(x)\n\nend = time.time()\n\n# Time difference\nnumpy_time = end - start\nprint('%.10f seconds needed for computing norm' % (numpy_time), \n      'with Numpy functions')\n\n\n#This shows how many times faster Numpy approach is faster than for-loop solution\nif numpy_time != 0:\n    (print('NumPy\\'s approach is %i times more efficient than for-loop approach.'\n            % ((loop_time)/(numpy_time))))\n\n\n9.5991342068 seconds needed for computing norm with for-loop\n0.1109039783 seconds needed for computing norm with Numpy functions\nNumPy's approach is 86 times more efficient than for-loop approach.\nOne important take-away of the above comparison is the following.",
+    "text": "2.1 Efficient computations\nPerhaps the most important topic of this course is that of efficient computation, i.e., to make efficient use of the mathematical functionality that Python has to offer, in particular the functionality of the NumPy package.\nThe way to think of this is as follows: Many of the mathematical tasks and exercises that we will see could, in theory, be solved using for- and/or while-loops, as well as if/else-statements. However, there are often more efficient functions programmed in the NumPy package in Python that can carry out these task in a quicker way using less code!\nLet us look at an example. Suppose I am given a vector x = [x_1,\\dots,x_n] \\in \\mathbb{R}^n, and I want to compute the L^2-norm \n||x||_2 = \\sqrt{\\sum_{i=1}^n x_i^2}\n of this vector. One way to solve this directly would be by using a for-loop to compute the sum inside the square root, and then take the square root of this number. We will illustrate this next for the vector x = [1,2,3,\\dots,300.000].\n# Length of vector\nn = 300000\n\n# Compute inner summation of ||x||_2\ninner_sum = 0\nfor i in range(1,n+1):\n    inner_sum = inner_sum + i**2\n\n# Take square root\ntwo_norm = (inner_sum)**(0.5)\n\n# Print value of two-norm\nprint(two_norm)\n\n94868566.97584295\nAnother way to do this is to define the vector x efficiently making use of the arange() function in Numpy, followed by the linalg.norm() function that can compute the L^2-norm for us directly. We will see these functions in more detail in a subsequent chapter.\nIt is standard convention to import the Numpy package under the alias np.\n#Import Numpy package under the alias np\nimport numpy as np\n\n# Length of vector\nn = 300000\n\n# Define vector x as array using arange() function\nx = np.arange(1,n+1)\n\n# Compute two-norm with built-in function\ntwo_norm = np.linalg.norm(x)\n\n# Print value of two-norm\nprint(two_norm)\n\n94868566.97584295\nThis is a much cleaner, and in fact faster, way to compute the L^2-norm of the vector x. Especially for large values of n, the second piece of code that exploits the Numpy functionality can be much faster! The Python code below (which we will not discuss) illustrates this comparison by timing how long both approaches require to compute the norm for n = 30.000.000 (i.e., thirty million). If you run the code below on your own device, you might get different outputs, but, in general, there should be a significant (multiplicative) difference in execution time.\nCode that times execution of the two approaches above\nimport numpy as np\nimport time\n\n## Computing norm with for-loop\n\n# We determine the time it takes to input the code between start and end\nstart = time.time()\n\n# Length of vector\nn = 30000000\n\n# Compute inner summation of ||x||_2\ninner_sum = 0\nfor i in range(1,n+1):\n    inner_sum = inner_sum + i**2\n\n# Take square root\ntwo_norm = (inner_sum)**(0.5)\n\nend = time.time()\n\n# Time difference\nloop_time = end - start\nprint('%.10f seconds needed for computing norm' % (loop_time), \n      'with for-loop')\n\n## Computing norm with Numpy functions\n\n#We determine the time it takes to input the code between start and end\nstart = time.time()\n\n# Length of vector\nn = 30000000\n\n# Define vector x as array using arange() function\nx = np.arange(1,n+1)\n\n# Compute two-norm with built-in function\ntwo_norm = np.linalg.norm(x)\n\nend = time.time()\n\n# Time difference\nnumpy_time = end - start\nprint('%.10f seconds needed for computing norm' % (numpy_time), \n      'with Numpy functions')\n\n\n#This shows how many times faster Numpy approach is faster than for-loop solution\nif numpy_time != 0:\n    (print('NumPy\\'s approach is %i times more efficient than for-loop approach.'\n            % ((loop_time)/(numpy_time))))\n\n\n10.7892339230 seconds needed for computing norm with for-loop\n0.1288342476 seconds needed for computing norm with Numpy functions\nNumPy's approach is 83 times more efficient than for-loop approach.\nOne important take-away of the above comparison is the following.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Good coding practices</span>"
     ]
@@ -324,7 +324,7 @@
     "href": "08-probability.html#randomness",
     "title": "8  Probability theory",
     "section": "",
-    "text": "8.1.1 Samples\nThe random subpackage has functions that can generate so-called pseudo-random numbers. Informally speaking, these numbers “behave” as random numbers when performing numerical experiments with them, but they are not truly random (which can be an issue, e.g., if you would use such numbers of cryptographic purposes).\nWe next discuss some functions to generate random numbers from well-known distributions.\nnp.random.rand(m,n): Generate an m \\times n two-dimensional array with numbers uniformly drawn form the interval [0,1] (i.e., every number is equally likely).\n\nm,n = 2, 4\n\nM = np.random.rand(m,n)\nprint(M)\n\n[[0.15420491 0.86215266 0.92857341 0.28928006]\n [0.71373332 0.66774296 0.97121012 0.42042463]]\n\n\nWhen m and n are not inputted, a single random number is returned.\n\nx = np.random.rand()\nprint(x)\n\n0.248350119754991\n\n\nnp.random.randn(m,n): Generates an m \\times n two-dimensional array with numbers drawn from the normal distribution with mean \\mu = 0 and standard deviation \\sigma = 1.\n\nm,n = 3, 5\n\nM = np.random.randn(m,n)\nprint(M)\n\n[[ 1.64243778 -0.57597941 -1.44578294  0.47496074  1.08576673]\n [ 1.23699762  1.75300409  0.69233298  0.36174499  1.58787617]\n [-1.00147868  0.05372005  0.06468543  0.85281121  0.96113526]]\n\n\nWe conclude with sampling numbers from the discrete uniform distribution over a set \\{a,a+1,\\dots,b-1\\}. Here every number i in this discrete interval is generated with equal probability 1/(b - a).\nnp.random.randint(a,b,(m,n)): Generates an m \\times n two-dimensional array with numbers drawn from the discrete uniform distribution on \\{a,a+1,\\dots,b-1\\}.\n\na, b = 4, 10\nm,n = 3, 15\n\nM = np.random.randint(a,b,(m,n))\nprint(M)\n\n[[7 8 7 4 4 5 6 5 7 6 9 8 4 7 4]\n [8 6 9 6 8 8 8 8 4 6 4 8 6 9 5]\n [4 9 6 9 4 9 6 8 4 9 6 8 4 5 8]]\n\n\nFor almost every well-known probability distribution we can get samples from its distribution. See the documentation for a list of all the distributions.\nFinally, we remark that it is also possible to generate samples from different distributions from the same family. As an example, consider a normal distribution with mean \\mu and standard deviations \\sigma. We can generate samples from this distribution with np.random.normal().\nAs input it takes two keyword arguments: loc for the mean \\mu and scale for the standard deviation \\sigma. You can figure this out by inspecting the documentation.\nMost distributions have a loc and or scale keyword input argument, that takes a default value if none is inputted; loc=0 and scale=1 are the defaults for np.random.normal.\n\n\n\nDocumentation for generating normally distributed samples\n\n\n\nmu = 1\nsigma = 2\n\nsamples = np.random.normal(loc=mu, scale=sigma)\n\nprint(samples)\n\n0.8259959323216828\n\n\nThis function also allows vectorized inputs: If we input an array of means and standard deviations, then a sample for every combination is generated.\n\nmu = np.array([0,1,2,2])\nsigma = np.array([1,2,4,2])\n\nsamples = np.random.normal(loc=mu, scale=sigma)\n\nprint(samples)\n\n[-0.46711452  0.81375728  6.9711281   4.71304416]\n\n\nFinally, if you want to have m samples from all combinations of location and scale parameters, you can specify this in the size keyword argument by setting it to (m,n) where n is the common length of the location and scale array. For every scale-location combination, the m samples of this combination can be found in a column of the output.\n\nmu = np.array([0,1,2,2])\nsigma = np.array([1,2,4,2])\n\nm = 3\nn = np.size(mu)\n\nsamples = np.random.normal(loc=mu, scale=sigma, size=(m,n))\n\nprint(samples)\n\n[[ 0.53019617  0.68607995  0.68216208  1.82721158]\n [ 0.24658125 -1.99650028  3.50720475 -0.24540885]\n [ 0.28062834 -0.33000871  2.86403438  2.08855319]]\n\n\n\n\n8.1.2 Subsets\nNext to the generation of random numbers, it is also possible to generate random subsets of elements of a given array using the choice() function. It takes as input an array from which we want to obtain a subset and we an set the size of the subset that we want to have using the size keyword argument.\n\nk = 15\nx = np.arange(0,11,1)\n\nsubset = np.random.choice(x,size=k)\n\nprint(subset)\n\n[10  2  5  4  4  6  7 10  9 10  6  9  5  6  9]\n\n\nAs can be seen from the output above, some numbers appear twice in the subset, meaning that choice() samples a subset with replacement. If you want to sample without replacement, you can set the keyword replace to False.\n\nk = 8\nx = np.arange(0,11,1)\n\nsubset = np.random.choice(x,size=k,replace=False)\n\nprint(subset)\n\n[ 8  7  9  1  3  5  4 10]\n\n\nFinally, you can also specify the probability with which every element should be samples using the keyword argument p.\n\nk = 8\n\n# Set {0,1,2,...,9}\nx = np.arange(0,10,1)\n\n# Probabilities for elements in set\nprob = np.array([1/3,1/3,0,0,0,0,0,0,0,1/3])\n\n# Generating random subset\nsubset = np.random.choice(x,size=k,p=prob)\n\n# Only 0, 1, 9 have positive probabilities\nprint(subset)\n\n[9 9 1 1 0 9 0 1]\n\n\nThere is also the permutation() function that returns the elements in an array in a random order. That is, it creates a so-called random permutation of the elements in the array.\n\nx_perm = np.random.permutation(x)\n\nprint(x_perm)\n\n[8 4 9 1 5 7 3 0 2 6]\n\n\nIf you would apply this function on a two-dimensional array, it returns the same array in which the rows are randomly permuted (i.e., the inner lists are randomly permuted).\n\nX = np.arange(0,18,1).reshape(3,6)\n\nx_perm = np.random.permutation(X)\n\nprint(x_perm)\n\n[[ 0  1  2  3  4  5]\n [12 13 14 15 16 17]\n [ 6  7  8  9 10 11]]\n\n\n\n\n8.1.3 Seed\nWhen writing code that involves random numbers of objects, it can sometimes be useful to “fix” the randomness in the script, e.g., when debugging. This can be done by setting a so-called random seed using the seed() function.\nFor sake of comparison, let us first generate two random numbers from [0,1].\n\na = np.random.rand()\nb = np.random.rand()\n\nprint(a,b)\n\n0.5094397639741965 0.06529025219647322\n\n\nIf you rerun the code above it will give different outputs every time. Try this yourself by copying the code into Spyder.\nWe next do the same, but with a fixed seed s using seed(s). Different choices of s fix the randomness in a different way. If you copy the code below into Spyder and rerun it a couple of times, the output will always be the same.\n\n#Set seed to be s = 3\nnp.random.seed(3)\n\na = np.random.rand()\nb = np.random.rand()\n\nprint(a,b)\n\n0.5507979025745755 0.7081478226181048",
+    "text": "8.1.1 Samples\nThe random subpackage has functions that can generate so-called pseudo-random numbers. Informally speaking, these numbers “behave” as random numbers when performing numerical experiments with them, but they are not truly random (which can be an issue, e.g., if you would use such numbers of cryptographic purposes).\nWe next discuss some functions to generate random numbers from well-known distributions.\nnp.random.rand(m,n): Generate an m \\times n two-dimensional array with numbers uniformly drawn form the interval [0,1] (i.e., every number is equally likely).\n\nm,n = 2, 4\n\nM = np.random.rand(m,n)\nprint(M)\n\n[[0.23726537 0.76423525 0.70528861 0.66569251]\n [0.69341274 0.41313077 0.09423019 0.90432749]]\n\n\nWhen m and n are not inputted, a single random number is returned.\n\nx = np.random.rand()\nprint(x)\n\n0.4048813347185639\n\n\nnp.random.randn(m,n): Generates an m \\times n two-dimensional array with numbers drawn from the normal distribution with mean \\mu = 0 and standard deviation \\sigma = 1.\n\nm,n = 3, 5\n\nM = np.random.randn(m,n)\nprint(M)\n\n[[ 0.54773595  1.56922152  0.59482438 -0.42079546 -0.97840782]\n [ 0.33457523  0.23747129  2.28888389 -1.80059571 -0.85321417]\n [-0.51311468 -0.11854224  0.61405346  0.53247518 -0.48496539]]\n\n\nWe conclude with sampling numbers from the discrete uniform distribution over a set \\{a,a+1,\\dots,b-1\\}. Here every number i in this discrete interval is generated with equal probability 1/(b - a).\nnp.random.randint(a,b,(m,n)): Generates an m \\times n two-dimensional array with numbers drawn from the discrete uniform distribution on \\{a,a+1,\\dots,b-1\\}.\n\na, b = 4, 10\nm,n = 3, 15\n\nM = np.random.randint(a,b,(m,n))\nprint(M)\n\n[[9 9 9 7 8 9 6 9 9 9 9 5 5 4 8]\n [6 9 8 6 8 4 8 6 7 6 5 9 7 5 8]\n [7 8 7 7 9 4 8 7 4 6 9 5 7 8 8]]\n\n\nFor almost every well-known probability distribution we can get samples from its distribution. See the documentation for a list of all the distributions.\nFinally, we remark that it is also possible to generate samples from different distributions from the same family. As an example, consider a normal distribution with mean \\mu and standard deviations \\sigma. We can generate samples from this distribution with np.random.normal().\nAs input it takes two keyword arguments: loc for the mean \\mu and scale for the standard deviation \\sigma. You can figure this out by inspecting the documentation.\nMost distributions have a loc and or scale keyword input argument, that takes a default value if none is inputted; loc=0 and scale=1 are the defaults for np.random.normal.\n\n\n\nDocumentation for generating normally distributed samples\n\n\n\nmu = 1\nsigma = 2\n\nsamples = np.random.normal(loc=mu, scale=sigma)\n\nprint(samples)\n\n0.9016017415776816\n\n\nThis function also allows vectorized inputs: If we input an array of means and standard deviations, then a sample for every combination is generated.\n\nmu = np.array([0,1,2,2])\nsigma = np.array([1,2,4,2])\n\nsamples = np.random.normal(loc=mu, scale=sigma)\n\nprint(samples)\n\n[1.21209651 0.84813715 1.60120303 4.29869652]\n\n\nFinally, if you want to have m samples from all combinations of location and scale parameters, you can specify this in the size keyword argument by setting it to (m,n) where n is the common length of the location and scale array. For every scale-location combination, the m samples of this combination can be found in a column of the output.\n\nmu = np.array([0,1,2,2])\nsigma = np.array([1,2,4,2])\n\nm = 3\nn = np.size(mu)\n\nsamples = np.random.normal(loc=mu, scale=sigma, size=(m,n))\n\nprint(samples)\n\n[[ 0.57428152  0.00809024 -5.04126651  4.85813984]\n [ 0.21168903  0.24832723 -3.87554825  3.21045394]\n [-0.17584621  1.78318174  6.6720176   2.3262308 ]]\n\n\n\n\n8.1.2 Subsets\nNext to the generation of random numbers, it is also possible to generate random subsets of elements of a given array using the choice() function. It takes as input an array from which we want to obtain a subset and we an set the size of the subset that we want to have using the size keyword argument.\n\nk = 15\nx = np.arange(0,11,1)\n\nsubset = np.random.choice(x,size=k)\n\nprint(subset)\n\n[2 9 4 0 5 8 7 3 4 4 1 8 6 9 1]\n\n\nAs can be seen from the output above, some numbers appear twice in the subset, meaning that choice() samples a subset with replacement. If you want to sample without replacement, you can set the keyword replace to False.\n\nk = 8\nx = np.arange(0,11,1)\n\nsubset = np.random.choice(x,size=k,replace=False)\n\nprint(subset)\n\n[5 1 7 2 8 6 0 4]\n\n\nFinally, you can also specify the probability with which every element should be samples using the keyword argument p.\n\nk = 8\n\n# Set {0,1,2,...,9}\nx = np.arange(0,10,1)\n\n# Probabilities for elements in set\nprob = np.array([1/3,1/3,0,0,0,0,0,0,0,1/3])\n\n# Generating random subset\nsubset = np.random.choice(x,size=k,p=prob)\n\n# Only 0, 1, 9 have positive probabilities\nprint(subset)\n\n[1 1 9 9 9 0 1 0]\n\n\nThere is also the permutation() function that returns the elements in an array in a random order. That is, it creates a so-called random permutation of the elements in the array.\n\nx_perm = np.random.permutation(x)\n\nprint(x_perm)\n\n[2 3 6 9 8 4 7 5 1 0]\n\n\nIf you would apply this function on a two-dimensional array, it returns the same array in which the rows are randomly permuted (i.e., the inner lists are randomly permuted).\n\nX = np.arange(0,18,1).reshape(3,6)\n\nx_perm = np.random.permutation(X)\n\nprint(x_perm)\n\n[[12 13 14 15 16 17]\n [ 6  7  8  9 10 11]\n [ 0  1  2  3  4  5]]\n\n\n\n\n8.1.3 Seed\nWhen writing code that involves random numbers of objects, it can sometimes be useful to “fix” the randomness in the script, e.g., when debugging. This can be done by setting a so-called random seed using the seed() function.\nFor sake of comparison, let us first generate two random numbers from [0,1].\n\na = np.random.rand()\nb = np.random.rand()\n\nprint(a,b)\n\n0.6688046659384593 0.4355853109825868\n\n\nIf you rerun the code above it will give different outputs every time. Try this yourself by copying the code into Spyder.\nWe next do the same, but with a fixed seed s using seed(s). Different choices of s fix the randomness in a different way. If you copy the code below into Spyder and rerun it a couple of times, the output will always be the same.\n\n#Set seed to be s = 3\nnp.random.seed(3)\n\na = np.random.rand()\nb = np.random.rand()\n\nprint(a,b)\n\n0.5507979025745755 0.7081478226181048",
     "crumbs": [
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Probability theory</span>"
     ]
@@ -460,69 +460,25 @@
     ]
   },
   {
-    "objectID": "A-errata.html",
-    "href": "A-errata.html",
-    "title": "Appendix A — Corrections and changes",
+    "objectID": "A-documentation.html",
+    "href": "A-documentation.html",
+    "title": "Appendix A — Documentation in Spyder",
     "section": "",
-    "text": "A.1 Chapter 11",
+    "text": "A.1 Inspecting subpackages\nIf you want to inspect functions that are part of a subpackage, it is recommended to import the subpackage under an alias, otherwise Python might not automatically load the documentation as well.\nIf you only load the subpackage, you might not be able to see the documentation. For example, trying to inspect minimize() by selecting minimize in the two codes below (in Spyder) might not work.\nimport scipy\n\ndef f(x):\n    return x**2\n\nguess = 1\nresult = scipy.optimize.minimize(f,x0=1)\nimport scipy.optimize\n\ndef f(x):\n    return x**2\n\nguess = 1\nresult = scipy.optimize.minimize(f,x0=1)\nAs a second example, if you want to inspect a random variable from the stats subpackage of SciPy, it is best to import this subpackage under an alias. In the screenshot below we choose the name statistics as alias.",
     "crumbs": [
       "Appendices",
-      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Corrections and changes</span>"
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Documentation in Spyder</span>"
     ]
   },
   {
-    "objectID": "A-errata.html#chapter-11",
-    "href": "A-errata.html#chapter-11",
-    "title": "Appendix A — Corrections and changes",
+    "objectID": "A-documentation.html#inspecting-subpackages",
+    "href": "A-documentation.html#inspecting-subpackages",
+    "title": "Appendix A — Documentation in Spyder",
     "section": "",
-    "text": "The Itertools-section is now Section 11.2 (was Section 11.3 before).",
+    "text": "Inspect minimize() function from SciPy’s optimize module.\n\n\n\n\n\n\n\n\n\nInspect gamma() random variable object from SciPy’s stats module.",
     "crumbs": [
       "Appendices",
-      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Corrections and changes</span>"
-    ]
-  },
-  {
-    "objectID": "A-errata.html#section-8.2.1",
-    "href": "A-errata.html#section-8.2.1",
-    "title": "Appendix A — Corrections and changes",
-    "section": "A.2 Section 8.2.1",
-    "text": "A.2 Section 8.2.1\n\nAdded explanation of how to generate vectorized samples when multiple location-scale combinations are inputted.",
-    "crumbs": [
-      "Appendices",
-      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Corrections and changes</span>"
-    ]
-  },
-  {
-    "objectID": "A-errata.html#section-3.2.2",
-    "href": "A-errata.html#section-3.2.2",
-    "title": "Appendix A — Corrections and changes",
-    "section": "A.3 Section 3.2.2",
-    "text": "A.3 Section 3.2.2\n\nmgrid() explanation is moved to Chapter 5.",
-    "crumbs": [
-      "Appendices",
-      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Corrections and changes</span>"
-    ]
-  },
-  {
-    "objectID": "A-errata.html#section-4.3.1",
-    "href": "A-errata.html#section-4.3.1",
-    "title": "Appendix A — Corrections and changes",
-    "section": "A.4 Section 4.3.1",
-    "text": "A.4 Section 4.3.1\n\nCorrected the explanation of np.argsort().",
-    "crumbs": [
-      "Appendices",
-      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Corrections and changes</span>"
-    ]
-  },
-  {
-    "objectID": "A-errata.html#section-3.5",
-    "href": "A-errata.html#section-3.5",
-    "title": "Appendix A — Corrections and changes",
-    "section": "A.5 Section 3.5",
-    "text": "A.5 Section 3.5\n\nCorrected M_repeat = np.tile(M,3) by M_repeat = np.repeat(M,3)\nCorrected vstack(a,b) to vstack((a,b)).\nCorrected hstack(a,b) to hstack((a,b)).",
-    "crumbs": [
-      "Appendices",
-      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Corrections and changes</span>"
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Documentation in Spyder</span>"
     ]
   },
   {
@@ -530,10 +486,87 @@
     "href": "B-function-basics.html",
     "title": "Appendix B — Function basics",
     "section": "",
-    "text": "B.1 Output arguments\nSuppose we have a function that takes two inputs, and yields four outputs.\ndef f(a,b):\n    return a + b, a - b, a*b, a/b\n\na = 5\nb = 3\nThere are various ways to get one or more specific outputs from Python.\n# Returns all output variables in tuple\noutput = f(a,b)\n\nprint(output)\n\n(8, 2, 15, 1.6666666666666667)\n# Store outputs in variables w, x, y and z\nw, x, y, z = f(a,b)\n\nprint(w, x, y, z)\n\n8 2 15 1.6666666666666667\nWe can suppress one or more output arguments using _.\n# Only store first and last output\nw, _, _, z = f(a,b)\n\nprint(w, z)\n\n8 1.6666666666666667\nIf we only want the first output, and suppress the other ones, we can use *_\n# Only store first output\nx, *_ = f(a,b) # This is the same as x, _, _, _ = f(a,b)\n\nprint(x)\n\n8\nIf we only want the first two outputs, and suppress the remaining ones, we can do something similar.\n# Only store first output\nw, x, *_ = f(a,b) # This is the same as w, x, _, _ = f(a,b)\n\nprint(w,x)\n\n8 2\nIf we only want the last output, we can do the following.\n# Only store last output\n*_, z = f(a,b) # This is the same as _, _, _, z = f(a,b)\n\nprint(z)\n\n1.6666666666666667\nAlso here, if we would like the last two outputs, we can do the following.\n# Only store last output\n*_, y, z = f(a,b) # This is the same as _, _, y, z = f(a,b)\n\nprint(y,z)\n\n15 1.6666666666666667",
+    "text": "B.1 Input arguments\nConsider the function below.\ndef f(x,a,b,c):\n    return a*x**2 + b*x + c\nThere are various ways to execute this function for given input values. First of all, we can execute the function with positional input arguments.\ny = f(-1,2,1,3)\n\nprint(y)\n\n4\nIn the above function call, Python assigns the first input 1 to the first local variable x of f, the second input 2 to second local variable a, the third input 1 to local variable b, and the fourth input -3 to local variable c.\nAlternatively, we could also have inputted the numbers as keyword (or named)  input arguments, where we explicitly assign every input to its corresponding local variable of f.\ny = f(x=-1,a=2,b=1,c=3)\n\nprint(y)\n\n4\nThe advantage of the this approach is that the order in which we input the arguments does not matter. This can be useful if a function has many inputs, but you do not want to remember their (positional) ordering in f.\ny = f(a=2,c=3,b=1,x=-1)\n\nprint(y)\n\n4\nIt is also possible to use a mixture of positional and keyword arguments. If you do this, then the positional arguments should always come first, followed by the keyword arguments in any order you like.\nIf a function f has n input arguments, and you use k positional input arguments, then these are assigned to the first k local variables of your function. The remaining n - k keyword arguments should then refer to the the last n - k input arguments of f.\ny = f(-1,2,c=3,b=1) \n\n# Examples of what does not work\n# f(-1,c=3,2,b=1) \n# f(-1,2,a=3,b=1)\n\nprint(y)\n\n4\nFinally, it is also possible to input all arguments in a list (or array), which can then be unpacked in the function. Unpacking here means that the elements of the list are assigned to the individual local variables of the function.\nIf the input values are stored in a list called vars, then you can unpack them by using the argument *vars in the function.\n# Values of input arguments for function\nvars = [-1,2,1,3]\n\n# Unpack variables and assign to local variables in positional sense\ny = f(*vars)\n\n# Print function value\nprint(y)\n\n4",
     "crumbs": [
       "Appendices",
       "<span class='chapter-number'>B</span>  <span class='chapter-title'>Function basics</span>"
+    ]
+  },
+  {
+    "objectID": "B-function-basics.html#output-arguments",
+    "href": "B-function-basics.html#output-arguments",
+    "title": "Appendix B — Function basics",
+    "section": "B.2 Output arguments",
+    "text": "B.2 Output arguments\nSuppose we have a function that takes two inputs, and yields four outputs.\n\ndef f(a,b):\n    return a + b, a - b, a*b, a/b\n\na = 5\nb = 3\n\nThere are various ways to get one or more specific outputs from Python.\n\n# Returns all output variables in tuple\noutput = f(a,b)\n\nprint(output)\n\n(8, 2, 15, 1.6666666666666667)\n\n\n\n# Store outputs in variables w, x, y and z\nw, x, y, z = f(a,b)\n\nprint(w, x, y, z)\n\n8 2 15 1.6666666666666667\n\n\nWe can suppress one or more output arguments using _.\n\n# Only store first and last output\nw, _, _, z = f(a,b)\n\nprint(w, z)\n\n8 1.6666666666666667\n\n\nIf we only want the first output, and suppress the other ones, we can use *_\n\n# Only store first output\nx, *_ = f(a,b) # This is the same as x, _, _, _ = f(a,b)\n\nprint(x)\n\n8\n\n\nIf we only want the first two outputs, and suppress the remaining ones, we can do something similar.\n\n# Only store first output\nw, x, *_ = f(a,b) # This is the same as w, x, _, _ = f(a,b)\n\nprint(w,x)\n\n8 2\n\n\nIf we only want the last output, we can do the following.\n\n# Only store last output\n*_, z = f(a,b) # This is the same as _, _, _, z = f(a,b)\n\nprint(z)\n\n1.6666666666666667\n\n\nAlso here, if we would like the last two outputs, we can do the following.\n\n# Only store last output\n*_, y, z = f(a,b) # This is the same as _, _, y, z = f(a,b)\n\nprint(y,z)\n\n15 1.6666666666666667",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>B</span>  <span class='chapter-title'>Function basics</span>"
+    ]
+  },
+  {
+    "objectID": "C-errata.html",
+    "href": "C-errata.html",
+    "title": "Appendix C — Corrections and changes",
+    "section": "",
+    "text": "C.1 Chapter 11",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>C</span>  <span class='chapter-title'>Corrections and changes</span>"
+    ]
+  },
+  {
+    "objectID": "C-errata.html#chapter-11",
+    "href": "C-errata.html#chapter-11",
+    "title": "Appendix C — Corrections and changes",
+    "section": "",
+    "text": "The Itertools-section is now Section 11.2 (was Section 11.3 before).",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>C</span>  <span class='chapter-title'>Corrections and changes</span>"
+    ]
+  },
+  {
+    "objectID": "C-errata.html#section-8.2.1",
+    "href": "C-errata.html#section-8.2.1",
+    "title": "Appendix C — Corrections and changes",
+    "section": "C.2 Section 8.2.1",
+    "text": "C.2 Section 8.2.1\n\nAdded explanation of how to generate vectorized samples when multiple location-scale combinations are inputted.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>C</span>  <span class='chapter-title'>Corrections and changes</span>"
+    ]
+  },
+  {
+    "objectID": "C-errata.html#section-3.2.2",
+    "href": "C-errata.html#section-3.2.2",
+    "title": "Appendix C — Corrections and changes",
+    "section": "C.3 Section 3.2.2",
+    "text": "C.3 Section 3.2.2\n\nmgrid() explanation is moved to Chapter 5.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>C</span>  <span class='chapter-title'>Corrections and changes</span>"
+    ]
+  },
+  {
+    "objectID": "C-errata.html#section-4.3.1",
+    "href": "C-errata.html#section-4.3.1",
+    "title": "Appendix C — Corrections and changes",
+    "section": "C.4 Section 4.3.1",
+    "text": "C.4 Section 4.3.1\n\nCorrected the explanation of np.argsort().",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>C</span>  <span class='chapter-title'>Corrections and changes</span>"
+    ]
+  },
+  {
+    "objectID": "C-errata.html#section-3.5",
+    "href": "C-errata.html#section-3.5",
+    "title": "Appendix C — Corrections and changes",
+    "section": "C.5 Section 3.5",
+    "text": "C.5 Section 3.5\n\nCorrected M_repeat = np.tile(M,3) by M_repeat = np.repeat(M,3)\nCorrected vstack(a,b) to vstack((a,b)).\nCorrected hstack(a,b) to hstack((a,b)).",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>C</span>  <span class='chapter-title'>Corrections and changes</span>"
     ]
   }
 ]

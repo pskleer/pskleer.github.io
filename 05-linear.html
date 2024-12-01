@@ -310,7 +310,7 @@ window.Quarto = {
 <p>Linear algebra forms the basis of many statistical tasks like principle component analysis (PCA), which can be used to identify important properties/dimensions of large data sets. This typically makes, e.g., machine learning algorithms more efficient as this avoid the so-called curse of dimensionality.</p>
 <p>Applications of (integer) linear optimization range from scheduling, routing, transportation and food aid problems to solving Sudoku puzzles.</p>
 <p>Let us first again import NumPy. Later on we will also use its linear algebra package (or module) <code>linalg</code>.</p>
-<div id="cfa7d7ca" class="cell" data-execution_count="1">
+<div id="5e83a9c9" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="linear-algebra" class="level2" data-number="5.1">
@@ -342,7 +342,7 @@ a_{(m-1)0} \cdot  x_{m-1} &amp; a_{(m-1)1} \cdot  x_{m-1} &amp; \dots &amp; a_{(
 \end{matrix}
 \right]
 \end{align*}</span></p>
-<div id="ee961fdb" class="cell" data-execution_count="2">
+<div id="841cf570" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>,<span class="dv">2</span>],</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">3</span>,<span class="dv">4</span>]])</span>
@@ -390,7 +390,7 @@ a_{(m-1)0}x_0 + a_{(m-1)1}x_1 + \dots + a_{(m-1)(n-1)}x_{n-1}\\
 \right]
 \end{align*}</span></p>
 <p>This can be achieved in Python with the <code>@</code> (‘at’) operator, that is, by writing <code>A @ x</code> (the white spaces are not needed; they are included here for readability).</p>
-<div id="6c91ebe9" class="cell" data-execution_count="3">
+<div id="ac959f48" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'A = </span><span class="ch">\n</span><span class="st">'</span>, A)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'x = </span><span class="ch">\n</span><span class="st">'</span>, x)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -410,7 +410,7 @@ Ax =
 </div>
 <p>If we talk about matrix multiplication, it will always be clear from context whether we mean <code>A*x</code> or <code>A @ x</code>.</p>
 <p>We can also use <code>@</code> to multiply a <span class="math inline">k \times m</span> and <span class="math inline">m \times n</span> matrix with each other in the linear algebra sense.</p>
-<div id="b79ec12c" class="cell" data-execution_count="4">
+<div id="4144b9b6" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>,<span class="dv">2</span>],</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">3</span>,<span class="dv">4</span>],</span>
@@ -434,7 +434,7 @@ Ax =
 x = \left[\begin{matrix} x_0\\ x_1 \\ \vdots \\x_{n-1} \end{matrix} \right]
 </span></p>
 <p>with its transpose (being a row vector) resulting in a matrix that contains <span class="math inline">x_ix_j</span> on position <span class="math inline">(i,j)</span>.</p>
-<div id="558441ad" class="cell" data-execution_count="5">
+<div id="f88bd85f" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.array([</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>],</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">2</span>],</span>
@@ -462,33 +462,33 @@ x = \left[\begin{matrix} x_0\\ x_1 \\ \vdots \\x_{n-1} \end{matrix} \right]
 <p>We can access these function with the syntac <code>np.linalg.function_name(A)</code>.</p>
 <p>Finally, there is also the trace function <code>trace(A)</code> in NumPy that computes the trace of <span class="math inline">A</span>, i.e., the sum of the elements on the diagonal. This function is implemented directly in NumPy, so you don’t have to go to the subpackage <code>linalg</code> first.</p>
 <p>Let us look at some examples of these commands.</p>
-<div id="9de588c0" class="cell" data-execution_count="6">
+<div id="7e30d891" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>,<span class="dv">2</span>],</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">3</span>,<span class="dv">4</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="27dc6cc1" class="cell" data-execution_count="7">
+<div id="d2ad2b19" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Rank of A</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Rank of A: '</span>, np.linalg.matrix_rank(A))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rank of A:  2</code></pre>
 </div>
 </div>
-<div id="c9c9386b" class="cell" data-execution_count="8">
+<div id="8a6e0beb" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Determinant of A</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Determinant of A: '</span>, np.linalg.det(A))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Determinant of A:  -2.0000000000000004</code></pre>
 </div>
 </div>
-<div id="ea6a1ebf" class="cell" data-execution_count="9">
+<div id="2b8f31c9" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Trace of A</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Trace of A: '</span>, np.trace(A))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Trace of A:  5</code></pre>
 </div>
 </div>
-<div id="3beba864" class="cell" data-execution_count="10">
+<div id="e3a0e7cb" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Inverse of A</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Inverse of A: </span><span class="ch">\n</span><span class="st">'</span>, np.linalg.inv(A))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -499,7 +499,7 @@ x = \left[\begin{matrix} x_0\\ x_1 \\ \vdots \\x_{n-1} \end{matrix} \right]
 </div>
 <p>The function <code>linalg.eig()</code> is special in that it does not output one, but two arrays.</p>
 <p>The first array is one-dimensional and contains the eigenvalues <span class="math inline">[\lambda_0,\dots,\lambda_{n-1}]</span> of <span class="math inline">A</span>; the second array is two-dimensional, and contains the corresponding eigenvectors <span class="math inline">v^0,\dots,v^{n-1}</span> as columns of the matrix. The eigenvalues and eigenvectors are paired in the sense that <span class="math inline">Av^i = \lambda_iv^i</span> for <span class="math inline">i = 0,\dots,n-1</span>.</p>
-<div id="23cd7604" class="cell" data-execution_count="11">
+<div id="3b6c7cbe" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Eigenvalues and eigenvectors of A</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>lambdas, V <span class="op">=</span> np.linalg.eig(A)</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -514,7 +514,7 @@ Matrix with eigenvectors of A:
 </div>
 </div>
 <p>You can output only the eigenvalues or the eigenvectors by suppressing the other output argment with <code>_</code>.</p>
-<div id="f7e97099" class="cell" data-execution_count="12">
+<div id="79964952" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Only eigenvalues of A</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>lambdas, _ <span class="op">=</span> np.linalg.eig(A)</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -523,7 +523,7 @@ Matrix with eigenvectors of A:
 </div>
 <p>If you want to recall how you can handle multiple outputs, and suppress the ones that your are not interested, have a look at <a href="B-function-basics.html" class="quarto-xref"><span>Appendix B</span></a>.</p>
 <p>Let us check that the eigenvalues and eigenvectors indeed satsify <span class="math inline">Av^i = \lambda_iv^i</span> for <span class="math inline">i = 0,1</span>.</p>
-<div id="a2125ff0" class="cell" data-execution_count="13">
+<div id="8a9f8156" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>v0 <span class="op">=</span> V[:,<span class="dv">0</span>] </span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>v1 <span class="op">=</span> V[:,<span class="dv">1</span>]</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -543,7 +543,7 @@ Verify second eigenvector: [0. 0.]</code></pre>
 ||x||_{2} = \sqrt{\sum_{i=0}^{n-1} x_i^2 }.
 </span></p>
 <p>You can also use this function in a vectorized manner. For example, if you want to compute the <span class="math inline">L^2</span>-norm of every row in a matrix, you can use the <code>axis</code> keyword argument.</p>
-<div id="ee143ccc" class="cell" data-execution_count="14">
+<div id="6124c13a" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>,<span class="dv">2</span>],</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">3</span>,<span class="dv">4</span>],</span>
@@ -568,7 +568,7 @@ a_{(m-1)0}x_0 &amp;+&amp; a_{(m-1)1}x_1 &amp;+&amp; \dots &amp;+&amp; a_{(m-1)(n
 \end{array}.
 </span></p>
 <p>If <span class="math inline">A</span> is a square, invertible matrix then this can be done with <code>linalg.solve(A,b)</code>. This gives the unique solution <span class="math inline">x = A^{-1}b</span>.</p>
-<div id="6b116e59" class="cell" data-execution_count="15">
+<div id="1b5d20f6" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>[<span class="dv">1</span>,<span class="dv">2</span>],</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">3</span>,<span class="dv">4</span>]])</span>
@@ -583,7 +583,7 @@ a_{(m-1)0}x_0 &amp;+&amp; a_{(m-1)1}x_1 &amp;+&amp; \dots &amp;+&amp; a_{(m-1)(n
 </div>
 </div>
 <p>In fact, you can compute <span class="math inline">x</span> directly as <span class="math inline">x = A^{-1}b</span> using the inverse of <span class="math inline">A</span> that we have seen earlier.</p>
-<div id="34bc3d6c" class="cell" data-execution_count="16">
+<div id="751eb68e" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Solution to Ax = b: </span><span class="ch">\n</span><span class="st">'</span>, np.linalg.inv(A) <span class="op">@</span> b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Solution to Ax = b: 
@@ -596,7 +596,7 @@ a_{(m-1)0}x_0 &amp;+&amp; a_{(m-1)1}x_1 &amp;+&amp; \dots &amp;+&amp; a_{(m-1)(n
 </span> The least squares method can be executed with <code>linalg.lstsq(A,b)</code>; we will see this method in the next chapter, when we consider non-linear optimization problems. This function can also be used to solve underdetermined systems, where <span class="math inline">n &gt; m</span>.</p>
 <!--
 
-::: {#9e9c0487 .cell execution_count=17}
+::: {#b958b209 .cell execution_count=17}
 ``` {.python .cell-code}
 A = np.array([
 [1,2],
@@ -618,7 +618,7 @@ Least squares solution to Ax = b:
 
 ::: {.cell-output .cell-output-stderr}
 ```
-C:\Users\pskleer\AppData\Local\Temp\ipykernel_19412\1181936453.py:8: FutureWarning:
+C:\Users\pskleer\AppData\Local\Temp\ipykernel_7472\1181936453.py:8: FutureWarning:
 
 `rcond` parameter will change to the default of machine precision times ``max(M, N)`` where M and N are the input matrix dimensions.
 To use the future default and silence this warning we advise to pass `rcond=None`, to keep using the old, explicitly pass `rcond=-1`.
@@ -678,7 +678,7 @@ $$
 <h3 data-number="5.2.1" class="anchored" data-anchor-id="explicit-input-data"><span class="header-section-number">5.2.1</span> Explicit input data</h3>
 <p>If the input data is given explicitly, we can solve linear optimization problems quickly with the <code>linprog</code> function, which is part of the <code>optimize</code> package of <a href="https://scipy.org/">SciPy</a>. We will see more functionality of SciPy in later chapters of this book.</p>
 <p>We can import <code>linprog</code> as follows:</p>
-<div id="9713d2db" class="cell" data-execution_count="18">
+<div id="e6f9f144" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> linprog</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This package is suitable for solving problem of the general form above. We will implement the following example:</p>
@@ -694,7 +694,7 @@ $$
 </span></p>
 <p>Because <code>linprog</code> works with explicitly input data, we first define these. We define all the input data as NumPy arrays, but you can actually also use plain lists for this.</p>
 <p>Note that we multiply the objective function <span class="math inline">c</span> with <span class="math inline">-1</span>, so that our maximization problem turns into a minimization problem.</p>
-<div id="f84b646f" class="cell" data-execution_count="19">
+<div id="0b97cf38" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Define input data</span></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Coefficients of the objective function</span></span>
@@ -713,7 +713,7 @@ $$
 <span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> np.array([[<span class="fl">8.5</span>], [<span class="dv">6</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The bounds on <span class="math inline">x_i</span> have to be inputted as tuple <span class="math inline">(\ell_i,u_i)</span>. If the lower or upper bound is not present, meaning either <span class="math inline">\ell_i = -\infty</span> or <span class="math inline">u_i = + \infty</span>, you can replace the entry with <code>None</code>.</p>
-<div id="960e48cf" class="cell" data-execution_count="20">
+<div id="57c56008" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Bounds for the variables x1 and x2 (l = 0, u = infinity)</span></span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>x1_bounds <span class="op">=</span> (<span class="dv">0</span>, <span class="va">None</span>)  <span class="co"># x1 &gt;= 0</span></span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>x2_bounds <span class="op">=</span> (<span class="dv">0</span>, <span class="va">None</span>)  <span class="co"># x2 &gt;= 0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -728,7 +728,7 @@ $$
 <li><code>bounds</code> : List of tuples with each tuple having the upper and lower bound for the corresponding variable</li>
 </ul>
 <p>Note that <code>A_eq</code> and <code>b_eq</code> can be left out as input arguments if there are no equality constraints; the same holds for <code>A_ub</code> and <code>b_ub</code>.</p>
-<div id="d9fd3d1c" class="cell" data-execution_count="21">
+<div id="a35966ae" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Solve the linear programming problem</span></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="co"># (You can use \ to continue command on next line)</span></span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> linprog(c, A_eq<span class="op">=</span>A, b_eq<span class="op">=</span> b,  <span class="op">\</span></span>
@@ -740,7 +740,7 @@ $$
 <li><code>result.x</code> : The optimal solution <span class="math inline">x</span></li>
 <li><code>result.fun</code> : The function value attained by the the optimal solution.</li>
 </ul>
-<div id="a64bdca9" class="cell" data-execution_count="22">
+<div id="d2c12879" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Output the results</span></span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'The problem is solved by'</span>, result.x, <span class="op">\</span></span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>      <span class="st">'with objective function value'</span>, result.fun)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -749,7 +749,7 @@ $$
 </div>
 </div>
 <p>If we want to solution to be integral, we add the input argument <code>integrality=1</code>. See the <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.linprog.html">documentation</a> to read about this and to find more options.</p>
-<div id="f2164922" class="cell" data-execution_count="23">
+<div id="2c8129be" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Solve the integer linear optimization problem</span></span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="co"># (You can use \ to continue command on next line)</span></span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>result_integral <span class="op">=</span> linprog(c, A_eq<span class="op">=</span>A, b_eq<span class="op">=</span> b,  <span class="op">\</span></span>
@@ -765,7 +765,7 @@ $$
 </div>
 </div>
 <p>The complete code of this section can be found below.</p>
-<div id="bba4e32b" class="cell" data-execution_count="24">
+<div id="677863b7" class="cell" data-execution_count="24">
 <details class="code-fold">
 <summary>Show complete code for linear optimization with linprog</summary>
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -835,11 +835,11 @@ $$
 <p>In fact, the last conditions defining the decisions variables to be binary, are redundant: If we leave them out then the optimal solution that is found will satisfy them regardless (you might have seen this in a Combinatorial Optimization course). For now, we will ignore this mathematical fact, and define the decision variables as binary variables.</p>
 <p>Defining the constraint matrix explicitly is quite a hassle, and given that many of its entries are zero, it is not very efficient for Python to store it explicitly, so using <code>linprog</code> here is not very convenient.</p>
 <p>Instead, in this section we will use the <code>pulp</code> package to solve this problem.</p>
-<div id="0cbfe031" class="cell" data-execution_count="25">
+<div id="8bd72f51" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pulp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We create some input data (weights) for the problem that we are going to build.</p>
-<div id="7beb3882" class="cell" data-execution_count="26">
+<div id="b897da27" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Size of the node sets</span></span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">4</span></span>
 <span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -859,7 +859,7 @@ $$
 <li>Problem name: String variable</li>
 <li>Problem type: Maximization (<code>pulp.LpMaximize</code>), or minimization (<code>pulp.LpMinimize</code>).</li>
 </ul>
-<div id="fa7d2673" class="cell" data-execution_count="27">
+<div id="561e886d" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>prob <span class="op">=</span> pulp.LpProblem(<span class="st">"Weighted_Bipartite_Matching"</span>, pulp.LpMaximize)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>As opposed to <code>linprog</code> we need to explicitly instantiate the decision variables, so that we can use them later to add constraints to our problem.</p>
@@ -868,24 +868,24 @@ $$
 <li>Variable name: String being name of variable</li>
 <li>Variable category: Keyword argument <code>cat</code> being Binary, Integer or Continuous (default if <code>cat</code> is not specified).</li>
 </ul>
-<div id="3948504a" class="cell" data-execution_count="28">
+<div id="7318519f" class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>pulp.LpVariable(<span class="st">'y'</span>,cat<span class="op">=</span><span class="st">'Binary'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>To initiate our decision variables we need to loop over the indices <span class="math inline">i</span> and <span class="math inline">j</span>, which can be done as follows. Note that the syntax <code>f"y_{i}_{j}"</code> allows us to incorporate/format the loop indices <span class="math inline">i</span> and <span class="math inline">j</span> into the variable name (which is a string).</p>
-<div id="1e38d84e" class="cell" data-execution_count="29">
+<div id="f6d2edd9" class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.zeros((n,n), dtype<span class="op">=</span><span class="bu">object</span>) <span class="co"># Data type of variable is 'object'</span></span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(n):</span>
 <span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>        x[i,j] <span class="op">=</span> pulp.LpVariable(<span class="ss">f"x_</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">_</span><span class="sc">{</span>j<span class="sc">}</span><span class="ss">"</span>, cat<span class="op">=</span><span class="st">'Binary'</span>)      </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This can be done more compactly using list comprehension, which is a quick alternative for doing the for-loops explicitly. Avoiding for-loops altogether here is not possible, because variables cannot be generated in a vectorized manner if we want to give them all a separate name.</p>
-<div id="a353e9ae" class="cell" data-execution_count="30">
+<div id="ce294673" class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># With list comprehension</span></span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.array([[pulp.LpVariable(<span class="ss">f"x_</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">_</span><span class="sc">{</span>j<span class="sc">}</span><span class="ss">"</span>, cat<span class="op">=</span><span class="st">'Binary'</span>) <span class="op">\</span></span>
 <span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>               <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(n)] <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n)])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>In both cases we have created an <span class="math inline">n \times n</span> NumPy array whose elements are decision variables <span class="math inline">x_{ij}</span>.</p>
-<div id="64bcc94f" class="cell" data-execution_count="31">
+<div id="2c4f3714" class="cell" data-execution_count="31">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print names of decision variables</span></span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -902,11 +902,11 @@ $$
 \end{array}
 </span> Because both the weight matrix <code>w</code> and the decision variables <code>x</code> are stored in NumPy arrays, we can do a pointwise multiplication of these arrays, and sum up the elements of the resulting array, to get the objective.</p>
 <p>Summing up decision variables in arrays, in our case the array <code>w*x</code>, can be done using <code>lpSum()</code> within PuLP. To add the objective to the problem, and later constraints, we use the syntax <code>prob += [objective]</code> where <code>[objective]</code> contains the objective function expresssion in terms of the decision variables that we instantiated. You should think of the syntax <code>+=</code> as adding something to the instantiated problem <code>prob</code>.</p>
-<div id="341dae80" class="cell" data-execution_count="32">
+<div id="db2b5ce7" class="cell" data-execution_count="32">
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>prob <span class="op">+=</span> pulp.lpSum(w<span class="op">*</span>x)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Note that we write <code>lpSum()</code> and not <code>LpSum()</code> with a capital L. This has to do with the fact that <code>lpSum()</code> is a function, whereas <code>LpProblem</code> and <code>LpVariable</code> are classes (that have different naming conventions in Python modules).</p>
-<div id="4daf0c4a" class="cell" data-execution_count="33">
+<div id="a5936938" class="cell" data-execution_count="33">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print objective function</span></span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(prob.objective)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -920,7 +920,7 @@ $$
 &amp;\displaystyle  \sum_{j=0}^{n-1} x_{ij} &amp; = &amp;1 &amp; \text{for } i = 0,\dots,n-1
 \end{array}
 </span> to the problem, which can also be done with the <code>prob += [constraint]</code> syntax, where <code>[constraint]</code> is the constraint we want to add. We can add our constraints as follows.</p>
-<div id="66c93f21" class="cell" data-execution_count="34">
+<div id="5ba72170" class="cell" data-execution_count="34">
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(n):</span>
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>    prob <span class="op">+=</span> pulp.lpSum([x[i,j] <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n)]) <span class="op">==</span> <span class="dv">1</span></span>
 <span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>    </span>
@@ -928,7 +928,7 @@ $$
 <span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>    prob <span class="op">+=</span> pulp.lpSum([x[i,j] <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(n)]) <span class="op">==</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>To print the constraints, we need to realize that they are stored in an (ordered) dictionary. We can print the keys and values of this dictipnary as follows.</p>
-<div id="d3ea1489" class="cell" data-execution_count="35">
+<div id="c4fce5a7" class="cell" data-execution_count="35">
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print constraints</span></span>
 <span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> key, value <span class="kw">in</span> prob.constraints.items():</span>
 <span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>key<span class="sc">}</span><span class="ss">: </span><span class="sc">{</span>value<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -947,7 +947,7 @@ _C8: x_3_0 + x_3_1 + x_3_2 + x_3_3 = 1</code></pre>
 <p><b> Solving the problem.</b> We solve the problem with the <code>solve()</code> function.</p>
 <p>We can access the values of the objective function and the variables using <code>pulp.value()</code>. The objective function of the problem is stored in <code>prob.objective</code>, and so its value in the optimized model can be accessed with <code>pulp.value(prob.objective)</code>.</p>
 <p>We want to represent the optial matching nicely in a binary matrix. Unfortunately, printing the values of the optimized model is difficult to do without for-loops since the function <code>pulp.value(x[i,j])</code> that returns the value of variable <span class="math inline">x_{ij}</span> only works for numbers and not lists or arrays.</p>
-<div id="e41ce029" class="cell" data-execution_count="36">
+<div id="3fef305d" class="cell" data-execution_count="36">
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Solve the problem</span></span>
 <span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>prob.solve()</span>
 <span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -970,7 +970,7 @@ Optimal value of the objective function: 34.0</code></pre>
 </div>
 </div>
 <p>The complete code of this section can be found below.</p>
-<div id="b0092ba7" class="cell" data-execution_count="37">
+<div id="a9a97a82" class="cell" data-execution_count="37">
 <details class="code-fold">
 <summary>Show complete code for linear optimization with PuLp</summary>
 <div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pulp</span>

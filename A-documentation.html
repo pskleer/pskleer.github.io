@@ -87,6 +87,49 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="style.css">
 </head>
@@ -226,6 +269,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#inspecting-subpackages" id="toc-inspecting-subpackages" class="nav-link active" data-scroll-target="#inspecting-subpackages"><span class="header-section-number">A.1</span> Inspecting subpackages</a></li>
+  <li><a href="#other-methods" id="toc-other-methods" class="nav-link" data-scroll-target="#other-methods"><span class="header-section-number">A.2</span> Other methods</a></li>
   </ul>
 </nav>
     </div>
@@ -259,7 +303,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Right-click with your mouse on the selected function name;</li>
 <li>Choose “Inspect current object”.</li>
 </ol>
-<p>Instead of selecting the function name, you can also click with your cursor at the beginning of the function name. Furthermore, the keyboard shortcut <code>Ctrl+i</code> allows you to inspect the object directly, without right-clicking with the mouse.</p>
+<p>Instead of selecting the function name, you can also click with your cursor at the beginning of the function name. Furthermore, the keyboard shortcut <code>Ctrl</code><span class="math inline">+</span><code>i</code> allows you to inspect the object directly, without right-clicking with the mouse.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="figs/doc-example-1.png" class="img-fluid figure-img" style="width:100.0%"></p>
@@ -277,7 +321,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 <p>If you only load the subpackage, you might not be able to see the documentation. For example, trying to inspect <code>minimize()</code> by selecting <code>minimize</code> in the two codes below (in Spyder) might not work.</p>
-<div id="ea4d3b26" class="cell" data-execution_count="1">
+<div id="e8419a27" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x):</span>
@@ -286,7 +330,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>guess <span class="op">=</span> <span class="dv">1</span></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> scipy.optimize.minimize(f,x0<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="2d99eed9" class="cell" data-execution_count="2">
+<div id="68278a71" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.optimize</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x):</span>
@@ -300,6 +344,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <figure class="figure">
 <p><img src="figs/doc-example-3-sub.png" class="img-fluid figure-img" style="width:100.0%"></p>
 <figcaption>Inspect <code>gamma()</code> random variable object from SciPy’s <code>stats</code> module.</figcaption>
+</figure>
+</div>
+</section>
+<section id="other-methods" class="level2" data-number="A.2">
+<h2 data-number="A.2" class="anchored" data-anchor-id="other-methods"><span class="header-section-number">A.2</span> Other methods</h2>
+<p>If you cannot access the documentation of a function by inspecting it, you can also access the plain text of the documentation in the console. Do this by typing <code>?[function_of_interest]</code> where you replace <code>[function_of_interest]</code> by the function (of a subpackage) that you want to have the documentation of.</p>
+<p>For example, <code>?scipy.optimize.minimize</code> should give you the documentation of the <code>minimize()</code> function, as illustrated in the figure below. Note that if you want to leave the documentation in the console, you have to press “Q”, as indicated.</p>
+<p>It is recommended to first run your file (in which you imported a package) before you try to access its documentation in the console.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/doc-example-4-sub-console.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>Inspecting <code>scipy.optimize.minimize()</code> in console.</figcaption>
 </figure>
 </div>
 

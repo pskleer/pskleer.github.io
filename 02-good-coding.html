@@ -307,7 +307,7 @@ window.Quarto = {
 <p>Let us look at an example. Suppose I am given a vector <span class="math inline">x = [x_1,\dots,x_n] \in \mathbb{R}^n</span>, and I want to compute the <span class="math inline">L^2</span>-norm <span class="math display">
 ||x||_2 = \sqrt{\sum_{i=1}^n x_i^2}
 </span> of this vector. One way to solve this directly would be by using a for-loop to compute the sum inside the square root, and then take the square root of this number. We will illustrate this next for the vector <span class="math inline">x = [1,2,3,\dots,300.000]</span>.</p>
-<div id="474d7194" class="cell" data-execution_count="1">
+<div id="ecc3cee9" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Length of vector</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">300000</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -330,7 +330,7 @@ window.Quarto = {
 -->
 <p>Another way to do this is to define the vector <span class="math inline">x</span> efficiently making use of the <code>arange()</code> function in Numpy, followed by the <code>linalg.norm()</code> function that can compute the <span class="math inline">L^2</span>-norm for us directly. We will see these functions in more detail in a subsequent chapter.</p>
 <p>It is standard convention to import the Numpy package under the alias <code>np</code>.</p>
-<div id="14d90d28" class="cell" data-execution_count="2">
+<div id="5df5df61" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Import Numpy package under the alias np</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -350,7 +350,7 @@ window.Quarto = {
 </div>
 </div>
 <p>This is a much cleaner, and in fact faster, way to compute the <span class="math inline">L^2</span>-norm of the vector <span class="math inline">x</span>. Especially for large values of <span class="math inline">n</span>, the second piece of code that exploits the Numpy functionality can be much faster! The Python code below (which we will not discuss) illustrates this comparison by timing how long both approaches require to compute the norm for <span class="math inline">n = 30.000.000</span> (i.e., thirty million). If you run the code below on your own device, you might get different outputs, but, in general, there should be a significant (multiplicative) difference in execution time.</p>
-<div id="82f776bd" class="cell" data-execution_count="3">
+<div id="0096b40c" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code that times execution of the two approaches above</summary>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -407,12 +407,12 @@ window.Quarto = {
 <span id="cb5-52"><a href="#cb5-52" aria-hidden="true" tabindex="-1"></a>            <span class="op">%</span> ((loop_time)<span class="op">/</span>(numpy_time))))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>10.9519596100 seconds needed for computing norm with for-loop
-0.1450016499 seconds needed for computing norm with Numpy functions
-NumPy's is 75 times more efficient than for-loop approach.</code></pre>
+<pre><code>9.2670993805 seconds needed for computing norm with for-loop
+0.1326282024 seconds needed for computing norm with Numpy functions
+NumPy's is 69 times more efficient than for-loop approach.</code></pre>
 </div>
 </div>
-<p>One important take-away of the above comparison is the following.</p>
+<p>One important take-away of the above comparison is the following:</p>
 <!-- Would give nice latex box, but not in Quarto document
 
 ::: {.latex}
@@ -450,7 +450,7 @@ Test
 <section id="no-hard-coding" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="no-hard-coding"><span class="header-section-number">2.2</span> No hard coding</h2>
 <p>Suppose we are given the function <span class="math inline">f(x) = a \cdot x^2+ a\cdot b \cdot x - a \cdot b \cdot c</span> and the goal is to compute <span class="math inline">f(10)</span> for <span class="math inline">a = 3, b = 4</span> and <span class="math inline">c = -10</span>. One way of doing this would be to plug in all the variables and return the resulting function value.</p>
-<div id="05d1915d" class="cell" data-execution_count="4">
+<div id="163cb424" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Hard coding</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">3</span><span class="op">*</span>(<span class="dv">10</span><span class="op">**</span><span class="dv">2</span>) <span class="op">+</span> <span class="dv">3</span><span class="op">*</span><span class="dv">4</span><span class="op">*</span><span class="dv">10</span> <span class="op">+</span> <span class="dv">4</span><span class="op">*-</span><span class="dv">2</span><span class="op">*</span><span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -458,7 +458,7 @@ Test
 </div>
 </div>
 <p>However, this is inefficient for the following reason: If we would want to change the number <span class="math inline">x = 10</span> to, e.g., <span class="math inline">x = 20</span>, we would have to twice replace <span class="math inline">10</span> by <span class="math inline">20</span>. The same is true for the variable <span class="math inline">a</span>, which appears in even three places. In general, in large scripts, variables can appear in more than a hundred places. To overcome this inefficiency issue, it is always better to separate the input data (the <span class="math inline">x,a,b</span> and <span class="math inline">c</span> in this case) from the function execution</p>
-<div id="72045431" class="cell" data-execution_count="5">
+<div id="c49bee13" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># No hard coding</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x, a, b, c):</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> a<span class="op">*</span>x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> a<span class="op">*</span>b<span class="op">*</span>x <span class="op">+</span> b<span class="op">*</span>c<span class="op">*</span>a</span>
@@ -470,7 +470,7 @@ Test
 <pre><code>396</code></pre>
 </div>
 </div>
-<p>The take-away of the above comparison is the following.</p>
+<p>The take-away of the above comparison is the following:</p>
 <blockquote class="blockquote">
 <p><em>Separate input data from the execution of functions and commands.</em></p>
 </blockquote>
@@ -478,7 +478,7 @@ Test
 <section id="dont-repeat-yourself-dry" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="dont-repeat-yourself-dry"><span class="header-section-number">2.3</span> Don’t repeat yourself (DRY)</h2>
 <p>If you have to carry out a piece of code for multiple sets of input data, always avoid copy-pasting the code. As a first step, try to to the repeated execution using a for-loop. For example, suppose we want to print the function values <span class="math inline">f(x,3,4,-2)</span> for <span class="math inline">x = 1,2,3,4</span>, with <span class="math inline">f</span> as in the previous section. We can do this as follows.</p>
-<div id="b737439b" class="cell" data-execution_count="6">
+<div id="9afa0409" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x, a, b, c):</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> a<span class="op">*</span>x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> a<span class="op">*</span>b<span class="op">*</span>x <span class="op">+</span> b<span class="op">*</span>c<span class="op">*</span>a</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -501,7 +501,7 @@ Test
 </div>
 </div>
 <p>A more efficient way of typing this, is by using a for-loop that repeatedly executes the print statement.</p>
-<div id="ce02e3b2" class="cell" data-execution_count="7">
+<div id="1f8ba6cd" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>a, b, c <span class="op">=</span> <span class="dv">3</span>, <span class="dv">4</span>, <span class="op">-</span><span class="dv">2</span></span>
@@ -519,7 +519,7 @@ Test
 72</code></pre>
 </div>
 </div>
-<p>The take-away of the above comparison is the following.</p>
+<p>The take-away of the above comparison is the following:</p>
 <blockquote class="blockquote">
 <p><em>Don’t carry out the same task on different inputs twice by copy-pasting code, but use, e.g., a for-loop in which you iterate over the inputs.</em></p>
 </blockquote>
@@ -532,7 +532,7 @@ Test
 x_{i+1} = x_i - \frac{f(x_i)}{f'(x_i)}
 </span></p>
 <p>The goal is to implement this formula for the function <span class="math inline">f(x) = (x-1)^2 - 1</span>, whose derivative is <span class="math inline">f'(x) = 2(x-1)</span>. The roots of this function are <span class="math inline">x = 0</span> and <span class="math inline">x = 2</span>.</p>
-<div id="dc1fa24c" class="cell" data-execution_count="8">
+<div id="13b9d5dc" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We implement the function y = x - f(x)/f'(x)</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> y(x):</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x <span class="op">-</span> ((x<span class="op">-</span><span class="dv">1</span>)<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="dv">1</span>)<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>(x<span class="op">-</span><span class="dv">1</span>))</span>
@@ -546,7 +546,7 @@ x_{i+1} = x_i - \frac{f(x_i)}{f'(x_i)}
 </div>
 </div>
 <p>A clearer way to implement the formula <span class="math inline">x_{i+1} = x_i - f(x_i)/f'(x_i)</span> is to define separate functions for the evaluation of the functions <span class="math inline">f</span> and <span class="math inline">f'</span>, and then combine these to create the recursive formula. In this way, we get three functions that are each responsible for one aspect of Newton’s formula, namely implementing the function <span class="math inline">f</span>, implementing the function <span class="math inline">f'</span> and computing the recursive formula. This also makes it easier for a user of the code to understand what is happening.</p>
-<div id="24e667b4" class="cell" data-execution_count="9">
+<div id="1261f14d" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Single responsibility version</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Define f</span></span>
@@ -569,7 +569,7 @@ x_{i+1} = x_i - \frac{f(x_i)}{f'(x_i)}
 <pre><code>2.25</code></pre>
 </div>
 </div>
-<p>The take-away of the above comparison is the following.</p>
+<p>The take-away of the above comparison is the following:</p>
 <blockquote class="blockquote">
 <p><em>If you are implementing a complex mathematical task involving multiple aspects, try to separate these aspects in different functions.</em></p>
 </blockquote>
@@ -577,7 +577,7 @@ x_{i+1} = x_i - \frac{f(x_i)}{f'(x_i)}
 <section id="documentation" class="level2" data-number="2.5">
 <h2 data-number="2.5" class="anchored" data-anchor-id="documentation"><span class="header-section-number">2.5</span> Documentation</h2>
 <p>The final good coding practice that we discuss is documentation. Ideally, you should always explain inside a function what the inputs and outputs are, and for larger scripts it is good to indicate what every part of the script does. For smaller functions and scripts this is not always necessary. We will next give an example for Newton’s method as in the previous section</p>
-<div id="7e2e0a8c" class="cell" data-execution_count="10">
+<div id="e7fd9fae" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Function that implements Newton's method</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> newton(f,fprime,x0,iters):</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
@@ -634,7 +634,7 @@ x_{i+1} = x_i - \frac{f(x_i)}{f'(x_i)}
 </div>
 <p>The following is a set of guidelines regarding how to add documentation to a function.</p>
 <blockquote class="blockquote">
-<p><em>Try to adhere to the following documention rules when writing complex functions:</em> <br> 1. <em>Function documentation between triple double-quote characters.</em><br> 2. <em>Clearly describe what a function does and what its input and output arguments are.</em><br> 3. <em>Choose descriptive variable names, lines not longer than 80 characters.</em><br> 4. <em>Don’t add comments for every line. Add comments for main ideas and complex parts.</em> <br> 5. <em>A comment should not repeat the code as text (e.g.&nbsp;“time = time + 1 # increase time by one).</em></p>
+<p><em>Try to adhere to the following documention rules when writing complex functions:</em> <br> 1. <em>Function documentation between triple double-quote characters.</em><br> 2. <em>Clearly describe what a function does and what its input and output arguments are.</em><br> 3. <em>Choose descriptive variable names, lines not longer than 80 characters.</em><br> 4. <em>Don’t add comments for every line. Add comments for main ideas and complex parts.</em> <br> 5. <em>A comment should not repeat the code as text (e.g.&nbsp;<code>time = time + 1 # increase time by one</code>).</em></p>
 </blockquote>
 
 

@@ -2,23 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://pskleer.github.io/index.html</loc>
-    <lastmod>2024-11-30T11:31:21.752Z</lastmod>
+    <lastmod>2024-12-09T10:09:25.156Z</lastmod>
   </url>
   <url>
     <loc>https://pskleer.github.io/02-good-coding.html</loc>
-    <lastmod>2024-12-04T12:32:14.009Z</lastmod>
+    <lastmod>2024-12-09T09:50:47.566Z</lastmod>
   </url>
   <url>
     <loc>https://pskleer.github.io/03-numpy-arrays.html</loc>
-    <lastmod>2024-12-04T12:37:16.232Z</lastmod>
+    <lastmod>2024-12-09T10:00:52.827Z</lastmod>
   </url>
   <url>
     <loc>https://pskleer.github.io/04-vectorization.html</loc>
-    <lastmod>2024-12-04T12:50:04.769Z</lastmod>
+    <lastmod>2024-12-09T10:03:48.106Z</lastmod>
   </url>
   <url>
     <loc>https://pskleer.github.io/05-linear.html</loc>
-    <lastmod>2024-11-25T16:08:16.133Z</lastmod>
+    <lastmod>2024-12-09T10:11:31.278Z</lastmod>
   </url>
   <url>
     <loc>https://pskleer.github.io/06-nonlinear.html</loc>
@@ -58,6 +58,6 @@
   </url>
   <url>
     <loc>https://pskleer.github.io/Computational-Aspects-in-Econometrics---Python-II-module.pdf</loc>
-    <lastmod>2024-12-04T13:06:06.012Z</lastmod>
+    <lastmod>2024-12-09T10:19:59.648Z</lastmod>
   </url>
 </urlset>

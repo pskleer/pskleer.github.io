@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Computational Aspects in Econometrics 24/25 - Exam Solutions</title>
+<title>Computational Aspects in Econometrics 24/25 - Mock exam Solutions</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -122,7 +122,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Computational Aspects in Econometrics 24/25 - Exam Solutions</h1>
+<h1 class="title">Computational Aspects in Econometrics 24/25 - Mock exam Solutions</h1>
 </div>
 
 
@@ -140,11 +140,8 @@ window.Quarto = {
 
 
 <p><link rel="preconnect" href="https://fonts.googleapis.com"> <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""> <link href="https://fonts.googleapis.com/css2?family=Fira+Mono&amp;family=Fira+Sans&amp;display=swap" rel="stylesheet"></p>
-<section id="introduction" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="introduction">Introduction</h2>
-</section>
-<section id="block-3---python-ii" class="level2">
-<h2 class="anchored" data-anchor-id="block-3---python-ii">Block 3 - Python II</h2>
+<section id="python-ii-part-1" class="level2">
+<h2 class="anchored" data-anchor-id="python-ii-part-1">Python II (Part 1)</h2>
 <section id="question-1" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="question-1">Question 1</h3>
 <p>Given a number <span class="math inline">x</span> and a number <span class="math inline">t \in \mathbb{R}_{\geq 0}</span>, the truncation function <span class="math inline">f</span> is defined by <span class="math display">
@@ -157,7 +154,7 @@ t &amp; \text{ if } x \geq t
 \right.
 </span></p>
 <p>Write a function <code>f()</code> that takes as input a one-dimensional array <span class="math inline">x = [x_0,\dots,x_{n-1}] \in \mathbb{R}^n</span> and a number <span class="math inline">t \in \mathbb{R}_{\geq 0}</span>. It should output the one-dimensional array <span class="math inline">[f(x_0),\dots,f(x_{n-1})]</span>. Do not use for-loops, if- and while-statements.<br> <em>For <span class="math inline">x = [-10,-5,-3,0,4,6,9]</span> the output should be <span class="math inline">[-5, -5,-3,0,4,5,5]</span>.</em></p>
-<div id="63689af6" class="cell" data-execution_count="1">
+<div id="7cef5bce" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x,t):</span>
@@ -180,7 +177,7 @@ t &amp; \text{ if } x \geq t
 <li>The solution <span class="math inline">x</span> to the system <span class="math inline">Ax = b</span> (you may assume that <span class="math inline">A</span> is invertible, so that there is a unique solution).</li>
 </ul>
 <p>Do not use for-loops.<br> <em>For <span class="math inline">b = [-1,1,2]</span> and <span class="math inline">A = [[-5,4,9],[1,1,1],[2,1,4]]</span>, the output should be <span class="math inline">[-2,6,14]</span> and <span class="math inline">[0.625, 0.25, 0.125]</span>.</em></p>
-<div id="0eec9005" class="cell" data-execution_count="2">
+<div id="3943d2fb" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> quantities(b,A):</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    first <span class="op">=</span> np.<span class="bu">sum</span>(A,axis<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    second <span class="op">=</span> np.linalg.inv(A) <span class="op">@</span> b</span>
@@ -207,14 +204,14 @@ F_{\text{cond}}(x) = \frac{F(x) - F(a)}{F(b) - F(a)}
 <ol type="a">
 <li>Write a function <code>cond_distr()</code> that takes as input a continuous probability distribution (a <code>stats.rv_continuous</code> object), numbers <span class="math inline">a,b\in \R</span> with <span class="math inline">a &lt; b</span>, and <span class="math inline">x \in [a,b]</span>. It should output <span class="math inline">F_{\text{cond}}(x)</span>.</li>
 </ol>
-<div id="b56d1e80" class="cell" data-execution_count="3">
+<div id="b6f7161e" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> cond_distr(x,a,b,dist):</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (dist.cdf(x)<span class="op">-</span>dist.cdf(a))<span class="op">/</span>(dist.cdf(b)<span class="op">-</span>dist.cdf(a))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="2" type="a">
 <li>Test your function on an exponential distribution with scale parameter <span class="math inline">5</span>, <span class="math inline">a = 2</span>, <span class="math inline">b = 4</span> and <span class="math inline">x = 3.5</span>.<br> <em>The output should be roughly 0.79.</em></li>
 </ol>
-<div id="0de5b369" class="cell" data-execution_count="4">
+<div id="e2d3b411" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.stats <span class="im">as</span> stats</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>dist <span class="op">=</span> stats.expon(scale<span class="op">=</span><span class="dv">5</span>)</span>
@@ -230,7 +227,7 @@ F_{\text{cond}}(x) = \frac{F(x) - F(a)}{F(b) - F(a)}
 <ol start="3" type="a">
 <li>Let <span class="math inline">A</span> and <span class="math inline">B</span> be two given <span class="math inline">m \times n</span> arrays whose entries at position <span class="math inline">(i,j)</span> are denoted by <span class="math inline">a_{ij}</span> and <span class="math inline">b_{ij}</span> respectively for all <span class="math inline">i,j</span>. You may assume that <span class="math inline">a_{ij} &lt; b_{ij}</span> always.<br><br> Write a function <code>cond_plots()</code> that takes as input the arrays <span class="math inline">A</span> and <span class="math inline">B</span>, and a continuous probability distribution. It should output a figure with an <span class="math inline">m \times n</span> grid of subplots, where the subplot at position <span class="math inline">(i,j)</span> is the function <span class="math inline">F_{\text{cond}}(x)</span> plotted on the domain <span class="math inline">x \in [a_{ij},b_{ij}]</span> (i.e., the <span class="math inline">x</span>-axis ranges from <span class="math inline">a_{ij}</span> to <span class="math inline">b_{ij}</span>). It should have the interval range in the title of the subplot and appropriate <span class="math inline">x</span>- and <span class="math inline">y</span>-labels and ranges (see example below).<br><br> You are allowed to use for-loops. If you test your function on a halfnormal distribution with scale parameter <span class="math inline">4</span>, and arrays <span class="math inline">A = [[1,2,3],[4,5,6]]</span> and <span class="math inline">B = [[3,3,5],[10,8,17]]</span>, it should look like this:</li>
 </ol>
-<div id="d06114be" class="cell" data-execution_count="5">
+<div id="64fc01ed" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> cond_plots(A,B,dist):</span>
@@ -272,8 +269,8 @@ F_{\text{cond}}(x) = \frac{F(x) - F(a)}{F(b) - F(a)}
 </div>
 </section>
 </section>
-<section id="block-4---python-ii" class="level2">
-<h2 class="anchored" data-anchor-id="block-4---python-ii">Block 4 - Python II</h2>
+<section id="python-ii-part-2" class="level2">
+<h2 class="anchored" data-anchor-id="python-ii-part-2">Python II (Part 2)</h2>
 <p>For given one-dimensional arrays <span class="math inline">a = [a_0,\dots,a_{n-1}], b = [b_0,\dots,b_{n-1}] \in \mathbb{R}^n</span>, consider the function <span class="math inline">f : \mathbb{R}^n \rightarrow \mathbb{R}</span> defined by <span class="math display">
 f_{a,b}(x_0,\dots,x_{n-1}) = \prod_{i=0}^{n-1} \sin(a_ix_i + b_i)
 </span> As an example, for <span class="math inline">n = 3</span>, we get a product of three sine functions as follows: <span class="math display">
@@ -282,7 +279,7 @@ f_{a,b}(x_0,x_1,x_2) = \sin(a_0x_0 + b_0)\sin(a_1x_1 + b_1)\sin(a_2x_2 + b_2).
 <ol type="a">
 <li>Write a function <code>f()</code> that takes as input one-dimensional arrays <span class="math inline">x,a,b \in \mathbb{R}^n</span> and outputs the function value <span class="math inline">f_{a,b}(x_0,\dots,x_{n-1})</span>. Do not use for-loops, if- and while statements in your solution. <br> <em>For <span class="math inline">x = [1,2,3]</span>, <span class="math inline">a = [1,3,5]</span> and <span class="math inline">b = [3,5,6]</span> the output should be roughly <span class="math inline">0.63</span>.</em></li>
 </ol>
-<div id="08ff10c6" class="cell" data-execution_count="6">
+<div id="124823fc" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x,a,b):</span>
@@ -300,7 +297,7 @@ f_{a,b}(x_0,x_1,x_2) = \sin(a_0x_0 + b_0)\sin(a_1x_1 + b_1)\sin(a_2x_2 + b_2).
 <ol start="2" type="a">
 <li>Write a function <code>best_minimum()</code> that takes as input arrays <span class="math inline">a,b \in \mathbb{R}^n</span> and a two-dimensional array <span class="math inline">q \in \mathbb{R}^{k \times n}</span>. It should run the function <code>minimize()</code> from SciPy’s <code>optimize</code> module <span class="math inline">k</span> times, where every run uses one of the rows of <span class="math inline">q</span> as initial guess. The function should output the best found minimizer, and its function value, over the <span class="math inline">k</span> runs.</li>
 </ol>
-<div id="5a6c2fbb" class="cell" data-execution_count="7">
+<div id="c37f5e2d" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> optimize</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> best_minimum(a,b,q):</span>
@@ -316,7 +313,7 @@ f_{a,b}(x_0,x_1,x_2) = \sin(a_0x_0 + b_0)\sin(a_1x_1 + b_1)\sin(a_2x_2 + b_2).
 <ol start="3" type="a">
 <li>Create the <span class="math inline">10 \times 2</span> array <span class="math inline">q = [[0,0],[2,0],[4,0],[6,0],[8,0],[10,0],[12,0],[14,0],[16,0],[18,0]]</span> using appropriate Numpy functions (i.e., do not hard-code it), and take <span class="math inline">a = [1,1], b = [2,3]</span>.<br><br> Test your function from the previous question and print a line of the form <em>“The best minimizer found is [first_output] with objective value [second_output].”</em> with [first_output] and [second_output] replaced by the outputs of <code>best_minimum()</code>.<br><br> If your function works correctly, the output should be <code>The best found minimizer of the function f is given by [-0.42920367  7.99557428] and has objective value -1.0</code></li>
 </ol>
-<div id="0f20f373" class="cell" data-execution_count="8">
+<div id="dd5185f5" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Creating initial estimates matrix</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>g1 <span class="op">=</span> np.zeros(<span class="dv">10</span>)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>g2 <span class="op">=</span> np.arange(<span class="dv">0</span>,<span class="dv">19</span>,<span class="dv">2</span>)</span>

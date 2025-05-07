@@ -1,0 +1,172 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Gurobi tutorials for JBM035",
+    "section": "",
+    "text": "Installation\nIn this online course document we will use Gurobi to solve linear optimization problems via Python. In this chapter we outline the steps to install Gurobi.\nIt is assumed that you already have Python installed on your system. Otherwise, you need to install Python first. The Anaconda distribution is a good choice. If you get stuck anywhere in the installation process, then you can find more information on Gurobi’s Quick Start Guide.",
+    "crumbs": [
+      "Installation"
+    ]
+  },
+  {
+    "objectID": "index.html#register-at-gurobi",
+    "href": "index.html#register-at-gurobi",
+    "title": "Gurobi tutorials for JBM035",
+    "section": "Register at Gurobi",
+    "text": "Register at Gurobi\nVisit the Gurobi website and click on the register button. Open the registration form and make sure that you select the Academic account type, and select Student for the academic position.",
+    "crumbs": [
+      "Installation"
+    ]
+  },
+  {
+    "objectID": "index.html#download-gurobi",
+    "href": "index.html#download-gurobi",
+    "title": "Gurobi tutorials for JBM035",
+    "section": "Download Gurobi",
+    "text": "Download Gurobi\nDownload Gurobi from the website. Note that you need to login with your Gurobi account before you can download Gurobi. Select the distribution that corresponds to your system (e.g., Windows or macOS), and select the regular “Gurobi Optimizer”, not any of the AMPL variations. Unless mentioned otherwise, download the most recent version.",
+    "crumbs": [
+      "Installation"
+    ]
+  },
+  {
+    "objectID": "index.html#install-gurobi",
+    "href": "index.html#install-gurobi",
+    "title": "Gurobi tutorials for JBM035",
+    "section": "Install Gurobi",
+    "text": "Install Gurobi\nRun the installer and follow the installation steps. At some point, the installer may ask whether to add Gurobi to your execution path. This is probably useful to accept.",
+    "crumbs": [
+      "Installation"
+    ]
+  },
+  {
+    "objectID": "index.html#gurobi-license",
+    "href": "index.html#gurobi-license",
+    "title": "Gurobi tutorials for JBM035",
+    "section": "Gurobi license",
+    "text": "Gurobi license\nYou cannot use Gurobi without a license, so you need to apply for a license. As a student you can request a free academic license; take the Named-User Academic one. After you have obtained the license, you need to activate it for your Gurobi installation. If you open the license details on the Gurobi website, you can see what you need to do: open a command prompt and run the grbgetkey command with the code that corresponds to your license. This command will create your license file. Make sure that you remember where the license file is saved. The default location is probably the best choice.\nNote that the grbgetkey command will check that you are on an academic domain, so you need to perform this step on the university network (possibly via a VPN connection). Once installed correctly, you can also run Gurobi without an active VPN connection.",
+    "crumbs": [
+      "Installation"
+    ]
+  },
+  {
+    "objectID": "index.html#install-the-python-api",
+    "href": "index.html#install-the-python-api",
+    "title": "Gurobi tutorials for JBM035",
+    "section": "Install the Python API",
+    "text": "Install the Python API\nGurobi should now be correctly installed, but we also want to be able to use it from Python. Therefore, we need to install Gurobi’s Python package. Open your Anaconda prompt (if you have the Anaconda installation) and run the following commands.\n\nconda config --add channels http://conda.anaconda.org/gurobi\nconda install gurobi\n\nIf you don’t have the Anaconda installation, then you can do something similar with the pip command.",
+    "crumbs": [
+      "Installation"
+    ]
+  },
+  {
+    "objectID": "index.html#test-your-installation",
+    "href": "index.html#test-your-installation",
+    "title": "Gurobi tutorials for JBM035",
+    "section": "Test your installation",
+    "text": "Test your installation\nNow you can test whether everything is setup correctly. Open an interactive Python session, for instance using Jupyter Notebook. Try the following commands:\n\nfrom gurobipy import Model\nmodel = Model()\n\nIf both these commands succeed, then you are done.\nIf the first command fails, then the Gurobi python module has not been installed correctly. If the second command fails, then the license has not been setup correctly (make sure the license file is at the right location).",
+    "crumbs": [
+      "Installation"
+    ]
+  },
+  {
+    "objectID": "1-basics.html",
+    "href": "1-basics.html",
+    "title": "1  Basics",
+    "section": "",
+    "text": "1.1 Gurobi module\nIf you look at the examples in the Gurobi documentation, then you will notice that the Gurobi is loaded in the global namespace:\nfrom gurobipy import *\nHowever, I would not recommend this, but instead make exactly clear what objects and functions we are using from the Gurobi module. Usually we need only a few objects and/or functions. The object that we will always need is the Model, so let’s import that. Additionally, we will import GRB, which contains a collection of constants that we occassionally need.\nfrom gurobipy import Model, GRB",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Basics</span>"
+    ]
+  },
+  {
+    "objectID": "1-basics.html#example-duplo-problem",
+    "href": "1-basics.html#example-duplo-problem",
+    "title": "1  Basics",
+    "section": "1.2 Example: Duplo problem",
+    "text": "1.2 Example: Duplo problem\nRecall the Duplo problem from the lectures: \n\\begin{array}{llll}\n\\text{maximize}& 15x_1 + 20x_2 && \\text{(profit)} \\\\\n\\text{subject to} &x_1 + 2x_2 \\leq 6 &&\\text{(big bricks)} \\\\\n&2x_1 + 2x_2 \\leq 8 &&\\text{(small bricks)} \\\\\n&x_1, x_2 \\geq 0\n\\end{array}\n with\n\nx_1: number of chairs\nx_2: number of tables\n\nNow let’s implement the Duplo problem in Gurobi.\n\n# Initialize Gurobi model.\nmodel = Model('Duplo problem')\n\nNext, we need to declare the variables. We can do this with the addVar method, which creates a Var object. Below you can see the addVar documentation. By default Gurobi assumes that a variable is continuous and non-negative, so we don’t have to specify the lb (lower bound), ub (upper bound), and vtype arguments. It it usefull to add a name as we will see later.\n\nhelp(Model.addVar)\n\n\n    ROUTINE:\n      addVar(lb, ub, obj, vtype, name, column)\n\n    PURPOSE:\n      Add a variable to the model.\n\n    ARGUMENTS:\n      lb (float): Lower bound (default is zero)\n      ub (float): Upper bound (default is infinite)\n      obj (float): Objective coefficient (default is zero)\n      vtype (string): Variable type (default is GRB.CONTINUOUS)\n      name (string): Variable name (default is no name)\n      column (Column): Initial coefficients for column (default is None)\n\n    RETURN VALUE:\n      The created Var object.\n\n    EXAMPLE:\n      v = model.addVar(ub=2.0, name=\"NewVar\")\n    \n\n\n\n# Declare the two decision variables.\nx1 = model.addVar(name='chairs')\nx2 = model.addVar(name='tables')\n\nNote that we also didn’t use the obj argument to specify the objective coefficients. We use the setObjective method to do so by refering to the variables created above. The sense argument must be used to specify whether we want to maximize or minimize the objective function. For this, we use GRB.MAXIMIZE or GRB.MINIMIZE, respectively.\n\n# Specifiy the objective function.\nmodel.setObjective(15*x1 + 20*x2, sense=GRB.MAXIMIZE)\n\nThe next step is to declare the constraints using the addConstr method. Again we can specify the constraint using the variables, and we give the constraint a name as well.\n\n# Add the resource constraints on bricks.\nc1 = model.addConstr(x1 + 2*x2 &lt;= 6, name='big-bricks')\nc2 = model.addConstr(2*x1 + 2*x2 &lt;= 8, name='small-bricks')\n\n\n1.2.1 Export model to text file\nOptionally, you can save your model in various formats, which allow you to inspect your model or export it to other solvers and/or modeling languages. One of these formats is the LP format. In the output, you can see the names we have used to declare the variables and constraints of the model.\n\n# Save model as text file.\nmodel.write('duplo.lp')\n\n\n# Show file contents.\nprint(open('duplo.lp').read())\n\n\\ Model Duplo problem\n\\ LP format - for model browsing. Use MPS format to capture full model detail.\nMaximize\n  15 chairs + 20 tables\nSubject To\n big-bricks: chairs + 2 tables &lt;= 6\n small-bricks: 2 chairs + 2 tables &lt;= 8\nBounds\nEnd\n\n\n\n\n\n1.2.2 Optimizing the model\nNow the model is completely specified, we are ready to compute the optimal solution.\n\nmodel.optimize()\n\nGurobi Optimizer version 10.0.1 build v10.0.1rc0 (win64)\n\nCPU model: Intel(R) Core(TM) i7-10510U CPU @ 1.80GHz, instruction set [SSE2|AVX|AVX2]\nThread count: 4 physical cores, 8 logical processors, using up to 8 threads\n\nOptimize a model with 2 rows, 2 columns and 4 nonzeros\nModel fingerprint: 0xadc88607\nCoefficient statistics:\n  Matrix range     [1e+00, 2e+00]\n  Objective range  [2e+01, 2e+01]\n  Bounds range     [0e+00, 0e+00]\n  RHS range        [6e+00, 8e+00]\nPresolve time: 0.01s\nPresolved: 2 rows, 2 columns, 4 nonzeros\n\nIteration    Objective       Primal Inf.    Dual Inf.      Time\n       0    3.5000000e+31   3.500000e+30   3.500000e+01      0s\n       2    7.0000000e+01   0.000000e+00   0.000000e+00      0s\n\nSolved in 2 iterations and 0.01 seconds (0.00 work units)\nOptimal objective  7.000000000e+01\n\n\nWe can see some output from Gurobi, and the last line tells us that Gurobi found an optimal solution with objective value 70. We can also access the objective value using the ObjVal attribute.\n\nprint('Objective value:', model.ObjVal)\n\nObjective value: 70.0\n\n\nNow, what is the optimal solution? We can obtain it by accessing the X attribute from the variables.\n\nprint('x1 = ', x1.X)\nprint('x2 = ', x2.X)\n\nx1 =  2.0\nx2 =  2.0\n\n\nIf the model has many variables, this is a cumbersome approach, and it’s easier to iterate over all variables of the model using the getVars method.\n\nfor var in model.getVars():\n    print(f'{var.VarName} = {var.X}')\n\nchairs = 2.0\ntables = 2.0\n\n\n\n\n\n\n\n\nExercise 1\n\n\n\nImplement the Médecins sans Frontières (MSF) example, about building medical kits, from the slides of Lecture 1-2:\n\n\\begin{array}{lrrrrrrl}\n\\max & z  = & x_{1} &+ &x_{2} & & & \\ \\ \\ \\textit{total number of kits}\\\\\n\\text{s.t. } & & 250x_1 &+ & 100x_2& \\leq & 3700 & \\ \\ \\ \\textit{budget constraint}\\\\\n&& 5x_1 &+ & 3x_2& \\leq & 80 & \\ \\ \\ \\textit{labor hours constraint}\\\\  \n  && & & x_2& \\leq & 15 & \\ \\ \\ \\textit{at most $15$ vac. kits}\\\\  \n& &x_1, & & x_2  & \\geq & 0 & \\ \\ \\ \\textit{nonneg. constraints}\n\\end{array}\n\n\n\n\n\n\n\n\n\nExercise 2\n\n\n\nImplement the Transportation problem example from the slides of Lecture 1-2:\n\n\\begin{array}{rll}\n\\min & \\displaystyle  131x_{11} + 405x_{12} + 188x_{13} + 396x_{14} + 485x_{15} +   \\\\\n&  554x_{21} + 351x_{22} + 479x_{23} + 366x_{24} + 155x_{25}   & \\\\\n{\\rm s.t.} & \\displaystyle   x_{11} + x_{12} + x_{13} + x_{14} + x_{15} \\leq   47 & \\textit{supply  Haarlem}\\\\  \n& \\displaystyle   x_{21} + x_{22} + x_{23} + x_{24} + x_{25}  \\leq  63 & \\textit{supply Eindhoven} \\\\  \n& \\displaystyle   x_{11} + x_{21} \\geq 28 & \\textit{demand A'dam} \\\\  \n& \\displaystyle   x_{12} + x_{22} \\geq 16 & \\textit{demand Breda} \\\\  \n& \\displaystyle   x_{13} + x_{23} \\geq 22 & \\textit{demand Gouda} \\\\  \n& \\displaystyle   x_{14} + x_{24} \\geq 31 & \\textit{demand A'foort} \\\\  \n& \\displaystyle   x_{15} + x_{25} \\geq 12 & \\textit{demand Den Bosch} \\\\  \n& x_{11}, x_{12}, x_{13},x_{14},x_{15},x_{21},x_{22},x_{23},x_{24},x_{25} \\geq 0  &   \\textit{ship nonneg. amounts}\n\\end{array}",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Basics</span>"
+    ]
+  },
+  {
+    "objectID": "1-basics.html#slack-variables",
+    "href": "1-basics.html#slack-variables",
+    "title": "1  Basics",
+    "section": "1.3 Slack variables",
+    "text": "1.3 Slack variables\nAn alternative is to collect the solution in a Python dictionary.\n\nsolution = {var.VarName: var.X for var in model.getVars()}\nsolution\n\n{'chairs': 2.0, 'tables': 2.0}\n\n\nWhat about the constraints? One thing we might want to check are the values of slack variables (Lecture 2). Note that behind the scenes, Gurobi has transformed the model to standard form by adding slack variables:\n\n\\begin{array}{llll}\nx_1 + 2x_2 + s_1 &= 6 &&\\text{ (big bricks)} \\\\\n2x_1 + 2x_2 + s_2 &= 8 &&\\text{ (small bricks)}\n\\end{array}\n\nBelow we can check that the slacks of both constraints are zero, from which we can conclude the constraints are binding (active), because the slacks are both zero.\n\nc1.slack, c2.slack\n\n(0.0, 0.0)\n\n\nInstead of using our constraint references c1 and c2, we can also iterate over all constraints using the getConstrs method:\n\n{cons.ConstrName: cons.slack for cons in model.getConstrs()}\n\n{'big-bricks': 0.0, 'small-bricks': 0.0}",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Basics</span>"
+    ]
+  },
+  {
+    "objectID": "1-basics.html#infeasible-models",
+    "href": "1-basics.html#infeasible-models",
+    "title": "1  Basics",
+    "section": "1.4 Infeasible models",
+    "text": "1.4 Infeasible models\nWe already knew that the Duplo problem had an optimal solution, but sometimes a model can be infeasible or unbounded as well, as we saw in Lecture 3. The status attribute contains information about the outcome of the solution process.\n\nmodel.Status\n\n2\n\n\nThe result is 2, which is quite unmeaningful. Below is a list of status codes. Hence, status code 2 means Gurobi has found an optimal solution. For more information, you can check their meaning online.\n 1: LOADED\n 2: OPTIMAL\n 3: INFEASIBLE\n 4: INF_OR_UNBD\n 5: UNBOUNDED\n 6: CUTOFF\n 7: ITERATION_LIMIT\n 8: NODE_LIMIT\n 9: TIME_LIMIT\n10: SOLUTION_LIMIT\n11: INTERRUPTED\n12: NUMERIC\n13: SUBOPTIMAL\n14: INPROGRESS\n15: USER_OBJ_LIMIT\nIn your code, it might be useful to use a line such as:\n\nif model.Status == GRB.OPTIMAL:\n    print('We found an optimal solution.')\nelse:\n    print('An optimal solution could not be found.')\n    print('Status code:', model.Status)\n\nWe found an optimal solution.\n\n\nLet’s add a constraint that requires us to produce at least 10 chairs, which is impossible with the current resources.\n\nc3 = model.addConstr(x1 &gt;= 10, name='ten-chairs')\n\nmodel.optimize()\n\nGurobi Optimizer version 10.0.1 build v10.0.1rc0 (win64)\n\nCPU model: Intel(R) Core(TM) i7-10510U CPU @ 1.80GHz, instruction set [SSE2|AVX|AVX2]\nThread count: 4 physical cores, 8 logical processors, using up to 8 threads\n\nOptimize a model with 3 rows, 2 columns and 5 nonzeros\nCoefficient statistics:\n  Matrix range     [1e+00, 2e+00]\n  Objective range  [2e+01, 2e+01]\n  Bounds range     [0e+00, 0e+00]\n  RHS range        [6e+00, 1e+01]\nIteration    Objective       Primal Inf.    Dual Inf.      Time\n       0    7.0000000e+01   8.000000e+00   0.000000e+00      0s\n\nSolved in 1 iterations and 0.01 seconds (0.00 work units)\nInfeasible model\n\n\n\nif model.Status == GRB.OPTIMAL:\n    print('We found an optimal solution.')\nelse:\n    print('An optimal solution could not be found.')\n    print('Status code:', model.Status)\n\nAn optimal solution could not be found.\nStatus code: 3\n\n\nIf we don’t add a check about the model status, and just implement the solution, then weird things can happen. Below you can see that we can access the X attributes of the variables, but corresponding solution is infeasible.\n\nfor var in model.getVars():\n    print(f'{var.VarName} = {var.X}')\n\nchairs = 10.0\ntables = -6.0",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Basics</span>"
+    ]
+  },
+  {
+    "objectID": "2-beyond-the-basics.html",
+    "href": "2-beyond-the-basics.html",
+    "title": "2  Beyond the basics",
+    "section": "",
+    "text": "2.1 Oil refinery problem\nRecall the oil refinery problem from the exercises of Lecture 11. Below we present its model formulation. Although in the Oil Refinery problem we only have three processes, two crudes and two products, we write the formulation down in a general form that can also be used in case there are more processes, crudes and/or products.\nSets and indices:\nParameters:\nVariables:",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Beyond the basics</span>"
+    ]
+  },
+  {
+    "objectID": "2-beyond-the-basics.html#oil-refinery-problem",
+    "href": "2-beyond-the-basics.html#oil-refinery-problem",
+    "title": "2  Beyond the basics",
+    "section": "",
+    "text": "Processes (1,2,3): index j\nCrudes inputs (A,B): index i\nProducts (gasoline, heating oil): index k\n\n\n\nc_j: cost of process j (euro/unit)\na_{ij}: number of barrels input i needed per unit of process j\nb_i: number of barrels of input crude i available (in millions)\nr_{kj}: number of barrels output product k per unit of process j (in millions)\np_k: sales price product k (euro/barrel)\n\n\n\nx_j: number of times (in millions) proces j is used\n\n\n2.1.1 LP model\nIn this section we describe the objective function and constraints of the problem.\nObjective: Our objective is the profit, which is the sales minus production costs:\n\nSales: \\sum_k p_k \\sum_j r_{kj} x_j\nCosts: \\sum_j c_j x_j\n\nConstraints: We cannot use more input barrels than available: \n\\sum_j a_{ij} x_j \\leq b_i \\qquad \\forall i,\n and of course we have the non-negativity constraints.\nAltogether, this leads to the following LOP: \n\\begin{array}{lll}\n\\text{Maximize} & \\displaystyle \\sum_k p_k \\sum_j r_{kj} x_j - \\sum_j c_j x_j  &\\\\\n\\text{subject to} & \\displaystyle \\sum_j a_{ij} x_j \\leq b_i & \\forall i = A,B \\\\\n& x_j \\geq 0 & \\forall j = 1,2,3\n\\end{array}\n\n\n\n2.1.2 Input data\nAll model parameters are related to the three sets processes, crudes, and products. We assume that this data is available as standard Python dictionaries. For larger models, data often has to be imported from data files in formats such as CSV, JSON, or Excel. Here, we will just define the data in Python.\n\n#Cost of process i = 1,2,3\ncosts = {\n    'process-1': 51,\n    'process-2': 11,\n    'process-3': 40,\n}\n\n#Amount of crude j = A,B needed for process i = 1,2,3\ninputs = {\n    ('crude A', 'process-1'): 3,\n    ('crude A', 'process-2'): 1,\n    ('crude A', 'process-3'): 5,\n    ('crude B', 'process-1'): 5,\n    ('crude B', 'process-2'): 1,\n    ('crude B', 'process-3'): 3,\n}\n\n#Amount of product k = gas,oil coming out of process i = 1,2,3\noutputs = {\n    ('gasoline', 'process-1'): 4,\n    ('gasoline', 'process-2'): 1,\n    ('gasoline', 'process-3'): 3,\n    ('heating oil', 'process-1'): 3,\n    ('heating oil', 'process-2'): 1,\n    ('heating oil', 'process-3'): 4,\n}\n\n#Available amount of crude j = A,B\nresources = {\n    'crude A': 8,\n    'crude B': 5,\n}\n\n#Profit/sale price per product unit k = gas, oil\nsales_price = {\n    'gasoline': 38,\n    'heating oil': 33,\n}\n\nThe three sets (process, crudes, and products) can be obtained from the dictionary keys. This results in a dict_keys object.\n\n# Obtain the sets from the dictionary keys.\nprocesses = costs.keys()\ncrudes = resources.keys()\nproducts = sales_price.keys()\n\nprint('Processes:', processes)\nprint('Crudes:', crudes)\nprint('Products:', products)\n\nProcesses: dict_keys(['process-1', 'process-2', 'process-3'])\nCrudes: dict_keys(['crude A', 'crude B'])\nProducts: dict_keys(['gasoline', 'heating oil'])\n\n\nOne can convert a dict_keys object to, e.g., a list.\n\ncrudes_list = list(crudes)\nprint('First crude is', crudes_list[0], 'and second crude is', crudes_list[1], '.')\n\nFirst crude is crude A and second crude is crude B .",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Beyond the basics</span>"
+    ]
+  },
+  {
+    "objectID": "2-beyond-the-basics.html#gurobi-model",
+    "href": "2-beyond-the-basics.html#gurobi-model",
+    "title": "2  Beyond the basics",
+    "section": "2.2 Gurobi model",
+    "text": "2.2 Gurobi model\nNow we are ready to declare the Gurobi model. First, we have to import some objects from the Gurobi module.\n\nfrom gurobipy import Model, GRB, quicksum\n\n\nmodel = Model('Oil refinery')\n\n\n2.2.1 Decision variables\nOne possibility is to add the variables one by one, which we could do by iterating over the processes (i.e., process-1, process-2 and process-3).\n\nx = {}\nfor j in processes:\n    x[j] = model.addVar(name=j)\n\nHowever, we can create all variables at once, using the addVars method of the Model object.\n\nx = model.addVars(processes, name='process')\n\n\nx\n\n{'process-1': &lt;gurobi.Var *Awaiting Model Update*&gt;,\n 'process-2': &lt;gurobi.Var *Awaiting Model Update*&gt;,\n 'process-3': &lt;gurobi.Var *Awaiting Model Update*&gt;}\n\n\n\nmodel.update()\n\n\nx\n\n{'process-1': &lt;gurobi.Var process[process-1]&gt;,\n 'process-2': &lt;gurobi.Var process[process-2]&gt;,\n 'process-3': &lt;gurobi.Var process[process-3]&gt;}\n\n\nThe variable x is a tupledict, which is a generalization of the standard Python dictionary. The tupledict offers some additional possibilities, but we will not discuss these in this course.\n\ntype(x)\n\ngurobipy.tupledict\n\n\nLinear expressions can be constructed using the standard sum function, however, this is rather inefficient if we are dealing with many variables. Therefore, it is preferred to use the Gurobi function quicksum for this purpose. For example, to get the sum of all the decision variables, we could use:\n\nquicksum(x[j] for j in processes)\n\n&lt;gurobi.LinExpr: process[process-1] + process[process-2] + process[process-3]&gt;\n\n\n\n\n2.2.2 Objective function\nWe use the quicksum function to define the objective function.\n\nmodel.setObjective(\n    (\n        quicksum(\n            sales_price[k] * outputs[k, j] * x[j]\n            for k in products for j in processes\n        )\n        - quicksum(costs[j] * x[j] for j in processes)\n    ),\n    sense=GRB.MAXIMIZE,\n)\n\n\nmodel.getObjective()\n\n&lt;gurobi.LinExpr: 0.0&gt;\n\n\nIf we update the model, then we can see that Gurobi automatically computes the (simplified) coefficients for us. That is, the original objective written out is\n\n38(4x_1+x_2+3x_3) + 33(3x_1 + x_2 + 4 x_3) - (51x_1 + 11x_2 + 40 x_3)\n\nbut this is automatically simplified to 200x_1 + 60x_2 + 206x_3.\n\nmodel.update()\nmodel.getObjective()\n\n&lt;gurobi.LinExpr: 200.0 process[process-1] + 60.0 process[process-2] + 206.0 process[process-3]&gt;\n\n\nWe can also add multiple constraints of the same type using the addConstrs method. Here we specify a constraints for every element in the set crudes.\n\nc = model.addConstrs(\n    (\n        quicksum(inputs[i, j] * x[j] for j in processes) &lt;= resources[i]\n        for i in crudes\n    ),\n    name='capacity',\n)\n\n\nc\n\n{'crude A': &lt;gurobi.Constr *Awaiting Model Update*&gt;,\n 'crude B': &lt;gurobi.Constr *Awaiting Model Update*&gt;}\n\n\n\nmodel.update()\n\n\nc\n\n{'crude A': &lt;gurobi.Constr capacity[crude A]&gt;,\n 'crude B': &lt;gurobi.Constr capacity[crude B]&gt;}\n\n\nWe can review the constraint properties using the getRow method and the RHS and sense attributes as illustrated below.\n\nmodel.getRow(c['crude A'])\n\n&lt;gurobi.LinExpr: 3.0 process[process-1] + process[process-2] + 5.0 process[process-3]&gt;\n\n\n\nc['crude A'].RHS\n\n8.0\n\n\n\nc['crude A'].sense\n\n'&lt;'\n\n\nNow the model is fully specified and we can solve it.\n\nmodel.optimize()\n\nGurobi Optimizer version 10.0.1 build v10.0.1rc0 (win64)\n\nCPU model: Intel(R) Core(TM) i7-10510U CPU @ 1.80GHz, instruction set [SSE2|AVX|AVX2]\nThread count: 4 physical cores, 8 logical processors, using up to 8 threads\n\nOptimize a model with 2 rows, 6 columns and 6 nonzeros\nModel fingerprint: 0x8b2f8c5b\nCoefficient statistics:\n  Matrix range     [1e+00, 5e+00]\n  Objective range  [6e+01, 2e+02]\n  Bounds range     [0e+00, 0e+00]\n  RHS range        [5e+00, 8e+00]\nPresolve removed 0 rows and 3 columns\nPresolve time: 0.01s\nPresolved: 2 rows, 3 columns, 6 nonzeros\n\nIteration    Objective       Primal Inf.    Dual Inf.      Time\n       0    5.3333333e+02   2.706333e+00   0.000000e+00      0s\n       2    3.3900000e+02   0.000000e+00   0.000000e+00      0s\n\nSolved in 2 iterations and 0.02 seconds (0.00 work units)\nOptimal objective  3.390000000e+02\n\n\n\nmodel.ObjVal\n\n339.0",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Beyond the basics</span>"
+    ]
+  },
+  {
+    "objectID": "2-beyond-the-basics.html#model-in-function",
+    "href": "2-beyond-the-basics.html#model-in-function",
+    "title": "2  Beyond the basics",
+    "section": "2.3 Model in function",
+    "text": "2.3 Model in function\nWe can declare the Gurobi model in a function, which clearly illustrate the separation between the model logic and model data. This will allow us to easily solve similar problems with other processes and inputs/outputs.\n\ndef oil_refinery(costs, inputs, outputs, resources, sales_price):\n    \"\"\"Return Gurobi model for the Oil Refinery problem.\"\"\"\n    # Obtain the sets from the dictionary keys.\n    processes = costs.keys()\n    crudes = resources.keys()\n    products = sales_price.keys()\n\n    model = Model('Oil refinery')\n    \n    x = model.addVars(processes, name='process')\n\n    model.setObjective(\n        (\n            quicksum(\n                sales_price[k] * outputs[k, j] * x[j]\n                for k in products for j in processes\n            )\n            - quicksum(costs[j] * x[j] for j in processes)\n        ),\n        sense=GRB.MAXIMIZE,\n    )\n\n    model.addConstrs(\n        (\n            quicksum(inputs[i, j] * x[j] for j in processes) &lt;= resources[i]\n            for i in crudes\n        ),\n        name='capacity',\n    )\n    return model\n\n\nmodel = oil_refinery(costs, inputs, outputs, resources, sales_price)\nmodel.optimize()\n\nGurobi Optimizer version 10.0.1 build v10.0.1rc0 (win64)\n\nCPU model: Intel(R) Core(TM) i7-10510U CPU @ 1.80GHz, instruction set [SSE2|AVX|AVX2]\nThread count: 4 physical cores, 8 logical processors, using up to 8 threads\n\nOptimize a model with 2 rows, 3 columns and 6 nonzeros\nModel fingerprint: 0xb4151a6b\nCoefficient statistics:\n  Matrix range     [1e+00, 5e+00]\n  Objective range  [6e+01, 2e+02]\n  Bounds range     [0e+00, 0e+00]\n  RHS range        [5e+00, 8e+00]\nPresolve time: 0.01s\nPresolved: 2 rows, 3 columns, 6 nonzeros\n\nIteration    Objective       Primal Inf.    Dual Inf.      Time\n       0    8.8600000e+32   4.000000e+30   8.860000e+02      0s\n       3    3.3900000e+02   0.000000e+00   0.000000e+00      0s\n\nSolved in 3 iterations and 0.02 seconds (0.00 work units)\nOptimal objective  3.390000000e+02\n\n\n\nprint(f'Profit: {model.ObjVal}')\nfor var in model.getVars():\n    print(f'{var.VarName} = {var.X}')\n\nProfit: 339.0\nprocess[process-1] = 0.0\nprocess[process-2] = 0.5\nprocess[process-3] = 1.5",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Beyond the basics</span>"
+    ]
+  },
+  {
+    "objectID": "2-beyond-the-basics.html#multi-dimensional-indices",
+    "href": "2-beyond-the-basics.html#multi-dimensional-indices",
+    "title": "2  Beyond the basics",
+    "section": "2.4 Multi-dimensional indices",
+    "text": "2.4 Multi-dimensional indices\nUsing the same functionality as above, we can also create multi-dimensional decision variables. Suppose that we have a list of factories and a list of products:\n\nfactories = ['factory-1', 'factory-2']\nproducts = ['product-1', 'product-2', 'product-3']\n\nOur decision variables x_{ij} denote how many units of product j should be produced in factory i. This decision variable has two indices: i and j. We can use the addVars method to declare these variables by specifying both lists as arguments. This automatically creates all factory-product combinations.\n\nmodel = Model()\n\nx = model.addVars(factories, products, name='production')\nmodel.update()\nx\n\n{('factory-1', 'product-1'): &lt;gurobi.Var production[factory-1,product-1]&gt;,\n ('factory-1', 'product-2'): &lt;gurobi.Var production[factory-1,product-2]&gt;,\n ('factory-1', 'product-3'): &lt;gurobi.Var production[factory-1,product-3]&gt;,\n ('factory-2', 'product-1'): &lt;gurobi.Var production[factory-2,product-1]&gt;,\n ('factory-2', 'product-2'): &lt;gurobi.Var production[factory-2,product-2]&gt;,\n ('factory-2', 'product-3'): &lt;gurobi.Var production[factory-2,product-3]&gt;}\n\n\nYou can access an individual variable by specifying the indices.\n\nx['factory-1', 'product-2']\n\n&lt;gurobi.Var production[factory-1,product-2]&gt;\n\n\nUsing quicksum, the multi-dimensional variable can be easily used to declare the objective or constraints.\n\nsum_factory_1 = quicksum(x['factory-1', j] for j in products)\nsum_factory_1\n\n&lt;gurobi.LinExpr: production[factory-1,product-1] + production[factory-1,product-2] + production[factory-1,product-3]&gt;\n\n\nIf you want to have more control over which combinations factories and products must be created, you can also create the list of combinations, and use that when declaring the variables.\nSuppose that factory-1 cannot produce product-1. Then we can do the following.\n\n# List of all tuple combinations of factories and products.\ncombinations = [(i, j) for i in factories for j in products]\ncombinations\n\n[('factory-1', 'product-1'),\n ('factory-1', 'product-2'),\n ('factory-1', 'product-3'),\n ('factory-2', 'product-1'),\n ('factory-2', 'product-2'),\n ('factory-2', 'product-3')]\n\n\n\n# Remove non-applicable tuple.\ncombinations.remove(('factory-1', 'product-1'))\ncombinations\n\n[('factory-1', 'product-2'),\n ('factory-1', 'product-3'),\n ('factory-2', 'product-1'),\n ('factory-2', 'product-2'),\n ('factory-2', 'product-3')]\n\n\n\n# Use list of tuples to declare decision variables.\ny = model.addVars(combinations, name='production')\nmodel.update()\ny\n\n{('factory-1', 'product-2'): &lt;gurobi.Var production[factory-1,product-2]&gt;,\n ('factory-1', 'product-3'): &lt;gurobi.Var production[factory-1,product-3]&gt;,\n ('factory-2', 'product-1'): &lt;gurobi.Var production[factory-2,product-1]&gt;,\n ('factory-2', 'product-2'): &lt;gurobi.Var production[factory-2,product-2]&gt;,\n ('factory-2', 'product-3'): &lt;gurobi.Var production[factory-2,product-3]&gt;}\n\n\n\n\n\n\n\n\nExercise 3\n\n\n\nConsider the general transportation problem for m plants and n customers from Lec1-2.\n\n\\begin{array}{rlll}\n\\min & \\displaystyle  \\sum\\limits_{p=1}^m \\sum\\limits_{c=1}^n U_{pc}\nx_{pc} & & \\textit{total transportation costs}\\\\\n{\\rm s.t.} & \\displaystyle   \\sum\\limits_{c=1}^n x_{pc} \\leq S_p \\quad & \\forall p & \\textit{supply available at each p(lant) is $S_p$} \\\\\n& \\displaystyle\n\\sum\\limits_{p=1}^m x_{pc}  \\geq D_c \\quad & \\forall c & \\textit{demand $D_c$  met for each c(ustomer)} \\\\  \n& x_{pc} \\geq 0 & \\forall (p,c) & \\textit{ship nonneg. amounts}\n\\end{array}\n\nWrite a function that as input a general cost matrix c (list of lists), a list of supplies S for the plants, and a list of demands D for the customers. It should output the transportation problem model above.\nTest your function on the input from Exercise 2 of Tutorial 1, i.e.,\n\nc = [[131, 405, 188, 396, 485],[554, 351, 479, 366, 155]], S = [47, 63],\n and \nD = [28, 16, 22, 31,12].",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Beyond the basics</span>"
+    ]
+  },
+  {
+    "objectID": "2-beyond-the-basics.html#footnotes",
+    "href": "2-beyond-the-basics.html#footnotes",
+    "title": "2  Beyond the basics",
+    "section": "",
+    "text": "Exercise 1.16 from Bertsimas and Tsitsiklis (1997)↩︎",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Beyond the basics</span>"
+    ]
+  }
+]

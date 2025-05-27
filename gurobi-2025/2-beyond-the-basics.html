@@ -59,7 +59,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
-<link href="./5-exercise-solutions.html" rel="next">
+<link href="./3-sensitivity-analysis.html" rel="next">
 <link href="./1-basics.html" rel="prev">
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-html/quarto.js"></script>
@@ -183,8 +183,14 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./3-sensitivity-analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sensitivity analysis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./5-exercise-solutions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Solutions to exercises</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Solutions to exercises</span></span></a>
   </div>
 </li>
     </ul>
@@ -281,7 +287,7 @@ window.Quarto = {
 <section id="input-data" class="level3" data-number="2.1.2">
 <h3 data-number="2.1.2" class="anchored" data-anchor-id="input-data"><span class="header-section-number">2.1.2</span> Input data</h3>
 <p>All model parameters are related to the three sets processes, crudes, and products. We assume that this data is available as standard Python dictionaries. For larger models, data often has to be imported from data files in formats such as CSV, JSON, or Excel. Here, we will just define the data in Python.</p>
-<div id="76445b84" class="cell" data-execution_count="1">
+<div id="09a08fcf" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Cost of process i = 1,2,3</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>costs <span class="op">=</span> {</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'process-1'</span>: <span class="dv">51</span>,</span>
@@ -322,7 +328,7 @@ window.Quarto = {
 <span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The three sets (process, crudes, and products) can be obtained from the dictionary <code>keys</code>. This results in a <code>dict_keys</code> object.</p>
-<div id="42c8df25" class="cell" data-execution_count="2">
+<div id="5052cb2e" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Obtain the sets from the dictionary keys.</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>processes <span class="op">=</span> costs.keys()</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>crudes <span class="op">=</span> resources.keys()</span>
@@ -338,7 +344,7 @@ Products: dict_keys(['gasoline', 'heating oil'])</code></pre>
 </div>
 </div>
 <p>One can convert a dict_keys object to, e.g., a list.</p>
-<div id="3893f550" class="cell" data-execution_count="3">
+<div id="898729a7" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>crudes_list <span class="op">=</span> <span class="bu">list</span>(crudes)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'First crude is'</span>, crudes_list[<span class="dv">0</span>], <span class="st">'and second crude is'</span>, crudes_list[<span class="dv">1</span>], <span class="st">'.'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -350,10 +356,10 @@ Products: dict_keys(['gasoline', 'heating oil'])</code></pre>
 <section id="gurobi-model" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="gurobi-model"><span class="header-section-number">2.2</span> Gurobi model</h2>
 <p>Now we are ready to declare the Gurobi model. First, we have to import some objects from the Gurobi module.</p>
-<div id="5d478c82" class="cell" data-execution_count="4">
+<div id="f838881d" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gurobipy <span class="im">import</span> Model, GRB, quicksum</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="5def4f2d" class="cell" data-execution_count="5">
+<div id="082c7258" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> Model(<span class="st">'Oil refinery'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Set parameter Username
@@ -363,16 +369,16 @@ Academic license - for non-commercial use only - expires 2026-05-06</code></pre>
 <section id="decision-variables" class="level3" data-number="2.2.1">
 <h3 data-number="2.2.1" class="anchored" data-anchor-id="decision-variables"><span class="header-section-number">2.2.1</span> Decision variables</h3>
 <p>One possibility is to add the variables one by one, which we could do by iterating over the processes (i.e., process-1, process-2 and process-3).</p>
-<div id="d3a6924e" class="cell" data-execution_count="6">
+<div id="7c05e764" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> {}</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> j <span class="kw">in</span> processes:</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    x[j] <span class="op">=</span> model.addVar(name<span class="op">=</span>j)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>However, we can create all variables at once, using the <code>addVars</code> method of the <code>Model</code> object.</p>
-<div id="e85eaf64" class="cell" data-execution_count="7">
+<div id="16f0ef82" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> model.addVars(processes, name<span class="op">=</span><span class="st">'process'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="5f15ef2e" class="cell" data-execution_count="8">
+<div id="7df9bedc" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
 <pre><code>{'process-1': &lt;gurobi.Var *Awaiting Model Update*&gt;,
@@ -380,10 +386,10 @@ Academic license - for non-commercial use only - expires 2026-05-06</code></pre>
  'process-3': &lt;gurobi.Var *Awaiting Model Update*&gt;}</code></pre>
 </div>
 </div>
-<div id="204988b3" class="cell" data-execution_count="9">
+<div id="db639712" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>model.update()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="bc509f5a" class="cell" data-execution_count="10">
+<div id="2f01f518" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
 <pre><code>{'process-1': &lt;gurobi.Var process[process-1]&gt;,
@@ -392,14 +398,14 @@ Academic license - for non-commercial use only - expires 2026-05-06</code></pre>
 </div>
 </div>
 <p>The variable <code>x</code> is a <code>tupledict</code>, which is a generalization of the standard Python dictionary. The <code>tupledict</code> offers some additional possibilities, but we will not discuss these in this course.</p>
-<div id="92560d74" class="cell" data-execution_count="11">
+<div id="c19f5b18" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
 <pre><code>gurobipy.tupledict</code></pre>
 </div>
 </div>
 <p>Linear expressions can be constructed using the standard <code>sum</code> function, however, this is rather inefficient if we are dealing with many variables. Therefore, it is preferred to use the Gurobi function <code>quicksum</code> for this purpose. For example, to get the sum of all the decision variables, we could use:</p>
-<div id="5698da38" class="cell" data-execution_count="12">
+<div id="e4e8b30f" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>quicksum(x[j] <span class="cf">for</span> j <span class="kw">in</span> processes)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="12">
 <pre><code>&lt;gurobi.LinExpr: process[process-1] + process[process-2] + process[process-3]&gt;</code></pre>
@@ -409,7 +415,7 @@ Academic license - for non-commercial use only - expires 2026-05-06</code></pre>
 <section id="objective-function" class="level3" data-number="2.2.2">
 <h3 data-number="2.2.2" class="anchored" data-anchor-id="objective-function"><span class="header-section-number">2.2.2</span> Objective function</h3>
 <p>We use the <code>quicksum</code> function to define the objective function.</p>
-<div id="8ec5b981" class="cell" data-execution_count="13">
+<div id="b933cce4" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>model.setObjective(</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    (</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>        quicksum(</span>
@@ -421,7 +427,7 @@ Academic license - for non-commercial use only - expires 2026-05-06</code></pre>
 <span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>    sense<span class="op">=</span>GRB.MAXIMIZE,</span>
 <span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="204a7c38" class="cell" data-execution_count="14">
+<div id="aabbf091" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>model.getObjective()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="14">
 <pre><code>&lt;gurobi.LinExpr: 0.0&gt;</code></pre>
@@ -432,7 +438,7 @@ Academic license - for non-commercial use only - expires 2026-05-06</code></pre>
 38(4x_1+x_2+3x_3) + 33(3x_1 + x_2 + 4 x_3) - (51x_1 + 11x_2 + 40 x_3)
 </span></p>
 <p>but this is automatically simplified to <span class="math inline">200x_1 + 60x_2 + 206x_3</span>.</p>
-<div id="6a4c4ffb" class="cell" data-execution_count="15">
+<div id="34d8099c" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>model.update()</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>model.getObjective()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="15">
@@ -440,7 +446,7 @@ Academic license - for non-commercial use only - expires 2026-05-06</code></pre>
 </div>
 </div>
 <p>We can also add multiple constraints of the same type using the <code>addConstrs</code> method. Here we specify a constraints for every element in the set <code>crudes</code>.</p>
-<div id="5239a9b0" class="cell" data-execution_count="16">
+<div id="345332bc" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> model.addConstrs(</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    (</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>        quicksum(inputs[i, j] <span class="op">*</span> x[j] <span class="cf">for</span> j <span class="kw">in</span> processes) <span class="op">&lt;=</span> resources[i]</span>
@@ -449,17 +455,17 @@ Academic license - for non-commercial use only - expires 2026-05-06</code></pre>
 <span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>    name<span class="op">=</span><span class="st">'capacity'</span>,</span>
 <span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="2c22e9c1" class="cell" data-execution_count="17">
+<div id="4b134af0" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>c</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="17">
 <pre><code>{'crude A': &lt;gurobi.Constr *Awaiting Model Update*&gt;,
  'crude B': &lt;gurobi.Constr *Awaiting Model Update*&gt;}</code></pre>
 </div>
 </div>
-<div id="bd3992b4" class="cell" data-execution_count="18">
+<div id="16520399" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>model.update()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="3fab6567" class="cell" data-execution_count="19">
+<div id="93317183" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>c</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="19">
 <pre><code>{'crude A': &lt;gurobi.Constr capacity[crude A]&gt;,
@@ -467,26 +473,26 @@ Academic license - for non-commercial use only - expires 2026-05-06</code></pre>
 </div>
 </div>
 <p>We can review the constraint properties using the <code>getRow</code> method and the <code>RHS</code> and <code>sense</code> attributes as illustrated below.</p>
-<div id="c4c1f693" class="cell" data-execution_count="20">
+<div id="c59fafff" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>model.getRow(c[<span class="st">'crude A'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="20">
 <pre><code>&lt;gurobi.LinExpr: 3.0 process[process-1] + process[process-2] + 5.0 process[process-3]&gt;</code></pre>
 </div>
 </div>
-<div id="e3e4b78f" class="cell" data-execution_count="21">
+<div id="7f9fa0a2" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>c[<span class="st">'crude A'</span>].RHS</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="21">
 <pre><code>8.0</code></pre>
 </div>
 </div>
-<div id="48e0c605" class="cell" data-execution_count="22">
+<div id="6cfd4846" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>c[<span class="st">'crude A'</span>].sense</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="22">
 <pre><code>'&lt;'</code></pre>
 </div>
 </div>
 <p>Now the model is fully specified and we can solve it.</p>
-<div id="235ca24c" class="cell" data-execution_count="23">
+<div id="8cce3ad6" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>model.optimize()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Gurobi Optimizer version 10.0.1 build v10.0.1rc0 (win64)
@@ -509,11 +515,11 @@ Iteration    Objective       Primal Inf.    Dual Inf.      Time
        0    5.3333333e+02   2.706333e+00   0.000000e+00      0s
        2    3.3900000e+02   0.000000e+00   0.000000e+00      0s
 
-Solved in 2 iterations and 0.04 seconds (0.00 work units)
+Solved in 2 iterations and 0.03 seconds (0.00 work units)
 Optimal objective  3.390000000e+02</code></pre>
 </div>
 </div>
-<div id="a4241444" class="cell" data-execution_count="24">
+<div id="e41eebfd" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>model.ObjVal</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="24">
 <pre><code>339.0</code></pre>
@@ -524,7 +530,7 @@ Optimal objective  3.390000000e+02</code></pre>
 <section id="model-in-function" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="model-in-function"><span class="header-section-number">2.3</span> Model in function</h2>
 <p>We can declare the Gurobi model in a function, which clearly illustrate the separation between the model logic and model data. This will allow us to easily solve similar problems with other processes and inputs/outputs.</p>
-<div id="65e02858" class="cell" data-execution_count="25">
+<div id="3bb20458" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> oil_refinery(costs, inputs, outputs, resources, sales_price):</span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Return Gurobi model for the Oil Refinery problem."""</span></span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Obtain the sets from the dictionary keys.</span></span>
@@ -556,7 +562,7 @@ Optimal objective  3.390000000e+02</code></pre>
 <span id="cb41-29"><a href="#cb41-29" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb41-30"><a href="#cb41-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> model</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="cd4a1ce4" class="cell" data-execution_count="26">
+<div id="eabd518e" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> oil_refinery(costs, inputs, outputs, resources, sales_price)</span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>model.optimize()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -579,11 +585,11 @@ Iteration    Objective       Primal Inf.    Dual Inf.      Time
        0    8.8600000e+32   4.000000e+30   8.860000e+02      0s
        3    3.3900000e+02   0.000000e+00   0.000000e+00      0s
 
-Solved in 3 iterations and 0.02 seconds (0.00 work units)
+Solved in 3 iterations and 0.03 seconds (0.00 work units)
 Optimal objective  3.390000000e+02</code></pre>
 </div>
 </div>
-<div id="84f96839" class="cell" data-execution_count="27">
+<div id="8b8381c0" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Profit: </span><span class="sc">{</span>model<span class="sc">.</span>ObjVal<span class="sc">}</span><span class="ss">'</span>)</span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> var <span class="kw">in</span> model.getVars():</span>
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span>var<span class="sc">.</span>VarName<span class="sc">}</span><span class="ss"> = </span><span class="sc">{</span>var<span class="sc">.</span>X<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -598,12 +604,12 @@ process[process-3] = 1.5</code></pre>
 <section id="multi-dimensional-indices" class="level2" data-number="2.4">
 <h2 data-number="2.4" class="anchored" data-anchor-id="multi-dimensional-indices"><span class="header-section-number">2.4</span> Multi-dimensional indices</h2>
 <p>Using the same functionality as above, we can also create multi-dimensional decision variables. Suppose that we have a list of factories and a list of products:</p>
-<div id="ce4183db" class="cell" data-execution_count="28">
+<div id="efa35513" class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>factories <span class="op">=</span> [<span class="st">'factory-1'</span>, <span class="st">'factory-2'</span>]</span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>products <span class="op">=</span> [<span class="st">'product-1'</span>, <span class="st">'product-2'</span>, <span class="st">'product-3'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Our decision variables <span class="math inline">x_{ij}</span> denote how many units of product <span class="math inline">j</span> should be produced in factory <span class="math inline">i</span>. This decision variable has two indices: <span class="math inline">i</span> and <span class="math inline">j</span>. We can use the <code>addVars</code> method to declare these variables by specifying both lists as arguments. This automatically creates all factory-product combinations.</p>
-<div id="2373a700" class="cell" data-execution_count="29">
+<div id="e82c7ac2" class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> Model()</span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> model.addVars(factories, products, name<span class="op">=</span><span class="st">'production'</span>)</span>
@@ -619,14 +625,14 @@ process[process-3] = 1.5</code></pre>
 </div>
 </div>
 <p>You can access an individual variable by specifying the indices.</p>
-<div id="35dfd04b" class="cell" data-execution_count="30">
+<div id="883d55c0" class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>x[<span class="st">'factory-1'</span>, <span class="st">'product-2'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="30">
 <pre><code>&lt;gurobi.Var production[factory-1,product-2]&gt;</code></pre>
 </div>
 </div>
 <p>Using <code>quicksum</code>, the multi-dimensional variable can be easily used to declare the objective or constraints.</p>
-<div id="05b95f41" class="cell" data-execution_count="31">
+<div id="947b7092" class="cell" data-execution_count="31">
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>sum_factory_1 <span class="op">=</span> quicksum(x[<span class="st">'factory-1'</span>, j] <span class="cf">for</span> j <span class="kw">in</span> products)</span>
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>sum_factory_1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="31">
@@ -635,7 +641,7 @@ process[process-3] = 1.5</code></pre>
 </div>
 <p>If you want to have more control over which combinations factories and products must be created, you can also create the list of combinations, and use that when declaring the variables.</p>
 <p>Suppose that <code>factory-1</code> cannot produce <code>product-1</code>. Then we can do the following.</p>
-<div id="88467de3" class="cell" data-execution_count="32">
+<div id="b39a5edb" class="cell" data-execution_count="32">
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># List of all tuple combinations of factories and products.</span></span>
 <span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>combinations <span class="op">=</span> [(i, j) <span class="cf">for</span> i <span class="kw">in</span> factories <span class="cf">for</span> j <span class="kw">in</span> products]</span>
 <span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>combinations</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -648,7 +654,7 @@ process[process-3] = 1.5</code></pre>
  ('factory-2', 'product-3')]</code></pre>
 </div>
 </div>
-<div id="5c8ddaae" class="cell" data-execution_count="33">
+<div id="02e44cff" class="cell" data-execution_count="33">
 <div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove non-applicable tuple.</span></span>
 <span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>combinations.remove((<span class="st">'factory-1'</span>, <span class="st">'product-1'</span>))</span>
 <span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>combinations</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -660,7 +666,7 @@ process[process-3] = 1.5</code></pre>
  ('factory-2', 'product-3')]</code></pre>
 </div>
 </div>
-<div id="3f7af79c" class="cell" data-execution_count="34">
+<div id="d3919660" class="cell" data-execution_count="34">
 <div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use list of tuples to declare decision variables.</span></span>
 <span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> model.addVars(combinations, name<span class="op">=</span><span class="st">'production'</span>)</span>
 <span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>model.update()</span>
@@ -1141,8 +1147,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./5-exercise-solutions.html" class="pagination-link" aria-label="Solutions to exercises">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Solutions to exercises</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./3-sensitivity-analysis.html" class="pagination-link" aria-label="Sensitivity analysis">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sensitivity analysis</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>4&nbsp; Solutions to exercises – Gurobi tutorials for JBM035</title>
+<title>5&nbsp; Solutions to exercises – Gurobi tutorials for JBM035</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -59,7 +59,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
-<link href="./3-sensitivity-analysis.html" rel="prev">
+<link href="./4-integer-variables.html" rel="prev">
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -142,7 +142,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./5-exercise-solutions.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Solutions to exercises</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./5-exercise-solutions.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Solutions to exercises</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -188,8 +188,14 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./4-integer-variables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Integer variables</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./5-exercise-solutions.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Solutions to exercises</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Solutions to exercises</span></span></a>
   </div>
 </li>
     </ul>
@@ -205,7 +211,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Solutions to exercises</span></h1>
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Solutions to exercises</span></h1>
 </div>
 
 
@@ -245,7 +251,7 @@ Exercise 1
 </span></p>
 </div>
 </div>
-<div id="3d872f9a" class="cell" data-execution_count="1">
+<div id="bedb6073" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gurobipy <span class="im">import</span> GRB, Model</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> Model(<span class="st">'Medical kits'</span>)</span>
@@ -290,14 +296,14 @@ Coefficient statistics:
   Objective range  [1e+00, 1e+00]
   Bounds range     [2e+01, 2e+01]
   RHS range        [8e+01, 4e+03]
-Presolve time: 0.01s
+Presolve time: 0.00s
 Presolved: 2 rows, 2 columns, 4 nonzeros
 
 Iteration    Objective       Primal Inf.    Dual Inf.      Time
        0    1.2500000e+29   1.601563e+30   1.250000e-01      0s
        2    2.2000000e+01   0.000000e+00   0.000000e+00      0s
 
-Solved in 2 iterations and 0.02 seconds (0.00 work units)
+Solved in 2 iterations and 0.01 seconds (0.00 work units)
 Optimal objective  2.200000000e+01
 surgical : 7.0
 vaccination : 15.0</code></pre>
@@ -330,7 +336,7 @@ Exercise 2
 </span></p>
 </div>
 </div>
-<div id="ef0a2ccd" class="cell" data-execution_count="2">
+<div id="de85433f" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gurobipy <span class="im">import</span> GRB, Model</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> Model(<span class="st">'Transportation problem'</span>)</span>
@@ -384,14 +390,14 @@ Coefficient statistics:
   Objective range  [1e+02, 6e+02]
   Bounds range     [0e+00, 0e+00]
   RHS range        [1e+01, 6e+01]
-Presolve time: 0.01s
+Presolve time: 0.00s
 Presolved: 7 rows, 10 columns, 20 nonzeros
 
 Iteration    Objective       Primal Inf.    Dual Inf.      Time
        0    0.0000000e+00   1.090000e+02   0.000000e+00      0s
        6    2.7499000e+04   0.000000e+00   0.000000e+00      0s
 
-Solved in 6 iterations and 0.02 seconds (0.00 work units)
+Solved in 6 iterations and 0.01 seconds (0.00 work units)
 Optimal objective  2.749900000e+04
 H-A : 28.0
 H-B : 0.0
@@ -435,10 +441,10 @@ D = [28, 16, 22, 31,12].
 </span></p>
 </div>
 </div>
-<div id="42a47d15" class="cell" data-execution_count="3">
+<div id="0e5c4d6e" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gurobipy <span class="im">import</span> quicksum</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="743c3227" class="cell" data-execution_count="4">
+<div id="a271d9c2" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> transportation_problem(c,S,D):   </span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">#Create the model</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    transport_model <span class="op">=</span> Model()</span>
@@ -476,7 +482,7 @@ D = [28, 16, 22, 31,12].
 <span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> transport_model</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="e57b5687" class="cell" data-execution_count="5">
+<div id="8fed9504" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> [[<span class="dv">131</span>, <span class="dv">405</span>, <span class="dv">188</span>, <span class="dv">396</span>, <span class="dv">485</span>],[<span class="dv">554</span>, <span class="dv">351</span>, <span class="dv">479</span>, <span class="dv">366</span>, <span class="dv">155</span>]]</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>S <span class="op">=</span> [<span class="dv">47</span>, <span class="dv">63</span>]</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>D <span class="op">=</span> [<span class="dv">28</span>, <span class="dv">16</span>, <span class="dv">22</span>, <span class="dv">31</span>,<span class="dv">12</span>]</span>
@@ -500,7 +506,7 @@ Coefficient statistics:
   Objective range  [1e+02, 6e+02]
   Bounds range     [0e+00, 0e+00]
   RHS range        [1e+01, 6e+01]
-Presolve time: 0.01s
+Presolve time: 0.00s
 Presolved: 7 rows, 10 columns, 20 nonzeros
 
 Iteration    Objective       Primal Inf.    Dual Inf.      Time
@@ -949,8 +955,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./3-sensitivity-analysis.html" class="pagination-link" aria-label="Sensitivity analysis">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Sensitivity analysis</span></span>
+      <a href="./4-integer-variables.html" class="pagination-link" aria-label="Integer variables">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Integer variables</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

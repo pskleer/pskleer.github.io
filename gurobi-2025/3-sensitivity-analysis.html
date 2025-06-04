@@ -59,7 +59,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
-<link href="./5-exercise-solutions.html" rel="next">
+<link href="./4-integer-variables.html" rel="next">
 <link href="./2-beyond-the-basics.html" rel="prev">
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-html/quarto.js"></script>
@@ -192,8 +192,14 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./4-integer-variables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Integer variables</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./5-exercise-solutions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Solutions to exercises</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Solutions to exercises</span></span></a>
   </div>
 </li>
     </ul>
@@ -235,14 +241,14 @@ window.Quarto = {
 
 
 <p><link rel="preconnect" href="https://fonts.googleapis.com"> <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""> <link href="https://fonts.googleapis.com/css2?family=Fira+Mono&amp;family=Fira+Sans&amp;display=swap" rel="stylesheet"></p>
-<div id="96d598f2" class="cell" data-execution_count="1">
+<div id="1cf11b6a" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gurobipy <span class="im">import</span> Model, GRB, quicksum</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="problem-data-and-model" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="problem-data-and-model"><span class="header-section-number">3.1</span> Problem data and model</h2>
 <p>We will illustrate <strong>shadow prices</strong> and <strong>reduced costs</strong> using the <em>Oil refinery</em> problem from Tutorial 2. Here we simply copy the problem data and model formulation from Tutorial 2 without further explanation. Have a look again at Tutorial 2 if you want to recall the problem.</p>
-<div id="6fca4b0c" class="cell" data-execution_count="2">
+<div id="1acd068f" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Problem data.</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>costs <span class="op">=</span> {</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">'process-1'</span>: <span class="dv">51</span>,</span>
@@ -278,7 +284,7 @@ window.Quarto = {
 <span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>    <span class="st">'heating oil'</span>: <span class="dv">33</span>,</span>
 <span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="ff983b0e" class="cell" data-execution_count="3">
+<div id="2d236b06" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> oil_refinery(costs, inputs, outputs, resources, sales_price):</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Obtain the sets from the dictionary keys.</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    processes <span class="op">=</span> costs.keys()</span>
@@ -309,7 +315,7 @@ window.Quarto = {
 <span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> model</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="86e691e0" class="cell" data-execution_count="4">
+<div id="8bcc5db1" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> oil_refinery(costs, inputs, outputs, resources, sales_price)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>model.optimize()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -327,14 +333,14 @@ Coefficient statistics:
   Objective range  [6e+01, 2e+02]
   Bounds range     [0e+00, 0e+00]
   RHS range        [5e+00, 8e+00]
-Presolve time: 0.02s
+Presolve time: 0.00s
 Presolved: 2 rows, 3 columns, 6 nonzeros
 
 Iteration    Objective       Primal Inf.    Dual Inf.      Time
        0    8.8600000e+32   4.000000e+30   8.860000e+02      0s
        3    3.3900000e+02   0.000000e+00   0.000000e+00      0s
 
-Solved in 3 iterations and 0.02 seconds (0.00 work units)
+Solved in 3 iterations and 0.01 seconds (0.00 work units)
 Optimal objective  3.390000000e+02</code></pre>
 </div>
 </div>
@@ -342,7 +348,7 @@ Optimal objective  3.390000000e+02</code></pre>
 <section id="reduced-costs" class="level2" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="reduced-costs"><span class="header-section-number">3.2</span> Reduced costs</h2>
 <p>The reduced cost of a variable can be accessed through the variable’s <code>RC</code> attribute. For instance:</p>
-<div id="ffabd12c" class="cell" data-execution_count="5">
+<div id="494c8868" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> var <span class="kw">in</span> model.getVars():</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span>var<span class="sc">.</span>VarName<span class="sc">}</span><span class="ss"> = </span><span class="sc">{</span>var<span class="sc">.</span>X<span class="sc">}</span><span class="ss">, Reduced costs = </span><span class="sc">{</span>var<span class="sc">.</span>RC<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -353,7 +359,7 @@ process[process-3] = 1.5, Reduced costs = 0.0</code></pre>
 </div>
 <p>You may be surprised to see that the reduced cost for process-1 is negative, because according to the simplex algorithm this would mean this solution is not optimal. However, because this problem is a maximization problem, this is exactly opposite. The reduced cost of -74.0 can be interpreted as follows: if we would use <em>process-1</em> exactly one (million) times, then the objective value would <em>reduce</em> by 74 (million) euros. Since we are maximizing, this is not what we want, and the current solution is indeed optimal.</p>
 <p>To make the variable analysis a bit more convenient, we extract several interesting variable attributes into a Pandas DataFrame using the following function.</p>
-<div id="823fbfe6" class="cell" data-execution_count="6">
+<div id="28bdba7f" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> variables(model):</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Return model variable attributes in DataFrame."""</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    attr_list <span class="op">=</span> [<span class="st">'X'</span>, <span class="st">'VType'</span>, <span class="st">'VBasis'</span>, <span class="st">'LB'</span>, <span class="st">'UB'</span>, <span class="st">'Obj'</span>, <span class="st">'RC'</span>]</span>
@@ -368,7 +374,7 @@ process[process-3] = 1.5, Reduced costs = 0.0</code></pre>
 <span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>    df.index.name <span class="op">=</span> <span class="st">'variable'</span></span>
 <span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="88b00d3c" class="cell" data-execution_count="7">
+<div id="4a5ab5a0" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>variables(model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
 <div>
@@ -448,7 +454,7 @@ process[process-3] = 1.5, Reduced costs = 0.0</code></pre>
 <section id="shadow-prices" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="shadow-prices"><span class="header-section-number">3.3</span> Shadow prices</h2>
 <p>Shadow prices, which are the optimal values of the dual variables, can be accessed through the constraint’s <code>Pi</code> attribute.</p>
-<div id="c00bd505" class="cell" data-execution_count="8">
+<div id="09ce3757" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> cons <span class="kw">in</span> model.getConstrs():</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span>cons<span class="sc">.</span>ConstrName<span class="sc">}</span><span class="ss">:</span><span class="ch">\n\t</span><span class="ss">Dual variable = </span><span class="sc">{</span>cons<span class="sc">.</span>Pi<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -460,7 +466,7 @@ capacity[crude B]:
 </div>
 <!--
 
-::: {#f57ca069 .cell execution_count=9}
+::: {#96cd7d30 .cell execution_count=9}
 ``` {.python .cell-code}
 for cons in model.getConstrs():
     print(f'{cons.ConstrName}:\n\tSlack = {cons.Slack}\n\tDual variable = {cons.Pi}')
@@ -483,7 +489,7 @@ Because both slacks are zero, both constraints are active (binding). Complementa
 -->
 <p>If we could get our hands on extra barrels of crude A, then the objective (profit) could be increased by 13 euro per barrel. This is only true if the number of extra barrels is “small enough”, i.e, it should lie in the allowable range of the corresponding dual variable.</p>
 <p>Analogously to the variables, we can also obtain several interesting attributes of the constraints (recall that every constraint is identified with a dual variable) and put these in a DataFrame .</p>
-<div id="1405270d" class="cell" data-execution_count="10">
+<div id="96cf74a8" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> constraints(model):</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Return model constraint attributes in DataFrame."""</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    attr_list <span class="op">=</span> [<span class="st">'Slack'</span>, <span class="st">'Sense'</span>, <span class="st">'RHS'</span>, <span class="st">'CBasis'</span>,<span class="st">'Pi'</span>]</span>
@@ -498,7 +504,7 @@ Because both slacks are zero, both constraints are active (binding). Complementa
 <span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    df.index.name <span class="op">=</span> <span class="st">'constraint'</span></span>
 <span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="fecd4ac8" class="cell" data-execution_count="11">
+<div id="8908a0b8" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>constraints(model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
 <div>
@@ -988,8 +994,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./5-exercise-solutions.html" class="pagination-link" aria-label="Solutions to exercises">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Solutions to exercises</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./4-integer-variables.html" class="pagination-link" aria-label="Integer variables">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Integer variables</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

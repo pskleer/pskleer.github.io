@@ -1,0 +1,63 @@
+# Installation {#sec-getting-started}
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Mono&family=Fira+Sans&display=swap" rel="stylesheet">
+
+In this chapter we will learn how to install Python and run our very first command.
+
+## Installing Anaconda
+
+The easiest way to install Python is by installing Anaconda. You can do this by visiting [https://www.anaconda.com/download](https://www.anaconda.com/download).
+
+You should see this page:
+
+![Anaconda Download Page](figs/anaconda-download1.png)
+
+You should click the "Skip registration" button (although feel free to register if you like). You will then see the following page:
+
+![Anaconda Download Page](figs/anaconda-download2.png)
+
+You should then click on the "Download" button. Mac users will see a Mac logo instead.
+
+After downloading the file, click on it to install it. Follow the installation wizard and keep all the default options during installation.
+
+After installation you will see a number of new applications on your computer. You can see all applications that were installed using *Anaconda Navigator.* 
+
+
+![Anaconda Navigator](figs/anaconda-navigator.png)
+
+We highlight two applications:
+
+- *Jupyter Notebook*. This is a web application that allows you to write a notebook (like a report) with text and Python code snippets with output. We will learn how to use this application later on.
+- *Spyder/VS Code.* These are computer applications that allows you to write Python scripts and execute them to see the output. Such an application is called an Integrated Desktop Environment (IDE). 
+
+## Jupyter Notebook
+You can open the Jupyter Notebook application either by pressing 'Launch' in the Anaconda Navigator, or you can search for the application directly on your (university) computer via the Start menu.
+
+The application will open as a tab in a web browser, and you should then see a list of folders.
+
+![Jupyter Notebook application](figs/jupyter-notebook.png)
+
+You can navigate to a folder and then create a new notebook by clicking on 'New' in the top-right and then selecting 'Python 3 (ipykernel)' under Notebook.
+
+![Creating notebook](figs/jupyter-notebook-new.png)
+
+The new notebook will open in another tab and is stored in the folder in which you created it, typically under the name 'Untitled.ipynb'. You can change the name of the file either in the folder in which you stored it, or via `File -> Rename` in the top-left corner. You should see the empty notebook as below.
+
+![New notebook](figs/jupyter-notebook-new-file.png)
+
+In the bar you can type Python code. Let us execute our first code, which is a simple calculation $1 + 1$!  To find $1+1$ in Python, we can use the command `1+1`, similar to how we would do it in Excel or in the Google search engine. Let’s try this out. Type 1+1 in the code bar and click 'Run'. We will see the output $2$ on the next line next to a red Out [1]: 
+
+![First Python code](figs/jupyter-notebook-first-code.png)
+
+The red Out [1] means this is the output from the first line of input (after the green In [1]). If we continue typing code in the second bar, it will be called In [2] and its output Out [2].
+
+## Code Snippets in This Book
+In this book, we won't always show screenshots like we did above. Instead we will show code snippets in boxes like this:
+
+```{python}
+1 + 1
+```
+
+The part that is code will be in color and there will be a small clipboard icon on the right which you can use to copy the code to paste into your own Notebook to be able to experiment with it yourself. The output from the code will always be in a separate gray box below it (without a clipboard icon). 

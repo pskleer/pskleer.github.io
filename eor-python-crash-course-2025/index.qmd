@@ -1,0 +1,32 @@
+# Welcome
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Mono&family=Fira+Sans&display=swap" rel="stylesheet">
+
+## Welcome
+
+Welcome to the online "book" that serves as an introduction to the programming language Python, that you will see in various courses throughout the Econometrics and Operations Research bachelor program. 
+
+Before we jump into coding with Python, we will start by discussing what programming is at the most basic level and motivating why we are learning how to code in Python in the first place.
+
+## What is a programming language?
+
+Without getting into a complicated details, a programming language is a way to communicate to a computer via written text in a way that the computer can understand you so that you can instruct it to do various operations. This is very different to how we often usually interact with a computer, which often involves pointing and clicking on different buttons and menus with your mouse.
+
+Knowing how to program is a very useful skill because you can automate repetitive tasks that would otherwise take you a very long time if you had to them "by hand" (i.e. by clicking things with your mouse). For example, suppose you work in a hotel in a city and you need to check how much your competitors are charging for rooms on different days so that you can adjust prices to stay competitive. Every day you have to go to all the different websites of the competing hotels and take note of the prices in an Excel sheet. With programming, what you could do instead is write code that tells the computer to automatically visit those websites every day, record the hotel room prices, and put them into a dataset for you. This is a process called *web scraping* and can be done with Python. This is just one example of the many ways programming languages can automate repetitive tasks.
+
+When humans speak to each other and someone makes a grammar mistake, it usually isn't a big deal. We usually know what they mean. But if you make a "syntax error", i.e, grammar mistake in a programming language, it won't understand what you mean. The computer will throw an error. What is worse still is a "semantic error" which is when the computer runs your code without an error but does something you didn't want it to do. Therefore we need to be very careful when writing in a programming language.
+
+## Why Python?
+
+There are many different programming languages out there: C, C++, C#, Java, JavaScript, R, Julia, Stata, MATLAB, Fortran, Ruby, Perl, Rust, Go, Lua, Swift - the list goes on. So why should we learn Python over these other alternatives?
+
+The best programming language depends on the task you want to accomplish. Are you building a website, writing computer software, creating a game, or analyzing data? While many languages could perform all of these tasks, some languages excel in some of them. In this course our goal is to learn basic programming techniques required for data science, and Python is by far the most popular programming language for this task. But it's not only useful for that. It is also often used in web development, creating desktop applications and games, and for scientific computations. It is therefore a very versatile programming language that can complete a very wide range of tasks.
+
+Python is also completely free and open source and can run on all common operating systems. This means you can share your code with anyone and they will be able to run it, no matter what computer they are on or where they are in the world.
+
+There is also a very large active community that creates packages to do a wide-range of operations, keeping Python up to date with the latest developments. For example, excellent community help is available at [Stackoverflow](https://stackoverflow.com/), so if you Google how to do something in Python most likely that question has already been answered on Stackoverflow. Funnily enough, a key skill to develop with programming is how to formulate your question into Google to land on the right Stackoverflow page. More recently, "large-language" models like ChatGPT  have become a very useful resource for Python. ChatGPT can write excellent Python code and also explains all the steps it takes, so we encourage you to use it as a tool to help you when you are stuck. You should keep in mind though that throughout the bachelor program, you will not always be allowed to use tools like ChatGPT.
+
+
+These days employers are increasingly looking to hire people with programming skills. Knowing how to program in Python - one of the most commonly used languages by companies - is therefore a very valuable addition to your CV.

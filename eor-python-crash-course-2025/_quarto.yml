@@ -1,0 +1,36 @@
+project:
+  type: book
+  output-dir: website
+
+book:
+  title: "Python for Econometrics and Operations Research"
+  author:
+    - name: Sander Gribling
+    - name: Pieter Kleer
+    - name: Johan van Leeuwaarden
+    - name: Sven Polak
+  date: ""
+  chapters:
+    - index.qmd
+    - 02-installation.qmd
+    - 03-math-basics.qmd
+  search: false
+  downloads: [pdf]
+
+highlight-style: github
+
+
+format:
+  html:
+    theme: cosmos
+    mainfont: "Fira Sans"
+    monofont: "Fira Mono"
+    html-math-method: katex
+    toc: true
+    code-copy: true
+    code-fold: false
+    code-link: false
+    code-tools: false
+    css: style.css
+  pdf:
+    documentclass: book

@@ -70,63 +70,113 @@
     ]
   },
   {
-    "objectID": "03-math-basics.html",
-    "href": "03-math-basics.html",
-    "title": "3  Some (math) basics",
+    "objectID": "03-basics.html",
+    "href": "03-basics.html",
+    "title": "3  Python basics",
     "section": "",
     "text": "3.1 Arithmetic operations\nWe start with the most basic arithmetic operations: Addition, subtraction, multiplication and division are given by the standard +, -, * and / operators that you would use in other programs like Excel. For example, addition:\n2 + 3\n\n5\nSubtraction:\n5 - 3\n\n2\nMultiplication:\n2 * 3\n\n6\nDivision:\n3 / 2\n\n1.5\nIt is also possible to do multiple operations at the same time using parentheses. For example, suppose we wanted to calculate: \n\\frac{2+4}{4\\times 2} = \\frac{6}{8} = 0.75\n We can calculate this in Python as follows:\n(2 + 4) / (4 * 2)\n\n0.75\nWith the ** operator (two stars) we can raise a number to the power of another number. For example, 2^3=2\\times 2\\times 2 = 8 can be computed as\n2 ** 3\n\n8\nBe very careful not to use ^ for exponentiation. This actually does a very different thing in Python that we won’t have any use for in this book.",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Some (math) basics</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Python basics</span>"
     ]
   },
   {
-    "objectID": "03-math-basics.html#arithmetic-operations",
-    "href": "03-math-basics.html#arithmetic-operations",
-    "title": "3  Some (math) basics",
+    "objectID": "03-basics.html#arithmetic-operations",
+    "href": "03-basics.html#arithmetic-operations",
+    "title": "3  Python basics",
     "section": "",
-    "text": "Exercise 3.1\n\n\n\nCompute the following expressions using the operator +, -, *, / and **:\n\n\n\n\n\n\n\n\n\n\n\n\n\nSolution",
+    "text": "Exercise 3.1\n\n\n\nCompute the following expressions using the operator +, -, *, / and **:\n\n3 + 5 \\times 2\n\\frac{(10 - 4)^2}{3}\n\\frac{\\left((2 + 3) \\times 4 - 5\\right)^2}{3 + 1}\n\n\n\n\n\n\n\n\n\nSolution",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Some (math) basics</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Python basics</span>"
     ]
   },
   {
-    "objectID": "03-math-basics.html#variables",
-    "href": "03-math-basics.html#variables",
-    "title": "3  Some (math) basics",
+    "objectID": "03-basics.html#variables",
+    "href": "03-basics.html#variables",
+    "title": "3  Python basics",
     "section": "3.2 Variables",
-    "text": "3.2 Variables\nIn Python we can assign single values to variables and then work with and manipulate those variables.\nAssigning a single value to a variable is very straightforward. We put the name we want to give to the variable on the left, then use the = symbol as the assignment operator, and put the value to the right of the =. The = operator binds a value (on the right-hand size of =) to a name (on the left-hand side of =).\nTo see this at work, let’s set x=2 and y=3 and calculate x+y:\n\nx = 2\ny = 3\nx + y\n\n5\n\n\nWhen we assign x=2, in our code, the value is not fixed forever. We can assign a new value to x. For example, we can assign the number 6 to x instead. The sum of x, which is 6, and y, which is 3 is now 9:\n\nx = 6\nx + y\n\n9\n\n\nFinally, you cannot set x=2 with the command 2 = x. That will result in an error. The name must be on the left of = and the value must be on the right of =.\n\n\n\n\n\n\nExercise 3.2\n\n\n\nDefine variables a,b,c with values 19,3,7, respectively and compute the expressions\n\na \\cdot b \\cdot c\n\n\n\n\n\n\n\n\n\n\n\nSolution",
+    "text": "3.2 Variables\nIn Python we can assign single numbers to variables and then work with and manipulate those variables.\nAssigning a single number to a variable is very straightforward. We put the name we want to give to the variable on the left, then use the = symbol as the assignment operator, and put the number to the right of the =. The = operator binds a number (on the right-hand size of =) to a name (on the left-hand side of =).\nTo see this at work, let’s set x=2 and y=3 and calculate x+y:\n\nx = 2\ny = 3\nx + y\n\n5\n\n\nWhen we assign x=2, in our code, the number is not fixed forever. We can assign a new number to x. For example, we can assign the number 6 to x instead. The sum of x, which is 6, and y, which is 3 is now 9:\n\nx = 6\nx + y\n\n9\n\n\nFinally, you cannot set x=2 with the command 2 = x. That will result in an error. The name must be on the left of = and the number must be on the right of =.\n\n\n\n\n\n\nExercise 3.2\n\n\n\nDefine variables ( a, b, c ) with numbers 19, 3 and 7, respectively. Compute the following expressions:\n\na + b \\times c\n\\frac{(a - c)^2}{b}\n\\frac{((b + c) \\times a - c^2)^2}{a + b}\n\n\n\n\n\n\n\n\n\nSolution",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Some (math) basics</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Python basics</span>"
     ]
   },
   {
-    "objectID": "03-math-basics.html#lists",
-    "href": "03-math-basics.html#lists",
-    "title": "3  Some (math) basics",
+    "objectID": "03-basics.html#lists",
+    "href": "03-basics.html#lists",
+    "title": "3  Python basics",
     "section": "3.3 Lists",
-    "text": "3.3 Lists\nWe can also store multiple variables in one object, a so-called list. A list with values is created by writing down a sequence of numbers, separated by commas, in between two brackets [ and ].\n\nz = [3, 9, 1, 7]\nz\n\n[3, 9, 1, 7]\n\n\nWe can also create lists with fractional numbers.\n\nz = [3.1, 9, 1.9, 7]\nz\n\n[3.1, 9, 1.9, 7]\n\n\nTo access the numbers in the list, we can index the list at the position of interest. If we want to get the i-th number in the list, we use the syntax z[i].\n\nz[1]\n\n9\n\n\nSomething strange is happening here… The first number in the list is 3.1, but z[1] returns 9, which is the second value in the list. This is because Python starts counting at 0. In other words, if we want to get the first number in the list, we should use z[0] instead.\nBelow we index all values separately.\n\nz[0]\n\n3.1\n\n\n\nz[1]\n\n9\n\n\n\nz[2]\n\n1.9\n\n\n\nz[3]\n\n7\n\n\n\n\n\n\n\n\nExercise 3.3\n\n\n\nConsider the list a = [1,4,2,5,6,3,7].\n\nCompute the sum of the numbers at even positions in a (i.e., positions 0,2,4 and 6)\n\n\n\n\n\n\n\n\n\n\n\nSolution",
+    "text": "3.3 Lists\nWe can also store multiple variables in one object, a so-called list. A list with numbers is created by writing down a sequence of numbers, separated by commas, in between two brackets [ and ].\n\nz = [3, 9, 1, 7]\nz\n\n[3, 9, 1, 7]\n\n\nWe can also create lists with fractional numbers.\n\nz = [3.1, 9, 1.9, 7]\nz\n\n[3.1, 9, 1.9, 7]\n\n\nTo access the numbers in the list, we can index the list at the position of interest. If we want to get the number at position i in the list, we use the syntax z[i].\n\nz[1]\n\n9\n\n\nSomething strange is happening here… The first number in the list is 3.1, but z[1] returns 9, which is the second number in the list. This is because Python starts counting at 0. In other words, if we want to get the first number in the list, the number at position 0, we should use z[0] instead.\nBelow we index all numbers separately.\n\nz[0]\n\n3.1\n\n\n\nz[1]\n\n9\n\n\n\nz[2]\n\n1.9\n\n\n\nz[3]\n\n7\n\n\n\n\n\n\n\n\nExercise 3.3\n\n\n\nConsider the list a = [1, 4, 2, 5, 6, 3, 7].\n\nCompute the sum of the numbers at even positions in a (i.e., positions 0, 2, 4, and 6).\nCompute the result of multiplying the first and last elements of a, then subtracting the middle element.\nCompute the square of the element at position 2, divided by the sum of the elements at the uneven positions.\n\n\n\n\n\n\n\n\n\nSolution",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Some (math) basics</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Python basics</span>"
     ]
   },
   {
-    "objectID": "03-math-basics.html#python-function",
-    "href": "03-math-basics.html#python-function",
-    "title": "3  Some (math) basics",
-    "section": "3.4 Python function",
-    "text": "3.4 Python function\nIf we want to compute a certain mathematical expression for many different variables, it is often convenient to use a Python function for this.\nFor example, consider the quadratic function f(x) = 3x^2 + 2x^2 -1. Say we want to know the values of f(-3), f(-2.5), f(1) and f(4). What we would like to do is to ‘automate’ the computation of a function value, so we do not have to repeat this everytime.\nFor this we can use a Python function for this as follows.\n\ndef f(x):\n    return 3*x**2 + 2*x - 1\n\nWhat does the code above do? First of all the syntax to tell Python we want to define a function called f that takes as input a number x is def f(x):.\nWe next have to tell Python what the function is supposed to compute. On the second line, with one tab indented, we have the return statement. Here we write down the expression that the function should compute, which in our case is the function value f(x) = 3x^2 + 2x^2 -1.\nWe can now compute the function value f(x) for any value of x. What happens is that Python calls the function f with input the chosen value of x, and then returns the function value f(x), i.e., the expression in the return statement.\n\nf(-3)\n\n20\n\n\n\nf(1)\n\n4\n\n\nNote that you can also name the function differently, for example we could also have done def quadratic_function(x):. The important thing is that the name of the function should be the same as the name you use in the command to compute a function value.\n\ndef quadratic_function(x):\n    return 3*x**2 + 2*x - 1\n    \nquadratic_function(1)\n\n4",
+    "objectID": "03-basics.html#for-loop",
+    "href": "03-basics.html#for-loop",
+    "title": "3  Python basics",
+    "section": "3.4 For-loop",
+    "text": "3.4 For-loop\nSuppose we want to compute the sum of the numbers in the list a of Exercise 3.3 [add hyperlink]. We could do this manually by indexing every number and adding them one by one.\n\na = [1, 4, 2, 5, 6, 3, 7]\n\na[0] + a[1] + a[2] + a[3] + a[4] + a[5] + a[6]\n\n28\n\n\n In fact, we can also define a new variable to store this number in. Let us call this variable total_sum.\n\na = [1, 4, 2, 5, 6, 3, 7]\n\ntotal_sum = a[0] + a[1] + a[2] + a[3] + a[4] + a[5] + a[6]\ntotal_sum\n\n28\n\n\n If the list is a is very long, for example containing thousands of elements, then it becomes very tedious to compute the total sum with the approach above. Such long lists are not uncommon in real-life data.\nA much better way is to use a for-loop, which lets us go through each element in the list one at a time. Here’s how we could compute the sum of the numbers in the list a using a for-loop:\n\na = [1, 4, 2, 5, 6, 3, 7]\ntotal_sum = 0\n\nfor i in [0,1,2,3,4,5,6]:\n    total_sum = total_sum + a[i]\n\ntotal_sum\n\n28\n\n\nLet’s break down what is happening here:\n\nWe first define the list a = [1, 4, 2, 5, 6, 3, 7]. The goal is to add up the numbers in this list.\nWe define the variable total_sum with initial value 0. This variable will be the “running total” of the numbers in a that we are adding up. After the full code has been executed, this variable will contain the sum of all numbers in a.\nWe next start the for-loop. We tell Python to repeatedly carry out the indented line of code (total_sum = total_sum + a[i]) for the index values of i in the list [0,1,2,3,4,5,6], in the order given as in the list. This list contains the indices of all the positions of the list a, which are not to be confused with the numbers a[i] at those positions.\nWhat happens in the indented line of code is that we overwrite the value of total_sum with its current value plus the number at position i in a, i.e., the number a[i]. In the table below this process is illustrated for all the values of i.\n\n\n\n\ni\na[i]\ntotal_sum after this iteration\n\n\n\n\n0\n1\n0 + 1 = 1\n\n\n1\n4\n1 + 4 = 5\n\n\n2\n2\n5 + 2 = 7\n\n\n3\n5\n7 + 5 = 12\n\n\n4\n6\n12 + 6 = 18\n\n\n5\n3\n18 + 3 = 21\n\n\n6\n7\n21 + 7 = 28\n\n\n\nIn the first iteration of the for-loop (i = 0), we have the initial number 0 for total_sum so adding a[0] results in a new value of total_sum being 0 + 1 = 1.\nIn the second iteration, with now total_sum equal to 1, we add the number a[1], which results in the new value of total_sum being 1 (current number of total_sum) plus a[1] (which is 4), resulting in a new running total of 1 + 4 = 5.\nIf we would be interested in only computing the sum of the first three numbers in a, we could replace the index list [0,1,2,3,4,5,6] by [0,1,2].\n\na = [1, 4, 2, 5, 6, 3, 7]\ntotal_sum = 0\n\nfor i in [0,1,2]:\n    total_sum = total_sum + a[i]\n\ntotal_sum\n\n7\n\n\n\n\n\n\n\n\nExercise 3.4\n\n\n\nConsider the list a = [1, 4, 2, 5, 6, 3, 7].\n\nCompute the sum of the numbers at the even indices using a for-loop.\nCompute the product of the numbers in a using a for-loop.\n\n\n\nIf you want to execute more lines of code in every iteration of the for-loop, you should indent all of them. In the code below we compute the running total total_sum and also use the print() command of Python to print the value of the running total after every addition. This results in all the values in the right column of the above table being printed.\n\na = [1, 4, 2, 5, 6, 3, 7]\ntotal_sum = 0\n\nfor i in [0,1,2,3,4,5,6]:\n    total_sum = total_sum + a[i]\n    print(total_sum)\n\n1\n5\n7\n12\n18\n21\n28\n\n\n\n\n\n\n\n\nSolution",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Some (math) basics</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Python basics</span>"
     ]
   },
   {
-    "objectID": "03-math-basics.html#conditional-statements",
-    "href": "03-math-basics.html#conditional-statements",
-    "title": "3  Some (math) basics",
+    "objectID": "03-basics.html#conditional-statements",
+    "href": "03-basics.html#conditional-statements",
+    "title": "3  Python basics",
     "section": "3.5 Conditional statements",
-    "text": "3.5 Conditional statements\nHere I want to conclude with if/else statements to compute the roots of a function using the ‘abc’-formula. There will be a case distinction based on whether the discriminant is positive, negative or zero.\nAt this point we could zoom out, and talk about that Python can handle much more complex root finding problems (as sort of a teaser).",
+    "text": "3.5 Conditional statements\nIn many programming situations, we want the computer to make decisions based on certain conditions. For example, if a number is negative, we might want to handle it differently than if it were positive. In Python, we can do this using conditional statements, also known as if/else statements.\nLet’s look at a basic example:\n\nx = 5\n\nif x &gt; 0:\n    print(\"x is positive\")\nelse:\n    print(\"x is not positive\")\n\nx is positive\n\n\nHere is what this code does:\n\nx = 5 assigns the number 5 to the variable x.\nif x &gt; 0: checks whether x is greater than zero, i.e, it check the condition x &gt; 0. If the condition is true, it executes the indented block underneath: In this case we use the print() command of Python to print a piece of text (which can be done by putting it in quotations).\nIf the condition is not true (i.e., x \\leq 0), then Python executes the indented code under else:.\n\nWe can also have multiple conditions using elif, which stands for “else if”:\n\nx = 0\n\nif x &gt; 0:\n    print(\"x is positive\")\nelif x == 0:\n    print(\"x is zero\")\nelse:\n    print(\"x is negative\")\n\nx is zero\n\n\nThis checks the conditions one by one from top to bottom and executes the first indented code block where the condition is true. If you want more than three conditions, you should start with an if statement, then elif statements, and finish with an else.\n\n\n\n\n\n\nExercise 3.5\n\n\n\nCreate the list a = [1, 4, -4, 0, 5, -3, -7] in Python.\nUse a for-loop in combination with the code above to check for every number in a whether it is positive, zero, or negative. If a number is positive you should print the message \"The number is positive\", it is zero \"The number is zero\" and if it is negative \"The number is negative\".\nThe output of your piece of code should be as follows.\n\n\nThe number is positive\nThe number is positive\nThe number is negative\nThe number is zero\nThe number is positive\nThe number is negative\nThe number is negative\n\n\n\n\nLet us now look at an example from mathematics. Suppose we want to compute the roots x of a quadratic equation of the form: \nax^2 + bx + c = 0\n Here a,b and c are known given number, and the goal is to find one or more x’s that satisfy the above equation.\nFrom high school math (“Wiskunde B”), we know that the solutions are given by the “abc-formula”: \nx = \\frac{-b \\pm \\sqrt{b^2 - 4ac}}{2a}\n and that the expression under the square root, called the , determines how many (real) roots exist:\n\nIf b^2 - 4ac &gt; 0, the equation has two real roots.\nIf b^2 - 4ac = 0, the equation has exactly one real root.\nIf b^2 - 4ac &lt; 0, there are no real roots (in the real number system).\n\n\n\n\n\n\n\nExercise 3.6\n\n\n\nCreate variables a = 3, b = 2 and c = -1. Create a variable D for the discriminant (in terms of a,b and c).\n\nUse conditional statements to determine how many roots the quadratic formula ax^2 + bx + c has, based on the three cases above. For each case print an appropriate message in the indented code block of that case. For the chosen a,b and c,, your code output could be as below.\n\n\n\nThe formula has two real roots.\n\n\n\nUse conditional statements to print the roots x of the quadratic formula ax^2 + bx + c, based on the three cases above (in the third case, do not print the roots, but a message saying there are no roots). Hint: If you want to print two variables y and z you can use print(x,y). For the chosen a,b and c, your output should be as below.\n\n\n\n-0.9106836025229591 0.2440169358562924\n\n\n You can play around with your code by choosing different numbers for a,b and c, and see if you get a different output cases for both questions above.",
     "crumbs": [
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Some (math) basics</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Python basics</span>"
+    ]
+  },
+  {
+    "objectID": "04-math-basics.html",
+    "href": "04-math-basics.html",
+    "title": "4  Math basics",
+    "section": "",
+    "text": "4.1 Python function\nIf we want to compute a certain mathematical expression for many different variables, it is often convenient to use a Python function for this.\nFor example, consider the quadratic function f(x) = x^2 + 2x^2 -1. Say we want to know the values of f(-3), f(-2.5), f(1) and f(4). What we would like to do is to ‘automate’ the computation of a function value, so we do not have to repeat this everytime.\nFor this we can use a Python function for this as follows.\ndef f(x):\n    return x**2 + 2*x - 1\nWhat does the code above do? First of all the syntax to tell Python we want to define a function called f that takes as input a number x is def f(x):.\nWe next have to tell Python what the function is supposed to compute. On the second line, with one tab indented, we have the return statement. Here we write down the expression that the function should compute, which in our case is the function value f(x) = x^2 + 2x^2 -1.\nWe can now compute the function value f(x) for any value of x. What happens is that Python calls the function f with input the chosen value of x, and then returns the function value f(x), i.e., the expression in the return statement.\nf(-3)\n\n2\nf(1)\n\n2\nNote that you can also name the function differently, for example we could also have done def quadratic_function(x):. The important thing is that the name of the function should be the same as the name you use in the command to compute a function value.\ndef quadratic_function(x):\n    return x**2 + 2*x - 1\n    \nquadratic_function(1)\n\n2\nJust as your graphing calculator we can plot a Python function, search for its roots, integrate a certain area under the curve and much more! More advanced tasks that Python can handle will introduced in later courses in the curriculum.\nIf you want to get a better understanding of the codes in the coming sections, you could already have a look at Chapter 9 of this course document of another course taught at the Tilburg School of Economics and Management. We do not explain the code here, but give it as a teaser what more is possible with Python!",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Math basics</span>"
+    ]
+  },
+  {
+    "objectID": "04-math-basics.html#plotting",
+    "href": "04-math-basics.html#plotting",
+    "title": "4  Math basics",
+    "section": "4.2 Plotting",
+    "text": "4.2 Plotting\nConsider again the function f(x) = x^2 + 2x - 1. A visualization of this function is given below. If you want to plot a function in Python you have to make use of functionality from NumPy and Matplotlib which are so-called Python packages.\nPackages are functions written by other people to make our live easy, i.e., so that we do not have to write every code file from scratch in Python.\n\n\n\nShow code generating the plot below\nimport numpy as np\nimport matplotlib.pyplot as plt\n\n# Define the x range\nx = np.linspace(-3, 3, 600)\n\n# Define the function f\ndef f(x):\n    return x**2 + 2*x -1\n\n# Create the plot\nplt.figure(figsize=(6, 4))\nplt.plot(x, f(x), label='$f(x) = x^2 + 2x - 1$')\n\n# Add labels and title\nplt.title('Plot of the function f on the interval [-3,3]')\nplt.xlabel('x')\nplt.ylabel('f(x)')\n\n# Add a grid\nplt.grid(True)\n\n# Set range\nplt.xlim(-3,3)\nplt.ylim(-4,14)\n\n# Add a legend\nplt.legend()\n\n# Show the plot\nplt.show()",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Math basics</span>"
+    ]
+  },
+  {
+    "objectID": "04-math-basics.html#root-finding",
+    "href": "04-math-basics.html#root-finding",
+    "title": "4  Math basics",
+    "section": "4.3 Root finding",
+    "text": "4.3 Root finding\nSimilarly, the SciPy package can be used to carry out various mathematical tasks and algorithms, making it very important for data analysis purposes.\nThe code below uses a pre-written Python function called fsolve() from SciPy to compute the roots of a function f. In other words, fsolve() is a mathematical algorithm for finding the root of a function, such as Newton’s method, that someone implemented in Python and made available publicly for the whole world to use. If you are interested in the source code of this function, you can look it up in the documentation of Python (more specifically, SciPy in this case).\n\nimport scipy.optimize as optimize\n\ndef f(x):\n    return x**2 + 2*x - 1\n\nguess = 3\nf_zero = optimize.fsolve(f,guess) \n\nprint(\"A root of the function f is given by\", f_zero)\n\nA root of the function f is given by [0.41421356]\n\n\nThe function fsolve() takes two inputs: a function of which we want to find a root, and an initial guess (3 in our case) of where the root is.\nEntering an initial guess for where the root is located, is in some sense the equivalent of giving a bracket in which the root should lie on your graphing calculator. In fact, there are other root finding functions available in Python that work in this way, i.e., that require you to give an initial bracket, just as you do on your graphing calculator.\nDifferent initial guesses might lead to different roots found by Python. In fact, as you can see the function f has two roots of which the above code finds the right one. We could find the left root by filling in a different initial guess, e.g., -3 instead of 3.\n\nguess = -3\nf_zero = optimize.fsolve(f,guess) \n\nprint(\"A root of the function f is given by\", f_zero)\n\nA root of the function f is given by [-2.41421356]",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Math basics</span>"
+    ]
+  },
+  {
+    "objectID": "04-math-basics.html#integration",
+    "href": "04-math-basics.html#integration",
+    "title": "4  Math basics",
+    "section": "4.4 Integration",
+    "text": "4.4 Integration\nFinally, it is also possible to use built-in functionality from SciPy to integrate a function. Below we integrate the function f from 0 to 2. This integral area is illustrated in the figure below.\n\n\n\nShow code generating the plot below\nimport numpy as np\nimport matplotlib.pyplot as plt\n\n# Define the x range for the full plot\nx = np.linspace(-3, 3, 600)\n\n# Define the function f\ndef f(x):\n    return x**2 + 2*x - 1\n\n# Create the plot\nplt.figure(figsize=(6, 4))\nplt.plot(x, f(x), label='$f(x) = x^2 + 2x - 1$')\n\n# Define the interval for shading (0 to 2)\nx_fill = np.linspace(0, 2, 300)\nplt.fill_between(x_fill, f(x_fill), alpha=0.3, color='orange', \n    label='Area under $f(x)$ from 0 to 2')\n\n# Add labels and title\nplt.title('Plot of function $f$ and shaded integral area from 0 to 2')\nplt.xlabel('x')\nplt.ylabel('f(x)')\n\n# Add a grid\nplt.grid(True)\n\n# Set axis limits\nplt.xlim(-3, 3)\nplt.ylim(-4, 14)\n\n# Add a legend\nplt.legend()\n\n# Show the plot\nplt.show()\n\n\n\n\n\n\n\n\n\n\nfrom scipy.integrate import quad\n\n# Define the function to integrate\ndef f(x):\n    return x**2 + 2*x - 1\n\n# Perform the integration from 0 to 2\nresult, error = quad(f, 0, 2)\n\n# Print the result\nprint(\"Integral of f(x) from 0 to 2 is:\", result)\nprint(\"Numerical error in integral computation is at most\", error)\n\nIntegral of f(x) from 0 to 2 is: 4.666666666666666\nNumerical error in integral computation is at most 5.666271351443603e-14",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Math basics</span>"
+    ]
+  },
+  {
+    "objectID": "04-math-basics.html#why-python-and-not-my-calculator",
+    "href": "04-math-basics.html#why-python-and-not-my-calculator",
+    "title": "4  Math basics",
+    "section": "4.5 Why Python and not my calculator?",
+    "text": "4.5 Why Python and not my calculator?\nSo far we have illustrated task with Python that you graphing calculator can also carry out. The advantage of Python is that it can handle much more complicated computing tasks and handle much more difficult mathematical functions, that your graphing calculator is not able to handle.\nSome more here, zooming out of (the first part of) the crash course to deliver the punchline on why Python is relevant.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Math basics</span>"
     ]
   }
 ]

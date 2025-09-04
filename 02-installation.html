@@ -6,12 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Sander Gribling">
-<meta name="author" content="Pieter Kleer">
-<meta name="author" content="Johan van Leeuwaarden">
-<meta name="author" content="Sven Polak">
 
-<title>Python for Econometrics and Operations Research</title>
+<title>2&nbsp; Installation – Python for Econometrics and Operations Research</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -24,12 +20,47 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
-<link href="./02-installation.html" rel="next">
+<link href="./03-basics.html" rel="next">
+<link href="./index.html" rel="prev">
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -56,6 +87,49 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="style.css">
 </head>
@@ -69,7 +143,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Welcome</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./02-installation.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Installation</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -91,13 +165,13 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Welcome</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-installation.html" class="sidebar-item-text sidebar-link">
+  <a href="./02-installation.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Installation</span></span></a>
   </div>
 </li>
@@ -123,11 +197,9 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#welcome" id="toc-welcome" class="nav-link active" data-scroll-target="#welcome"><span class="header-section-number">1</span> Welcome</a>
-  <ul class="collapse">
-  <li><a href="#what-is-a-programming-language" id="toc-what-is-a-programming-language" class="nav-link" data-scroll-target="#what-is-a-programming-language"><span class="header-section-number">1.1</span> What is a programming language?</a></li>
-  <li><a href="#why-python" id="toc-why-python" class="nav-link" data-scroll-target="#why-python"><span class="header-section-number">1.2</span> Why Python?</a></li>
-  </ul></li>
+  <li><a href="#installing-anaconda" id="toc-installing-anaconda" class="nav-link active" data-scroll-target="#installing-anaconda"><span class="header-section-number">2.1</span> Installing Anaconda</a></li>
+  <li><a href="#jupyter-notebook" id="toc-jupyter-notebook" class="nav-link" data-scroll-target="#jupyter-notebook"><span class="header-section-number">2.2</span> Jupyter Notebook</a></li>
+  <li><a href="#code-snippets-in-this-book" id="toc-code-snippets-in-this-book" class="nav-link" data-scroll-target="#code-snippets-in-this-book"><span class="header-section-number">2.3</span> Code Snippets in This Book</a></li>
   </ul>
 </nav>
     </div>
@@ -136,22 +208,13 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Python for Econometrics and Operations Research</h1>
+<h1 class="title"><span id="sec-getting-started" class="quarto-section-identifier"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Installation</span></span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Authors</div>
-    <div class="quarto-title-meta-contents">
-             <p>Sander Gribling </p>
-             <p>Pieter Kleer </p>
-             <p>Johan van Leeuwaarden </p>
-             <p>Sven Polak </p>
-          </div>
-  </div>
     
   
     
@@ -162,65 +225,85 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="welcome" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Welcome</h1>
 <p><link rel="preconnect" href="https://fonts.googleapis.com"> <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""> <link href="https://fonts.googleapis.com/css2?family=Fira+Mono&amp;family=Fira+Sans&amp;display=swap" rel="stylesheet"></p>
-<p>Welcome to the online “book” that serves as an introduction to the programming language Python, that you will see in various courses throughout the Econometrics and Operations Research (EOR) bachelor program.</p>
-<p>The first part of this book is used for the “Python crash course” announced during the course Linear Algebra. The crash course consists of two (recommended) lectures that will form a useful basis for various programming assignments in the EOR bachelor program, including the assignment of the (mandatory) course Linear Optimization in the second quartile of the first year.</p>
-<p>The two crash course lectures are outlined below, including links to the lecture materials.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<p>In this chapter we will learn how to install Python and run our very first command.</p>
+<section id="installing-anaconda" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="installing-anaconda"><span class="header-section-number">2.1</span> Installing Anaconda</h2>
+<p>The easiest way to install Python is by installing Anaconda, which is a software package that includes Python as well as many other useful software programs such as Jupyter Notebook that we will be using. You can install Anaconda by visiting <a href="https://www.anaconda.com/download">https://www.anaconda.com/download</a>.</p>
+<p>You should see this page:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/anaconda-download1.png" class="img-fluid figure-img"></p>
+<figcaption>Anaconda Download Page</figcaption>
+</figure>
 </div>
-<div class="callout-title-container flex-fill">
-Overview
+<p>You should click the “Skip registration” button (although feel free to register if you like). You will then see the following page:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/anaconda-download2.png" class="img-fluid figure-img"></p>
+<figcaption>Anaconda Download Page</figcaption>
+</figure>
 </div>
+<p>You should then click on the “Download” button. Mac users will see a Mac logo instead.</p>
+<p>After downloading the file, click on it to install it. Follow the installation wizard and keep all the default options during installation.</p>
+<p>After installation you will see a number of new applications on your computer. You can see all applications that were installed using <em>Anaconda Navigator.</em></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/anaconda-navigator.png" class="img-fluid figure-img"></p>
+<figcaption>Anaconda Navigator</figcaption>
+</figure>
 </div>
-<div class="callout-body-container callout-body">
-<p><strong>Lecture 1 (September 9, 12.45-14.30, Cube 242)</strong>:</p>
+<p>We highlight two applications:</p>
 <ul>
-<li>Covers general introduction to Jupyter Notebooks and Python basics in <a href="03-basics.html">Chapter 3</a></li>
-<li>Downloadable materials (right-click and use “Save link as…”)
-<ul>
-<li><a href="exercises-chapter3.ipynb">Exercises of Chapter 3</a> in Jupyter Notebook form.</li>
-<li><a href="python-crash-course-intro.pdf">Introductory slides</a> in PDF form.</li>
-</ul></li>
+<li><em>Jupyter Notebook</em>. This is a web application that allows you to write a notebook (like a report) with text and Python code snippets with output. We will learn how to use this application later on.</li>
+<li><em>Spyder/VS Code.</em> These are computer applications that allows you to write Python scripts and execute them to see the output. Such an application is called an Integrated Desktop Environment (IDE).</li>
 </ul>
-<p><strong>Lecture 2 (September 23)</strong>: Details will follow.</p>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Software requirements
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>We will use the Jupyter Notebook application during our lectures, which is available on the university computers in the computer room where the lectures take place.</p>
-<p>If you want to use your private laptop, you can install Python and Jupyter Notebook by following the instructions in <a href="02-installation.html">Chapter 2</a>. Please do this <strong>before</strong> the first lecture.</p>
-</div>
-</div>
-<p>Before we jump into coding with Python, we will start by discussing what programming is at the most basic level and motivating why we are learning how to code in Python in the first place.</p>
-<section id="what-is-a-programming-language" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="what-is-a-programming-language"><span class="header-section-number">1.1</span> What is a programming language?</h2>
-<p>Without getting into complicated details, a programming language is a way to communicate to a computer, via written text, tasks or operations that you want it to carry out. This is very different to how we often usually interact with a computer, which often involves pointing and clicking on different buttons and menus with your mouse.</p>
-<p>In the EOR bachelor program, the goal is often to tell a computer to carry out complicated numerical computations or to visualize numerical data. To some extent, you have already done this in high school using a graphing calculator. In fact, everything that your graphing calculator can do, you can also do with Python, but the advantage of Python is that it can also handle much more complicated tasks.</p>
-<p>To use Python in a correct fashion, it is important that you understand the grammar, i.e., “syntax”, of the Python programming language. When humans speak to each other and someone makes a grammar mistake, it usually isn’t a big deal. We usually know what they mean. But if you make a “syntax error”, i.e, grammar mistake in a programming language, it won’t understand what you mean. The computer will throw an error. What is worse still is a “semantic error” which is when the computer runs your code without a (syntax) error but does something you didn’t want it to do. Therefore we need to be very careful when writing in a programming language.</p>
 </section>
-<section id="why-python" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="why-python"><span class="header-section-number">1.2</span> Why Python?</h2>
-<p>There are many different programming languages out there: C, C++, C#, Java, JavaScript, R, Julia, Stata, MATLAB, Fortran, Ruby, Perl, Rust, Go, Lua, Swift - the list goes on. So why should we learn Python over these other alternatives?</p>
-<p>The best programming language depends on the task you want to accomplish. Are you building a website, writing computer software, creating a game, or analyzing mathematical data? While many languages could perform all of these tasks, some languages excel in some of them. Python is by far the most popular programming language when it comes to “data science” tasks, that you will often encounter in the EOR bachelor program. It is also often used in web development, creating desktop applications and games, and for scientific computations. It is therefore a very versatile programming language that can complete a very wide range of tasks.</p>
-<p>Python is also completely free and open source and can run on all common operating systems. This means you can share your code with anyone and they will be able to run it, no matter what computer they are on or where they are in the world.</p>
-<p>There is also a very large active community that creates packages to do a wide-range of operations, keeping Python up to date with the latest developments. For example, excellent community help is available at <a href="https://stackoverflow.com/">Stackoverflow</a>, so if you Google how to do something in Python most likely that question has already been answered on Stackoverflow. Funnily enough, a key skill to develop with programming is how to formulate your question into Google to land on the right Stackoverflow page. More recently, “large-language” models like ChatGPT have become a very useful resource for Python. ChatGPT can write excellent Python code and also explains all the steps it takes, so we encourage you to use it as a tool to help you when you are stuck. You should keep in mind though that throughout the bachelor program, you will not always be allowed to use tools like ChatGPT as it might not align with the learning goals of a course.</p>
-<p>These days employers are increasingly looking to hire people with programming skills. Knowing how to program in Python - one of the most commonly used languages by companies - is therefore a very valuable addition to your CV.</p>
+<section id="jupyter-notebook" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="jupyter-notebook"><span class="header-section-number">2.2</span> Jupyter Notebook</h2>
+<p>You can open the Jupyter Notebook application either by pressing ‘Launch’ in the Anaconda Navigator, or you can search for the application directly on your (university) computer via the Start menu.</p>
+<p>The application will open as a tab in a web browser, and you should then see a list of folders.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/jupyter-notebook.png" class="img-fluid figure-img"></p>
+<figcaption>Jupyter Notebook application</figcaption>
+</figure>
+</div>
+<p>You can navigate to a folder and then create a new notebook by clicking on ‘New’ in the top-right and then selecting ‘Python 3 (ipykernel)’ under Notebook.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/jupyter-notebook-new.png" class="img-fluid figure-img"></p>
+<figcaption>Creating notebook</figcaption>
+</figure>
+</div>
+<p>The new notebook will open in another tab and is stored in the folder in which you created it, typically under the name ‘Untitled.ipynb’. You can change the name of the file either in the folder in which you stored it, or via <code>File -&gt; Rename</code> in the top-left corner. You should see the empty notebook as below.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/jupyter-notebook-new-file.png" class="img-fluid figure-img"></p>
+<figcaption>New notebook</figcaption>
+</figure>
+</div>
+<p>In the bar you can type Python code. Let us execute our first code, which is a simple calculation <span class="math inline">1 + 1</span>. To find <span class="math inline">1+1</span> in Python, we can use the command <code>1+1</code>, similar to how we would do it in Excel or in the Google search engine. Let’s try this out. Type 1+1 in the code bar and click <em>Run</em> (or hit <kbd>Shift</kbd> + <kbd>Enter</kbd> on your keyboard). We will see the output <span class="math inline">2</span> on the next line next to a red <span style="color:red">Out [1]</span>:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/jupyter-notebook-first-code.png" class="img-fluid figure-img"></p>
+<figcaption>First Python code</figcaption>
+</figure>
+</div>
+<p>The red <span style="color:red">Out [1]</span> means this is the output from the code snippet <span style="color:blue">In [1]</span> executed in this notebook. If we continue typing code in the second bar, it will be called <span style="color:blue">In [2]</span> and its output <span style="color:red">Out [2]</span>. However, the same happens if we would re-run the first code snippet with <code>1+1</code>: It will also be called <span style="color:blue">In [2]</span> and its output <span style="color:red">Out [2]</span>. The index keeps track of how many code snippets have been executed in the notebook.</p>
+</section>
+<section id="code-snippets-in-this-book" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="code-snippets-in-this-book"><span class="header-section-number">2.3</span> Code Snippets in This Book</h2>
+<p>In this book, we won’t always show screenshots like we did above. Instead we will show code snippets in boxes like this:</p>
+<div id="6f02a69c" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="op">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>2</code></pre>
+</div>
+</div>
+<p>The part that is code will be in color and there will be a small clipboard icon on the right which you can use to copy the code to paste into your own Notebook to be able to experiment with it yourself. The output from the code will always be in a separate gray box below it (without a clipboard icon).</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -646,10 +729,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./index.html" class="pagination-link" aria-label="Welcome">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Welcome</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./02-installation.html" class="pagination-link" aria-label="Installation">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Installation</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./03-basics.html" class="pagination-link" aria-label="Python basics">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Python basics</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Python for Econometrics and Operations Research",
     "section": "",
-    "text": "1 Welcome\nWelcome to the online “book” that serves as an introduction to the programming language Python, that you will see in various courses throughout the Econometrics and Operations Research (EOR) bachelor program.\nBefore we jump into coding with Python, we will start by discussing what programming is at the most basic level and motivating why we are learning how to code in Python in the first place.",
+    "text": "1 Welcome\nWelcome to the online “book” that serves as an introduction to the programming language Python, that you will see in various courses throughout the Econometrics and Operations Research (EOR) bachelor program.\nThe first part of this book is used for the “Python crash course” announced during the course Linear Algebra. The crash course consists of two (recommended) lectures that will form a useful basis for various programming assignments in the EOR bachelor program, including the assignment of the (mandatory) course Linear Optimization in the second quartile of the first year.\nThe two crash course lectures are outlined below, including links to the lecture materials.\nLecture 1 (September 9, 12.45-14.30, Cube 242):\nLecture 2 (September 23): Details will follow\nBefore we jump into coding with Python, we will start by discussing what programming is at the most basic level and motivating why we are learning how to code in Python in the first place.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Welcome</span>"
     ]

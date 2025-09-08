@@ -172,7 +172,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./02-installation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Installation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Software</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -232,28 +232,28 @@ window.Quarto = {
 <section id="arithmetic-operations" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="arithmetic-operations"><span class="header-section-number">3.1</span> Arithmetic operations</h2>
 <p>We start with the most basic arithmetic operations: Addition, subtraction, multiplication and division are given by the standard <code>+</code>, <code>-</code>, <code>*</code> and <code>/</code> operators that you would use in other programs like Excel. For example, addition:</p>
-<div id="3fa0a160" class="cell" data-execution_count="1">
+<div id="122d0dcb" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="op">+</span> <span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>5</code></pre>
 </div>
 </div>
 <p>Subtraction:</p>
-<div id="1805acca" class="cell" data-execution_count="2">
+<div id="96b72ac1" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="op">-</span> <span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
 <pre><code>2</code></pre>
 </div>
 </div>
 <p>Multiplication:</p>
-<div id="b5ab0017" class="cell" data-execution_count="3">
+<div id="15f7b530" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="op">*</span> <span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <pre><code>6</code></pre>
 </div>
 </div>
 <p>Division:</p>
-<div id="4c03963e" class="cell" data-execution_count="4">
+<div id="6879182e" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="op">/</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <pre><code>1.5</code></pre>
@@ -263,20 +263,20 @@ window.Quarto = {
 <p>It is also possible to do multiple operations at the same time using parentheses. For example, suppose we wanted to calculate: <span class="math display">
 \frac{2+4}{4 \cdot 2} = \frac{6}{8} = 0.75
 </span> We can calculate this in Python as follows:</p>
-<div id="42c70163" class="cell" data-execution_count="5">
+<div id="49b2240f" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">2</span> <span class="op">+</span> <span class="dv">4</span>) <span class="op">/</span> (<span class="dv">4</span> <span class="op">*</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>0.75</code></pre>
 </div>
 </div>
 <p><br> With the <code>**</code> operator (two stars) we can raise a number to the power of another number. For example, <span class="math inline">2^3=2\times 2\times 2 = 8</span> can be computed as</p>
-<div id="88a5b56b" class="cell" data-execution_count="6">
+<div id="8e877d5d" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="op">**</span> <span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>8</code></pre>
 </div>
 </div>
-<p>Be very careful <strong>not</strong> to use <code>^</code> for exponentiation. This actually does a very different thing in Python that we won’t have any use for in this book.</p>
+<p>Be very careful <strong>not</strong> to use <code>^</code> for exponentiation. This actually does a very different thing in Python.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -311,7 +311,7 @@ Exercise 3.1
 <p>In Python we can assign single numbers to <em>variables</em> and then work with and manipulate those variables.</p>
 <p>Assigning a single number to a variable is very straightforward. We put the name we want to give to the variable on the left, then use the <code>=</code> symbol as the <em>assignment operator</em>, and put the number to the right of the <code>=</code>. The <code>=</code> operator binds a number (on the right-hand size of <code>=</code>) to a name (on the left-hand side of <code>=</code>).</p>
 <p>To see this at work, let’s set <span class="math inline">x=2</span> and <span class="math inline">y=3</span> and calculate <span class="math inline">x+y</span>:</p>
-<div id="a1bcd843" class="cell" data-execution_count="7">
+<div id="a0845ac9" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">2</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="dv">3</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">+</span> y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -320,7 +320,7 @@ Exercise 3.1
 </div>
 </div>
 <p>When we assign <span class="math inline">x=2</span>, in our code, the number is not fixed forever. We can assign a new number to <code>x</code>. For example, we can assign the number 6 to <code>x</code> instead. The sum of <span class="math inline">x</span> (which is <span class="math inline">6</span>) and <span class="math inline">y</span> ( which is <span class="math inline">3</span>), is now <span class="math inline">9</span>:</p>
-<div id="520ccee6" class="cell" data-execution_count="8">
+<div id="8a7b4e6e" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">6</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">+</span> y</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
@@ -357,7 +357,7 @@ Exercise 3.2
 :::
 -->
 <p>If you want to print multiple expressions within the same code snippet, you can use the <code>print()</code> function of Python for each of the expressions.</p>
-<div id="09009864" class="cell" data-execution_count="9">
+<div id="8ee6fa31" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">2</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="dv">3</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x <span class="op">+</span> y)</span>
@@ -371,7 +371,7 @@ Exercise 3.2
 <section id="lists" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="lists"><span class="header-section-number">3.3</span> Lists</h2>
 <p>We can also store multiple variables in one object, a so-called <em>list</em>. A list with numbers is created by writing down a sequence of numbers, separated by commas, in between two brackets <code>[</code> and <code>]</code>.</p>
-<div id="c5a96688" class="cell" data-execution_count="10">
+<div id="a58a896c" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> [<span class="dv">3</span>, <span class="dv">9</span>, <span class="dv">1</span>, <span class="dv">7</span>]</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>z</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
@@ -379,7 +379,7 @@ Exercise 3.2
 </div>
 </div>
 <p>We can also create lists with fractional numbers.</p>
-<div id="8c2f91cc" class="cell" data-execution_count="11">
+<div id="1ec5bd52" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> [<span class="fl">3.1</span>, <span class="dv">9</span>, <span class="fl">1.9</span>, <span class="dv">7</span>]</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>z</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
@@ -387,7 +387,7 @@ Exercise 3.2
 </div>
 </div>
 <p>To access the numbers in the list, we can <em>index</em> the list at the position of interest. If we want to get the number at position <span class="math inline">i</span> in the list, we use the syntax <code>z[i]</code>.</p>
-<div id="8978b7cb" class="cell" data-execution_count="12">
+<div id="71486925" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>z[<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="12">
 <pre><code>9</code></pre>
@@ -396,25 +396,26 @@ Exercise 3.2
 <p>Something strange is happening here… The first number in the list is <span class="math inline">3.1</span>, but <code>z[1]</code> returns <span class="math inline">9</span>, which is the second number in the list.</p>
 <p>The former happens because Python starts counting at index <span class="math inline">0</span> (intead of <span class="math inline">1</span>). In other words, if we want to get the first number in the list, the number at position <span class="math inline">0</span>, we should use <code>z[0]</code> instead.</p>
 <p>Below we index all numbers (with indices <span class="math inline">0,1,2</span> and <span class="math inline">3</span>) separately.</p>
-<div id="f527a379" class="cell" data-execution_count="13">
+<p>[Clarify/define “positions”. Use <span class="math inline">i</span> in set.]</p>
+<div id="a6cde2fa" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>z[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="13">
 <pre><code>3.1</code></pre>
 </div>
 </div>
-<div id="382d14bb" class="cell" data-execution_count="14">
+<div id="ea7d7e0b" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>z[<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="14">
 <pre><code>9</code></pre>
 </div>
 </div>
-<div id="530efd20" class="cell" data-execution_count="15">
+<div id="e73ee9ee" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>z[<span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="15">
 <pre><code>1.9</code></pre>
 </div>
 </div>
-<div id="24ed442d" class="cell" data-execution_count="16">
+<div id="b1098c34" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>z[<span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="16">
 <pre><code>7</code></pre>
@@ -434,7 +435,7 @@ Exercise 3.3
 <ol type="i">
 <li>Compute the sum of the numbers at even positions in <span class="math inline">a</span> (i.e., positions <span class="math inline">0, 2, 4</span>, and <span class="math inline">6</span>).</li>
 <li>Compute the result of multiplying the first and last elements of <span class="math inline">a</span>, then subtracting the middle element.</li>
-<li>Compute the square of the element at position <span class="math inline">2</span>, divided by the sum of the elements at the uneven positions.</li>
+<li>Compute the square of the element at position <span class="math inline">2</span>, divided by the sum of the elements at the odd positions.</li>
 </ol>
 </div>
 </div>
@@ -452,7 +453,7 @@ Exercise 3.3
 <section id="for-loop" class="level2" data-number="3.4">
 <h2 data-number="3.4" class="anchored" data-anchor-id="for-loop"><span class="header-section-number">3.4</span> For-loop</h2>
 <p>Suppose we want to compute the sum of the numbers in the list <span class="math inline">a</span> of <a href="#ex-3-3">Exercise 3.3</a>. We could do this manually by indexing every number and adding them one by one.</p>
-<div id="44346b6f" class="cell" data-execution_count="17">
+<div id="5199d4d5" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">3</span>, <span class="dv">7</span>]</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>a[<span class="dv">0</span>] <span class="op">+</span> a[<span class="dv">1</span>] <span class="op">+</span> a[<span class="dv">2</span>] <span class="op">+</span> a[<span class="dv">3</span>] <span class="op">+</span> a[<span class="dv">4</span>] <span class="op">+</span> a[<span class="dv">5</span>] <span class="op">+</span> a[<span class="dv">6</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -461,7 +462,7 @@ Exercise 3.3
 </div>
 </div>
 <p><br> In fact, we can also define a new variable to store this number in. Let us call this variable <code>total_sum</code>.</p>
-<div id="358b28da" class="cell" data-execution_count="18">
+<div id="57995585" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">3</span>, <span class="dv">7</span>]</span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>total_sum <span class="op">=</span> a[<span class="dv">0</span>] <span class="op">+</span> a[<span class="dv">1</span>] <span class="op">+</span> a[<span class="dv">2</span>] <span class="op">+</span> a[<span class="dv">3</span>] <span class="op">+</span> a[<span class="dv">4</span>] <span class="op">+</span> a[<span class="dv">5</span>] <span class="op">+</span> a[<span class="dv">6</span>]</span>
@@ -472,7 +473,7 @@ Exercise 3.3
 </div>
 <p><br> If the list is <span class="math inline">a</span> is very long, for example containing thousands of elements, then it becomes very tedious to compute the total sum with the approach above. Such long lists are not uncommon in real-life data.</p>
 <p>A much better way is to use a <em>for-loop</em>, which lets us go through each element in the list one at a time. Here’s how we could compute the sum of the numbers in the list <span class="math inline">a</span> using a for-loop:</p>
-<div id="6ced1767" class="cell" data-execution_count="19">
+<div id="8e4176ec" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">3</span>, <span class="dv">7</span>]</span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>total_sum <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -484,6 +485,7 @@ Exercise 3.3
 <pre><code>28</code></pre>
 </div>
 </div>
+<p>[Clarify that you need to indent the piece of code that will be run repeatedly.] [Maybe include range command] [Explain :]</p>
 <p>Let’s break down what is happening here:</p>
 <ul>
 <li>We first define the list <span class="math inline">a = [1, 4, 2, 5, 6, 3, 7]</span>. The goal is to add up the numbers in this list.</li>
@@ -540,7 +542,7 @@ Exercise 3.3
 <p>In the first <em>iteration</em> of the for-loop (<span class="math inline">i = 0</span>), we have the initial number <span class="math inline">0</span> for <code>total_sum</code> so adding <code>a[0]</code> results in a new value of <code>total_sum</code> being <span class="math inline">0 + 1 = 1</span>.</p>
 <p>In the second iteration, with now <code>total_sum</code> equal to <span class="math inline">1</span>, we add the number <span class="math inline">a[1]</span>, which results in the new value of <code>total_sum</code> being <span class="math inline">1</span> (current number of <code>total_sum</code>) plus <code>a[1]</code> (which is <span class="math inline">4</span>), resulting in a new running total of <span class="math inline">1 + 4 = 5</span>.</p>
 <p>If we would be interested in only computing, e.g., the sum of the first three numbers in <span class="math inline">a</span>, we could replace the index list <span class="math inline">[0,1,2,3,4,5,6]</span> by <span class="math inline">[0,1,2]</span>.</p>
-<div id="cf51ac10" class="cell" data-execution_count="20">
+<div id="e385f396" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">3</span>, <span class="dv">7</span>]</span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>total_sum <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -552,6 +554,7 @@ Exercise 3.3
 <pre><code>7</code></pre>
 </div>
 </div>
+<p>[Change the list.]</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -570,7 +573,7 @@ Exercise 3.4
 </div>
 </div>
 <p>If you want to execute more lines of code in every iteration of the for-loop, you should indent all of them. In the code below we compute the running total <code>total_sum</code> and also use the <code>print()</code> command of Python to print the value of the running total after every addition. This results in all the values in the right column of the above table being printed.</p>
-<div id="8e925e13" class="cell" data-execution_count="21">
+<div id="201f8642" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">3</span>, <span class="dv">7</span>]</span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>total_sum <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -602,7 +605,7 @@ Exercise 3.4
 <h2 data-number="3.5" class="anchored" data-anchor-id="conditional-statements"><span class="header-section-number">3.5</span> Conditional statements</h2>
 <p>In many programming situations, we want the computer to make decisions based on certain conditions. For example, if a number is negative, we might want to handle it differently than if it were positive. In Python, we can do this using <em>conditional statements</em>, also known as <em>if/else statements</em>.</p>
 <p>Let’s look at a basic example:</p>
-<div id="e0bd5f32" class="cell" data-execution_count="22">
+<div id="86849046" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">5</span></span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> x <span class="op">&gt;</span> <span class="dv">0</span>:</span>
@@ -620,7 +623,7 @@ Exercise 3.4
 <li>If the condition is not true (i.e., <span class="math inline">x \leq 0</span>), then Python executes the indented code under <code>else:</code>.</li>
 </ul>
 <p>We can also have multiple conditions using <code>elif</code>, which stands for “else if”:</p>
-<div id="7616d809" class="cell" data-execution_count="23">
+<div id="98992f4c" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> x <span class="op">&gt;</span> <span class="dv">0</span>:</span>
@@ -635,7 +638,7 @@ Exercise 3.4
 </div>
 <p>This checks the conditions one by one from top to bottom and executes the first indented code block where the condition is true. If you want more than three conditions, you should start with an <code>if</code> statement, then <code>elif</code> statements, and finish with an <code>else</code>.</p>
 <p>Finally, if you want to execute multiple lines of code for one or more of the conditions, you should indent all those lines under the respective conditions.</p>
-<div id="ef16be3d" class="cell" data-execution_count="24">
+<div id="2f98339b" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> x <span class="op">&gt;</span> <span class="dv">0</span>:</span>
@@ -663,7 +666,7 @@ Exercise 3.5
 <p>Create the list <span class="math inline">a = [1, 4, -4, 0, 5, -3, -7]</span> in Python.</p>
 <p>Use a for-loop in combination with the code above to check for every number in <span class="math inline">a</span> whether it is positive, zero, or negative. If a number is positive you should print the message <code>"The number is positive"</code>, if it is zero <code>"The number is zero"</code> and if it is negative <code>"The number is negative"</code>.</p>
 <p>The output of your piece of code should be as follows.</p>
-<div id="5982c490" class="cell" data-execution_count="25">
+<div id="1c220a71" class="cell" data-execution_count="25">
 <div class="cell-output cell-output-stdout">
 <pre><code>The number is positive
 The number is positive
@@ -676,6 +679,7 @@ The number is negative</code></pre>
 </div>
 </div>
 </div>
+<p>[Replace abc-formula by quadratic formula.]</p>
 <p>Let us now look at an example from mathematics. Suppose we want to compute the roots <span class="math inline">x</span> of a quadratic equation of the form: <span class="math display">
 ax^2 + bx + c = 0
 </span> Here <span class="math inline">a,b</span> and <span class="math inline">c</span> are known given numbers, and the goal is to find one or more <span class="math inline">x</span>’s that satisfy the above equation.</p>
@@ -685,7 +689,7 @@ x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
 <ul>
 <li>If <span class="math inline">D &gt; 0</span>, the equation has two real roots.</li>
 <li>If <span class="math inline">D = 0</span>, the equation has exactly one real root.</li>
-<li>If <span class="math inline">D &lt; 0</span>, there are no real roots (in the real number system).</li>
+<li>If <span class="math inline">D &lt; 0</span>, there are no (real) roots.</li>
 </ul>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -701,7 +705,7 @@ Exercise 3.6
 <ol type="i">
 <li>Use conditional statements to determine how many roots the quadratic formula <span class="math inline">ax^2 + bx + c</span> has, based on the three possibilities for the discriminant. For each possibility, print an appropriate message in the indented code block.<br><br> For the chosen <span class="math inline">a,b</span> and <span class="math inline">c,</span> the function has two roots (so this case should be printed in your code). <!--
 
-::: {#854de120 .cell execution_count=26}
+::: {#751190bb .cell execution_count=26}
 
 ::: {.cell-output .cell-output-stdout}
 ```
@@ -712,15 +716,15 @@ The formula has two real roots.
 
 
 --></li>
-<li>Use conditional statements to print the roots <span class="math inline">x</span> of the quadratic formula <span class="math inline">ax^2 + bx + c,</span> based on the three possibilities for the discriminant (in the third case, do not print the roots, but a message saying there are no roots).<br><br> <em>Hint: If you want to print two variables <code>y</code> and <code>z</code> you can use <code>print(x,y)</code> or use <code>print(x)</code> and <code>print(y)</code> on different indented lines.</em> <br><br> For the chosen <span class="math inline">a,b</span> and <span class="math inline">c</span>, your output should show the roots <span class="math inline">-0.9106</span> and <span class="math inline">0.244</span> (possibly with more or less decimals).</li>
+<li>Use conditional statements to print the roots <span class="math inline">x</span> of the quadratic formula <span class="math inline">ax^2 + bx + c,</span> based on the three possibilities for the discriminant (in the third case, do not print the roots, but a message saying there are no roots).<br><br> <em>Hint: If you want to print two variables <code>y</code> and <code>z</code> you can use <code>print(x,y)</code> or use <code>print(x)</code> and <code>print(y)</code> on different indented lines.</em> <br><br> For the chosen <span class="math inline">a,b</span> and <span class="math inline">c</span>, your output should show the roots <span class="math inline">-1</span> and <span class="math inline">0.333</span> (possibly with more or less decimals).</li>
 </ol>
 <!--
 
-::: {#5d127ae8 .cell execution_count=27}
+::: {#0666de3c .cell execution_count=27}
 
 ::: {.cell-output .cell-output-stdout}
 ```
--0.9106836025229591 0.2440169358562924
+-1.0 0.3333333333333333
 ```
 :::
 :::
@@ -1157,8 +1161,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./02-installation.html" class="pagination-link" aria-label="Installation">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Installation</span></span>
+      <a href="./02-installation.html" class="pagination-link" aria-label="Software">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Software</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

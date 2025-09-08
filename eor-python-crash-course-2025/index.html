@@ -98,7 +98,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./02-installation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Installation</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Software</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -167,7 +167,7 @@ ul.task-list li input[type="checkbox"] {
 <p><link rel="preconnect" href="https://fonts.googleapis.com"> <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""> <link href="https://fonts.googleapis.com/css2?family=Fira+Mono&amp;family=Fira+Sans&amp;display=swap" rel="stylesheet"></p>
 <p>Welcome to the online “book” that serves as an introduction to the programming language Python, that you will see in various courses throughout the Econometrics and Operations Research (EOR) bachelor program.</p>
 <p>The first part of this book is used for the “Python crash course” announced during the course Linear Algebra. The crash course consists of two (recommended) lectures that will form a useful basis for various programming assignments in the EOR bachelor program, including the assignment of the (mandatory) course Linear Optimization in the second quartile of the first year.</p>
-<p>The two crash course lectures (taught only in English) are outlined below, including links to the lecture materials.</p>
+<p>The two crash course lectures (taught only in English) are outlined below, including links to the lecture materials. To program in Python, we will use the Jupyter Notebook application in which we can execute Python code.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -181,11 +181,11 @@ Overview
 <p><strong>Lecture 1 (September 9, 12.45–14.30, Cube 242)</strong><br>
 Centralized introduction and explanations with time to work on some exercises.</p>
 <ul>
-<li>General introduction to Jupyter Notebook and Python basics in <a href="03-basics.html">Chapter 3</a></li>
+<li>General introduction to Jupyter Notebook and <em>Chapter 3 - Python basics</em>.</li>
 <li>Downloadable materials (right-click and use “Save link as…”)
 <ul>
-<li><a href="exercises-chapter3.ipynb">Exercises of Chapter 3</a> in Jupyter Notebook form.</li>
-<li><a href="python-crash-course-intro.pdf">Introductory slides</a> in PDF form.</li>
+<li><a href="exercises-chapter3.ipynb">Exercises of Chapter 3</a> (see <a href="02-installation.html#sec-jn" class="quarto-xref"><span>Section 2.2</span></a> on how to open this file in Jupyter Notebook after storing it on your computer).</li>
+<li><a href="lec1-slides/lec1-slides.pdf">Introductory slides</a> in PDF form.</li>
 </ul></li>
 </ul>
 <p><strong>Lecture 2 (September 23)</strong>: Linear algebra with Python (details will follow).</p>
@@ -210,14 +210,18 @@ Software requirements
 <h2 data-number="1.1" class="anchored" data-anchor-id="what-is-a-programming-language"><span class="header-section-number">1.1</span> What is a programming language?</h2>
 <p>Without getting into complicated details, a programming language is a way to communicate to a computer, via written text, tasks or operations that you want it to carry out. This is very different to how we often usually interact with a computer, which often involves pointing and clicking on different buttons and menus with your mouse.</p>
 <p>In the EOR bachelor program, the goal is often to tell a computer to carry out complicated numerical computations or to visualize numerical data. To some extent, you have already done this in high school using a graphing calculator. In fact, everything that your graphing calculator can do, you can also do with Python, but the advantage of Python is that it can also handle much more complicated tasks.</p>
-<p>To use Python in a correct fashion, it is important that you understand the grammar, i.e., “syntax”, of the Python programming language. When humans speak to each other and someone makes a grammar mistake, it usually isn’t a big deal. We usually know what they mean. But if you make a “syntax error”, i.e, grammar mistake in a programming language, it won’t understand what you mean. The computer will throw an error. What is worse still is a “semantic error” which is when the computer runs your code without a (syntax) error but does something you didn’t want it to do. Therefore we need to be very careful when writing in a programming language.</p>
+<p>To use Python in a correct fashion, it is important that you understand the grammar, i.e., “syntax”, of the Python programming language. When humans speak to each other and someone makes a grammar mistake, it usually isn’t a big deal. We usually know what they mean. But if you make a “syntax error”, i.e, grammar mistake in a programming language, it won’t understand what you mean. The computer will throw an error.</p>
+<!--
+What is worse still is a "semantic error" which is when the computer runs your code without a (syntax) error but does something you didn't want it to do. Therefore we need to be very careful when writing in a programming language.
+-->
 </section>
 <section id="why-python" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="why-python"><span class="header-section-number">1.2</span> Why Python?</h2>
 <p>There are many different programming languages out there: C, C++, C#, Java, JavaScript, R, Julia, Stata, MATLAB, Fortran, Ruby, Perl, Rust, Go, Lua, Swift - the list goes on. So why should we learn Python over these other alternatives?</p>
 <p>The best programming language depends on the task you want to accomplish. Are you building a website, writing computer software, creating a game, or analyzing mathematical data? While many languages could perform all of these tasks, some languages excel in some of them. Python is by far the most popular programming language when it comes to “data science” tasks, that you will often encounter in the EOR bachelor program. It is also often used in web development, creating desktop applications and games, and for scientific computations. It is therefore a very versatile programming language that can complete a very wide range of tasks.</p>
 <p>Python is also completely free and open source and can run on all common operating systems. This means you can share your code with anyone and they will be able to run it, no matter what computer they are on or where they are in the world.</p>
-<p>There is also a very large active community that creates packages to do a wide-range of operations, keeping Python up to date with the latest developments. For example, excellent community help is available at <a href="https://stackoverflow.com/">Stackoverflow</a>, so if you Google how to do something in Python most likely that question has already been answered on Stackoverflow. Funnily enough, a key skill to develop with programming is how to formulate your question into Google to land on the right Stackoverflow page. More recently, “large-language” models like ChatGPT have become a very useful resource for Python. ChatGPT can write excellent Python code and also explains all the steps it takes, so we encourage you to use it as a tool to help you when you are stuck. You should keep in mind though that throughout the bachelor program, you will not always be allowed to use tools like ChatGPT as it might not align with the learning goals of a course.</p>
+<p>There is also a very large active community that creates packages to do a wide-range of operations, keeping Python up to date with the latest developments. For example, excellent community help is available at <a href="https://stackoverflow.com/">Stackoverflow</a>, so if you Google how to do something in Python most likely that question has already been answered on Stackoverflow. Funnily enough, a key skill to develop with programming is how to formulate your question into Google to land on the right Stackoverflow page.</p>
+<p>More recently, “large-language” models like ChatGPT have become a very useful resource for Python. ChatGPT can write excellent Python code and also explains all the steps it takes, so we encourage you to use it as a tool to help you when you are stuck. You should keep in mind though that throughout the bachelor program, you will not always be allowed to use tools like ChatGPT. It is important that you understand basic programming concepts to improve your AI-prompt writing skills and to catch errors that AI might introduce (do not forget that LLMs are merely predicting text and not “consciously” writing a script).</p>
 <p>These days employers are increasingly looking to hire people with programming skills. Knowing how to program in Python - one of the most commonly used languages by companies - is therefore a very valuable addition to your CV.</p>
 
 
@@ -649,8 +653,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   <div class="nav-page nav-page-previous">
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./02-installation.html" class="pagination-link" aria-label="Installation">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Installation</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./02-installation.html" class="pagination-link" aria-label="Software">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Software</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

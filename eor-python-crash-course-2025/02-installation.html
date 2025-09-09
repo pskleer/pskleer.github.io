@@ -198,7 +198,11 @@ window.Quarto = {
    
   <ul>
   <li><a href="#installing-anaconda" id="toc-installing-anaconda" class="nav-link active" data-scroll-target="#installing-anaconda"><span class="header-section-number">2.1</span> Installing Anaconda</a></li>
-  <li><a href="#sec-jn" id="toc-sec-jn" class="nav-link" data-scroll-target="#sec-jn"><span class="header-section-number">2.2</span> Jupyter Notebook</a></li>
+  <li><a href="#sec-jn" id="toc-sec-jn" class="nav-link" data-scroll-target="#sec-jn"><span class="header-section-number">2.2</span> Jupyter Notebook</a>
+  <ul class="collapse">
+  <li><a href="#creating-new-notebook" id="toc-creating-new-notebook" class="nav-link" data-scroll-target="#creating-new-notebook"><span class="header-section-number">2.2.1</span> Creating new notebook</a></li>
+  <li><a href="#sec-opening-jn" id="toc-sec-opening-jn" class="nav-link" data-scroll-target="#sec-opening-jn"><span class="header-section-number">2.2.2</span> Opening existing notebook</a></li>
+  </ul></li>
   <li><a href="#code-snippets-in-this-book" id="toc-code-snippets-in-this-book" class="nav-link" data-scroll-target="#code-snippets-in-this-book"><span class="header-section-number">2.3</span> Code snippets in this book</a></li>
   </ul>
 </nav>
@@ -269,6 +273,8 @@ window.Quarto = {
 <figcaption>Jupyter Notebook application</figcaption>
 </figure>
 </div>
+<section id="creating-new-notebook" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="creating-new-notebook"><span class="header-section-number">2.2.1</span> Creating new notebook</h3>
 <p>You can navigate to a folder and then create a new notebook by clicking on ‘New’ in the top-right and then selecting ‘Python 3 (ipykernel)’ under Notebook.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -291,23 +297,14 @@ window.Quarto = {
 </figure>
 </div>
 <p>The red <span style="color:red">Out [1]</span> means this is the output from the code snippet <span style="color:blue">In [1]</span> executed in this notebook. If we continue typing code in the second bar, it will be called <span style="color:blue">In [2]</span> and its output <span style="color:red">Out [2]</span>. However, the same happens if we would re-run the first code snippet with <code>1+1</code>: It will also be called <span style="color:blue">In [2]</span> and its output <span style="color:red">Out [2]</span>. The index keeps track of how many code snippets have been executed in the notebook.</p>
-<div id="opening-ipynb" class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Opening .ipynb file
-</div>
-</div>
-<div class="callout-body-container callout-body">
+</section>
+<section id="sec-opening-jn" class="level3" data-number="2.2.2">
+<h3 data-number="2.2.2" class="anchored" data-anchor-id="sec-opening-jn"><span class="header-section-number">2.2.2</span> Opening existing notebook</h3>
 <p>The extension of a Jupyter Notebook file is <code>.ipynb</code> and sometimes denoted as Jupyter Source File. If you have stored such a file on your computer, you can open in it Jupyter Notebook as follows:</p>
 <ul>
 <li>Open Jupyter Notebook (see above) and navigate to the folder where you stored the file.</li>
 <li>Click on the .ipynb file and then it should open in a new tab of the browser.</li>
 </ul>
-</div>
-</div>
 <div id="file-warning" class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -318,27 +315,29 @@ WARNING about files on university computer
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>If you store a file on a (TiU) university computer, it will typically be deleted when you log out. To avoid this, either:</p>
+<p>If you store a file on a (TiU) university computer, for example in the Downloads folder, it will typically be deleted when you log out. To avoid this, either:</p>
 <ul>
 <li>Copy the file onto a USB drive.</li>
 <li>E-mail the file to yourself.</li>
-<li>Store it on the M: drive of the university computer (those are not deleted when logging out).</li>
+<li>Store it on the M: drive (that is denoted by the drive that has your name) of the university computer, whose files are not deleted.</li>
 </ul>
-<p>If you want to open a .ipynb file that is located in the M: drive, you need to open Jupyter Notebook differently than explained above (because you cannot navigate to the M: drive). Instead, do the following:</p>
+<p>Next time you want to use a file, put it again in the Downloads folder to work on it (and make sure to back it up properly again afterwards).</p>
+</div>
+</div>
+<p>If you want to open a .ipynb file that is located in the M: drive of a university computer, you need to open Jupyter Notebook differently than explained above (because you cannot navigate to the M: drive if you open Jupyter Notebook via the Start menu). Instead, do the following:</p>
 <ol type="1">
 <li>Close all instances of Jupyter Notebook if any are running.</li>
 <li>Look up the <em>Anaconda Prompt</em> application in the Start menu and Run it.</li>
 <li>Type <code>jupyter notebook --notebook-dir=M:</code> and press Enter</li>
 <li>Jupyter Notebook should now open in the web browser showing the files and folders of the M: drive</li>
-<li>Open the desired .ipynb file.</li>
+<li>Open the desired .ipynb file to work on it.</li>
 </ol>
-</div>
-</div>
+</section>
 </section>
 <section id="code-snippets-in-this-book" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="code-snippets-in-this-book"><span class="header-section-number">2.3</span> Code snippets in this book</h2>
 <p>In this book, we won’t always show screenshots like we did above. Instead we will show code snippets in boxes like this:</p>
-<div id="81bd0ba1" class="cell" data-execution_count="1">
+<div id="ac81da80" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="op">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>2</code></pre>

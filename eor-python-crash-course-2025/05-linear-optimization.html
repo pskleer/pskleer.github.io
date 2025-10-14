@@ -1,0 +1,1441 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.24">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>5&nbsp; Linear optimization – Python for Econometrics and Operations Research</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<link href="./04-lin-alg.html" rel="prev">
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-a6e161b2431e1f94a14e0f5d32135a3c.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-fe80fb519f0892010506c40733b33e0a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./05-linear-optimization.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Linear optimization</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Python for Econometrics and Operations Research</a> 
+        <div class="sidebar-tools-main">
+    <a href="./Python-for-Econometrics-and-Operations-Research.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+</div>
+    </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Welcome</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-installation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Software</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Python basics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-lin-alg.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Linear algebra</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-linear-optimization.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Linear optimization</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#gurobi-installation" id="toc-gurobi-installation" class="nav-link active" data-scroll-target="#gurobi-installation"><span class="header-section-number">5.1</span> Gurobi installation</a>
+  <ul class="collapse">
+  <li><a href="#register-at-gurobi" id="toc-register-at-gurobi" class="nav-link" data-scroll-target="#register-at-gurobi"><span class="header-section-number">5.1.1</span> Register at Gurobi</a></li>
+  <li><a href="#download-gurobi" id="toc-download-gurobi" class="nav-link" data-scroll-target="#download-gurobi"><span class="header-section-number">5.1.2</span> Download Gurobi</a></li>
+  <li><a href="#install-gurobi" id="toc-install-gurobi" class="nav-link" data-scroll-target="#install-gurobi"><span class="header-section-number">5.1.3</span> Install Gurobi</a></li>
+  <li><a href="#gurobi-license" id="toc-gurobi-license" class="nav-link" data-scroll-target="#gurobi-license"><span class="header-section-number">5.1.4</span> Gurobi license</a></li>
+  <li><a href="#using-gurobi-in-python" id="toc-using-gurobi-in-python" class="nav-link" data-scroll-target="#using-gurobi-in-python"><span class="header-section-number">5.1.5</span> Using Gurobi in Python</a></li>
+  <li><a href="#test-your-installation" id="toc-test-your-installation" class="nav-link" data-scroll-target="#test-your-installation"><span class="header-section-number">5.1.6</span> Test your installation</a></li>
+  </ul></li>
+  <li><a href="#basics" id="toc-basics" class="nav-link" data-scroll-target="#basics"><span class="header-section-number">5.2</span> Basics</a>
+  <ul class="collapse">
+  <li><a href="#example-duplo-problem" id="toc-example-duplo-problem" class="nav-link" data-scroll-target="#example-duplo-problem"><span class="header-section-number">5.2.1</span> Example: Duplo problem</a></li>
+  <li><a href="#infeasible-models" id="toc-infeasible-models" class="nav-link" data-scroll-target="#infeasible-models"><span class="header-section-number">5.2.2</span> Infeasible models</a></li>
+  </ul></li>
+  <li><a href="#integer-variables" id="toc-integer-variables" class="nav-link" data-scroll-target="#integer-variables"><span class="header-section-number">5.3</span> Integer variables</a></li>
+  <li><a href="#beyond-the-basics" id="toc-beyond-the-basics" class="nav-link" data-scroll-target="#beyond-the-basics"><span class="header-section-number">5.4</span> Beyond the basics</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Linear optimization</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><link rel="preconnect" href="https://fonts.googleapis.com"> <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""> <link href="https://fonts.googleapis.com/css2?family=Fira+Mono&amp;family=Fira+Sans&amp;display=swap" rel="stylesheet"></p>
+<p>In this chapter we will show how to implement linear optimization problems using Python. The goal is to model optimization problems in Python and then solve them using Gurobi, which is a software package dedicated to solving optimization problems.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Prerequisites
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This chapter assumes familiarity with Sections 3.1-3.5 of this online book.</p>
+</div>
+</div>
+<p>In the next section we explain how to install Gurobi on your personal laptop, and how to connect it to Anaconda. On the university computers Gurobi is already installed and configured correctly, so if you are using such a computer, you can skip the next section.</p>
+<section id="gurobi-installation" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="gurobi-installation"><span class="header-section-number">5.1</span> Gurobi installation</h2>
+<p>It is assumed that you already have Python installed on your system. Otherwise, you need to install Python first. The <a href="https://www.anaconda.com/">Anaconda distribution</a> is a good choice. If you get stuck anywhere in the installation process, then you can find more information on Gurobi’s <a href="https://www.gurobi.com/documentation/quickstart.html">Quick Start Guide</a>.</p>
+<section id="register-at-gurobi" class="level3" data-number="5.1.1">
+<h3 data-number="5.1.1" class="anchored" data-anchor-id="register-at-gurobi"><span class="header-section-number">5.1.1</span> Register at Gurobi</h3>
+<p>Visit the <a href="https://www.gurobi.com/">Gurobi website</a> and click on the register button. Open the registration form and make sure that you select the <em>Academic</em> account type, and select Student for the academic position.</p>
+</section>
+<section id="download-gurobi" class="level3" data-number="5.1.2">
+<h3 data-number="5.1.2" class="anchored" data-anchor-id="download-gurobi"><span class="header-section-number">5.1.2</span> Download Gurobi</h3>
+<p>Download Gurobi from the website. Note that you need to login with your Gurobi account before you can download Gurobi. Select the distribution that corresponds to your system (e.g., Windows or macOS), and select the regular “Gurobi Optimizer”, not any of the AMPL variations. Unless mentioned otherwise, download the most recent version.</p>
+</section>
+<section id="install-gurobi" class="level3" data-number="5.1.3">
+<h3 data-number="5.1.3" class="anchored" data-anchor-id="install-gurobi"><span class="header-section-number">5.1.3</span> Install Gurobi</h3>
+<p>Run the installer and follow the installation steps. At some point, the installer may ask whether to add Gurobi to your execution path. This is probably useful to accept.</p>
+</section>
+<section id="gurobi-license" class="level3" data-number="5.1.4">
+<h3 data-number="5.1.4" class="anchored" data-anchor-id="gurobi-license"><span class="header-section-number">5.1.4</span> Gurobi license</h3>
+<p>You cannot use Gurobi without a license, so you need to apply for a license. As a student you can request a <a href="https://www.gurobi.com/academia/academic-program-and-licenses">free academic license</a>; take the <strong>Named-User Academic</strong> one. After you have obtained the license, you need to activate it for your Gurobi installation. If you open the license details on the Gurobi website, you can see what you need to do: open a command prompt and run the <code>grbgetkey</code> command with the code that corresponds to your license. This command will create your license file. Make sure that you remember where the license file is saved. The default location is probably the best choice.</p>
+<p>Note that the <code>grbgetkey</code> command will check that you are on an academic domain, so you need to perform this step on the <strong>university network</strong> (possibly via a <a href="https://www.tilburguniversity.edu/students/it/vpn">VPN</a> connection). Once installed correctly, you can also run Gurobi without an active VPN connection.</p>
+</section>
+<section id="using-gurobi-in-python" class="level3" data-number="5.1.5">
+<h3 data-number="5.1.5" class="anchored" data-anchor-id="using-gurobi-in-python"><span class="header-section-number">5.1.5</span> Using Gurobi in Python</h3>
+<p>Gurobi should now be correctly installed, but we also want to be able to use it from Python. Therefore, we need to install Gurobi’s Python package. Open your Anaconda prompt (if you have the Anaconda installation) and run the following commands.</p>
+<ul>
+<li><code>conda config --add channels http://conda.anaconda.org/gurobi</code></li>
+<li><code>conda install gurobi</code></li>
+</ul>
+<p>If you don’t have the Anaconda installation, then you can do something similar with the <code>pip</code> command.</p>
+</section>
+<section id="test-your-installation" class="level3" data-number="5.1.6">
+<h3 data-number="5.1.6" class="anchored" data-anchor-id="test-your-installation"><span class="header-section-number">5.1.6</span> Test your installation</h3>
+<p>Now you can test whether everything is setup correctly. Open an interactive Python session, for instance using Jupyter Notebook. Try the following commands:</p>
+<div id="07675833" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gurobipy <span class="im">import</span> Model</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> Model()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Set parameter Username
+Set parameter LicenseID to value 2715549
+Academic license - for non-commercial use only - expires 2026-09-29</code></pre>
+</div>
+</div>
+<p>If both these commands succeed, then you are done.</p>
+<p>If the first command fails, then the Gurobi python module has not been installed correctly. If the second command fails, then the license has not been setup correctly (make sure the license file is at the right location).</p>
+<p>If at any point, you need more information about Gurobi, then you can always go to the official Gurobi documention <a href="http://www.gurobi.com/documentation/">online</a>. <!--
+Note that the documentation is also included in your local Gurobi installation. E.g., `C:/Program%20Files/gurobi810/win64/docs/refman/py_python_api_overview.html#sec:Python`
+--></p>
+</section>
+</section>
+<section id="basics" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="basics"><span class="header-section-number">5.2</span> Basics</h2>
+<p>All the relevant functionality needed to use Gurobi via Python is contained in the <code>gurobipy</code> package. For our purposes, we only need two <em>modules</em> from this package:</p>
+<ul>
+<li>The <code>Model</code> module that we will use to build optimization problems</li>
+<li>The <code>GRB</code> module that contains various “constants” that we use to include words such as <em>maximize</em> and <em>minimize</em>, as well as <em>binary</em> and <em>integer</em>.</li>
+</ul>
+<p>In Python you can include the modules by adding the following line at the top of a script.</p>
+<div id="701dc247" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gurobipy <span class="im">import</span> Model, GRB</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="example-duplo-problem" class="level3" data-number="5.2.1">
+<h3 data-number="5.2.1" class="anchored" data-anchor-id="example-duplo-problem"><span class="header-section-number">5.2.1</span> Example: Duplo problem</h3>
+<p>To illustrate how to implement optimization problems in Python, we consider the Duplo problem from the lectures: <span class="math display">
+\begin{array}{llll}
+\text{maximize}&amp; 15x_1 + 20x_2 &amp;&amp; \text{(profit)} \\
+\text{subject to} &amp;x_1 + 2x_2 \leq 6 &amp;&amp;\text{(big bricks)} \\
+&amp;2x_1 + 2x_2 \leq 8 &amp;&amp;\text{(small bricks)} \\
+&amp;x_1, x_2 \geq 0
+\end{array}
+</span> with decision variables</p>
+<ul>
+<li><span class="math inline">x_1</span>: Number of chairs</li>
+<li><span class="math inline">x_2</span>: Number of tables</li>
+</ul>
+<p>Let us implement the Duplo problem in Gurobi.</p>
+<section id="model-object" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="model-object">Model object</h4>
+<p>To start, we will create a variable (or object) <code>model</code> that will contain all the information of the problem, such as the decision variables, objective function and constraints.</p>
+<p>In programming terms, we create aa <em>object</em> from the <code>Model()</code> class. We can give the instance a name by adding the <code>name</code> <em>keyword</em> argument, with value <code>'Duplo problem'</code> in our case. We add this name with quotations so that Python knows this is plain text.</p>
+<div id="de25712d" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize Gurobi model.</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> Model(name<span class="op">=</span><span class="st">'Duplo problem'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>You can think of the Model class object <code>model</code> as a large box that we are going to fill with decision variables, an objective function, and constraints. We will also reserve a small space in this box to store information about the optimal solution to the linear optimization problem, once we have optimized the problem.</p>
+<p>The concept of having “objects” is in fact what the programming language Python is centered around. This is known as <em>object-oriented programming</em>, which you will learn about more later in your first full programming course. You can have a look, for example, <a href="https://tisem-eds.github.io/prog/10-object-oriented-programming.html">here</a> already if you are interested in this concept.</p>
+</section>
+<section id="decision-variables" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="decision-variables">Decision variables</h4>
+<p>To add decision variables, an objective function, and constraints, to our Model object we use so-called <em>methods</em> which are Python functions.</p>
+<p>To create a decision variable, we can use the <code>addVar()</code> method. As input argument, we include a name for the decision variables.</p>
+<div id="a00b93ca" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Declare the two decision variables.</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>x1 <span class="op">=</span> model.addVar(name<span class="op">=</span><span class="st">'chairs'</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>x2 <span class="op">=</span> model.addVar(name<span class="op">=</span><span class="st">'tables'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<blockquote class="blockquote">
+<p>If your Model object is not called <code>model</code>, but for example <code>model_Duplo</code>, then you should use <code>model_Duplo.addVar(name='chairs')</code> instead. The same applies for all later methods that are introduced. Never call a model <code>Model</code> (with capital M) because this spelling is reserved for the <code>Model()</code> class in Gurobi.</p>
+</blockquote>
+<p>When creating a variable, you can specify more properties. For example, we might have an upper and lower bound for a decision variable (such as a nonnegativity constraint). You can use the keyword arguments <code>lb</code> and <code>ub</code>, respectively, for this.</p>
+<p>To see all these properties, you can check out the <code>addVar</code> documentation by typing <code>help(Model.addVar)</code> in Python. Looking up the documentation in this way can be done for every method.</p>
+<div id="dcf067fe" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">help</span>(Model.addVar)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Help on cython_function_or_method in module gurobipy._model:
+
+addVar(self, lb=0.0, ub=1e+100, obj=0.0, vtype='C', name='', column=None)
+    ROUTINE:
+      addVar(lb, ub, obj, vtype, name, column)
+
+    PURPOSE:
+      Add a variable to the model.
+
+    ARGUMENTS:
+      lb (float): Lower bound (default is zero)
+      ub (float): Upper bound (default is infinite)
+      obj (float): Objective coefficient (default is zero)
+      vtype (string): Variable type (default is GRB.CONTINUOUS)
+      name (string): Variable name (default is no name)
+      column (Column): Initial coefficients for column (default is None)
+
+    RETURN VALUE:
+      The created Var object.
+
+    EXAMPLE:
+      v = model.addVar(ub=2.0, name="NewVar")
+</code></pre>
+</div>
+</div>
+<p>If we would want to create a variable, with name <em>test variable</em>, having lower bound <span class="math inline">3</span> and upper bound <span class="math inline">7</span>, we can do this with <code>x = model.addVar(lb=3,ub=7,name='test variable')</code> using in particular the <code>lb</code> and <code>ub</code> keyword arguments.</p>
+<p>As you can see above, all the keyword arguments have default values, meaning that if we do not specify them, Gurobi uses the specified default value for them. For example, by default a variable is continuous (<code>vtype</code> keyword argument) and non-negative (<code>lb</code> keyword argument), so we do not have to specify these for the Duplo exmpale, because there we have <span class="math inline">x_1, x_2 \geq 0</span>.</p>
+<p>Also note that <code>ub</code> is set to <span class="math inline">10^{100}</span> which roughly speaking indicates that the decision variable has no upper bound value by default.</p>
+</section>
+<section id="objective-function" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="objective-function">Objective function</h4>
+<p>Now that we have our decision variables, we can use them to define the objective function and the constraints.</p>
+<p>We use the <code>setObjective()</code> method to do so by refering to the variables created above. The <code>sense</code> keyword argument must be used to specify whether we want to maximize or minimize the objective function. For this, we use <code>GRB.MAXIMIZE</code> or <code>GRB.MINIMIZE</code>, respectively.</p>
+<div id="a3039e45" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Specify the objective function.</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>model.setObjective(<span class="dv">15</span><span class="op">*</span>x1 <span class="op">+</span> <span class="dv">20</span><span class="op">*</span>x2, sense<span class="op">=</span>GRB.MAXIMIZE)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="constraints" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="constraints">Constraints</h4>
+<p>The next step is to declare the constraints using the <code>addConstr()</code> method. Also here, we can specify the constraints refering to the variables <code>x1</code> and <code>x2</code>. We give the constraints a name as well.</p>
+<div id="358eaf7c" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the resource constraints on bricks.</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>model.addConstr(x1 <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>x2 <span class="op">&lt;=</span> <span class="dv">6</span>, name<span class="op">=</span><span class="st">'big-bricks'</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>model.addConstr(<span class="dv">2</span><span class="op">*</span>x1 <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>x2 <span class="op">&lt;=</span> <span class="dv">8</span>, name<span class="op">=</span><span class="st">'small-bricks'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<pre><code>&lt;gurobi.Constr *Awaiting Model Update*&gt;</code></pre>
+</div>
+</div>
+<p>Now the model is completely specified, we are ready to compute the optimal solution. We can do this using the <code>optimize()</code> method applied to our model <code>model</code>.</p>
+<div id="8ff6e624" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Optimize the model</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>model.optimize()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Gurobi Optimizer version 12.0.3 build v12.0.3rc0 (win64 - Windows 10.0 (19045.2))
+
+CPU model: 12th Gen Intel(R) Core(TM) i7-1265U, instruction set [SSE2|AVX|AVX2]
+Thread count: 10 physical cores, 12 logical processors, using up to 12 threads
+
+Optimize a model with 2 rows, 2 columns and 4 nonzeros
+Model fingerprint: 0xadc88607
+Coefficient statistics:
+  Matrix range     [1e+00, 2e+00]
+  Objective range  [2e+01, 2e+01]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [6e+00, 8e+00]
+Presolve time: 0.00s
+Presolved: 2 rows, 2 columns, 4 nonzeros
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+       0    3.5000000e+31   3.500000e+30   3.500000e+01      0s
+       2    7.0000000e+01   0.000000e+00   0.000000e+00      0s
+
+Solved in 2 iterations and 0.00 seconds (0.00 work units)
+Optimal objective  7.000000000e+01</code></pre>
+</div>
+</div>
+<p>We can see some output from Gurobi, and the last line tells us that Gurobi found an optimal solution with objective value 70.</p>
+<p>To summarize all the step above, we have given the complete code below (but not executed this time).</p>
+<div id="0dcd2ba5" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gurobipy <span class="im">import</span> Model, GRB</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize Gurobi model.</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> Model(name<span class="op">=</span><span class="st">'Duplo problem'</span>)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Declare the two decision variables.</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>x1 <span class="op">=</span> model.addVar(name<span class="op">=</span><span class="st">'chairs'</span>)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>x2 <span class="op">=</span> model.addVar(name<span class="op">=</span><span class="st">'tables'</span>)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Specify the objective function.</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>model.setObjective(<span class="dv">15</span><span class="op">*</span>x1 <span class="op">+</span> <span class="dv">20</span><span class="op">*</span>x2, sense<span class="op">=</span>GRB.MAXIMIZE)</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the resource constraints on bricks.</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>model.addConstr(x1 <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>x2 <span class="op">&lt;=</span> <span class="dv">6</span>, name<span class="op">=</span><span class="st">'big-bricks'</span>)</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>model.addConstr(<span class="dv">2</span><span class="op">*</span>x1 <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>x2 <span class="op">&lt;=</span> <span class="dv">8</span>, name<span class="op">=</span><span class="st">'small-bricks'</span>)</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Optimize the model</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>model.optimize()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Recalling our linear optimization problem object as being a “box” filled with decision variables, an objective function and constraints, the box now also contains a small space where the optimal solution is stored.</p>
+<p>Let us have a look at how to access information about the optimal solution. The objective function value of the optimal solution, that was also displayed in the output when optimization the model with <code>model.optimize()</code> is stored in the <code>ObjVal</code> <em>attribute</em>. An attribute is a piece of information about an object in Python.</p>
+<div id="030c1752" class="cell" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print text 'Objective value' and the model.ObjVal attribute value</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Objective value:'</span>, model.ObjVal)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Objective value: 70.0</code></pre>
+</div>
+</div>
+<p>The optimal values of a decision variables can be obtained by accessing the <code>X</code> <em>attribute</em> of a variable.</p>
+<div id="cf172c20" class="cell" data-execution_count="11">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'x1 = '</span>, x1.X)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'x2 = '</span>, x2.X)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>x1 =  2.0
+x2 =  2.0</code></pre>
+</div>
+</div>
+<p>If the model has many variables, printing variables in this way is a cumbersome approach. It is then easier to iterate over all variables of the model using the <code>getVars()</code> method. This method creates a list of all the decision variables of the model.</p>
+<div id="28738910" class="cell" data-execution_count="12">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(model.getVars())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[&lt;gurobi.Var chairs (value 2.0)&gt;, &lt;gurobi.Var tables (value 2.0)&gt;]</code></pre>
+</div>
+</div>
+<p>As you can see above, we already see the optimal values of the decision variables, but also a lot of unnecessary information.</p>
+<p>Let us print these values in a nicer format by iterating over the list <code>model.getVars()</code> using a for-loop with index variable <code>var</code>; you can choose another name here if you want. We print for every variable <code>var</code> its name, stored in the attribute <code>VarName</code>, and its value, stored in the attribute <code>X</code>. In between, we print the <span class="math inline">=</span> symbol in plain text (hence, the quotations).</p>
+<p>Recall that if you want to print multiple date types (such as a variables and text) in a <code>print()</code> statement, you should separate them with commas.</p>
+<div id="c67ec0ca" class="cell" data-execution_count="13">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> var <span class="kw">in</span> model.getVars():</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(var.VarName, <span class="st">"="</span>, var.X)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>chairs = 2.0
+tables = 2.0</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Exercise 1
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>M<span class="math inline">\text{\'e}</span>decins sans Fronti<span class="math inline">\text{\`e}</span>res (MSF) (Dutch: Artsen zonder Grenzen) wants to build medical kits to use in region with an epidemic. The following constraints should be taken into account.</p>
+<ul>
+<li>MSF has raised € 6400 to build two types of medical medical kits: vaccination and surgical kits. Assembling a surgical kit costs € 320; a vaccination kit € 210.<br>
+</li>
+<li>MSF has in total <span class="math inline">80</span> labour hours available in which employees can build these kits. Building a surgical kit requires 2.5 labour hours; a vaccination kit requires 4.5 labour hours.</li>
+<li>At most <span class="math inline">15</span> vaccination kits can be built.</li>
+</ul>
+<p>A linear optimization problem that maximizes the total number of produced kits is given below. The decision variables are the number of surgical kits (<span class="math inline">x_1</span>) and the number of vaccination kits <span class="math inline">(x_2)</span> to assemble.</p>
+<p><span class="math display">
+\begin{array}{lrrrrrrl}
+\max &amp; z  = &amp; x_{1} &amp;+ &amp;x_{2} &amp; &amp; &amp; \ \ \ \textit{total number of kits}\\
+\text{s.t. } &amp; &amp; 320x_1 &amp;+ &amp; 210x_2&amp; \leq &amp; 6400 &amp; \ \ \ \textit{budget constraint}\\
+&amp;&amp; 2.5x_1 &amp;+ &amp; 4.5x_2&amp; \leq &amp; 80 &amp; \ \ \ \textit{labor hours constraint}\\  
+  &amp;&amp; &amp; &amp; x_2&amp; \leq &amp; 15 &amp; \ \ \ \textit{at most $15$ vac. kits}\\  
+&amp; &amp;x_1, &amp; &amp; x_2  &amp; \geq &amp; 0 &amp; \ \ \ \textit{nonneg. constraints}
+\end{array}
+</span></p>
+<p>Implement this model in Python with a Model object called <code>model_msf</code>, with decision variable whose keyword arguments for <code>name</code> are <code>'Surgical kits'</code> and <code>'Vaccination kits'</code>, respectively. Optimize your model.</p>
+<p>If you include the following lines at the end of your code, you should get the output as indicated.</p>
+<div id="dd79bb01" class="cell" data-execution_count="15">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace model_msf by chosen name of Model object if different.</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co"># For example, if your object is called model, then use model.getVars() instead</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> var <span class="kw">in</span> model_msf.getVars():</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(var.VarName, <span class="st">"="</span>, var.X)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Surgical kits = 9.444444444444445
+Vaccination kits = 15.0</code></pre>
+</div>
+</div>
+</div>
+</div>
+<p>As you can see in the output of Exercise 1, the optimal values of the decision variables are not integer, although this is a desired property because we cannot build, e.g., <span class="math inline">9.44</span> kits. We will later see how you can enforce the decision variables to be integer-valued as well. You can ignore this shortcoming for now.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Exercise 2
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A brewery produces beer in Haarlem and Eindhoven (plants), and ships to Amsterdam, Amersfoort, Gouda, Den Bosch and Breda (customers).</p>
+<p>We can ship beer units from the plants to the customers, taking into account transportation costs, demand of the customers and supply of the plants. In the table below we have indicated the following input data:</p>
+<ul>
+<li><span style="color:red;">Unit transport costs (in euros)</span> from the <strong>plants</strong> (Haarlem, Eindhoven) to the <strong>customers</strong> (Amsterdam, Breda, Gouda, Amersfoort, Den Bosch);</li>
+<li><span style="color:green;">Demand</span> of each customer: what needs to <em>at least</em> be delivered;</li>
+<li><span style="color:blue;">Maximum supply capacity</span> of each plant: what can <em>at most</em> be supplied.</li>
+</ul>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 18%">
+<col style="width: 13%">
+<col style="width: 13%">
+<col style="width: 13%">
+<col style="width: 13%">
+<col style="width: 13%">
+<col style="width: 13%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>A’dam</th>
+<th>Breda</th>
+<th>Gouda</th>
+<th>A’foort</th>
+<th>Den Bosch</th>
+<th>Supply</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Haarlem</strong></td>
+<td><span style="color:red;">131</span></td>
+<td><span style="color:red;">405</span></td>
+<td><span style="color:red;">188</span></td>
+<td><span style="color:red;">396</span></td>
+<td><span style="color:red;">485</span></td>
+<td><span style="color:blue;">47</span></td>
+</tr>
+<tr class="even">
+<td><strong>Eindhoven</strong></td>
+<td><span style="color:red;">554</span></td>
+<td><span style="color:red;">351</span></td>
+<td><span style="color:red;">479</span></td>
+<td><span style="color:red;">366</span></td>
+<td><span style="color:red;">155</span></td>
+<td><span style="color:blue;">63</span></td>
+</tr>
+<tr class="odd">
+<td><strong>Demand</strong></td>
+<td><span style="color:green;">28</span></td>
+<td><span style="color:green;">16</span></td>
+<td><span style="color:green;">22</span></td>
+<td><span style="color:green;">31</span></td>
+<td><span style="color:green;">12</span></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>We define decision variables <span class="math inline">x_{pc}</span> that model the number of units shipped from plant <span class="math inline">p</span> to customer <span class="math inline">c</span>, with the meaning of the indices <span class="math inline">p</span> and <span class="math inline">c</span> as follows:</p>
+<ul>
+<li>Plants: <span class="math inline">p = 1</span> for Haarlem, <span class="math inline">p = 2</span> for Eindhoven.</li>
+<li>Customers: <span class="math inline">c = 1</span> for Amsterdam, <span class="math inline">c = 2</span> for Breda, <span class="math inline">c = 3</span> for Gouda, <span class="math inline">c = 4</span> for Amersfoort, <span class="math inline">c = 5</span> for Den Bosch.</li>
+</ul>
+<p>A linear optimization problem that minimizes the total transportation costs subject to the demand and supply constraints is given below.</p>
+<p><span class="math display">
+\begin{array}{rll}
+\min &amp; \displaystyle  131x_{11} + 405x_{12} + 188x_{13} + 396x_{14} + 485x_{15} +   \\
+&amp;  554x_{21} + 351x_{22} + 479x_{23} + 366x_{24} + 155x_{25}   &amp; \\
+{\rm s.t.} &amp; \displaystyle   x_{11} + x_{12} + x_{13} + x_{14} + x_{15} \leq   47 &amp; \textit{supply  Haarlem}\\  
+&amp; \displaystyle   x_{21} + x_{22} + x_{23} + x_{24} + x_{25}  \leq  63 &amp; \textit{supply Eindhoven} \\  
+&amp; \displaystyle   x_{11} + x_{21} \geq 28 &amp; \textit{demand A'dam} \\  
+&amp; \displaystyle   x_{12} + x_{22} \geq 16 &amp; \textit{demand Breda} \\  
+&amp; \displaystyle   x_{13} + x_{23} \geq 22 &amp; \textit{demand Gouda} \\  
+&amp; \displaystyle   x_{14} + x_{24} \geq 31 &amp; \textit{demand A'foort} \\  
+&amp; \displaystyle   x_{15} + x_{25} \geq 12 &amp; \textit{demand Den Bosch} \\  
+&amp; x_{11}, x_{12}, x_{13},x_{14},x_{15},x_{21},x_{22},x_{23},x_{24},x_{25} \geq 0  &amp;   \textit{ship nonneg. amounts}
+\end{array}
+</span></p>
+<p>Implement this model in Python with a Model object called <code>model_beer</code>. In the <code>name</code> keyword argument of a decision variable, indicate the plant-customer combination it represents (for example, you could define <code>x11 = model_beer.addVar(name='Haarlem-Amsterdam')</code> for the decision variable <span class="math inline">x_{11}</span> modeling the Haarlem-Amsterdam combination).</p>
+<p>If you include the following lines at the end of your code, you should get the output as indicated.</p>
+<div id="e156a5e8" class="cell" data-execution_count="17">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> var <span class="kw">in</span> model_beer.getVars():</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(var.VarName, <span class="st">"="</span>, var.X)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Haarlem-Amsterdam = 28.0
+Haarlem-Breda = 0.0
+Haarlem-Gouda = 19.0
+Haarlem-Amersfoort = 0.0
+Haarlem-Den Bosch = 0.0
+Eindhoven-Amsterdam = 0.0
+Eindhoven-Breda = 16.0
+Eindhoven-Gouda = 3.0
+Eindhoven-Amersfoort = 31.0
+Eindhoven-Den Bosch = 12.0</code></pre>
+</div>
+</div>
+</div>
+</div>
+<p>As you might have experienced in Exercise 2, once the number of decision variables and/or constraints grows, it becomes more tedious to write out the full problem in Python. Luckily, there are more efficient ways to implement the above problem, that only require a couple of lines of code, even if there are many more plants and customers! This is beyond the scope of this course.</p>
+</section>
+</section>
+<section id="infeasible-models" class="level3" data-number="5.2.2">
+<h3 data-number="5.2.2" class="anchored" data-anchor-id="infeasible-models"><span class="header-section-number">5.2.2</span> Infeasible models</h3>
+<p>Not every linear optimization problem has an optimal solution. For example, the problem</p>
+<p><span class="math display">
+\begin{array}{lrrrrrrl}
+\min &amp; z  = &amp; 2x_{1} &amp;+ &amp;x_{2} &amp; &amp; &amp; \\
+\text{s.t. } &amp; &amp;x_1 &amp;+ &amp; x_2&amp; \leq &amp; -1 &amp; \\
+&amp; &amp;x_1, &amp; &amp; x_2  &amp; \geq &amp; 0 &amp;
+\end{array}
+</span></p>
+<p>has no feasible solution, because the sum of two nonnegative numbers (<span class="math inline">x_1,x_2 \geq 0</span>) can never sum up to something smaller or equal than <span class="math inline">-1</span> (<span class="math inline">x_1 + x_2 \leq -1</span>). The implementation of this problem is given below. It can be seen from the output (on the last line) that the model is indeed infeasible.</p>
+<div id="d1364325" class="cell" data-execution_count="18">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize Gurobi model.</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> Model(name<span class="op">=</span><span class="st">'Infeasible model'</span>)</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Declare the two decision variables.</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>x1 <span class="op">=</span> model.addVar() <span class="co"># We leave out the name keyword argument</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>x2 <span class="op">=</span> model.addVar() </span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Specify the objective function.</span></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>model.setObjective(x1 <span class="op">+</span> x2, sense<span class="op">=</span>GRB.MINIMIZE)</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the resource constraints on bricks.</span></span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>model.addConstr(x1 <span class="op">+</span> x2 <span class="op">&lt;=</span> <span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Optimize the model</span></span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>model.optimize()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Gurobi Optimizer version 12.0.3 build v12.0.3rc0 (win64 - Windows 10.0 (19045.2))
+
+CPU model: 12th Gen Intel(R) Core(TM) i7-1265U, instruction set [SSE2|AVX|AVX2]
+Thread count: 10 physical cores, 12 logical processors, using up to 12 threads
+
+Optimize a model with 1 rows, 2 columns and 2 nonzeros
+Model fingerprint: 0xf5807d19
+Coefficient statistics:
+  Matrix range     [1e+00, 1e+00]
+  Objective range  [1e+00, 1e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [1e+00, 1e+00]
+Presolve removed 0 rows and 2 columns
+Presolve time: 0.00s
+
+Solved in 0 iterations and 0.00 seconds (0.00 work units)
+Infeasible model</code></pre>
+</div>
+</div>
+<p>You can look up the type of solution to a problem in the <code>Status</code> attribute of a model.</p>
+<div id="7ecd289b" class="cell" data-execution_count="19">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>model.Status</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="18">
+<pre><code>3</code></pre>
+</div>
+</div>
+<p>The above output number is not informative right away. The number represents the <em>Optimization Status Code</em>, whose meaning you can look up in Gurobi’s <a href="https://docs.gurobi.com/current/#refman/optimization_status_codes.html">online documentation</a>.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Exercise 3
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>When implementing and optimizing the following problem <span class="math display">
+\begin{array}{lrrrrrrl}
+\max &amp; z  = &amp; 2x_{1} &amp;+ &amp;x_{2} &amp; &amp; &amp; \\
+\text{s.t. } &amp; &amp;x_1 &amp;- &amp; x_2&amp; \leq &amp; 5 &amp; \\
+&amp; &amp;x_1, &amp; &amp; x_2  &amp; \geq &amp; 0 &amp;
+\end{array},
+</span> Python returns an Optmization Status Code of <span class="math inline">4</span>. Look up in the <a href="https://docs.gurobi.com/current/#refman/optimization_status_codes.html">online documentation</a>, more specifically the <em>Reference Manual</em>, what this means.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="integer-variables" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="integer-variables"><span class="header-section-number">5.3</span> Integer variables</h2>
+<p>If you are not interested in finding fractional solutions, but want to enforce the decision variables to take integer values, you can do this with the <code>vtype</code> keyword argument.</p>
+<p>Consider the following linear optimization problem (without integrality constraints).</p>
+<p><span class="math display">
+\begin{array}{lrrrrrrl}
+\max &amp; z  = &amp; 2x_{1} &amp;+ &amp;x_{2} &amp; &amp; &amp; \\
+\text{s.t. } &amp; &amp;x_1 &amp;+ &amp; x_2&amp; \leq &amp; 2.5 &amp; \\
+&amp; &amp;x_1, &amp; &amp; x_2  &amp; \geq &amp; 0 &amp;
+\end{array},
+</span></p>
+<div id="69ff8f06" class="cell" data-execution_count="21">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize Gurobi model.</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>model_frac <span class="op">=</span> Model(name<span class="op">=</span><span class="st">'Fractional problem'</span>)</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Suppress Gurobi Optimizer output</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>model_frac.setParam(<span class="st">'OutputFlag'</span>,<span class="dv">0</span>)</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Declare the two decision variables.</span></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>x1 <span class="op">=</span> model_frac.addVar(name<span class="op">=</span><span class="st">"x1"</span>) </span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>x2 <span class="op">=</span> model_frac.addVar(name<span class="op">=</span><span class="st">"x2"</span>) </span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Specify the objective function.</span></span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>model_frac.setObjective(<span class="dv">2</span><span class="op">*</span>x1 <span class="op">+</span> x2, sense<span class="op">=</span>GRB.MAXIMIZE)</span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the resource constraints on bricks.</span></span>
+<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a>model_frac.addConstr(x1 <span class="op">+</span> x2 <span class="op">&lt;=</span> <span class="fl">2.5</span>)</span>
+<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Optimize the model</span></span>
+<span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a>model_frac.optimize()</span>
+<span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-20"><a href="#cb30-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Print optimal values of decision variables</span></span>
+<span id="cb30-21"><a href="#cb30-21" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> var <span class="kw">in</span> model_frac.getVars():</span>
+<span id="cb30-22"><a href="#cb30-22" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(var.VarName, <span class="st">"="</span>, var.X)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>x1 = 2.5
+x2 = 0.0</code></pre>
+</div>
+</div>
+<p>If we specify <code>vtype=GRB.INTEGER</code> in the <code>addVar()</code> method when creating the variables, Gurobi will find an optimal solution with all decision variables being integers.</p>
+<div id="f314779c" class="cell" data-execution_count="22">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize Gurobi model.</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>model_int <span class="op">=</span> Model(name<span class="op">=</span><span class="st">'Integer problem'</span>)</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Suppress Gurobi Optimizer output</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>model_int.setParam(<span class="st">'OutputFlag'</span>,<span class="dv">0</span>)</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Declare the two decision variables.</span></span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>x1 <span class="op">=</span> model_int.addVar(name<span class="op">=</span><span class="st">"x1"</span>,vtype<span class="op">=</span>GRB.INTEGER) </span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>x2 <span class="op">=</span> model_int.addVar(name<span class="op">=</span><span class="st">"x2"</span>,vtype<span class="op">=</span>GRB.INTEGER) </span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Specify the objective function.</span></span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>model_int.setObjective(<span class="dv">2</span><span class="op">*</span>x1 <span class="op">+</span> x2, sense<span class="op">=</span>GRB.MAXIMIZE)</span>
+<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the resource constraints on bricks.</span></span>
+<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a>model_int.addConstr(x1 <span class="op">+</span> x2 <span class="op">&lt;=</span> <span class="fl">2.5</span>)</span>
+<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Optimize the model</span></span>
+<span id="cb32-18"><a href="#cb32-18" aria-hidden="true" tabindex="-1"></a>model_int.optimize()</span>
+<span id="cb32-19"><a href="#cb32-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-20"><a href="#cb32-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Print optimal values of decision variables</span></span>
+<span id="cb32-21"><a href="#cb32-21" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> var <span class="kw">in</span> model_int.getVars():</span>
+<span id="cb32-22"><a href="#cb32-22" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(var.VarName, <span class="st">"="</span>, var.X)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>x1 = 2.0
+x2 = -0.0</code></pre>
+</div>
+</div>
+<p>Anoter common case is where the decision variables are supposed to be binary, meaning they can only take values in <span class="math inline">\{0,1\}</span>. Setting variables to be binary can be done with <code>vtype=GRB.BINARY</code>.</p>
+<div id="3b749507" class="cell" data-execution_count="23">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize Gurobi model.</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>model_bin <span class="op">=</span> Model(name<span class="op">=</span><span class="st">'Binary problem'</span>)</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Suppress Gurobi Optimizer output</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>model_bin.setParam(<span class="st">'OutputFlag'</span>,<span class="dv">0</span>)</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Declare the two decision variables.</span></span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>x1 <span class="op">=</span> model_bin.addVar(name<span class="op">=</span><span class="st">"x1"</span>,vtype<span class="op">=</span>GRB.BINARY) </span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>x2 <span class="op">=</span> model_bin.addVar(name<span class="op">=</span><span class="st">"x2"</span>,vtype<span class="op">=</span>GRB.BINARY) </span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Specify the objective function.</span></span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>model_bin.setObjective(<span class="dv">2</span><span class="op">*</span>x1 <span class="op">+</span> x2, sense<span class="op">=</span>GRB.MAXIMIZE)</span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the resource constraints on bricks.</span></span>
+<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a>model_bin.addConstr(x1 <span class="op">+</span> x2 <span class="op">&lt;=</span> <span class="fl">2.5</span>)</span>
+<span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-17"><a href="#cb34-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Optimize the model</span></span>
+<span id="cb34-18"><a href="#cb34-18" aria-hidden="true" tabindex="-1"></a>model_bin.optimize()</span>
+<span id="cb34-19"><a href="#cb34-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-20"><a href="#cb34-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Print optimal values of decision variables</span></span>
+<span id="cb34-21"><a href="#cb34-21" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> var <span class="kw">in</span> model_bin.getVars():</span>
+<span id="cb34-22"><a href="#cb34-22" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(var.VarName, <span class="st">"="</span>, var.X)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>x1 = 1.0
+x2 = 1.0</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Exercise 4
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Take your solution from Exercise 1, and modify it so that the decision variables only take integer values. Optimize the model again.</p>
+<p>Your output should now be as follows:</p>
+<div id="4112a58a" class="cell" data-execution_count="25">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print optimal values of decision variables</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> var <span class="kw">in</span> model_msf.getVars():</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(var.VarName, <span class="st">"="</span>, var.X)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Surgical kits = 9.0
+Vaccination kits = 15.0</code></pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="beyond-the-basics" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="beyond-the-basics"><span class="header-section-number">5.4</span> Beyond the basics</h2>
+<p>You can also do more complicated things with <code>gurobipy</code> such as defining many decision variables with one command, or use a for-loop to create many constraints in one go.</p>
+<p>To illustrate these concepts, we will write a compact code to solve a general standard form problem with <span class="math inline">m</span> constraints and <span class="math inline">n</span> decision variables: <span class="math inline">\min \mathbf{c'x}</span> subject to <span class="math inline">\mathbf{Ax} = \mathbf{b}, \mathbf{x} \geq \mathbf{0}</span> where <span class="math inline">\mathbf{c} \in \mathbb{R}^n</span>, <span class="math inline">\mathbf{b} \in \mathbb{R}^m</span>, <span class="math inline">\mathbf{A} \in \mathbb{R}^{m \times n}</span>, and <span class="math inline">x = (x_1,\dots,x_{n})</span>.</p>
+<p>More explicitly, the problem is as follows:</p>
+<p><span class="math display">
+\begin{array}{rrrcrrlll}
+\min &amp;  c_1 x_1 &amp;+&amp; \cdots&amp; + &amp; c_{n}x_{n}&amp; &amp; &amp; \\
+{\rm s.t.} &amp;  a_{1}x_1&amp; +&amp; \cdots&amp; +&amp; a_{1n} x_{n} &amp;= &amp;b_1 &amp;\\
+&amp; &amp; &amp; \vdots &amp; &amp; &amp; &amp; \\
+&amp;  a_{m1}x_1&amp; +&amp; \cdots&amp; +&amp; a_{mn} x_{n} &amp;= &amp;b_{m}&amp; \\
+&amp;  x_1, &amp; &amp; \cdots&amp; &amp; x_{n} &amp; \geq &amp; 0 &amp; \\
+\end{array}
+</span></p>
+<p>Suppose we are given the following input data in Numpy arrays (see the Linear Algebra chapter).</p>
+<div id="0509e486" class="cell" data-execution_count="26">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Objective function coefficients</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> np.array([<span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">7</span>, <span class="dv">2</span>, <span class="op">-</span><span class="dv">1</span>]) <span class="co"># n = 5</span></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Matrix A (m = 3, n = 5)</span></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">3</span>, <span class="op">-</span><span class="dv">1</span>],</span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">0</span>, <span class="dv">2</span>],</span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">0</span>, <span class="dv">3</span>, <span class="op">-</span><span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>]</span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a>])</span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Right-hand side vector b</span></span>
+<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> np.array([<span class="dv">10</span>, <span class="dv">12</span>, <span class="dv">5</span>]) <span class="co"># m = 3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>To create the decision variables <span class="math inline">x_1,\dots,x_5</span>, we can use <code>addVar()</code> five times, but this is rather cumbersome, especially if we would have many more decision variables.</p>
+<p>Instead we can use the related method <code>addVars()</code> that allows us to create many variables simultaneously.</p>
+<div id="8443d4c6" class="cell" data-execution_count="27">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create Model object</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> Model(<span class="st">"Standard form problem"</span>)</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="co"># We define m and n here for convenience later</span></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> <span class="dv">3</span> <span class="co"># Alternatively, m = len(b)</span></span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">5</span> <span class="co"># Alternatively, n = len(c)</span></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Add decision variables</span></span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> model.addVars(n)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>With the syntax <code>x = model.addVars(n)</code> we tell Python to create <span class="math inline">n (= 5)</span> decision variables. You can use the <span class="math inline">i</span>-th decsion variable to define constraints and the objective function by indexing <code>x</code> at position <span class="math inline">i-1</span>, i.e, by using <code>x[i-1]</code>. Recall that Python starts counting from zero when indexing data objects such as lists.</p>
+<p>If you want you can also add a list of names for the decision variables using the <code>name</code> keyword argument. Make sure that the number of elements in the list matches the value of <span class="math inline">n</span>.</p>
+<div id="046ca3d6" class="cell" data-execution_count="28">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add decision variables</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> model.addVars(n,name<span class="op">=</span>[<span class="st">"Var1"</span>,<span class="st">"Var2"</span>,<span class="st">"Var3"</span>,<span class="st">"Var4"</span>,<span class="st">"Var5"</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>We continue with creating the objective function by indexing the variables in <code>x</code> and the array <code>c</code> containing the objective function coefficients.</p>
+<div id="a985db3f" class="cell" data-execution_count="29">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create objective function</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>model.setObjective(x[<span class="dv">0</span>]<span class="op">*</span>c[<span class="dv">0</span>] <span class="op">+</span> x[<span class="dv">1</span>]<span class="op">*</span>c[<span class="dv">1</span>] <span class="op">+</span> x[<span class="dv">2</span>]<span class="op">*</span>c[<span class="dv">2</span>] <span class="op">+</span> x[<span class="dv">3</span>]<span class="op">*</span>c[<span class="dv">3</span>] <span class="op">+</span> x[<span class="dv">4</span>]<span class="op">*</span>c[<span class="dv">4</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>We can do this even more compactly by using the <code>quicksum()</code> function, which has to be imported from <code>gurobipy</code>. In the code below we do two things:</p>
+<ol type="1">
+<li>Create the list <code>y = [x[0]*c[0], x[1]*c[1], x[2]*c[2], x[3]*c[3], x[4]*c[4]]</code> using the concept of <em>list comprehension</em>.</li>
+<li>Use the <code>quicksum()</code> function to add up the elements in the list <code>y</code> and set the resulting quantity as our objective function.</li>
+</ol>
+<div id="84396497" class="cell" data-execution_count="30">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gurobipy <span class="im">import</span> quicksum</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create objective function</span></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> [x[j]<span class="op">*</span>c[j] <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(n)] <span class="co"># List with terms of the objective function</span></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>model.setObjective(quicksum(y)) <span class="co"># Sum up the terms in the list y</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>The part <code>[x[j]*c[j] for j in range(n)]</code> is the compact <em>list comprehension</em> syntax for carrying out the piece of code below where we repeatedly append the terms <code>x[j]*c[j]</code> as elements to an (initially empty) list <code>y</code> using the <code>append()</code> method for a list.</p>
+<div id="d5c40285" class="cell" data-execution_count="31">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> [] <span class="co"># Start with empty list y</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(n): <span class="co"># For every index j = 1,2,...,n:</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>    y.append(x[j]<span class="op">*</span>c[j]) <span class="co"># Append the element x[j]*c[j] to the list y </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Note that these computations are actually still quite abstract up until this point, because the decision variables have no actual values yet! You should think of these more as symbolic computations.</p>
+<p>Using <code>quicksum()</code> we can also add the equality constraints. We use a for-loop to loop over the inequalities <span class="math inline">a_{i1}x_1 + \dots + a_{in}x_n \leq b_i</span> for <span class="math inline">i = 1,\dots,m</span> (note that Python starts counting at <span class="math inline">0</span>, though). Note that the array <code>A</code> is a list of lists, and that <code>A[i]</code> corresponds to the coefficients <span class="math inline">a_{i1},\dots,a_{in}</span>.</p>
+<div id="ec72b855" class="cell" data-execution_count="32">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(A[<span class="dv">2</span>]) <span class="co"># Last row i = 2 of the matrix A</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[ 0  3 -2  1  1]</code></pre>
+</div>
+</div>
+<p>Furthermore, <code>A[i][j]</code> is then the <span class="math inline">j</span>-th element on the <span class="math inline">i</span>-th row.</p>
+<div id="14428b22" class="cell" data-execution_count="33">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(A[<span class="dv">2</span>][<span class="dv">3</span>]) <span class="co"># Last row i = 2 and element j = 3 of the matrix A</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>1</code></pre>
+</div>
+</div>
+<p>For a fixed <span class="math inline">i</span>, the list <code>[A[i][j]*x[j] for j in range(n)]</code> then contains the coefficients of the <span class="math inline">i</span>-th row multiplied by the variables in <span class="math inline">x</span>, i.e, <span class="math inline">[a_{i1}x_1, ..., a_{in}x_n]</span>. Applying <code>quicksum()</code> to this list then computes the expression <span class="math inline">a_{i1}x_1 + \dots + a_{in}x_n</span>. This should equal <span class="math inline">b_i</span>, so we model the constraint by <code>quicksum([A[i][j]*x[j] for j in range(n)]) == b[i]</code>. This is done below.</p>
+<div id="f0cebc65" class="cell" data-execution_count="34">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create constraints</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(m):</span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> [A[i][j]<span class="op">*</span>x[j] <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(n)]</span>
+<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>    model.addConstr(quicksum(y) <span class="op">==</span> b[i])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>All together, our code looks as below. The beauty of this is that even if the input data arrays <span class="math inline">A, b</span> and <span class="math inline">c</span> get larger, the code below does not. (The critical reader might note that, if we want to include the variable names with the list <code>["Var1","Var2","Var3","Var4","Var5"]</code>, then this list would get longer when <span class="math inline">n</span> increases, but there are also ways to create this list with a short command.)</p>
+<div id="144f6623" class="cell" data-execution_count="35">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gurobipy <span class="im">import</span> Model, GRB, quicksum</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Objective function coefficients</span></span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> np.array([<span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">7</span>, <span class="dv">2</span>, <span class="op">-</span><span class="dv">1</span>]) <span class="co"># n = 5</span></span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Matrix A (m = 3, n = 5)</span></span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([</span>
+<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">3</span>, <span class="op">-</span><span class="dv">1</span>],</span>
+<span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">0</span>, <span class="dv">2</span>],</span>
+<span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">0</span>, <span class="dv">3</span>, <span class="op">-</span><span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>]</span>
+<span id="cb49-12"><a href="#cb49-12" aria-hidden="true" tabindex="-1"></a>])</span>
+<span id="cb49-13"><a href="#cb49-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-14"><a href="#cb49-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Right-hand side vector b</span></span>
+<span id="cb49-15"><a href="#cb49-15" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> np.array([<span class="dv">10</span>, <span class="dv">12</span>, <span class="dv">5</span>]) <span class="co"># m = 3</span></span>
+<span id="cb49-16"><a href="#cb49-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-17"><a href="#cb49-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Create Model object</span></span>
+<span id="cb49-18"><a href="#cb49-18" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> Model(<span class="st">"Standard form problem"</span>)</span>
+<span id="cb49-19"><a href="#cb49-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-20"><a href="#cb49-20" aria-hidden="true" tabindex="-1"></a><span class="co"># We define m and n here for convenience later</span></span>
+<span id="cb49-21"><a href="#cb49-21" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> <span class="dv">3</span></span>
+<span id="cb49-22"><a href="#cb49-22" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">5</span></span>
+<span id="cb49-23"><a href="#cb49-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-24"><a href="#cb49-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Add decision variables</span></span>
+<span id="cb49-25"><a href="#cb49-25" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> model.addVars(n,name<span class="op">=</span>[<span class="st">"Var1"</span>,<span class="st">"Var2"</span>,<span class="st">"Var3"</span>,<span class="st">"Var4"</span>,<span class="st">"Var5"</span>])</span>
+<span id="cb49-26"><a href="#cb49-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-27"><a href="#cb49-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Create objective function</span></span>
+<span id="cb49-28"><a href="#cb49-28" aria-hidden="true" tabindex="-1"></a>model.setObjective(quicksum(x[j]<span class="op">*</span>c[j] <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(n)))</span>
+<span id="cb49-29"><a href="#cb49-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-30"><a href="#cb49-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Create constraints</span></span>
+<span id="cb49-31"><a href="#cb49-31" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(m): <span class="co">#Below, A[i][j] is element a_{ij}</span></span>
+<span id="cb49-32"><a href="#cb49-32" aria-hidden="true" tabindex="-1"></a>    model.addConstr(quicksum(A[i][j]<span class="op">*</span>x[j] <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(n)) <span class="op">==</span> b[i]) </span>
+<span id="cb49-33"><a href="#cb49-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-34"><a href="#cb49-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Optimize the model</span></span>
+<span id="cb49-35"><a href="#cb49-35" aria-hidden="true" tabindex="-1"></a>model.optimize()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Gurobi Optimizer version 12.0.3 build v12.0.3rc0 (win64 - Windows 10.0 (19045.2))
+
+CPU model: 12th Gen Intel(R) Core(TM) i7-1265U, instruction set [SSE2|AVX|AVX2]
+Thread count: 10 physical cores, 12 logical processors, using up to 12 threads
+
+Optimize a model with 3 rows, 5 columns and 11 nonzeros
+Model fingerprint: 0xf50960e7
+Coefficient statistics:
+  Matrix range     [1e+00, 4e+00]
+  Objective range  [1e+00, 7e+00]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [5e+00, 1e+01]
+Presolve time: 0.00s
+Presolved: 3 rows, 5 columns, 11 nonzeros
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+       0   -2.0000000e+30   2.000000e+30   2.000000e+00      0s
+       3    1.3375000e+01   0.000000e+00   0.000000e+00      0s
+
+Solved in 3 iterations and 0.01 seconds (0.00 work units)
+Optimal objective  1.337500000e+01</code></pre>
+</div>
+</div>
+<div id="770cd4f5" class="cell" data-execution_count="36">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print optimal values of decision variables</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> var <span class="kw">in</span> model.getVars():</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(var.VarName, <span class="st">"="</span>, var.X)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Var1 = 4.75
+Var2 = 0.0
+Var3 = 0.0
+Var4 = 1.3749999999999998
+Var5 = 3.625</code></pre>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./04-lin-alg.html" class="pagination-link" aria-label="Linear algebra">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Linear algebra</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

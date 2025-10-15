@@ -251,28 +251,28 @@ window.Quarto = {
 <section id="arithmetic-operations" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="arithmetic-operations"><span class="header-section-number">3.1</span> Arithmetic operations</h2>
 <p>We start with the most basic arithmetic operations: Addition, subtraction, multiplication and division are given by the standard <code>+</code>, <code>-</code>, <code>*</code> and <code>/</code> operators that you would use in other programs like Excel. For example, addition:</p>
-<div id="dcd6e7ce" class="cell" data-execution_count="1">
+<div id="f74e10f8" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="op">+</span> <span class="dv">3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>5</code></pre>
 </div>
 </div>
 <p>Subtraction:</p>
-<div id="874691f5" class="cell" data-execution_count="2">
+<div id="a7cdd26c" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="op">-</span> <span class="dv">3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
 <pre><code>2</code></pre>
 </div>
 </div>
 <p>Multiplication:</p>
-<div id="e3c6d910" class="cell" data-execution_count="3">
+<div id="93216dec" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="op">*</span> <span class="dv">3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <pre><code>6</code></pre>
 </div>
 </div>
 <p>Division:</p>
-<div id="abad3110" class="cell" data-execution_count="4">
+<div id="31d79e0b" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="op">/</span> <span class="dv">2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <pre><code>1.5</code></pre>
@@ -282,14 +282,14 @@ window.Quarto = {
 <p>It is also possible to do multiple operations at the same time using parentheses. For example, suppose we wanted to calculate: <span class="math display">
 \frac{2+4}{4 \cdot 2} = \frac{6}{8} = 0.75
 </span> We can calculate this in Python as follows:</p>
-<div id="438b9078" class="cell" data-execution_count="5">
+<div id="13aee972" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">2</span> <span class="op">+</span> <span class="dv">4</span>) <span class="op">/</span> (<span class="dv">4</span> <span class="op">*</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>0.75</code></pre>
 </div>
 </div>
 <p><br> With the <code>**</code> operator (two stars) we can raise a number to the power of another number. For example, <span class="math inline">2^3=2\times 2\times 2 = 8</span> can be computed as</p>
-<div id="ec2d91a6" class="cell" data-execution_count="6">
+<div id="505c7d53" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="op">**</span> <span class="dv">3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>8</code></pre>
@@ -342,7 +342,7 @@ window.Quarto = {
 <p>In Python we can assign single numbers to <em>variables</em> and then work with and manipulate those variables.</p>
 <p>Assigning a single number to a variable is very straightforward. We put the name we want to give to the variable on the left, then use the <code>=</code> symbol as the <em>assignment operator</em>, and put the number to the right of the <code>=</code>. The <code>=</code> operator binds a number (on the right-hand size of <code>=</code>) to a name (on the left-hand side of <code>=</code>).</p>
 <p>To see this at work, let’s set <span class="math inline">x=2</span> and <span class="math inline">y=3</span> and calculate <span class="math inline">x+y</span>:</p>
-<div id="de224139" class="cell" data-execution_count="7">
+<div id="f242bff2" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">2</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="dv">3</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">+</span> y</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -351,7 +351,7 @@ window.Quarto = {
 </div>
 </div>
 <p>When we assign <span class="math inline">x=2</span>, in our code, the number is not fixed forever. We can assign a new number to <code>x</code>. For example, we can assign the number 6 to <code>x</code> instead. The sum of <span class="math inline">x</span> (which is <span class="math inline">6</span>) and <span class="math inline">y</span> ( which is <span class="math inline">3</span>), is now <span class="math inline">9</span>:</p>
-<div id="b1d2b00c" class="cell" data-execution_count="8">
+<div id="5255bbb8" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">6</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">+</span> y</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
@@ -388,7 +388,7 @@ window.Quarto = {
 :::
 -->
 <p>If you want to print multiple expressions within the same code snippet, you can use the <code>print()</code> function of Python for each of the expressions.</p>
-<div id="3ed87482" class="cell" data-execution_count="9">
+<div id="8853a744" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">2</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="dv">3</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x <span class="op">+</span> y)</span>
@@ -402,7 +402,7 @@ window.Quarto = {
 <section id="lists" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="lists"><span class="header-section-number">3.3</span> Lists</h2>
 <p>We can also store multiple variables in one object, a so-called <em>list</em>. A list with numbers is created by writing down a sequence of numbers, separated by commas, in between two brackets <code>[</code> and <code>]</code>.</p>
-<div id="7153a8a2" class="cell" data-execution_count="10">
+<div id="fae24904" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> [<span class="dv">3</span>, <span class="dv">9</span>, <span class="dv">1</span>, <span class="dv">7</span>]</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>z</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
@@ -410,7 +410,7 @@ window.Quarto = {
 </div>
 </div>
 <p>We can also create lists with fractional numbers.</p>
-<div id="19c865a7" class="cell" data-execution_count="11">
+<div id="6ed78042" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> [<span class="fl">3.1</span>, <span class="dv">9</span>, <span class="fl">1.9</span>, <span class="dv">7</span>]</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>z</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
@@ -418,7 +418,7 @@ window.Quarto = {
 </div>
 </div>
 <p>To access the numbers in the list, we can <em>index</em> the list at the position of interest. If we want to get the number at position <span class="math inline">i</span> in the list, we use the syntax <code>z[i]</code>.</p>
-<div id="0998f940" class="cell" data-execution_count="12">
+<div id="e8282a90" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>z[<span class="dv">1</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="12">
 <pre><code>9</code></pre>
@@ -440,25 +440,25 @@ window.Quarto = {
 </div>
 <p>In other words, the “first” number in the list is located at position <span class="math inline">0</span>, and we can access it using <code>z[0]</code> instead.</p>
 <p>Below we index the number of the list at positions <span class="math inline">i \in \{0,1,2,3\}</span> separately.</p>
-<div id="68cd0177" class="cell" data-execution_count="13">
+<div id="51b94259" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>z[<span class="dv">0</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="13">
 <pre><code>3.1</code></pre>
 </div>
 </div>
-<div id="8935e5d8" class="cell" data-execution_count="14">
+<div id="e532af20" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>z[<span class="dv">1</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="14">
 <pre><code>9</code></pre>
 </div>
 </div>
-<div id="7cfce5f7" class="cell" data-execution_count="15">
+<div id="058b733c" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>z[<span class="dv">2</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="15">
 <pre><code>1.9</code></pre>
 </div>
 </div>
-<div id="a8a76c78" class="cell" data-execution_count="16">
+<div id="994dbdde" class="cell" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>z[<span class="dv">3</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="16">
 <pre><code>7</code></pre>
@@ -496,7 +496,7 @@ window.Quarto = {
 <section id="for-loop" class="level2" data-number="3.4">
 <h2 data-number="3.4" class="anchored" data-anchor-id="for-loop"><span class="header-section-number">3.4</span> For-loop</h2>
 <p>Suppose we want to compute the sum of the numbers in the list <span class="math inline">a</span> of <a href="#ex-3-3">Exercise 3.3</a>. We could do this manually by indexing every number and adding them one by one.</p>
-<div id="f8ffb278" class="cell" data-execution_count="17">
+<div id="15ec2e6a" class="cell" data-execution_count="17">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">3</span>, <span class="dv">7</span>]</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>a[<span class="dv">0</span>] <span class="op">+</span> a[<span class="dv">1</span>] <span class="op">+</span> a[<span class="dv">2</span>] <span class="op">+</span> a[<span class="dv">3</span>] <span class="op">+</span> a[<span class="dv">4</span>] <span class="op">+</span> a[<span class="dv">5</span>] <span class="op">+</span> a[<span class="dv">6</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -505,7 +505,7 @@ window.Quarto = {
 </div>
 </div>
 <p><br> In fact, we can also define a new variable to store this number in. Let us call this variable <code>total_sum</code>.</p>
-<div id="f6b61964" class="cell" data-execution_count="18">
+<div id="792bba7b" class="cell" data-execution_count="18">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">3</span>, <span class="dv">7</span>]</span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>total_sum <span class="op">=</span> a[<span class="dv">0</span>] <span class="op">+</span> a[<span class="dv">1</span>] <span class="op">+</span> a[<span class="dv">2</span>] <span class="op">+</span> a[<span class="dv">3</span>] <span class="op">+</span> a[<span class="dv">4</span>] <span class="op">+</span> a[<span class="dv">5</span>] <span class="op">+</span> a[<span class="dv">6</span>]</span>
@@ -516,7 +516,7 @@ window.Quarto = {
 </div>
 <p><br> If the list is <span class="math inline">a</span> is very long, for example containing thousands of elements, then it becomes very tedious to compute the total sum with the approach above. Such long lists are not uncommon in real-life data.</p>
 <p>A much better way is to use a <em>for-loop</em>, which lets us go through each element in the list one at a time. Here’s how we could compute the sum of the numbers in the list <span class="math inline">a</span> using a for-loop:</p>
-<div id="2712a57f" class="cell" data-execution_count="19">
+<div id="76e627ca" class="cell" data-execution_count="19">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">3</span>, <span class="dv">7</span>]</span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>total_sum <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -592,7 +592,7 @@ window.Quarto = {
 <p>In the first <em>iteration</em> of the for-loop (<span class="math inline">i = 0</span>), we have the initial number <span class="math inline">0</span> for <code>total_sum</code> so adding <code>a[0]</code> results in a new value of <code>total_sum</code> being <span class="math inline">0 + 1 = 1</span>.</p>
 <p>In the second iteration, with now <code>total_sum</code> equal to <span class="math inline">1</span>, we add the number <span class="math inline">a[1]</span>, which results in the new value of <code>total_sum</code> being <span class="math inline">1</span> (current number of <code>total_sum</code>) plus <code>a[1]</code> (which is <span class="math inline">4</span>), resulting in a new running total of <span class="math inline">1 + 4 = 5</span>.</p>
 <p>If we would be interested in only computing, e.g., the sum of the first three numbers in <span class="math inline">a</span>, we could replace the index list <span class="math inline">[0,1,2,3,4,5,6]</span> by <span class="math inline">[0,1,2]</span>.</p>
-<div id="d3e5b733" class="cell" data-execution_count="20">
+<div id="86a663b4" class="cell" data-execution_count="20">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">3</span>, <span class="dv">7</span>]</span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>total_sum <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -622,7 +622,7 @@ window.Quarto = {
 </div>
 </div>
 <p>If you want to execute more lines of code in every iteration of the for-loop, you should indent all of them. In the code below we compute the running total <code>total_sum</code> and also use the <code>print()</code> command of Python to print the value of the running total after every addition. This results in all the values in the right column of the above table being printed.</p>
-<div id="6220c37c" class="cell" data-execution_count="21">
+<div id="9c4aac28" class="cell" data-execution_count="21">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">99</span>, <span class="dv">3</span>]</span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>total_sum <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -642,7 +642,7 @@ window.Quarto = {
 <p>One final note to make is that this approach might still require a lot of typing if the list <span class="math inline">a</span> contains many values. For example, if we are given a list of a thousand values, we would have to type a list with values <span class="math inline">0</span> through <span class="math inline">999</span> in the for-loop above.</p>
 <p>There is a way to do this quicker, by using the <code>range()</code> function in Python. If we instead use the line <code>for i in range(7):</code>, then Python executes the indented code below for the values <span class="math inline">i = 0,1,2,3,4,5,6</span>. Note that <span class="math inline">i = 7</span> is not included!</p>
 <p>In general using <code>for i in range(n):</code> executes the indented lines below for the (in total <span class="math inline">n</span>) values <span class="math inline">i = 0,1,2,\dots,n-1</span>.</p>
-<div id="1602d984" class="cell" data-execution_count="22">
+<div id="03fbc8a5" class="cell" data-execution_count="22">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">99</span>, <span class="dv">3</span>]</span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>total_sum <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -685,14 +685,14 @@ window.Quarto = {
 </div>
 <div class="callout-body-container callout-body">
 <p>If you want to print text in Python, you should put it in between quotation marks.</p>
-<div id="1da5c1a9" class="cell" data-execution_count="23">
+<div id="89cf389c" class="cell" data-execution_count="23">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Hello world"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Hello world</code></pre>
 </div>
 </div>
 <p>If you want to print both text and variables, you can do that in the same <code>print()</code> command separating them with a comma.</p>
-<div id="94fce9f3" class="cell" data-execution_count="24">
+<div id="a3f4dd4a" class="cell" data-execution_count="24">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">3</span></span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The value of x is"</span>, x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -703,7 +703,7 @@ window.Quarto = {
 </div>
 </div>
 <p>Now let us look at an example.</p>
-<div id="e0941e9b" class="cell" data-execution_count="25">
+<div id="0787baae" class="cell" data-execution_count="25">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">5</span></span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> x <span class="op">&gt;</span> <span class="dv">0</span>:</span>
@@ -721,7 +721,7 @@ window.Quarto = {
 <li>If the condition is false (i.e., <span class="math inline">x \leq 0</span>), then Python executes the indented code under <code>else:</code>, which is a different print-statement in this case.</li>
 </ul>
 <p>We can also have multiple conditions using <code>elif</code>, which stands for “else if”. Below we add the third statement that checks if <span class="math inline">x</span> is precisely equal to zero. Also here, as soon as Python reaches a statement that is true, it does not check the remaining statements anymore.</p>
-<div id="4b904fba" class="cell" data-execution_count="26">
+<div id="6997bfde" class="cell" data-execution_count="26">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> x <span class="op">&gt;</span> <span class="dv">0</span>:</span>
@@ -737,7 +737,7 @@ window.Quarto = {
 <p>In the code above, we use the syntax <code>x == 0</code> to define the statement that checks whether <span class="math inline">x</span> is precisely equal to <span class="math inline">0</span>. You should not use <code>x = 0</code> (otherwise Python would confuse this with assigning a value of <span class="math inline">0</span> to the variable <span class="math inline">x</span>, which is not what we want).</p>
 <p>This checks the conditions one by one from top to bottom and executes the first indented code block where the condition is true. If you want more than three conditions, you should start with an <code>if</code> statement, then <code>elif</code> statements, and finish with an <code>else</code>.</p>
 <p>Finally, if you want to execute multiple lines of code for one or more of the conditions, you should indent all those lines under the respective conditions.</p>
-<div id="8aa8aa48" class="cell" data-execution_count="27">
+<div id="da3c3684" class="cell" data-execution_count="27">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">1</span></span>
 <span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> x <span class="op">&gt;</span> <span class="dv">0</span>:</span>
@@ -766,7 +766,7 @@ window.Quarto = {
 <p>Create the list <span class="math inline">a = [1, 4, -4, 0, 5, -3, -7]</span> in Python.</p>
 <p>Use a for-loop in combination with the code above to check for every number in <span class="math inline">a</span> whether it is positive, zero, or negative. If a number is positive you should print the message <code>"The number is positive"</code>, if it is zero <code>"The number is zero"</code> and if it is negative <code>"The number is negative"</code>.</p>
 <p>The output of your piece of code should be as follows.</p>
-<div id="0077bc81" class="cell" data-execution_count="28">
+<div id="39f63c56" class="cell" data-execution_count="28">
 <div class="cell-output cell-output-stdout">
 <pre><code>The number is positive
 The number is positive
@@ -806,7 +806,7 @@ x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
 <ol type="i">
 <li>Use conditional statements to determine how many roots the quadratic formula <span class="math inline">ax^2 + bx + c</span> has, based on the three possibilities for the discriminant. For each possibility, print an appropriate message in the indented code block.<br><br> For the chosen <span class="math inline">a,b</span> and <span class="math inline">c,</span> the function has two roots (so this case should be printed in your code). <!--
 
-::: {#bd79a033 .cell execution_count=29}
+::: {#f95e731a .cell execution_count=29}
 
 ::: {.cell-output .cell-output-stdout}
 ```
@@ -821,7 +821,7 @@ The formula has two real roots.
 </ol>
 <!--
 
-::: {#d10c3388 .cell execution_count=30}
+::: {#fa846a04 .cell execution_count=30}
 
 ::: {.cell-output .cell-output-stdout}
 ```
@@ -847,7 +847,7 @@ The formula has two real roots.
 <div class="callout-body-container callout-body">
 <p>Create the lists <span class="math inline">a = [3,7,1,4]</span>, <span class="math inline">b = [2,7,4,4]</span> and <span class="math inline">c = [11,3,0,1]</span>. Write a for-loop that executes your code of Exercise 3.6(ii) for every combination <span class="math inline">(a_i,b_i,c_i)</span> where <span class="math inline">a_i,b_i,c_i</span> are the numbers at position <span class="math inline">i</span> in the lists <span class="math inline">a,b,c</span>, respectively, for <span class="math inline">i = 0,1,2,3</span>.</p>
 <p>Your output should look like this.</p>
-<div id="6222c126" class="cell" data-execution_count="31">
+<div id="63b4a0c6" class="cell" data-execution_count="31">
 <div class="cell-output cell-output-stdout">
 <pre><code>The formula has no real roots
 The formula has no real roots
@@ -872,7 +872,7 @@ The formula has no real roots
 <li>Write a Python code that rounds every grade to the nearest half integer, i.e., to the value in the set <span class="math inline">\{0, 0.5,1, 1.5,2,2.5,\dots,8,8.5,9,9.5,10\}</span> it is closest to, and print this value. <em>Hint: You can round a number to its closest integer by using the <code>round()</code> function. For example <code>round(5.3)</code> gives <span class="math inline">5</span>, and <code>round(5.9)</code> gives <span class="math inline">6</span>. Think of a way to use the <code>round()</code> function to round to half integers.</em></li>
 </ol>
 <p>On <span class="math inline">g</span> as given, the output should be as follows.</p>
-<div id="057b9097" class="cell" data-execution_count="32">
+<div id="5fef063d" class="cell" data-execution_count="32">
 <div class="cell-output cell-output-stdout">
 <pre><code>9.0
 1.5
@@ -890,7 +890,7 @@ The formula has no real roots
 <li>Adjust your code so that grades that lie in the interval <span class="math inline">(5,6)</span> are rounded either up to <span class="math inline">6</span> or down to <span class="math inline">5</span> depending which of the two a number is closest to (in other words, rounding to 5.5 is no longer allowed). <em>Hint: You can use the <code>and</code> keyword to check multiple conditions in an if-statement.</em></li>
 </ol>
 <p>On <span class="math inline">g</span> as given, the output should be as follows.</p>
-<div id="2c9bbb42" class="cell" data-execution_count="33">
+<div id="a938cecf" class="cell" data-execution_count="33">
 <div class="cell-output cell-output-stdout">
 <pre><code>9.0
 1.5
@@ -917,27 +917,27 @@ The formula has no real roots
 <p>If we want to compute a certain mathematical expression for many different variables, it is often convenient to use a Python function for this.</p>
 <p>For example, consider the quadratic function <span class="math inline">f(x) = x^2 + 2x^2 -1</span>. Say we want to know the values of <span class="math inline">f(-3), f(-2.5), f(1)</span> and <span class="math inline">f(4)</span>. What we would like to do is to ‘automate’ the computation of a function value, so that we do not have to write out the whole function everytime.</p>
 <p>For this we can use a Python function for this as follows.</p>
-<div id="5a4bbac6" class="cell" data-execution_count="34">
+<div id="853d68a4" class="cell" data-execution_count="34">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x):</span>
 <span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>x <span class="op">-</span> <span class="dv">1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>What does the code above do? First of all the syntax to tell Python we want to define a function called <code>f</code> that takes as input a number <code>x</code> is <code>def f(x):</code>.</p>
 <p>We next have to tell Python what the function is supposed to compute. On the second line, with one tab indented, we have the <code>return</code> statement. Here we write down the expression that the function should return (or compute), which in our case is the function value <span class="math inline">f(x) = x^2 + 2x^2 -1</span>.</p>
 <p>We can now compute the function value <span class="math inline">f(x)</span> for any value of <span class="math inline">x</span>. What happens is that Python <em>calls</em> the function <span class="math inline">f</span> with input the chosen value of <span class="math inline">x</span>, and then returns the function value <span class="math inline">f(x)</span>, i.e., the expression in the <code>return</code> statement.</p>
-<div id="f521e5a9" class="cell" data-execution_count="35">
+<div id="8e1af19c" class="cell" data-execution_count="35">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>f(<span class="op">-</span><span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="35">
 <pre><code>-1</code></pre>
 </div>
 </div>
-<div id="866a5cf1" class="cell" data-execution_count="36">
+<div id="affb7900" class="cell" data-execution_count="36">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>f(<span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="36">
 <pre><code>2</code></pre>
 </div>
 </div>
 <p>Note that you can also name the function differently, for example we could also have done <code>def quadratic_function(x):</code>. You should then use the name <code>quadratic_function</code> too in the command well you call the Python function to compute the function value <span class="math inline">f(x)</span>.</p>
-<div id="a81ed65b" class="cell" data-execution_count="37">
+<div id="786c1f1b" class="cell" data-execution_count="37">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> quadratic_function(x):</span>
 <span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>x <span class="op">-</span> <span class="dv">1</span></span>
 <span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>    </span>
@@ -958,7 +958,7 @@ The formula has no real roots
   background-color: #ffffff;
 }
 </style>
-<div id="75f7c3e9" class="cell" data-execution_count="38">
+<div id="a23a6aae" class="cell" data-execution_count="38">
 <details class="code-fold">
 <summary>Show code generating the plot below</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1006,7 +1006,7 @@ The formula has no real roots
 <h3 data-number="3.6.3" class="anchored" data-anchor-id="root-finding"><span class="header-section-number">3.6.3</span> Root finding</h3>
 <p>Similarly, the <a href="https://scipy.org/">SciPy</a> package can be used to carry out various mathematical tasks and algorithms, making it very important for data analysis purposes.</p>
 <p>The code below uses a pre-written Python function called <code>fsolve()</code> from SciPy to compute the roots of a function <span class="math inline">f</span>. In other words, <code>fsolve()</code> is a mathematical algorithm for finding the root of a function, such as <a href="https://en.wikipedia.org/wiki/Newton%27s_method">Newton’s method</a>, that someone implemented in Python and made available publicly for the whole world to use. If you are interested in the <em>source code</em> of this function, you can look it up in the <em><a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.fsolve.html">documentation</a></em> of Python (more specifically, SciPy in this case).</p>
-<div id="1629b1ed" class="cell" data-execution_count="39">
+<div id="6b885ca1" class="cell" data-execution_count="39">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb67"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.optimize <span class="im">as</span> optimize</span>
 <span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x):</span>
@@ -1023,7 +1023,7 @@ The formula has no real roots
 <p>The function <code>fsolve()</code> takes two inputs: a function of which we want to find a root, and an initial guess (<span class="math inline">3</span> in our case) of where the root is.</p>
 <p>Entering an initial guess for where the root is located, is in some sense the equivalent of giving a bracket in which the root should lie on your graphing calculator. In fact, there are other root finding functions available in Python that work in this way, i.e., that require you to give an initial bracket, just as you do on your graphing calculator.</p>
 <p>Different initial guesses might lead to different roots found by Python. In fact, as you can see the function <span class="math inline">f</span> has two roots of which the above code finds the right one. We could find the left root by filling in a different initial guess, e.g., <span class="math inline">-3</span> instead of <span class="math inline">3</span>.</p>
-<div id="2850cb4c" class="cell" data-execution_count="40">
+<div id="a0910b2d" class="cell" data-execution_count="40">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>guess <span class="op">=</span> <span class="op">-</span><span class="dv">3</span></span>
 <span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>f_zero <span class="op">=</span> optimize.fsolve(f,guess) </span>
 <span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1041,7 +1041,7 @@ The formula has no real roots
   background-color: #ffffff;
 }
 </style>
-<div id="d42ee390" class="cell" data-execution_count="41">
+<div id="18f9f0be" class="cell" data-execution_count="41">
 <details class="code-fold">
 <summary>Show code generating the plot below</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb71"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -1089,7 +1089,7 @@ The formula has no real roots
 </div>
 </div>
 </div>
-<div id="44b598f3" class="cell" data-execution_count="42">
+<div id="7a2edb42" class="cell" data-execution_count="42">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb72"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.integrate <span class="im">import</span> quad</span>
 <span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb72-3"><a href="#cb72-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the function to integrate</span></span>

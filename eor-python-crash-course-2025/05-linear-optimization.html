@@ -296,7 +296,7 @@ window.Quarto = {
 <section id="test-your-installation" class="level3" data-number="5.1.6">
 <h3 data-number="5.1.6" class="anchored" data-anchor-id="test-your-installation"><span class="header-section-number">5.1.6</span> Test your installation</h3>
 <p>Now you can test whether everything is setup correctly. Open an interactive Python session, for instance using Jupyter Notebook. Try the following commands:</p>
-<div id="2628595c" class="cell" data-execution_count="1">
+<div id="0f342cfb" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gurobipy <span class="im">import</span> Model</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> Model()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -320,7 +320,7 @@ Note that the documentation is also included in your local Gurobi installation. 
 <li>The <code>GRB</code> module that contains various “constants” that we use to include words such as <em>maximize</em> and <em>minimize</em>, as well as <em>binary</em> and <em>integer</em>.</li>
 </ul>
 <p>In Python you can include the modules by adding the following line at the top of a script.</p>
-<div id="f338399a" class="cell" data-execution_count="2">
+<div id="749104ab" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gurobipy <span class="im">import</span> Model, GRB</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <section id="example-duplo-problem" class="level3" data-number="5.2.1">
@@ -342,7 +342,7 @@ Note that the documentation is also included in your local Gurobi installation. 
 <h4 class="unnumbered anchored" data-anchor-id="model-object">Model object</h4>
 <p>To start, we will create a variable (or object) <code>model</code> that will contain all the information of the problem, such as the decision variables, objective function and constraints.</p>
 <p>In programming terms, we create an <em>object</em> from the <code>Model()</code> class. We can give the instance a name by adding the <code>name</code> <em>keyword</em> argument, with value <code>'Duplo problem'</code> in our case. We add this name with quotations so that Python knows this is plain text.</p>
-<div id="8a79d401" class="cell" data-execution_count="3">
+<div id="34843d2a" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize Gurobi model.</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> Model(name<span class="op">=</span><span class="st">'Duplo problem'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -353,7 +353,7 @@ Note that the documentation is also included in your local Gurobi installation. 
 <h4 class="unnumbered anchored" data-anchor-id="decision-variables">Decision variables</h4>
 <p>To add decision variables, an objective function, and constraints, to our Model object we use so-called <em>methods</em> which are Python functions.</p>
 <p>To create a decision variable, we can use the <code>addVar()</code> method. As input argument, we include a name for the decision variables.</p>
-<div id="b10092c2" class="cell" data-execution_count="4">
+<div id="fa7cf3cc" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Declare the two decision variables.</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>x1 <span class="op">=</span> model.addVar(name<span class="op">=</span><span class="st">'chairs'</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>x2 <span class="op">=</span> model.addVar(name<span class="op">=</span><span class="st">'tables'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -363,7 +363,7 @@ Note that the documentation is also included in your local Gurobi installation. 
 </blockquote>
 <p>When creating a variable, you can specify more properties. For example, we might have an upper and lower bound for a decision variable (such as a nonnegativity constraint). You can use the keyword arguments <code>lb</code> and <code>ub</code>, respectively, for this.</p>
 <p>To see all these properties, you can check out the <code>addVar</code> documentation by typing <code>help(Model.addVar)</code> in Python. Looking up the documentation in this way can be done for every method.</p>
-<div id="652a9ebd" class="cell" data-execution_count="5">
+<div id="af0aae49" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">help</span>(Model.addVar)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Help on cython_function_or_method in module gurobipy._model:
@@ -399,7 +399,7 @@ addVar(self, lb=0.0, ub=1e+100, obj=0.0, vtype='C', name='', column=None)
 <h4 class="unnumbered anchored" data-anchor-id="objective-function">Objective function</h4>
 <p>Now that we have our decision variables, we can use them to define the objective function and the constraints.</p>
 <p>We use the <code>setObjective()</code> method to do so by refering to the variables created above. The <code>sense</code> keyword argument must be used to specify whether we want to maximize or minimize the objective function. For this, we use <code>GRB.MAXIMIZE</code> or <code>GRB.MINIMIZE</code>, respectively.</p>
-<div id="8d203d3a" class="cell" data-execution_count="6">
+<div id="7f96dff4" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Specify the objective function.</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>model.setObjective(<span class="dv">15</span><span class="op">*</span>x1 <span class="op">+</span> <span class="dv">20</span><span class="op">*</span>x2, sense<span class="op">=</span>GRB.MAXIMIZE)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -407,7 +407,7 @@ addVar(self, lb=0.0, ub=1e+100, obj=0.0, vtype='C', name='', column=None)
 <section id="constraints" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="constraints">Constraints</h4>
 <p>The next step is to declare the constraints using the <code>addConstr()</code> method. Also here, we can specify the constraints refering to the variables <code>x1</code> and <code>x2</code>. We give the constraints a name as well.</p>
-<div id="54113885" class="cell" data-execution_count="7">
+<div id="d51f90eb" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the resource constraints on bricks.</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>model.addConstr(x1 <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>x2 <span class="op">&lt;=</span> <span class="dv">6</span>, name<span class="op">=</span><span class="st">'big-bricks'</span>)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>model.addConstr(<span class="dv">2</span><span class="op">*</span>x1 <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>x2 <span class="op">&lt;=</span> <span class="dv">8</span>, name<span class="op">=</span><span class="st">'small-bricks'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -416,7 +416,7 @@ addVar(self, lb=0.0, ub=1e+100, obj=0.0, vtype='C', name='', column=None)
 </div>
 </div>
 <p>Now the model is completely specified, we are ready to compute the optimal solution. We can do this using the <code>optimize()</code> method applied to our model <code>model</code>.</p>
-<div id="c6f943f8" class="cell" data-execution_count="8">
+<div id="b680d4d3" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Optimize the model</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>model.optimize()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -432,20 +432,20 @@ Coefficient statistics:
   Objective range  [2e+01, 2e+01]
   Bounds range     [0e+00, 0e+00]
   RHS range        [6e+00, 8e+00]
-Presolve time: 0.02s
+Presolve time: 0.01s
 Presolved: 2 rows, 2 columns, 4 nonzeros
 
 Iteration    Objective       Primal Inf.    Dual Inf.      Time
        0    3.5000000e+31   3.500000e+30   3.500000e+01      0s
        2    7.0000000e+01   0.000000e+00   0.000000e+00      0s
 
-Solved in 2 iterations and 0.02 seconds (0.00 work units)
+Solved in 2 iterations and 0.01 seconds (0.00 work units)
 Optimal objective  7.000000000e+01</code></pre>
 </div>
 </div>
 <p>We can see some output from Gurobi, and the last line tells us that Gurobi found an optimal solution with objective value 70.</p>
 <p>To summarize all the step above, we have given the complete code below (but not executed this time).</p>
-<div id="e187e566" class="cell" data-execution_count="9">
+<div id="a5278c85" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gurobipy <span class="im">import</span> Model, GRB</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize Gurobi model.</span></span>
@@ -467,7 +467,7 @@ Optimal objective  7.000000000e+01</code></pre>
 </div>
 <p>Recalling our linear optimization problem object as being a “box” filled with decision variables, an objective function and constraints, the box now also contains a small space where the optimal solution is stored.</p>
 <p>Let us have a look at how to access information about the optimal solution. The objective function value of the optimal solution, that was also displayed in the output when optimization the model with <code>model.optimize()</code> is stored in the <code>ObjVal</code> <em>attribute</em>. An attribute is a piece of information about an object in Python.</p>
-<div id="130faedf" class="cell" data-execution_count="10">
+<div id="267315ee" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print text 'Objective value' and the model.ObjVal attribute value</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Objective value:'</span>, model.ObjVal)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -475,7 +475,7 @@ Optimal objective  7.000000000e+01</code></pre>
 </div>
 </div>
 <p>The optimal values of a decision variables can be obtained by accessing the <code>X</code> <em>attribute</em> of a variable.</p>
-<div id="55c81832" class="cell" data-execution_count="11">
+<div id="fa37ca25" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'x1 = '</span>, x1.X)</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'x2 = '</span>, x2.X)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -484,7 +484,7 @@ x2 =  2.0</code></pre>
 </div>
 </div>
 <p>If the model has many variables, printing variables in this way is a cumbersome approach. It is then easier to iterate over all variables of the model using the <code>getVars()</code> method. This method creates a list of all the decision variables of the model.</p>
-<div id="a04af49b" class="cell" data-execution_count="12">
+<div id="3e53e7a6" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(model.getVars())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[&lt;gurobi.Var chairs (value 2.0)&gt;, &lt;gurobi.Var tables (value 2.0)&gt;]</code></pre>
@@ -493,7 +493,7 @@ x2 =  2.0</code></pre>
 <p>As you can see above, we already see the optimal values of the decision variables, but also a lot of unnecessary information.</p>
 <p>Let us print these values in a nicer format by iterating over the list <code>model.getVars()</code> using a for-loop with index variable <code>var</code>; you can choose another name than <code>var</code> for the index variable if you want. We print for every variable <code>var</code> its name, stored in the attribute <code>VarName</code>, and its value, stored in the attribute <code>X</code>. In between, we print the <span class="math inline">=</span> symbol in plain text (hence, the quotations).</p>
 <p>Recall that if you want to print multiple data types (such as a variables and text) in a <code>print()</code> statement, you should separate them with commas.</p>
-<div id="0e24494d" class="cell" data-execution_count="13">
+<div id="c2017ef3" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> var <span class="kw">in</span> model.getVars():</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(var.VarName, <span class="st">"="</span>, var.X)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -530,7 +530,7 @@ tables = 2.0</code></pre>
 </span></p>
 <p>Implement this model in Python with a Model object called <code>model_msf</code>, with decision variable whose keyword arguments for <code>name</code> are <code>'Surgical kits'</code> and <code>'Vaccination kits'</code>, respectively. Optimize your model.</p>
 <p>If you include the following lines at the end of your code, you should get the output as indicated.</p>
-<div id="966f3c07" class="cell" data-execution_count="15">
+<div id="073228a6" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace model_msf by chosen name of Model object if different.</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co"># For example, if your object is called model, then use model.getVars() instead</span></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> var <span class="kw">in</span> model_msf.getVars():</span>
@@ -633,7 +633,7 @@ Vaccination kits = 15.0</code></pre>
 </span></p>
 <p>Implement this model in Python with a Model object called <code>model_beer</code>. In the <code>name</code> keyword argument of a decision variable, indicate the plant-customer combination it represents (for example, you could define <code>x11 = model_beer.addVar(name='Haarlem-Amsterdam')</code> for the decision variable <span class="math inline">x_{11}</span> modeling the Haarlem-Amsterdam combination).</p>
 <p>If you include the following lines at the end of your code, you should get the output as indicated.</p>
-<div id="191e084f" class="cell" data-execution_count="17">
+<div id="bb089801" class="cell" data-execution_count="17">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> var <span class="kw">in</span> model_beer.getVars():</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(var.VarName, <span class="st">"="</span>, var.X)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -665,7 +665,7 @@ Eindhoven-Den Bosch = 12.0</code></pre>
 \end{array}
 </span></p>
 <p>has no feasible solution, because the sum of two nonnegative numbers (<span class="math inline">x_1,x_2 \geq 0</span>) can never sum up to something smaller or equal than <span class="math inline">-1</span> (<span class="math inline">x_1 + x_2 \leq -1</span>). The implementation of this problem is given below. It can be seen from the output (on the last line) that the model is indeed infeasible.</p>
-<div id="deed6e49" class="cell" data-execution_count="18">
+<div id="d9d8b1c2" class="cell" data-execution_count="18">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize Gurobi model.</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> Model(name<span class="op">=</span><span class="st">'Infeasible model'</span>)</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -695,14 +695,14 @@ Coefficient statistics:
   Bounds range     [0e+00, 0e+00]
   RHS range        [1e+00, 1e+00]
 Presolve removed 0 rows and 2 columns
-Presolve time: 0.02s
+Presolve time: 0.00s
 
-Solved in 0 iterations and 0.02 seconds (0.00 work units)
+Solved in 0 iterations and 0.00 seconds (0.00 work units)
 Infeasible model</code></pre>
 </div>
 </div>
 <p>You can look up the type of solution to a problem in the <code>Status</code> attribute of a model.</p>
-<div id="33e8f0e6" class="cell" data-execution_count="19">
+<div id="e8326611" class="cell" data-execution_count="19">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>model.Status</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display" data-execution_count="18">
 <pre><code>3</code></pre>
@@ -741,7 +741,7 @@ Infeasible model</code></pre>
 &amp; &amp;x_1, &amp; &amp; x_2  &amp; \geq &amp; 0 &amp;
 \end{array},
 </span></p>
-<div id="b1544e56" class="cell" data-execution_count="21">
+<div id="9705c2dd" class="cell" data-execution_count="21">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize Gurobi model.</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>model_frac <span class="op">=</span> Model(name<span class="op">=</span><span class="st">'Fractional problem'</span>)</span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -770,7 +770,7 @@ x2 = 0.0</code></pre>
 </div>
 </div>
 <p>If we specify <code>vtype=GRB.INTEGER</code> in the <code>addVar()</code> method when creating the variables, Gurobi will find an optimal solution with all decision variables being integers.</p>
-<div id="c675f3b6" class="cell" data-execution_count="22">
+<div id="cddd4a4a" class="cell" data-execution_count="22">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize Gurobi model.</span></span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>model_int <span class="op">=</span> Model(name<span class="op">=</span><span class="st">'Integer problem'</span>)</span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -799,7 +799,7 @@ x2 = -0.0</code></pre>
 </div>
 </div>
 <p>Anoter common case is where the decision variables are supposed to be binary, meaning they can only take values in <span class="math inline">\{0,1\}</span>. Setting variables to be binary can be done with <code>vtype=GRB.BINARY</code>.</p>
-<div id="385773de" class="cell" data-execution_count="23">
+<div id="1cb82f7e" class="cell" data-execution_count="23">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize Gurobi model.</span></span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>model_bin <span class="op">=</span> Model(name<span class="op">=</span><span class="st">'Binary problem'</span>)</span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -839,7 +839,7 @@ x2 = 1.0</code></pre>
 <div class="callout-body-container callout-body">
 <p>Take your solution from Exercise 1, and modify it so that the decision variables only take integer values. Optimize the model again.</p>
 <p>Your output should now be as follows:</p>
-<div id="6b0843c2" class="cell" data-execution_count="25">
+<div id="462a2bc0" class="cell" data-execution_count="25">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print optimal values of decision variables</span></span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> var <span class="kw">in</span> model_msf.getVars():</span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(var.VarName, <span class="st">"="</span>, var.X)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -866,7 +866,7 @@ Vaccination kits = 15.0</code></pre>
 \end{array}
 </span></p>
 <p>Suppose we are given the following input data in Numpy arrays (see the Linear Algebra chapter).</p>
-<div id="5794e4e0" class="cell" data-execution_count="26">
+<div id="5b24da2f" class="cell" data-execution_count="26">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Objective function coefficients</span></span>
@@ -886,7 +886,7 @@ Vaccination kits = 15.0</code></pre>
 <h4 class="unnumbered anchored" data-anchor-id="decision-variables-1">Decision variables</h4>
 <p>To create the decision variables <span class="math inline">x_1,\dots,x_5</span>, we can use <code>addVar()</code> five times, but this is rather cumbersome, especially if we would have many more decision variables.</p>
 <p>Instead we can use the related method <code>addVars()</code> that allows us to create many variables simultaneously.</p>
-<div id="abeda1fb" class="cell" data-execution_count="27">
+<div id="2880b716" class="cell" data-execution_count="27">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create Model object</span></span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> Model(<span class="st">"Standard form problem"</span>)</span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -899,7 +899,7 @@ Vaccination kits = 15.0</code></pre>
 </div>
 <p>With the syntax <code>x = model.addVars(n)</code> we tell Python to create <span class="math inline">n (= 5)</span> decision variables. You can use the <span class="math inline">i</span>-th decision variable to define constraints and the objective function by indexing <code>x</code> at position <span class="math inline">i-1</span>, i.e, by using <code>x[i-1]</code>. Recall that Python starts counting from zero when indexing data objects such as lists.</p>
 <p>If you want you can also add a list of names for the decision variables using the <code>name</code> keyword argument. Make sure that the number of elements in the list matches the value of <span class="math inline">n</span>.</p>
-<div id="1138b441" class="cell" data-execution_count="28">
+<div id="4e88f92b" class="cell" data-execution_count="28">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add decision variables</span></span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> model.addVars(n,name<span class="op">=</span>[<span class="st">"Var1"</span>,<span class="st">"Var2"</span>,<span class="st">"Var3"</span>,<span class="st">"Var4"</span>,<span class="st">"Var5"</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -907,7 +907,7 @@ Vaccination kits = 15.0</code></pre>
 <section id="objective-function-1" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="objective-function-1">Objective function</h4>
 <p>We continue with creating the objective function by indexing the variables in <code>x</code> and the array <code>c</code> containing the objective function coefficients.</p>
-<div id="b5b2ae73" class="cell" data-execution_count="29">
+<div id="0d13553d" class="cell" data-execution_count="29">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create objective function</span></span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>model.setObjective(x[<span class="dv">0</span>]<span class="op">*</span>c[<span class="dv">0</span>] <span class="op">+</span> x[<span class="dv">1</span>]<span class="op">*</span>c[<span class="dv">1</span>] <span class="op">+</span> x[<span class="dv">2</span>]<span class="op">*</span>c[<span class="dv">2</span>] <span class="op">+</span> x[<span class="dv">3</span>]<span class="op">*</span>c[<span class="dv">3</span>] <span class="op">+</span> x[<span class="dv">4</span>]<span class="op">*</span>c[<span class="dv">4</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -916,7 +916,7 @@ Vaccination kits = 15.0</code></pre>
 <li>Create the list <code>y = [x[0]*c[0], x[1]*c[1], x[2]*c[2], x[3]*c[3], x[4]*c[4]]</code> using the concept of <em>list comprehension</em>.</li>
 <li>Use the <code>quicksum()</code> function to add up the elements in the list <code>y</code> and set the resulting quantity as our objective function.</li>
 </ol>
-<div id="b7c063d6" class="cell" data-execution_count="30">
+<div id="0301600d" class="cell" data-execution_count="30">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gurobipy <span class="im">import</span> quicksum</span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create objective function</span></span>
@@ -924,7 +924,7 @@ Vaccination kits = 15.0</code></pre>
 <span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>model.setObjective(quicksum(y)) <span class="co"># Sum up the terms in the list y</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The part <code>[x[j]*c[j] for j in range(n)]</code> is the compact <em>list comprehension</em> syntax for carrying out the piece of code below where we repeatedly append the terms <code>x[j]*c[j]</code> as elements to an (initially empty) list <code>y</code> using the <code>append()</code> method for a list.</p>
-<div id="3f590609" class="cell" data-execution_count="31">
+<div id="d52f5f6c" class="cell" data-execution_count="31">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> [] <span class="co"># Start with empty list y</span></span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(n): <span class="co"># For every index j = 1,2,...,n:</span></span>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>    y.append(x[j]<span class="op">*</span>c[j]) <span class="co"># Append the element x[j]*c[j] to the list y </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -934,28 +934,28 @@ Vaccination kits = 15.0</code></pre>
 <section id="constraints-1" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="constraints-1">Constraints</h4>
 <p>We continue with adding the equality constraints. We use a for-loop to loop over the equalities <span class="math inline">a_{i1}x_1 + \dots + a_{in}x_n = b_i</span> for <span class="math inline">i = 1,\dots,m</span> (note that Python starts counting at <span class="math inline">0</span>, though). Note that the array <code>A</code> is a list of lists, and that <code>A[i]</code> corresponds to the coefficients <span class="math inline">a_{i1},\dots,a_{in}</span>.</p>
-<div id="1ff7c2c4" class="cell" data-execution_count="32">
+<div id="8fc77010" class="cell" data-execution_count="32">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(A[<span class="dv">2</span>]) <span class="co"># Last row i = 2 of the matrix A</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[ 0  3 -2  1  1]</code></pre>
 </div>
 </div>
 <p>Furthermore, <code>A[i][j]</code> is then the <span class="math inline">j</span>-th element on the <span class="math inline">i</span>-th row.</p>
-<div id="e8a01fba" class="cell" data-execution_count="33">
+<div id="16233fa7" class="cell" data-execution_count="33">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(A[<span class="dv">2</span>][<span class="dv">3</span>]) <span class="co"># Last row i = 2 and element j = 3 of the matrix A</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>1</code></pre>
 </div>
 </div>
 <p>For a fixed <span class="math inline">i</span>, the list <code>[A[i][j]*x[j] for j in range(n)]</code> then contains the coefficients of the <span class="math inline">i</span>-th row multiplied by the variables in <span class="math inline">x</span>, i.e, <span class="math inline">[a_{i1}x_1, ..., a_{in}x_n]</span>. Applying <code>quicksum()</code> to this list then computes the expression <span class="math inline">a_{i1}x_1 + \dots + a_{in}x_n</span>. This should equal <span class="math inline">b_i</span>, so we model the constraint by <code>quicksum([A[i][j]*x[j] for j in range(n)]) == b[i]</code>. This is done below.</p>
-<div id="d7bea31f" class="cell" data-execution_count="34">
+<div id="a86b673f" class="cell" data-execution_count="34">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create constraints</span></span>
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(m):</span>
 <span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> [A[i][j]<span class="op">*</span>x[j] <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(n)]</span>
 <span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a>    model.addConstr(quicksum(y) <span class="op">==</span> b[i])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>All together, our code looks as below. The beauty of this is that even if the input data arrays <span class="math inline">A, b</span> and <span class="math inline">c</span> get larger, the code below does not. (The critical reader might note that, if we want to include the variable names with the list <code>["Var1","Var2","Var3","Var4","Var5"]</code>, then this list would get longer when <span class="math inline">n</span> increases, but there are also ways to create this list with a short command.)</p>
-<div id="bcd6fdf2" class="cell" data-execution_count="35">
+<p>All together, our code looks as below. The beauty of this is that even if the input data arrays <span class="math inline">A, b</span> and <span class="math inline">c</span> get larger, the code below does not.</p>
+<div id="83c79f68" class="cell" data-execution_count="35">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gurobipy <span class="im">import</span> Model, GRB, quicksum</span>
 <span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -975,50 +975,84 @@ Vaccination kits = 15.0</code></pre>
 <span id="cb49-17"><a href="#cb49-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Create Model object</span></span>
 <span id="cb49-18"><a href="#cb49-18" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> Model(<span class="st">"Standard form problem"</span>)</span>
 <span id="cb49-19"><a href="#cb49-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-20"><a href="#cb49-20" aria-hidden="true" tabindex="-1"></a><span class="co"># We define m and n here for convenience later</span></span>
-<span id="cb49-21"><a href="#cb49-21" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> <span class="dv">3</span></span>
-<span id="cb49-22"><a href="#cb49-22" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">5</span></span>
-<span id="cb49-23"><a href="#cb49-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-24"><a href="#cb49-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Add decision variables</span></span>
-<span id="cb49-25"><a href="#cb49-25" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> model.addVars(n,name<span class="op">=</span>[<span class="st">"Var1"</span>,<span class="st">"Var2"</span>,<span class="st">"Var3"</span>,<span class="st">"Var4"</span>,<span class="st">"Var5"</span>])</span>
+<span id="cb49-20"><a href="#cb49-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Suppres Gurobi output message</span></span>
+<span id="cb49-21"><a href="#cb49-21" aria-hidden="true" tabindex="-1"></a>model.setParam(<span class="st">'OutputFlag'</span>,<span class="dv">0</span>)</span>
+<span id="cb49-22"><a href="#cb49-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-23"><a href="#cb49-23" aria-hidden="true" tabindex="-1"></a><span class="co"># We define m and n here for convenience later</span></span>
+<span id="cb49-24"><a href="#cb49-24" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> <span class="dv">3</span></span>
+<span id="cb49-25"><a href="#cb49-25" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">5</span></span>
 <span id="cb49-26"><a href="#cb49-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-27"><a href="#cb49-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Create objective function</span></span>
-<span id="cb49-28"><a href="#cb49-28" aria-hidden="true" tabindex="-1"></a>model.setObjective(quicksum(x[j]<span class="op">*</span>c[j] <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(n)))</span>
+<span id="cb49-27"><a href="#cb49-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Add decision variables</span></span>
+<span id="cb49-28"><a href="#cb49-28" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> model.addVars(n,name<span class="op">=</span>[<span class="st">"Var1"</span>,<span class="st">"Var2"</span>,<span class="st">"Var3"</span>,<span class="st">"Var4"</span>,<span class="st">"Var5"</span>])</span>
 <span id="cb49-29"><a href="#cb49-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-30"><a href="#cb49-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Create constraints</span></span>
-<span id="cb49-31"><a href="#cb49-31" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(m): <span class="co">#Below, A[i][j] is element a_{ij}</span></span>
-<span id="cb49-32"><a href="#cb49-32" aria-hidden="true" tabindex="-1"></a>    model.addConstr(quicksum(A[i][j]<span class="op">*</span>x[j] <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(n)) <span class="op">==</span> b[i]) </span>
-<span id="cb49-33"><a href="#cb49-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-34"><a href="#cb49-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Optimize the model</span></span>
-<span id="cb49-35"><a href="#cb49-35" aria-hidden="true" tabindex="-1"></a>model.optimize()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb49-30"><a href="#cb49-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Create objective function</span></span>
+<span id="cb49-31"><a href="#cb49-31" aria-hidden="true" tabindex="-1"></a>model.setObjective(quicksum(x[j]<span class="op">*</span>c[j] <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(n)))</span>
+<span id="cb49-32"><a href="#cb49-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-33"><a href="#cb49-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Create constraints</span></span>
+<span id="cb49-34"><a href="#cb49-34" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(m):</span>
+<span id="cb49-35"><a href="#cb49-35" aria-hidden="true" tabindex="-1"></a>    model.addConstr(quicksum(A[i][j]<span class="op">*</span>x[j] <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(n)) <span class="op">==</span> b[i]) </span>
+<span id="cb49-36"><a href="#cb49-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-37"><a href="#cb49-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Optimize the model</span></span>
+<span id="cb49-38"><a href="#cb49-38" aria-hidden="true" tabindex="-1"></a>model.optimize()</span>
+<span id="cb49-39"><a href="#cb49-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-40"><a href="#cb49-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Print optimal values of decision variables</span></span>
+<span id="cb49-41"><a href="#cb49-41" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> var <span class="kw">in</span> model.getVars():</span>
+<span id="cb49-42"><a href="#cb49-42" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(var.VarName, <span class="st">"="</span>, var.X)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Gurobi Optimizer version 12.0.3 build v12.0.3rc0 (win64 - Windows 10.0 (19045.2))
-
-CPU model: 12th Gen Intel(R) Core(TM) i7-1265U, instruction set [SSE2|AVX|AVX2]
-Thread count: 10 physical cores, 12 logical processors, using up to 12 threads
-
-Optimize a model with 3 rows, 5 columns and 11 nonzeros
-Model fingerprint: 0xf50960e7
-Coefficient statistics:
-  Matrix range     [1e+00, 4e+00]
-  Objective range  [1e+00, 7e+00]
-  Bounds range     [0e+00, 0e+00]
-  RHS range        [5e+00, 1e+01]
-Presolve time: 0.00s
-Presolved: 3 rows, 5 columns, 11 nonzeros
-
-Iteration    Objective       Primal Inf.    Dual Inf.      Time
-       0   -2.0000000e+30   2.000000e+30   2.000000e+00      0s
-       3    1.3375000e+01   0.000000e+00   0.000000e+00      0s
-
-Solved in 3 iterations and 0.01 seconds (0.00 work units)
-Optimal objective  1.337500000e+01</code></pre>
+<pre><code>Var1 = 4.75
+Var2 = 0.0
+Var3 = 0.0
+Var4 = 1.3749999999999998
+Var5 = 3.625</code></pre>
 </div>
 </div>
-<div id="3340d1a0" class="cell" data-execution_count="36">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print optimal values of decision variables</span></span>
-<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> var <span class="kw">in</span> model.getVars():</span>
-<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(var.VarName, <span class="st">"="</span>, var.X)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The critical reader, however, might note that, if we want to include the variable names with the list <code>["Var1","Var2","Var3","Var4","Var5"]</code>, then this list would need to get longer when <span class="math inline">n</span> increases.</p>
+<p>You can replace this list by the list comprehension <code>[f"Var{i+1}" for i in range(n)]</code> to quickly generate the list <code>["Var1","Var2", ..., "Varn"]</code>. This comprehension loops over the values <span class="math inline">i = 0,1\dots,n-1</span>.</p>
+<p>The part <code>f"Var{i+1}"</code> is called a formatted <em>string (of text)</em>. It allows us to include the <em>value</em> of the expression <code>i+1</code> in plain text (we do <span class="math inline">+1</span> because we want the variable names to start at <span class="math inline">1</span>). The value you want to include in plain text should be put in curly brackets <code>{}</code>, and you have to add an <code>f</code> in front of the string of text in quotations so that Python knows it should format the value of <span class="math inline">i+1</span> into text.</p>
+<p>Now we get a code which truly is independent of the values of <span class="math inline">m</span> and <span class="math inline">n</span>. That is, for any input data <span class="math inline">A,b</span> and <span class="math inline">c</span>, the code below creates a model to solve the standard form problem.</p>
+<div id="3d0442cf" class="cell" data-execution_count="36">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gurobipy <span class="im">import</span> Model, GRB, quicksum</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Objective function coefficients</span></span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> np.array([<span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">7</span>, <span class="dv">2</span>, <span class="op">-</span><span class="dv">1</span>]) <span class="co"># n = 5</span></span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Matrix A (m = 3, n = 5)</span></span>
+<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([</span>
+<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">3</span>, <span class="op">-</span><span class="dv">1</span>],</span>
+<span id="cb51-10"><a href="#cb51-10" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">0</span>, <span class="dv">2</span>],</span>
+<span id="cb51-11"><a href="#cb51-11" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">0</span>, <span class="dv">3</span>, <span class="op">-</span><span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>]</span>
+<span id="cb51-12"><a href="#cb51-12" aria-hidden="true" tabindex="-1"></a>])</span>
+<span id="cb51-13"><a href="#cb51-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-14"><a href="#cb51-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Right-hand side vector b</span></span>
+<span id="cb51-15"><a href="#cb51-15" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> np.array([<span class="dv">10</span>, <span class="dv">12</span>, <span class="dv">5</span>]) <span class="co"># m = 3</span></span>
+<span id="cb51-16"><a href="#cb51-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-17"><a href="#cb51-17" aria-hidden="true" tabindex="-1"></a><span class="co"># We define m and n here for convenience later</span></span>
+<span id="cb51-18"><a href="#cb51-18" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> <span class="dv">3</span> </span>
+<span id="cb51-19"><a href="#cb51-19" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">5</span></span>
+<span id="cb51-20"><a href="#cb51-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-21"><a href="#cb51-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Create Model object</span></span>
+<span id="cb51-22"><a href="#cb51-22" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> Model(<span class="st">"Standard form problem"</span>)</span>
+<span id="cb51-23"><a href="#cb51-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-24"><a href="#cb51-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Suppres Gurobi output message</span></span>
+<span id="cb51-25"><a href="#cb51-25" aria-hidden="true" tabindex="-1"></a>model.setParam(<span class="st">'OutputFlag'</span>,<span class="dv">0</span>)</span>
+<span id="cb51-26"><a href="#cb51-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-27"><a href="#cb51-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Add decision variables</span></span>
+<span id="cb51-28"><a href="#cb51-28" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> model.addVars(n,name<span class="op">=</span>[<span class="ss">f"Var</span><span class="sc">{</span>i<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">"</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n)])</span>
+<span id="cb51-29"><a href="#cb51-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-30"><a href="#cb51-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Create objective function</span></span>
+<span id="cb51-31"><a href="#cb51-31" aria-hidden="true" tabindex="-1"></a>model.setObjective(quicksum(x[j]<span class="op">*</span>c[j] <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(n)))</span>
+<span id="cb51-32"><a href="#cb51-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-33"><a href="#cb51-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Create constraints</span></span>
+<span id="cb51-34"><a href="#cb51-34" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(m): </span>
+<span id="cb51-35"><a href="#cb51-35" aria-hidden="true" tabindex="-1"></a>    model.addConstr(quicksum(A[i][j]<span class="op">*</span>x[j] <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(n)) <span class="op">==</span> b[i]) </span>
+<span id="cb51-36"><a href="#cb51-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-37"><a href="#cb51-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Optimize the model</span></span>
+<span id="cb51-38"><a href="#cb51-38" aria-hidden="true" tabindex="-1"></a>model.optimize()</span>
+<span id="cb51-39"><a href="#cb51-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-40"><a href="#cb51-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Print optimal values of decision variables</span></span>
+<span id="cb51-41"><a href="#cb51-41" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> var <span class="kw">in</span> model.getVars():</span>
+<span id="cb51-42"><a href="#cb51-42" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(var.VarName, <span class="st">"="</span>, var.X)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Var1 = 4.75
 Var2 = 0.0

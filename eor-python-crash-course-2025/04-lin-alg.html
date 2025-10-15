@@ -271,7 +271,7 @@ window.Quarto = {
 \mathbf{x}=\left[\begin{array}{c}1\\2\\3 \end{array} \right], \mathbf{y}=\left[\begin{array}{c}4\\5\\7 \end{array} \right],  A =  \begin{bmatrix} 1 &amp; 2 &amp; 3 \\ 4 &amp; 5 &amp; 6 \\ 7 &amp; 8 &amp; 9 \end{bmatrix}
 </span></p>
 <p>We can define vectors in Python as so-called NumPy arrays. Think of these as lists (that we saw earlier) on which we can perform numerical computations. To create such arrays, we have to import the NumPy package <code>numpy</code>. We do this under the <em>alias</em> <code>np</code> (so that we can use the short-hand notation <code>np</code> for <code>numpy</code> everywhere).</p>
-<div id="bcf9f2ef" class="cell" data-execution_count="1">
+<div id="ddb1a34e" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the vectors and matrix</span></span>
@@ -282,7 +282,7 @@ window.Quarto = {
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>              [<span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>In Python, we can add vectors, compute the matrix-vector product and multiply matrices. Note: To compute a matrix-vector product you use the command <code>A@x</code>. What happens if you use the command <code>A*x</code>? Now, try to compute <span class="math inline">A\mathbf{x}</span>, <span class="math inline">A\mathbf{y}</span>, and <span class="math inline">A(\mathbf{x}+\mathbf{y})</span> with Python. What do you notice?</p>
-<div id="ebb7868c" class="cell" data-execution_count="2">
+<div id="c45dac50" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
@@ -299,7 +299,7 @@ window.Quarto = {
 <p>The production process can be summarized using the matrix-vector product. The production process is represented by the following matrix <span class="math display">
 \begin{bmatrix} 1 &amp; 0.2 &amp; 0.25 \\ 0 &amp; 0.8 &amp; 0.25 \\ 0 &amp;0 &amp;0.5 \end{bmatrix},
 </span> where the first column represents the division in the three end products of the Middle East oil, the second column represents the division in the three end products of the South America oil, and the third column represents the division in the three end products of the North Sea oil.</p>
-<div id="66d5ebd7" class="cell" data-execution_count="3">
+<div id="f5d27477" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>A<span class="op">=</span>np.array([[<span class="dv">1</span>,<span class="fl">0.2</span>,<span class="fl">0.25</span>],[<span class="dv">0</span>,<span class="fl">0.8</span>,<span class="fl">0.25</span>],[<span class="dv">0</span>,<span class="dv">0</span>,<span class="fl">0.5</span>]])</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(A)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -316,14 +316,14 @@ Aq = \begin{bmatrix} 1 &amp; 0.2 &amp; 0.25 \\ 0 &amp; 0.8 &amp; 0.25 \\ 0 &amp;
 </span></p>
 <p>Hence, using the matrix-vector product we come to the same conclusion: the oil-delivery will result in 7050 barrels of gasoline, 7450 barrels of diesel fuel, and 500 barrels of bike chain oil.</p>
 <p>The next day a shipment of 10000 barrels of oil from the Middle East, 1000 barrels of South America, and 200 barrels of the North Sea arrives. Determine the output of gasoline, diesel fuel, and key chain oil of this oil-delivery.</p>
-<div id="531b4ddf" class="cell" data-execution_count="4">
+<div id="187ddc9c" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Let us continue with a variation on the above problem.</p>
 <p>Now, a chemical plant receives oil from five different regions: the Middle East, South America, the North Sea,Africa and Asia. Again, the quality of the oil is different for each region. These oils will be used to produce gasoline, diesel fuel, bike chain oil, fuel <span class="math inline">95</span> and fuel <span class="math inline">98</span>. The oil from the Middle east will be only used for the production of gasoline. Of the oil of South America, <span class="math inline">20</span>% will be used for the production of gasoline, and <span class="math inline">80</span>% for the production of diesel fuel. <span class="math inline">25</span>% of the North Sea oil will be used to produce gasoline, <span class="math inline">25</span>% to produce diesel fuel, and <span class="math inline">50</span>% for the production of bike chain oil. Of the oil of Africa, <span class="math inline">10</span>% will be used for the production of gasoline, <span class="math inline">10</span>% for the production of bike chain oil, <span class="math inline">30</span>% for the production of fuel <span class="math inline">95</span> and <span class="math inline">50</span>% for the production of fuel <span class="math inline">98</span>. Finally, <span class="math inline">30</span>% of the Asia oil will be used to produce gasoline, <span class="math inline">5</span> % to produce diesel fuel, <span class="math inline">50</span> % for the production of fuel <span class="math inline">95</span>, and <span class="math inline">15</span>% for the production of fuel <span class="math inline">98</span>.</p>
 <p>Suppose today a shipment arrives of <span class="math inline">5000</span> barrels of oil from the Middle East, <span class="math inline">9000</span> barrels of oil from South America, <span class="math inline">1000</span> barrels from the North Sea, <span class="math inline">4000</span> barrels of oil from Africa, and 4000 barrels of oil from Asia. The plant wants to know how much gasoline, diesel fuel, bike chain oil, fuel <span class="math inline">95</span>, and fuel <span class="math inline">98</span> it can produce from this shipment.</p>
 <p>With the new information <span class="math inline">A</span> will be a 5x5 matrix and <span class="math inline">q</span> will be a 5x1 vector. Determine the output of gasoline, diesel fuel, bike chain oil, fuel <span class="math inline">95</span>, and fuel <span class="math inline">98</span> of this oil-delivery.</p>
-<div id="016ab85a" class="cell" data-execution_count="5">
+<div id="c5d9f429" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
@@ -336,7 +336,7 @@ Aq = \begin{bmatrix} 1 &amp; 0.2 &amp; 0.25 \\ 0 &amp; 0.8 &amp; 0.25 \\ 0 &amp;
 <li><code>solve(A,b)</code>: Solution to linear system <span class="math inline">A x =b</span></li>
 </ul>
 <p>To use such a method, you should use the syntax <code>np.linalg.method_name</code> with <code>method_name</code> replaced by one of the three options above.</p>
-<div id="d65adf91" class="cell" data-execution_count="6">
+<div id="3d630712" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([[<span class="dv">0</span>,<span class="dv">1</span>],[<span class="dv">1</span>,<span class="dv">0</span>]]) <span class="co">#Define A</span></span>
@@ -359,7 +359,7 @@ A = \begin{pmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{pmatrix}, \qquad B = \begin{pmat
 <ol start="2" type="i">
 <li>Which of the matrices <span class="math inline">A</span>, <span class="math inline">B</span>, <span class="math inline">C</span> are invertible? For each of these matrices, compute the inverse.</li>
 </ol>
-<div id="2375cb16" class="cell" data-execution_count="7">
+<div id="ff986d94" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># your code here </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><strong>Exercise 5.2</strong>:</p>
@@ -370,7 +370,7 @@ D = \begin{pmatrix} 10 &amp; 0 &amp; 0 \\ 0 &amp; 1 &amp; 0 \\ 0 &amp; 0 &amp; 1
 </span></p></li>
 <li><p>What is <span class="math inline">\det(10 C)</span>?</p></li>
 </ol>
-<div id="13e020c2" class="cell" data-execution_count="8">
+<div id="014f7753" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>We can use Python to solve linear systems of equations using <code>numpy</code>. Consider for example the following system of equations:</p>
@@ -382,7 +382,7 @@ x_2 + x_3 &amp;= 0
 \end{array}\right.
 </span></p>
 <p>We can solve the system very efficiently numerically with the command <code>np.linalg.solve(A,b)</code>:</p>
-<div id="3913e67f" class="cell" data-execution_count="9">
+<div id="9440667d" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Coefficient matrix A</span></span>
@@ -409,14 +409,14 @@ x_1 - 3x_2 + 4x_3 &amp;= -4 \\
 -4x_1 + 6x_2 + 2x_3 &amp;= 4
 \end{array} \right.
 </span></p>
-<div id="f61f9904" class="cell" data-execution_count="10">
+<div id="d0e71105" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="modifying-matrix-entries" class="level2" data-number="4.6">
 <h2 data-number="4.6" class="anchored" data-anchor-id="modifying-matrix-entries"><span class="header-section-number">4.6</span> Modifying matrix entries</h2>
 <p>Consider the following large matrix <span class="math inline">A</span>, and a zero matrix <span class="math inline">B</span> of the same size as <span class="math inline">A</span>:</p>
-<div id="24389178" class="cell" data-execution_count="11">
+<div id="163aa965" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">5</span>, <span class="dv">12</span>, <span class="dv">7</span>, <span class="dv">3</span>, <span class="dv">14</span>, <span class="dv">6</span>, <span class="dv">9</span>, <span class="dv">2</span>, <span class="dv">11</span>, <span class="dv">8</span>],</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">1</span>, <span class="dv">13</span>, <span class="dv">4</span>, <span class="dv">10</span>, <span class="dv">7</span>, <span class="dv">5</span>, <span class="dv">12</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">3</span>],</span>
@@ -432,7 +432,7 @@ x_1 - 3x_2 + 4x_3 &amp;= -4 \\
 <span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>B<span class="op">=</span>np.zeros((<span class="dv">10</span>,<span class="dv">10</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>We can modify entries of <span class="math inline">B</span> separately. E.g., we can modify the top-left entry of <span class="math inline">B</span> to be <span class="math inline">100</span>:</p>
-<div id="c86fdf2f" class="cell" data-execution_count="12">
+<div id="5e0143bf" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>B[<span class="dv">0</span>,<span class="dv">0</span>]<span class="op">=</span><span class="dv">100</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(B)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -454,7 +454,7 @@ x_1 - 3x_2 + 4x_3 &amp;= -4 \\
 <li>If <span class="math inline">A_{ij} \geq 6</span>, set <span class="math inline">B_{ij} = A_{ij}</span>.</li>
 </ul>
 <p>Then, compute the sum of all entries in <span class="math inline">B</span> with <code>np.sum(B)</code>. What is the result?</p>
-<div id="d2b66a95" class="cell" data-execution_count="13">
+<div id="d44d7752" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
@@ -462,7 +462,7 @@ x_1 - 3x_2 + 4x_3 &amp;= -4 \\
 <h2 data-number="4.7" class="anchored" data-anchor-id="linear-transformations-of-images"><span class="header-section-number">4.7</span> Linear transformations of images</h2>
 <p>In this section we will illustrate the concept of applying linear transformations to real-life images. We use the <code>cv2</code> library, the <code>numpy</code> library, and the <code>matplotlib</code> packages for this.</p>
 <p><em>The above packages should be installed in a standard Anaconda installation. If you have another Python installation, typically using the PIP package manager should allow you to install packages. In this case, commands like “pip install opencv-python” “pip install numpy” “pip install matplotlib” in a (Windows) powershell should do the job.</em></p>
-<div id="b93840ce" class="cell" data-execution_count="14">
+<div id="20fd677c" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> cv2</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -476,7 +476,7 @@ x_1 - 3x_2 + 4x_3 &amp;= -4 \\
   background-color: #ffffff;
 }
 </style>
-<div id="f787d9ac" class="cell" data-execution_count="15">
+<div id="2353db61" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>img2 <span class="op">=</span> cv2.imread(<span class="st">'image.jpg'</span>)</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>plt.imshow(img2[:,:,::<span class="op">-</span><span class="dv">1</span>])</span>
@@ -491,7 +491,7 @@ x_1 - 3x_2 + 4x_3 &amp;= -4 \\
 </div>
 <p>The picture can be seen as a set of points in <span class="math inline">\mathbb{R}^2</span>, corresponding to the pixels, where each point is assigned a color. We are now going to move the points according to a linear transformation <span class="math inline">\mathbb{R}^2 \to \mathbb{R}^2</span> which maps <span class="math inline">\mathbf{x}</span> to <span class="math inline">A\textbf{x}</span>.</p>
 <p>We first predefine a Python function called <code>perform_Transformation()</code> to apply a transformation to the image. You don’t have to understand this code, but only remember that its purpose is to apply transformations to images. The function takes as input an image and a transformation matrix.</p>
-<div id="4ec381e6" class="cell" data-execution_count="16">
+<div id="a98b7cf6" class="cell" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to apply transformation and visualize the result (source: kaggle.com)</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> perform_Transformation(image, A):</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    rows,cols,ch <span class="op">=</span> image.shape</span>
@@ -508,7 +508,7 @@ x_1 - 3x_2 + 4x_3 &amp;= -4 \\
 <span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>    plt.subplot(<span class="dv">212</span>)<span class="op">;</span> plt.imshow(dst[:,:,::<span class="op">-</span><span class="dv">1</span>])<span class="op">;</span> plt.title(<span class="st">"Transformed Image"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Next, we create a 2x2 (transformation) matrix <span class="math inline">A</span> and use the image that we stored in <code>img2</code> variable and apply the transformation function to these inputs. The function prints both the original and transformed image.</p>
-<div id="e0ac1276" class="cell" data-execution_count="17">
+<div id="adc6e7a6" class="cell" data-execution_count="17">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The matrix A scales the picture down 50% in both the x direction and y direction</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([[<span class="fl">0.5</span>,<span class="dv">0</span>],</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>                [<span class="dv">0</span>,<span class="fl">0.5</span>]])</span>
@@ -527,11 +527,11 @@ x_1 - 3x_2 + 4x_3 &amp;= -4 \\
 <li><p>Can you scale the picture 50% down in the <span class="math inline">x</span>-direction only?</p></li>
 <li><p>Investigate what the matrix <span class="math inline">A=\begin{bmatrix} 0  &amp;1 \\ 1 &amp; 0  \end{bmatrix}</span> does to the picture. Can you explain why?</p></li>
 </ol>
-<div id="b283b7e2" class="cell" data-execution_count="18">
+<div id="20888505" class="cell" data-execution_count="18">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The following matrix rotates the picture approximately 45 degrees (note that <span class="math inline">\sin(\pi/4) = \cos(\pi/4) \approx 0.707</span>). Sadly, the image is only partly visible then.</p>
-<div id="ca3e3601" class="cell" data-execution_count="19">
+<div id="08e8f50c" class="cell" data-execution_count="19">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The matrix A rotates the picture 45 degrees</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([[<span class="fl">0.707</span>,<span class="op">-</span><span class="fl">0.707</span>],</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>                [<span class="fl">0.707</span>,<span class="fl">0.707</span>]])</span>
@@ -552,14 +552,14 @@ x_1 - 3x_2 + 4x_3 &amp;= -4 \\
 <li><p>What does the matrix <span class="math inline">AB = \begin{bmatrix} 0.5  &amp;0 \\ 0 &amp; 1  \end{bmatrix} \begin{bmatrix} 0  &amp;1 \\ 1 &amp; 0  \end{bmatrix}</span> to the picture and why?</p></li>
 <li><p>Can you scale the picture 50% down in the <span class="math inline">x</span>-direction only, and then rotate the picture (approximately) 45 degrees? What matrix corresponds to this?</p></li>
 </ol>
-<div id="33435435" class="cell" data-execution_count="20">
+<div id="33c1f864" class="cell" data-execution_count="20">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="symbolic-computations-sympy" class="level2" data-number="4.8">
 <h2 data-number="4.8" class="anchored" data-anchor-id="symbolic-computations-sympy"><span class="header-section-number">4.8</span> Symbolic computations: sympy</h2>
 <p>The <code>sympy</code> library is for symbolic computations. We will now demonstrate how this library works. <code>sympy</code> also contains a function to bring a matrix into reduced echelon form. This is very useful if you want to verify manual calculations.</p>
-<div id="8a2b4158" class="cell" data-execution_count="21">
+<div id="230b3687" class="cell" data-execution_count="21">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>We now show how to solve the following system of equations:</p>
@@ -578,11 +578,11 @@ x_1 - 3x_2 + 4x_3 = -4 \\
 \end{array}\right]
 </span></p>
 <p>In Python you can do this with <code>sympy</code> as follows.</p>
-<div id="4062fa80" class="cell" data-execution_count="22">
+<div id="92682fd7" class="cell" data-execution_count="22">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>Ab<span class="op">=</span>sp.Matrix([[<span class="dv">1</span>,<span class="op">-</span><span class="dv">3</span>,<span class="dv">4</span>,<span class="op">-</span><span class="dv">4</span>],[<span class="dv">3</span>,<span class="op">-</span><span class="dv">7</span>,<span class="dv">7</span>,<span class="op">-</span><span class="dv">8</span>],[<span class="op">-</span><span class="dv">4</span>,<span class="dv">6</span>,<span class="dv">2</span>,<span class="dv">4</span>]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Now we can find the reduced form of the system using <code>rref()</code> from the <code>sympy</code> library. The method returns two elements. The first is the row-reduced echelon form of the matrix, and the second is a list of the pivot columns. By typing <code>Ab_rref[0]</code>, only the row-reduced echelon form is printed.</p>
-<div id="68f41814" class="cell" data-execution_count="23">
+<div id="97b65177" class="cell" data-execution_count="23">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>Ab_rref <span class="op">=</span> Ab.rref()</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>Ab_rref[<span class="dv">0</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="23">
@@ -598,7 +598,7 @@ x_1 - 3x_2  = 5 \\
 x_2 + x_3 = 0
 \end{array}\right.
 </span></p>
-<div id="9cb6f272" class="cell" data-execution_count="24">
+<div id="45e4b2f4" class="cell" data-execution_count="24">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
@@ -623,7 +623,7 @@ q + 0.2p - 0.1Y = 8\\
 q - 0.3p = 6.
 \end{array}\right.
 </span></p>
-<div id="75746c0a" class="cell" data-execution_count="25">
+<div id="dcdaabd3" class="cell" data-execution_count="25">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>Ab <span class="op">=</span> sp.Matrix([[<span class="dv">1</span>, <span class="fl">0.2</span>, <span class="op">-</span><span class="fl">0.1</span>, <span class="dv">8</span>], [<span class="dv">1</span>, <span class="op">-</span><span class="fl">0.3</span>, <span class="dv">0</span>, <span class="dv">6</span>]]) </span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>Ab</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display cell-output-markdown" data-execution_count="25">
@@ -632,7 +632,7 @@ q - 0.3p = 6.
 </div>
 <p><strong>Exercise 5.8:</strong></p>
 <p>How many solutions does this system of linear equations have? You can use the function <code>rref()</code> again to find the row reduced echelon form of the above matrix. Determine the solution if <span class="math inline">Y=50</span>.</p>
-<div id="4d3258ad" class="cell" data-execution_count="26">
+<div id="caee9074" class="cell" data-execution_count="26">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
@@ -643,7 +643,7 @@ q - 0.3p = 6.
 <p>We now investigate how to compute determinants of <em>symbolic</em> matrices using sympy. Let <span class="math display">
 A = \begin{pmatrix}  1 &amp; 0 &amp; x \\ 1 &amp; -x &amp; 0 \\ x &amp; 0 &amp; -x \end{pmatrix}.
 </span> Our goal will be to compute the determinant of <span class="math inline">A</span> in terms of <span class="math inline">x</span>. First we define the variable <span class="math inline">x</span> as a “symbolic” variable in Sympy.</p>
-<div id="6bf3c857" class="cell" data-execution_count="27">
+<div id="687b8bed" class="cell" data-execution_count="27">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> sp.symbols(<span class="st">'x'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -653,7 +653,7 @@ A = \begin{pmatrix}  1 &amp; 0 &amp; x \\ 1 &amp; -x &amp; 0 \\ x &amp; 0 &amp; 
 <li>Compute the determinant of A using the command <code>A.det()</code>. For which values of <span class="math inline">x</span> does the determinant equal zero?</li>
 <li>To be able to see more easily for which values of <span class="math inline">x</span> the determinant equals <span class="math inline">0</span>, you can use Sympy’s <code>sp.factor()</code> function to factor the determinant. The input of this function is the determinant of <span class="math inline">A</span>. Apply this function and argue for which values of <span class="math inline">x</span> the matrix <span class="math inline">A</span> is invertible.</li>
 </ul>
-<div id="8f68d67d" class="cell" data-execution_count="28">
+<div id="aaffaa78" class="cell" data-execution_count="28">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># your code here</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
@@ -662,7 +662,7 @@ A = \begin{pmatrix}  1 &amp; 0 &amp; x \\ 1 &amp; -x &amp; 0 \\ x &amp; 0 &amp; 
 <p>This optional section describes a more advanced code snippet that implements a row-reduction algorithm from scratch, and allows you to output the intermediate operations. You should be able to read most of the code and recognize the algorithm, but some details have not been explained in this notebook. More specifically, you will see again for-loops and if-statements, but also “new” functions such as .copy(), .as_mutable(), .append(). If you are interested, we invite you to look up their documentation. You can also use this algorithm to revisit some examples that you have seen in the linear algebra course.</p>
 <!-- The above section explained how to use sympy's rref() function to obtain the row-reduced echelon form of a matrix. That method, however, only provided the "final answer": it does not return the row-operations that have been performed. Below, we provide a Python script that implements a basic row reduction algorithm, shows all intermediate steps, and the operations that it performs. The script uses some basic Python functionalities that you have seen in these two lectures (for-loops, if-statements), but also more advanced features of the sympy package. (We do not explain here the functionality of .copy(), for example, but we invite you to look up the documentation in case you are interested.) -->
 <p>As a disclaimer: this code has been generated using ChatGPT.</p>
-<div id="2a6a0376" class="cell" data-execution_count="29">
+<div id="d7628032" class="cell" data-execution_count="29">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sympy <span class="im">import</span> Matrix</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> rref_with_steps(mat):</span>
@@ -716,7 +716,7 @@ A = \begin{pmatrix}  1 &amp; 0 &amp; x \\ 1 &amp; -x &amp; 0 \\ x &amp; 0 &amp; 
 <span id="cb33-51"><a href="#cb33-51" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-52"><a href="#cb33-52" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> A, <span class="bu">tuple</span>(pivots), steps</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="f6534333" class="cell" data-execution_count="30">
+<div id="382f25d3" class="cell" data-execution_count="30">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> Matrix([[<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>],</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">3</span>],</span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>            [<span class="dv">3</span>, <span class="dv">6</span>, <span class="dv">5</span>]])</span>

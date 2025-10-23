@@ -298,12 +298,12 @@ window.Quarto = {
 <section id="input-arguments" class="level2" data-number="B.1">
 <h2 data-number="B.1" class="anchored" data-anchor-id="input-arguments"><span class="header-section-number">B.1</span> Input arguments</h2>
 <p>Consider the function below.</p>
-<div id="5a38b1ee" class="cell" data-execution_count="1">
+<div id="f0096398" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x,a,b,c):</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> a<span class="op">*</span>x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> b<span class="op">*</span>x <span class="op">+</span> c</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>There are various ways to execute this function for given input values. First of all, we can execute the function with <i>positional</i> input arguments.</p>
-<div id="8d6c5c8b" class="cell" data-execution_count="2">
+<div id="4ac23f7e" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> f(<span class="op">-</span><span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">3</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(y)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -313,7 +313,7 @@ window.Quarto = {
 </div>
 <p>In the above function call, Python assigns the first input <code>1</code> to the first local variable <code>x</code> of <span class="math inline">f</span>, the second input <code>2</code> to second local variable <code>a</code>, the third input <code>1</code> to local variable <code>b</code>, and the fourth input <code>-3</code> to local variable <code>c</code>.</p>
 <p>Alternatively, we could also have inputted the numbers as <i>keyword (or named) </i> input arguments, where we explicitly assign every input to its corresponding local variable of <span class="math inline">f</span>.</p>
-<div id="490d99e3" class="cell" data-execution_count="3">
+<div id="96d9b90b" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> f(x<span class="op">=-</span><span class="dv">1</span>,a<span class="op">=</span><span class="dv">2</span>,b<span class="op">=</span><span class="dv">1</span>,c<span class="op">=</span><span class="dv">3</span>)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(y)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -322,7 +322,7 @@ window.Quarto = {
 </div>
 </div>
 <p>The advantage of the this approach is that the order in which we input the arguments does not matter. This can be useful if a function has many inputs, but you do not want to remember their (positional) ordering in <span class="math inline">f</span>.</p>
-<div id="9e6f4df3" class="cell" data-execution_count="4">
+<div id="9dbc0f19" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> f(a<span class="op">=</span><span class="dv">2</span>,c<span class="op">=</span><span class="dv">3</span>,b<span class="op">=</span><span class="dv">1</span>,x<span class="op">=-</span><span class="dv">1</span>)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(y)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -332,7 +332,7 @@ window.Quarto = {
 </div>
 <p>It is also possible to use a mixture of positional and keyword arguments. If you do this, then the positional arguments should always come first, followed by the keyword arguments in any order you like.</p>
 <p>If a function <span class="math inline">f</span> has <span class="math inline">n</span> input arguments, and you use <span class="math inline">k</span> positional input arguments, then these are assigned to the first <span class="math inline">k</span> local variables of your function. The remaining <span class="math inline">n - k</span> keyword arguments should then refer to the the last <span class="math inline">n - k</span> input arguments of <span class="math inline">f</span>.</p>
-<div id="f856c5a8" class="cell" data-execution_count="5">
+<div id="ea0053bd" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> f(<span class="op">-</span><span class="dv">1</span>,<span class="dv">2</span>,c<span class="op">=</span><span class="dv">3</span>,b<span class="op">=</span><span class="dv">1</span>) </span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Examples of what does not work</span></span>
@@ -346,7 +346,7 @@ window.Quarto = {
 </div>
 <p>Finally, it is also possible to input all arguments in a list (or array), which can then be unpacked in the function. Unpacking here means that the elements of the list are assigned to the individual local variables of the function.</p>
 <p>If the input values are stored in a list called <code>vars</code>, then you can unpack them by using the argument <code>*vars</code> in the function.</p>
-<div id="4ab5bb8c" class="cell" data-execution_count="6">
+<div id="1022b680" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Values of input arguments for function</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">vars</span> <span class="op">=</span> [<span class="op">-</span><span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">3</span>]</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -363,7 +363,7 @@ window.Quarto = {
 <section id="output-arguments" class="level2" data-number="B.2">
 <h2 data-number="B.2" class="anchored" data-anchor-id="output-arguments"><span class="header-section-number">B.2</span> Output arguments</h2>
 <p>Suppose we have a function that takes two inputs, and yields four outputs.</p>
-<div id="835dd6e4" class="cell" data-execution_count="7">
+<div id="467b37ef" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(a,b):</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> a <span class="op">+</span> b, a <span class="op">-</span> b, a<span class="op">*</span>b, a<span class="op">/</span>b</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -371,7 +371,7 @@ window.Quarto = {
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="dv">3</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>There are various ways to get one or more specific outputs from Python.</p>
-<div id="ab3d94ce" class="cell" data-execution_count="8">
+<div id="6007cbc2" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Returns all output variables in tuple</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>output <span class="op">=</span> f(a,b)</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -380,7 +380,7 @@ window.Quarto = {
 <pre><code>(8, 2, 15, 1.6666666666666667)</code></pre>
 </div>
 </div>
-<div id="7ec972b7" class="cell" data-execution_count="9">
+<div id="56c78c01" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Store outputs in variables w, x, y and z</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>w, x, y, z <span class="op">=</span> f(a,b)</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -390,7 +390,7 @@ window.Quarto = {
 </div>
 </div>
 <p>We can suppress one or more output arguments using <code>_</code>.</p>
-<div id="124c9c55" class="cell" data-execution_count="10">
+<div id="643bc8e5" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Only store first and last output</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>w, _, _, z <span class="op">=</span> f(a,b)</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -400,7 +400,7 @@ window.Quarto = {
 </div>
 </div>
 <p>If we only want the first output, and suppress the other ones, we can use <code>*_</code></p>
-<div id="4eb75c16" class="cell" data-execution_count="11">
+<div id="1f71537b" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Only store first output</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>x, <span class="op">*</span>_ <span class="op">=</span> f(a,b) <span class="co"># This is the same as x, _, _, _ = f(a,b)</span></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -410,7 +410,7 @@ window.Quarto = {
 </div>
 </div>
 <p>If we only want the first two outputs, and suppress the remaining ones, we can do something similar.</p>
-<div id="3b985593" class="cell" data-execution_count="12">
+<div id="82e3aee6" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Only store first output</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>w, x, <span class="op">*</span>_ <span class="op">=</span> f(a,b) <span class="co"># This is the same as w, x, _, _ = f(a,b)</span></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -420,7 +420,7 @@ window.Quarto = {
 </div>
 </div>
 <p>If we only want the last output, we can do the following.</p>
-<div id="3da129cb" class="cell" data-execution_count="13">
+<div id="f6a04487" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Only store last output</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="op">*</span>_, z <span class="op">=</span> f(a,b) <span class="co"># This is the same as _, _, _, z = f(a,b)</span></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -430,7 +430,7 @@ window.Quarto = {
 </div>
 </div>
 <p>Also here, if we would like the last two outputs, we can do the following.</p>
-<div id="8e5fbbf9" class="cell" data-execution_count="14">
+<div id="68f0d319" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Only store last output</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="op">*</span>_, y, z <span class="op">=</span> f(a,b) <span class="co"># This is the same as _, _, y, z = f(a,b)</span></span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>

@@ -235,7 +235,7 @@ window.Quarto = {
 \hat{\pi}_n = 4 \cdot \frac{1}{n} \sum_{i=1}^n \mathbb{I}\{X_i^2 + Y_i^2 \leq 1\}.
 </span></p>
 <p>We can generate uniformly random numbers using the <code>uniform(a,b)</code> function from the <code>random</code> package within NumPy. This function takes as input two numbers <span class="math inline">a</span> and <span class="math inline">b</span> that specify the interval <span class="math inline">[a,b]</span> from which the number is generated uniformly at random. The syntax for generating such a number is <code>np.random.uniform(a,b)</code>.</p>
-<div id="7d1c1b12" class="cell" data-execution_count="1">
+<div id="07c20206" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import NumPy</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -245,11 +245,11 @@ window.Quarto = {
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Print number</span></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>0.940181137390177</code></pre>
+<pre><code>-0.05686832767712424</code></pre>
 </div>
 </div>
 <p>If you rerun the command above (e.g., in a Jupyter Notebook) you will see a different number everytime. Let us execute the same code again to illustrate this.</p>
-<div id="e3c14867" class="cell" data-execution_count="2">
+<div id="468105d1" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import NumPy</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -259,13 +259,13 @@ window.Quarto = {
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Print number</span></span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>-0.9854704509741972</code></pre>
+<pre><code>0.6762350207919825</code></pre>
 </div>
 </div>
 <p>To compute <span class="math inline">\hat{\pi}_n</span> we can use a for-loop approach, where we repeatedly generate two random numbers <span class="math inline">(x,y)</span>, representing <span class="math inline">X_i</span> and <span class="math inline">Y_i</span>, in <span class="math inline">[-1,1]</span> and check whether <span class="math inline">x^2 + y^2 \leq 1</span>.</p>
 <p>In every iteration of the for-loop, we increase an, initally equal to <span class="math inline">0</span>, variable <code>count</code> by <span class="math inline">1</span> if the point generated in that iteration lies in the unit disk <span class="math inline">D</span>. This will then give us the sum <span class="math inline">\sum_{i=1}^n \mathbb{I}\{X_i^2 + Y_i^2 \leq 1\}</span> for a collection of sampled values <span class="math inline">(X_i,Y_i)</span> for <span class="math inline">i = 1,\dots,n</span>.</p>
 <p>To get the final estimate we multiply the expression with <span class="math inline">4/n</span>.</p>
-<div id="6be0616a" class="cell" data-execution_count="3">
+<div id="ff4d7aae" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Number of samples</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>n_samples <span class="op">=</span> <span class="dv">1000</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -285,11 +285,11 @@ window.Quarto = {
 <span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Print estimate</span></span>
 <span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pi_estimate)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>3.08</code></pre>
+<pre><code>3.092</code></pre>
 </div>
 </div>
 <p>We can also write this code more neatly, by introducing a Python function that takes as input a number of samples <code>n_samples</code> and returns the estimate <span class="math inline">\hat{\pi}_n</span>. Below we give a complete self-contained piece of code for this.</p>
-<div id="c7397a6c" class="cell" data-execution_count="4">
+<div id="d2338907" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> monte_carlo_pi(n_samples):</span>
@@ -308,14 +308,14 @@ window.Quarto = {
 <span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>pi_hat <span class="op">=</span> monte_carlo_pi(n_samples)</span>
 <span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Estimated pi with </span><span class="sc">{</span>n_samples<span class="sc">}</span><span class="ss"> samples: </span><span class="sc">{</span>pi_hat<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Estimated pi with 100000 samples: 3.14732</code></pre>
+<pre><code>Estimated pi with 100000 samples: 3.13688</code></pre>
 </div>
 </div>
 <!--
 **LEAVE OUT PART BELOW, MOST LIKELY**<br>
 There also exists a more compact function for the above, but this uses more complex programming principles. Although it is harder to explain this code (which we do not do here), it is typically much faster in terms of computation time, because it avoids the use of for-loops.
 
-::: {#8cdeef96 .cell execution_count=5}
+::: {#393704e9 .cell execution_count=5}
 ``` {.python .cell-code}
 import numpy as np
 
@@ -332,16 +332,19 @@ print(f"Estimated pi with {n_samples} samples: {pi_hat}")
 
 ::: {.cell-output .cell-output-stdout}
 ```
-Estimated pi with 100000 samples: 3.14272
+Estimated pi with 100000 samples: 3.1388000000000003
 ```
 :::
 :::
 
 
 -->
-<p>To see how the approximation progresses as the number of samples increases, play around with the following animation, that you can also open in full screen by clicking <a href="https://pskleer.github.io/35b402/pi-approximation/pi-approximation.html"> here </a> (does not work in PDF).</p>
-<iframe src="https://pskleer.github.io/35b402/pi-approximation/pi-approximation.html" width="100%" height="500px" style="border:1px solid #ccc;" loading="lazy">
+<p>To see how the approximation progresses as the number of samples increases, play around with the following animation, that you can also open in full screen by clicking <a href="https://pskleer.github.io/35b402/pi-approximation/pi-approximation.html"> here </a> (does not work in PDF). Please note that it might take a couple of seconds for the app to load.</p>
+<iframe src="https://pskleer.github.io/35b402/pi-approximation/pi-approximation.html" width="100%" height="525px" loading="lazy">
 </iframe>
+<!--
+    style="border:1px solid #ccc;"
+-->
 
 
 </section>

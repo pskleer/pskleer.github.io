@@ -1,0 +1,22 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Python implementations for 35B402",
+    "section": "",
+    "text": "1 Probability and statistics\nIn this chapter we will show various Python implementations of concepts we have seen in the course Probability and statistics (35B402).",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Probability and statistics</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#simulation-based-inference",
+    "href": "index.html#simulation-based-inference",
+    "title": "Python implementations for 35B402",
+    "section": "1.1 Simulation-based inference",
+    "text": "1.1 Simulation-based inference\nIn this section we illustrate some of the examples seen in Chapter 7 of the reader of this course.\n\n1.1.1 Monte Carlo Estimation of \\pi\nRecall that if we have n independent pairs (X_i,Y_i) of random variables uniformly from [-1,1]^2 for i = 1,\\dots,n and count which fraction falls in the unit disk D = \\{(x,y) : x^2 + y^2 \\leq 1\\}, then a quarter of this estimated fraction forms an approximation of \\pi.\nThat is, the estimator is given by \n\\hat{\\pi}_n = 4 \\cdot \\frac{1}{n} \\sum_{i=1}^n \\mathbb{I}\\{X_i^2 + Y_i^2 \\leq 1\\}.\n\nWe can generate uniformly random numbers using the uniform(a,b) function from the random package within NumPy. This function takes as input two numbers a and b that specify the interval [a,b] from which the number is generated uniformly at random. The syntax for generating such a number is np.random.uniform(a,b).\n\n# Import NumPy\nimport numpy as np\n\n# Random number from interval [-1,1]\nx = np.random.uniform(-1,1)\n\n# Print number\nprint(x)\n\n0.940181137390177\n\n\nIf you rerun the command above (e.g., in a Jupyter Notebook) you will see a different number everytime. Let us execute the same code again to illustrate this.\n\n# Import NumPy\nimport numpy as np\n\n# Random number from interval [-1,1]\nx = np.random.uniform(-1,1)\n\n# Print number\nprint(x)\n\n-0.9854704509741972\n\n\nTo compute \\hat{\\pi}_n we can use a for-loop approach, where we repeatedly generate two random numbers (x,y), representing X_i and Y_i, in [-1,1] and check whether x^2 + y^2 \\leq 1.\nIn every iteration of the for-loop, we increase an, initally equal to 0, variable count by 1 if the point generated in that iteration lies in the unit disk D. This will then give us the sum \\sum_{i=1}^n \\mathbb{I}\\{X_i^2 + Y_i^2 \\leq 1\\} for a collection of sampled values (X_i,Y_i) for i = 1,\\dots,n.\nTo get the final estimate we multiply the expression with 4/n.\n\n# Number of samples\nn_samples = 1000\n\n# Initial count\ncount  = 0\n\n# Repeatedly sample value and check if contained in unit disk\nfor i in range(n_samples): # Index i is actually not used\n    x = np.random.uniform(-1,1)\n    y = np.random.uniform(-1,1)\n    if x**2 + y**2 &lt;= 1:\n        count = count + 1\n\n# Formula for estimate\npi_estimate = 4 * (1/n_samples) * count\n\n# Print estimate\nprint(pi_estimate)\n\n3.08\n\n\nWe can also write this code more neatly, by introducing a Python function that takes as input a number of samples n_samples and returns the estimate \\hat{\\pi}_n. Below we give a complete self-contained piece of code for this.\n\nimport numpy as np\n\ndef monte_carlo_pi(n_samples):\n    count  = 0\n    for i in range(n_samples): \n        x = np.random.uniform(-1,1)\n        y = np.random.uniform(-1,1)\n        if x**2 + y**2 &lt;= 1:\n            count = count + 1\n\n    pi_estimate = 4 * (1/n_samples) * count\n    return pi_estimate\n\n# Example usage\nn_samples = 100000\npi_hat = monte_carlo_pi(n_samples)\nprint(f\"Estimated pi with {n_samples} samples: {pi_hat}\")\n\nEstimated pi with 100000 samples: 3.14732\n\n\n\nTo see how the approximation progresses as the number of samples increases, play around with the following animation, that you can also open in full screen by clicking  here  (does not work in PDF).",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Probability and statistics</span>"
+    ]
+  }
+]

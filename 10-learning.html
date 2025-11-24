@@ -330,13 +330,14 @@ g(x) = \left\{
 <section id="input-data" class="level3" data-number="10.1.1">
 <h3 data-number="10.1.1" class="anchored" data-anchor-id="input-data"><span class="header-section-number">10.1.1</span> Input data</h3>
 <p>The idea will be to fit a function <span class="math inline">f</span> on (historical) data, and thereby indirectly also the function <span class="math inline">g</span>. The historical data points are given as <span class="math inline">(x_i,y_i)</span> for <span class="math inline">i = 0,\dots,m-1</span>, where <span class="math inline">x_i \in [1,10]</span> is the grade of person <span class="math inline">i</span> for <span class="math inline">i = 0,\dots,m-1</span> together with the decision <span class="math inline">y_i \in \{0,1\}</span> whether a person with that grade got promoted (label <span class="math inline">1</span>) or not (label <span class="math inline">0</span>).</p>
-<p>The purpose of fitting such a function is that we can use it to make promotion decision in the future, i.e., if a new employee <span class="math inline">x_m</span> is up for promotation, we use the fitted function <span class="math inline">g</span> to decide whether this person gets promoted or not.</p>
+<p>The purpose of fitting such a function is that we can use it to make promotion decisions in the future, i.e., if a new employee <span class="math inline">x_m</span> is up for promotion, we use the fitted function <span class="math inline">g</span> to decide whether this person gets promoted or not.</p>
+<p>Below we have given some historical grades and the corresponding promotion decisions at the time.</p>
 <style>
 .cell-output-display {
   background-color: #ffffff;
 }
 </style>
-<div id="50198aad" class="cell" data-execution_count="1">
+<div id="b0d00a63" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -384,7 +385,7 @@ f(x) = \frac{1}{1 + e^{-p(x)}}
   background-color: #ffffff;
 }
 </style>
-<div id="6f69a3fd" class="cell" data-execution_count="2">
+<div id="c969c100" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Show code generating the plot below</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># An example of a sigmoid function </span></span>
@@ -424,7 +425,7 @@ f(x) = \frac{1}{1 + e^{-p(x)}}
 </div>
 </div>
 <p>We next import the logistic regression class <code>LogisticRegression</code> from the <code>sklearn.linear_model</code> module to do the fitting with, and create an instance of this class.</p>
-<div id="d8078987" class="cell" data-execution_count="3">
+<div id="9f9409d5" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create instance/object of class</span></span>
@@ -439,7 +440,7 @@ f(x) = \frac{1}{1 + e^{-p(x)}}
 <figcaption>Documentation of <code>fit()</code> function for LogisticRegression instance</figcaption>
 </figure>
 </div>
-<div id="34225b89" class="cell" data-execution_count="4">
+<div id="1454e2ed" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Historical data (with x_data as n x 1 column array)</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>x_data <span class="op">=</span> np.array([<span class="fl">2.7</span>, <span class="fl">3.7</span>, <span class="fl">4.8</span>, <span class="fl">5.7</span>, <span class="fl">6.1</span>, <span class="fl">6.8</span>, <span class="fl">6.9</span>, </span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>                    <span class="fl">7.0</span>, <span class="fl">7.4</span>, <span class="fl">7.5</span>, <span class="dv">8</span>, <span class="fl">8.2</span>, <span class="fl">8.7</span>, <span class="fl">8.9</span>, <span class="fl">9.6</span>])[:,<span class="va">None</span>]</span>
@@ -454,14 +455,14 @@ f(x) = \frac{1}{1 + e^{-p(x)}}
 <ul>
 <li><code>classes_</code>: Distinct labels that appear in label array <code>y_data</code>.</li>
 </ul>
-<div id="96c639bf" class="cell" data-execution_count="5">
+<div id="3311edcf" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Distinct labels in y-data</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Classes = "</span>, promotion.classes_)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Classes =  [0 1]</code></pre>
 </div>
 </div>
-<div id="7315c3df" class="cell" data-execution_count="6">
+<div id="440e83ab" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fitted parameters</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"alpha = "</span>, promotion.intercept_[<span class="dv">0</span>])</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"beta = "</span>, promotion.coef_[<span class="dv">0</span>,<span class="dv">0</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -474,12 +475,12 @@ beta =  1.4505527360985935</code></pre>
 <li><code>intercept_</code>: Fitted coefficient <span class="math inline">\alpha</span> (in one-dimensional array)</li>
 <li><code>coef_</code>: Fitted coefficient <span class="math inline">\beta</span> (in two-dimensional array)</li>
 </ul>
-<p>Note that <code>intercept_</code> and <code>coef_</code> return a one- and two-dimensional array, respectively. This is because, in general, we can also fit models with <span class="math inline">c \geq 2</span> classes and <span class="math inline">n</span> data features, meaning <span class="math inline">x_i \in \mathbb{R}^n</span>. Then <code>intercept_</code> is an array of length <span class="math inline">c-1</span> and <code>coef_</code> a <span class="math inline">(c-1) \times n</span> array.</p>
-<p>Next to the attributes, there are also various function that we can execute on the fitted model.</p>
+<p>Note that <code>intercept_</code> and <code>coef_</code> return a one- and two-dimensional array, respectively. This is because, in general, we can also fit models with <span class="math inline">c \geq 2</span> classes and <span class="math inline">n</span> data features, meaning <span class="math inline">x_i \in \mathbb{R}^n</span>. Here you can think for example of <a href="https://en.wikipedia.org/wiki/Multinomial_logistic_regression">multimonomial logistic regression</a>. Then <code>intercept_</code> is an array of length <span class="math inline">c</span> and <code>coef_</code> a <span class="math inline">c \times n</span> array.</p>
+<p>Next to the attributes, there are also various functions that we can execute on the fitted model.</p>
 <ul>
 <li><code>predict_proba()</code>: Returns array <span class="math inline">P</span> whose rows correspond to the observations, and whose columns to the classes. Entry <span class="math inline">P_{ij}</span> is the probability that observation <span class="math inline">x_i</span> is in class <span class="math inline">j</span>. <br><br> In our example, the first column is the value <span class="math inline">1 - f(x_i)</span>, i.e., the probability of being in class <span class="math inline">0</span>, and the second column is the value <span class="math inline">f(x_i)</span>, i.e., the probability of being in class <span class="math inline">1</span>.</li>
 </ul>
-<div id="6a5bb696" class="cell" data-execution_count="7">
+<div id="ec0aa920" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Class prediction probabilities</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>P <span class="op">=</span> promotion.predict_proba(x_data)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -505,7 +506,7 @@ beta =  1.4505527360985935</code></pre>
 <ul>
 <li><code>predict()</code>: Gives predicted class of every observation. For us it returns <span class="math inline">1</span> if the predicted probability <span class="math inline">&gt; 0.5</span>, and <span class="math inline">0</span> otherwise. This is the implementation of the function <span class="math inline">g</span> that we introduced earlier.</li>
 </ul>
-<div id="a1bcf54f" class="cell" data-execution_count="8">
+<div id="f45f8052" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Class predictions</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> promotion.predict(x_data)</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -519,7 +520,7 @@ Original classes are  [0 0 0 0 1 1 1 0 0 1 1 1 1 1 1]</code></pre>
 <ul>
 <li><code>score()</code>: Computes the fraction of correctly classified data points, i.e, the points <span class="math inline">(x_i,y_i)</span> for which their predicted label is the same as their true label <span class="math inline">y_i</span>.</li>
 </ul>
-<div id="a933dcbe" class="cell" data-execution_count="9">
+<div id="ad823a27" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model score</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>score <span class="op">=</span> promotion.score(x_data,y_data)</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -538,7 +539,7 @@ Original classes are  [0 0 0 0 1 1 1 0 0 1 1 1 1 1 1]</code></pre>
   background-color: #ffffff;
 }
 </style>
-<div id="af2455e8" class="cell" data-execution_count="10">
+<div id="0ac3812f" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>Show code generating the plot below</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.optimize <span class="im">as</span> optimize</span>
@@ -596,7 +597,7 @@ Original classes are  [0 0 0 0 1 1 1 0 0 1 1 1 1 1 1]</code></pre>
 </div>
 <p>It is also possible to visualize the number of correctly and wronlgy classified points using the <code>confusion matrix()</code> function from the <code>sklearn.metrics</code> package. If the first input argument of this function is the array with the true labels, and the second input argument the array with the predicted labels, then <code>heatmap()</code> returns a matrix <span class="math inline">C</span> where entry <span class="math inline">C_{ij}</span> is the number of observations whose true label is <span class="math inline">i</span>, but was predicted to have label <span class="math inline">j</span>.</p>
 <p>This means that the sum of the diagonal entries of this matrix is the correctly classified observations.</p>
-<div id="07429c8d" class="cell" data-execution_count="11">
+<div id="f6be1aca" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> confusion_matrix</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Inputs are true labels and predicted labels</span></span>
@@ -613,7 +614,7 @@ Original classes are  [0 0 0 0 1 1 1 0 0 1 1 1 1 1 1]</code></pre>
   background-color: #ffffff;
 }
 </style>
-<div id="eb413108" class="cell" data-execution_count="12">
+<div id="2677849d" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>Show code generating the plot below</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn</span>
@@ -653,7 +654,7 @@ Original classes are  [0 0 0 0 1 1 1 0 0 1 1 1 1 1 1]</code></pre>
 <li><span class="math inline">n \times d</span> array <code>x_data</code> where every row is a data point <span class="math inline">x_i \in \mathbb{R}^d</span> with <span class="math inline">d = 2</span>;</li>
 <li><span class="math inline">n</span>-dimensional array <code>x_cluster</code> with the cluster every data point was generated in.</li>
 </ul>
-<div id="e5395cee" class="cell" data-execution_count="13">
+<div id="e9328525" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> make_blobs</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Define K = 4 centers</span></span>
@@ -691,7 +692,7 @@ Labels of first three data points:
   background-color: #ffffff;
 }
 </style>
-<div id="d11f7c6d" class="cell" data-execution_count="14">
+<div id="3b092073" class="cell" data-execution_count="14">
 <details class="code-fold">
 <summary>Show code generating the plot below</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -740,7 +741,7 @@ L_i = \text{argmin}_{k = 0,\dots,K-1} ||x_i - c_k||_2
 </span> That is, the new center is the average of all points that are assigned the same label in Step 1. Set <span class="math inline">c_j \leftarrow \hat{c}_j</span> and go back to Step <span class="math inline">1</span>.</li>
 </ol>
 <p>This procedure has been implemented in Python in the <code>KMeans</code> class of the <code>sklearn.cluster</code> module. We first import and create an instance of this class. Below we explain the input keyword arguments.</p>
-<div id="35769802" class="cell" data-execution_count="15">
+<div id="a011832c" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.cluster <span class="im">import</span> KMeans</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>kmeans <span class="op">=</span> KMeans(</span>
@@ -762,7 +763,7 @@ L_i = \text{argmin}_{k = 0,\dots,K-1} ||x_i - c_k||_2
 <p>There are other input keyword arguments, and other options for the ones above; see the documentation. We remark that the algorithm implemented in the <code>KMeans</code> class actually stops prematurely before having done <span class="math inline">T</span> iterations if no significant improvements are achieved in consecutive iterations.</p>
 <p>We also note that the choice of <span class="math inline">K</span> above is a modelling choice. We set it equal to <span class="math inline">K = 4</span> because we know that our synthetic data is generated based on four centers, but in general, an appropriate choice of <span class="math inline">K</span> might be less clear.</p>
 <p>We next run the <span class="math inline">K</span>-means algorithm on our data points using the <code>fit()</code> method. Executing this code will raise a <code>UserWarning</code> in Python, but you can ignore that for now. The method still executes correctly.</p>
-<div id="e974896b" class="cell" data-execution_count="16">
+<div id="e7f524c6" class="cell" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>kmeans <span class="op">=</span> kmeans.fit(x_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>C:\Users\pskleer\AppData\Local\anaconda3\Lib\site-packages\sklearn\cluster\_kmeans.py:1419: UserWarning:
@@ -775,7 +776,7 @@ KMeans is known to have a memory leak on Windows with MKL, when there are less c
 <ul>
 <li><code>cluster_centers_</code>: Gives the final cluster centers <span class="math inline">c_1,\dots,c_k</span> at the end of the execution of the <span class="math inline">K</span>-means algorithm</li>
 </ul>
-<div id="b5d2eaa7" class="cell" data-execution_count="17">
+<div id="06ee2f7f" class="cell" data-execution_count="17">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Predicted clusters</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>pred_centers <span class="op">=</span> kmeans.cluster_centers_</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -790,7 +791,7 @@ KMeans is known to have a memory leak on Windows with MKL, when there are less c
 <ul>
 <li><code>labels_</code>: Specifies for every point the label/index of the center it is assigned to.</li>
 </ul>
-<div id="0fcf7e75" class="cell" data-execution_count="18">
+<div id="9eeee80a" class="cell" data-execution_count="18">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Predicted clusters</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>pred_labels <span class="op">=</span> kmeans.labels_</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -807,7 +808,7 @@ KMeans is known to have a memory leak on Windows with MKL, when there are less c
 <ul>
 <li><code>inertia_</code>: This gives the SSE of the run of the algorithm with lowest SSE (remember that we used <code>n_init</code> to specify how often to run the algorithm with random initial clusters).</li>
 </ul>
-<div id="3bd4691a" class="cell" data-execution_count="19">
+<div id="f3cd7f8b" class="cell" data-execution_count="19">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># SSE for best run of algorithm</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>sse <span class="op">=</span> kmeans.inertia_</span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -820,7 +821,7 @@ KMeans is known to have a memory leak on Windows with MKL, when there are less c
 <section id="visualization-1" class="level3" data-number="10.2.3">
 <h3 data-number="10.2.3" class="anchored" data-anchor-id="visualization-1"><span class="header-section-number">10.2.3</span> Visualization</h3>
 <p>We can visualize the data as before using the following code. Below we plot all the data points that are clustered together with the same color.</p>
-<div id="a8f1eec9" class="cell" data-execution_count="20">
+<div id="16b5a665" class="cell" data-execution_count="20">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Define parameters based on data arrays</span></span>
@@ -861,7 +862,7 @@ KMeans is known to have a memory leak on Windows with MKL, when there are less c
   background-color: #ffffff;
 }
 </style>
-<div id="1d48e086" class="cell" data-execution_count="21">
+<div id="457d3b9f" class="cell" data-execution_count="21">
 <details class="code-fold">
 <summary>Show code generating the plot below</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -904,7 +905,7 @@ KMeans is known to have a memory leak on Windows with MKL, when there are less c
 <section id="input-data-2" class="level3" data-number="10.3.1">
 <h3 data-number="10.3.1" class="anchored" data-anchor-id="input-data-2"><span class="header-section-number">10.3.1</span> Input data</h3>
 <p>We consider the following historical data, which is also plotted below.</p>
-<div id="ff30908d" class="cell" data-execution_count="22">
+<div id="a0592364" class="cell" data-execution_count="22">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Historical data</span></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>x_data <span class="op">=</span> np.array([[<span class="dv">3</span>,<span class="dv">3</span>],[<span class="fl">1.5</span>,<span class="fl">2.5</span>],[<span class="dv">1</span>,<span class="dv">2</span>],[<span class="fl">0.5</span>,<span class="fl">1.5</span>],[<span class="dv">2</span>,<span class="dv">2</span>],[<span class="dv">2</span>,<span class="dv">4</span>],</span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>                        [<span class="dv">4</span>,<span class="dv">4</span>],[<span class="dv">2</span>,<span class="dv">6</span>],[<span class="dv">5</span>,<span class="fl">5.5</span>],[<span class="dv">7</span>,<span class="dv">6</span>]]) <span class="co"># Data points</span></span>
@@ -917,7 +918,7 @@ KMeans is known to have a memory leak on Windows with MKL, when there are less c
   background-color: #ffffff;
 }
 </style>
-<div id="2696f064" class="cell" data-execution_count="23">
+<div id="ca765656" class="cell" data-execution_count="23">
 <details class="code-fold">
 <summary>Show code generating the plot below</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> [<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>] <span class="co"># Distinct labels</span></span>
@@ -965,7 +966,7 @@ KMeans is known to have a memory leak on Windows with MKL, when there are less c
   background-color: #ffffff;
 }
 </style>
-<div id="69f19653" class="cell" data-execution_count="24">
+<div id="dadef559" class="cell" data-execution_count="24">
 <details class="code-fold">
 <summary>Show code generating the plot below</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> [<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>] <span class="co"># Distinct labels</span></span>
@@ -1027,7 +1028,7 @@ KMeans is known to have a memory leak on Windows with MKL, when there are less c
   background-color: #ffffff;
 }
 </style>
-<div id="9280c540" class="cell" data-execution_count="25">
+<div id="121a53a9" class="cell" data-execution_count="25">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -1045,7 +1046,7 @@ KMeans is known to have a memory leak on Windows with MKL, when there are less c
 </span></p>
 <p>Note that this optimization problem has an objective function that is quadratic in the <span class="math inline">w_i</span>, and has constraints that are linear constraints in <span class="math inline">w_0,\dots,w_{d-1}</span> and <span class="math inline">b</span>. Recall that the tuples <span class="math inline">(x_i,y_i)</span> are given input data. We will not give the derivation of this formulation here. You can look this up yourself if you are interested.</p>
 <p>Solving the problem above can be done with the <code>LinearSVC</code> (linear support vector classification) class from the <code>sklearn.svm</code> module.</p>
-<div id="6b5d4e59" class="cell" data-execution_count="26">
+<div id="142e79d4" class="cell" data-execution_count="26">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.svm <span class="im">import</span> LinearSVC</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The algorithm implemented in the <code>LinearSVC</code> class actually solves a slightly different optimization problem. For a given parameters <span class="math inline">C &gt; 0</span>, and historical data <span class="math inline">\{(x_i,y_i)\}_{i=0}^{m-1}</span>, it finds a solution to the unconstrained problem <span class="math display">
@@ -1054,12 +1055,12 @@ KMeans is known to have a memory leak on Windows with MKL, when there are less c
 <p>For separable data, with guaranteed existence of a separating hyperplane, the two minimization problems become more or less equivalent as <span class="math inline">C \rightarrow \infty</span>.</p>
 <p>To solve the unconstrained optimization problem, we can apply the <code>fit()</code> function on an instance of the class <code>LinearSVC</code> (similar to how this was done to solve the clustering problem in the previous section).</p>
 <p>We first create an instance, for which we set two properties. For other properties you can fix, see the <a href="https://scikit-learn.org/stable/modules/generated/sklearn.svm.LinearSVC.html#sklearn.svm.LinearSVC.fit">documentation</a>. We fix the value of <span class="math inline">C</span> in the keyword argument <code>C</code>, and we fix the randomness using <code>random_state</code>. The randomness arises in the algorithm that is used by Python to solve the minimization problem.</p>
-<div id="42aeedea" class="cell" data-execution_count="27">
+<div id="6b72c33e" class="cell" data-execution_count="27">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create instance of linear support vector classification</span></span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>separator <span class="op">=</span> LinearSVC(C<span class="op">=</span><span class="dv">30</span>,random_state<span class="op">=</span><span class="dv">42</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>We next apply the <code>fit()</code> method on our instance.</p>
-<div id="572939c4" class="cell" data-execution_count="28">
+<div id="f29ddbcb" class="cell" data-execution_count="28">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Historical data</span></span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>x_data <span class="op">=</span> np.array([[<span class="dv">3</span>,<span class="dv">3</span>],[<span class="fl">1.5</span>,<span class="fl">2.5</span>],[<span class="dv">1</span>,<span class="dv">2</span>],[<span class="fl">0.5</span>,<span class="fl">1.5</span>],[<span class="dv">2</span>,<span class="dv">2</span>],[<span class="dv">2</span>,<span class="dv">4</span>],</span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>                        [<span class="dv">4</span>,<span class="dv">4</span>],[<span class="dv">2</span>,<span class="dv">6</span>],[<span class="dv">5</span>,<span class="fl">5.5</span>],[<span class="dv">7</span>,<span class="dv">6</span>]]) <span class="co"># Data points</span></span>
@@ -1069,9 +1070,8 @@ KMeans is known to have a memory leak on Windows with MKL, when there are less c
 <span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>                        </span>
 <span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>separator <span class="op">=</span> separator.fit(x_data,y_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>As you see above, this did not work as the algorithm did not converge under the default settings.</p>
-<p>Python suggests to increase the number of iterations of the underlying algorithm. We can do this with the <code>max_iter</code> keyword argument, whose default value is <span class="math inline">1000</span> (see documentation).</p>
-<div id="5272cbef" class="cell" data-execution_count="29">
+<p>Sometimes it might happen that Python gives a message saying the algorithm did not converge. In this case you can, for example, increase the number of iterations of the underlying algorithm. We can do this with the <code>max_iter</code> keyword argument, whose default value is <span class="math inline">1000</span> (see documentation).</p>
+<div id="c84e4cc7" class="cell" data-execution_count="29">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Increase iterations to ten thousand</span></span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>separator <span class="op">=</span> LinearSVC(C<span class="op">=</span><span class="dv">30</span>,random_state<span class="op">=</span><span class="dv">42</span>,max_iter<span class="op">=</span><span class="dv">10000</span>) </span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1084,7 +1084,6 @@ KMeans is known to have a memory leak on Windows with MKL, when there are less c
 <span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>                        </span>
 <span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>separator <span class="op">=</span> separator.fit(x_data,y_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>This time the algorithm converged.</p>
 <p>The values of <span class="math inline">w = [w_0,\dots,w_{d-1}]</span> and <span class="math inline">b</span> can be accessed in the <code>coef_</code> and <code>intercept_</code> attributes, respectively, of the fitted instance. The reason we index these attributes at <span class="math inline">0</span> is because of how they are returned by the <code>fit()</code> method. This is illustrates in the documentation below.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -1092,7 +1091,7 @@ KMeans is known to have a memory leak on Windows with MKL, when there are less c
 <figcaption>Attributes of fitted <code>LinearSVC</code> instance</figcaption>
 </figure>
 </div>
-<div id="d6971f41" class="cell" data-execution_count="30">
+<div id="6a53db31" class="cell" data-execution_count="30">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Obtain array w</span></span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> separator.coef_[<span class="dv">0</span>]</span>
 <span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Array w of hyperplane is"</span>, w)</span>
@@ -1109,7 +1108,7 @@ Scalar b of hyperplane is -5.72000353170397</code></pre>
 <section id="visualization-2" class="level3" data-number="10.3.3">
 <h3 data-number="10.3.3" class="anchored" data-anchor-id="visualization-2"><span class="header-section-number">10.3.3</span> Visualization</h3>
 <p>We can plot the fitted separating hyperplane using the code below. This code uses similar ideas as that we have seen in earlier sections in this chapter.</p>
-<div id="a3c17317" class="cell" data-execution_count="31">
+<div id="848af71c" class="cell" data-execution_count="31">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> [<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>] <span class="co"># Distinct labels</span></span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>colors <span class="op">=</span> [<span class="st">'red'</span>,<span class="st">'blue'</span>] <span class="co"># Color names (strings) for plotting data points</span></span>
 <span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a></span>

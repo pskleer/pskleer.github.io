@@ -231,28 +231,28 @@ window.Quarto = {
 <section id="arithmetic-operations" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="arithmetic-operations"><span class="header-section-number">3.1</span> Arithmetic operations</h2>
 <p>We start with the most basic arithmetic operations: Addition, subtraction, multiplication and division are given by the standard <code>+</code>, <code>-</code>, <code>*</code> and <code>/</code> operators that you would use in other programs like Excel. For example, addition:</p>
-<div id="ded456cf" class="cell" data-execution_count="1">
+<div id="8b7ba992" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">2</span> <span class="op">+</span> <span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>5</code></pre>
 </div>
 </div>
 <p>Subtraction:</p>
-<div id="aa983946" class="cell" data-execution_count="2">
+<div id="2dfe386b" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">5</span> <span class="op">-</span> <span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>2</code></pre>
 </div>
 </div>
 <p>Multiplication:</p>
-<div id="c0099d1e" class="cell" data-execution_count="3">
+<div id="308399bb" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">2</span> <span class="op">*</span> <span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>6</code></pre>
 </div>
 </div>
 <p>Division:</p>
-<div id="1bcf1d28" class="cell" data-execution_count="4">
+<div id="8b0b61aa" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">3</span> <span class="op">/</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>1.5</code></pre>
@@ -261,14 +261,14 @@ window.Quarto = {
 <p>It is also possible to do multiple operations at the same time using parentheses. For example, suppose we wanted to calculate: <span class="math display">
 \frac{2+4}{4 \cdot 2} = \frac{6}{8} = 0.75
 </span> We can calculate this in Python as follows:</p>
-<div id="4e40503f" class="cell" data-execution_count="5">
+<div id="e63c9f71" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>((<span class="dv">2</span> <span class="op">+</span> <span class="dv">4</span>) <span class="op">/</span> (<span class="dv">4</span> <span class="op">*</span> <span class="dv">2</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>0.75</code></pre>
 </div>
 </div>
 <p><br> With the <code>**</code> operator (two stars) we can raise a number to the power of another number. For example, <span class="math inline">2^3=2\times 2\times 2 = 8</span> can be computed as</p>
-<div id="be2f1b07" class="cell" data-execution_count="6">
+<div id="8e2a252b" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">2</span> <span class="op">**</span> <span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>8</code></pre>
@@ -321,7 +321,7 @@ window.Quarto = {
 <p>In Python we can assign single numbers, as well as text, to <em>variables</em> and then work with and manipulate those variables.</p>
 <p>Assigning a single number to a variable is very straightforward. We put the name we want to give to the variable on the left, then use the <code>=</code> symbol as the <em>assignment operator</em>, and put the number to the right of the <code>=</code>. The <code>=</code> operator binds a number (on the right-hand size of <code>=</code>) to a name (on the left-hand side of <code>=</code>).</p>
 <p>To see this at work, let’s set <span class="math inline">x=2</span> and <span class="math inline">y=3</span> and calculate <span class="math inline">x+y</span>:</p>
-<div id="da665a66" class="cell" data-execution_count="7">
+<div id="94e552d8" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">2</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="dv">3</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x <span class="op">+</span> y)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -330,7 +330,7 @@ window.Quarto = {
 </div>
 </div>
 <p>When we assign <span class="math inline">x=2</span>, in our code, the number is not fixed forever. We can assign a new number to <code>x</code>. For example, we can assign the number 6 to <code>x</code> instead. The sum of <span class="math inline">x</span> (which is <span class="math inline">6</span>) and <span class="math inline">y</span> ( which is <span class="math inline">3</span>), is now <span class="math inline">9</span>:</p>
-<div id="9efd4a4e" class="cell" data-execution_count="8">
+<div id="977644c4" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Original variable assignment</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">2</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="dv">3</span></span>
@@ -376,7 +376,7 @@ window.Quarto = {
 
 If you want to print multiple expressions within the same code snippet, you can use the `print()` function of Python for each of the expressions.
 
-::: {#43952078 .cell execution_count=9}
+::: {#97c48a53 .cell execution_count=9}
 ``` {.python .cell-code}
 x = 2
 y = 3
@@ -398,7 +398,7 @@ print(x - y)
 <section id="lists" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="lists"><span class="header-section-number">3.3</span> Lists</h2>
 <p>We can also store multiple variables in one object, a so-called <em>list</em>. A list with numbers is created by writing down a sequence of numbers, separated by commas, in between two brackets <code>[</code> and <code>]</code>.</p>
-<div id="a6a7cbe8" class="cell" data-execution_count="10">
+<div id="7551eb9e" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> [<span class="dv">3</span>, <span class="dv">9</span>, <span class="dv">1</span>, <span class="dv">7</span>]</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(z)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -406,7 +406,7 @@ print(x - y)
 </div>
 </div>
 <p>We can also create lists with fractional numbers.</p>
-<div id="bd7d5716" class="cell" data-execution_count="11">
+<div id="e0623943" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> [<span class="fl">3.1</span>, <span class="dv">9</span>, <span class="fl">1.9</span>, <span class="dv">7</span>]</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(z)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -414,7 +414,7 @@ print(x - y)
 </div>
 </div>
 <p>To access the numbers in the list, we can <em>index</em> the list at the position of interest. If we want to get the number at position <span class="math inline">i</span> in the list, we use the syntax <code>z[i]</code>.</p>
-<div id="a64e200b" class="cell" data-execution_count="12">
+<div id="4a84f241" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(z[<span class="dv">1</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>9</code></pre>
@@ -436,25 +436,25 @@ print(x - y)
 </div>
 <p>In other words, the “first” number in the list is located at position <span class="math inline">0</span>, and we can access it using <code>z[0]</code> instead.</p>
 <p>Below we index the number of the list at positions <span class="math inline">i \in \{0,1,2,3\}</span> separately.</p>
-<div id="03e944f6" class="cell" data-execution_count="13">
+<div id="9a5b56c3" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(z[<span class="dv">0</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>3.1</code></pre>
 </div>
 </div>
-<div id="6458b8e5" class="cell" data-execution_count="14">
+<div id="9ffc063c" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(z[<span class="dv">1</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>9</code></pre>
 </div>
 </div>
-<div id="0ec8124e" class="cell" data-execution_count="15">
+<div id="dec1f586" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(z[<span class="dv">2</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>1.9</code></pre>
 </div>
 </div>
-<div id="798f6892" class="cell" data-execution_count="16">
+<div id="2d0f2dc4" class="cell" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(z[<span class="dv">3</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>7</code></pre>
@@ -492,31 +492,31 @@ print(x - y)
 <section id="printing-text" class="level2" data-number="3.4">
 <h2 data-number="3.4" class="anchored" data-anchor-id="printing-text"><span class="header-section-number">3.4</span> Printing text</h2>
 <p>It is also possible to print text in Python with the <code>print()</code> command. To do this, you have to put the desired text in quotation marks, either single <code>''</code> or double <code>""</code>. It does not matter if you use single or double quotation as long as you use the same type on both end of the text.</p>
-<div id="2de7fc06" class="cell" data-execution_count="17">
+<div id="b625dff2" class="cell" data-execution_count="17">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Hello world!'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Hello world!</code></pre>
 </div>
 </div>
-<div id="c216375a" class="cell" data-execution_count="18">
+<div id="b9792527" class="cell" data-execution_count="18">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Hello world!"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Hello world!</code></pre>
 </div>
 </div>
 <p>A piece of text within quotation marks is called a <em>string</em> in Python. It is also possible to store text (strings) in a list, and print it from the list. For example, we can store the days of the weeks as text in the list <code>days</code> as follows.</p>
-<div id="1ebe0fe3" class="cell" data-execution_count="19">
+<div id="c33dc834" class="cell" data-execution_count="19">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>days <span class="op">=</span> [<span class="st">"Monday"</span>,<span class="st">"Tuesday"</span>,<span class="st">"Wednesday"</span>,<span class="st">"Thursday"</span>,<span class="st">"Friday"</span>,<span class="st">"Saturday"</span>,<span class="st">"Sunday"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>If we now want to print a day, we should index the list at the corresponding position. For example, to print <code>"Wednesday"</code>, we should index the list at position <span class="math inline">2</span>.</p>
-<div id="890faf4d" class="cell" data-execution_count="20">
+<div id="9ad30922" class="cell" data-execution_count="20">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(days[<span class="dv">2</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Wednesday</code></pre>
 </div>
 </div>
 <p>If you want to print both text(s) and variables within the same <code>print()</code> command, you can do this by separating these quantities with a comma.</p>
-<div id="a45bf583" class="cell" data-execution_count="21">
+<div id="e09109b7" class="cell" data-execution_count="21">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The third day of the week is"</span>, days[<span class="dv">2</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>The third day of the week is Wednesday</code></pre>
@@ -545,7 +545,7 @@ print(x - y)
 <h2 data-number="3.5" class="anchored" data-anchor-id="for-loop"><span class="header-section-number">3.5</span> For-loop</h2>
 <p>For-loops are a convenient way to avoid unnecessary repetition of different lines of code. Suppose we want to print all the days of the week from the <code>days</code> list.</p>
 <p>We can do this by using a print statement for every day separately by indexing <code>days</code> at all its positions.</p>
-<div id="58de5c53" class="cell" data-execution_count="22">
+<div id="7877080c" class="cell" data-execution_count="22">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>days <span class="op">=</span> [<span class="st">"Monday"</span>,<span class="st">"Tuesday"</span>,<span class="st">"Wednesday"</span>,<span class="st">"Thursday"</span>,<span class="st">"Friday"</span>,<span class="st">"Saturday"</span>,<span class="st">"Sunday"</span>]</span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The days of the week are:"</span>)</span>
@@ -567,8 +567,8 @@ Saturday
 Sunday</code></pre>
 </div>
 </div>
-<p>However, looking at the above, the only thing that changes in the last seven lines of code is the position at which we access <code>weekdays</code>. We can also print all the days of the week based on the list <code>weekdays</code> above using a for-loop.</p>
-<div id="9b1ffc0f" class="cell" data-execution_count="23">
+<p>However, looking at the above, the only thing that changes in the last seven lines of code is the position at which we access <code>days</code>. We can also print all the days of the week based on the list <code>days</code> above using a for-loop.</p>
+<div id="ab3ce3e2" class="cell" data-execution_count="23">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>days <span class="op">=</span> [<span class="st">"Monday"</span>,<span class="st">"Tuesday"</span>,<span class="st">"Wednesday"</span>,<span class="st">"Thursday"</span>,<span class="st">"Friday"</span>,<span class="st">"Saturday"</span>,<span class="st">"Sunday"</span>]</span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>,<span class="dv">7</span>):</span>
@@ -583,10 +583,10 @@ Saturday
 Sunday</code></pre>
 </div>
 </div>
-<p>With the line <code>for i in range(0,7):</code> we tell Python that we would like to carry out a piece of code (the line below) with different values of the <em>iteration variable</em> <code>i</code> ranging from <span class="math inline">0</span> to <span class="math inline">7</span>, but NOT including <span class="math inline">7</span>. In other words, we want to run a piece of code for the values of <code>i</code> being <span class="math inline">0,1,2,3,4,5</span> and <span class="math inline">6</span>. It is important to realize here that the index <span class="math inline">7</span> is not included as value for <code>i</code> in the for-loop.</p>
-<p>In Python such a range, called the <em>iterable</em>, can be specified with the <code>range(a,b)</code> function where <span class="math inline">a</span> is the smallest value and <span class="math inline">b-1</span> the largest value of <span class="math inline">i</span>. In the first <em>iteration</em> with <span class="math inline">i = 0</span>, Python will now print <code>days[0]</code>, in the second iteration with <span class="math inline">i = 1</span>, <code>days[1]</code>, etcetera.</p>
+<p>With the line <code>for i in range(0,7):</code> we tell Python that we would like to carry out a piece of code (the line below it) with different values of the <em>iteration variable</em> <code>i</code> ranging from <span class="math inline">0</span> to <span class="math inline">7</span>, but NOT including <span class="math inline">7</span>. In other words, we want to run a piece of code for the values of <code>i</code> being <span class="math inline">0,1,2,3,4,5</span> and <span class="math inline">6</span>. It is important to realize here that the index <span class="math inline">7</span> is not included as value for <code>i</code> in the for-loop (this is what the Python developers decided on).</p>
+<p>In Python such a range, called the <em>iterable</em>, can be specified with the <code>range(a,b)</code> function where <span class="math inline">a</span> is the smallest value and <span class="math inline">b-1</span> the largest value of <span class="math inline">i</span>. In the first <em>iteration</em> with <span class="math inline">i = 0</span> Python will now print <code>days[0]</code>, in the second iteration with <span class="math inline">i = 1</span> Python will print <code>days[1]</code>, etcetera.</p>
 <p>The code we want to execute repeatedly can be found under the lines <code>for i in range(0,7):</code> with an <em>indentation (or tab)</em>. The indendation is important so that Python known this is the line of code you want to be carried out repeatedly. We can also carry out multiple lines of code in a for-loop, then all these lines should be indented.</p>
-<div id="65c185ce" class="cell" data-execution_count="24">
+<div id="a4dc2a20" class="cell" data-execution_count="24">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>days <span class="op">=</span> [<span class="st">"Monday"</span>,<span class="st">"Tuesday"</span>,<span class="st">"Wednesday"</span>,<span class="st">"Thursday"</span>,<span class="st">"Friday"</span>,<span class="st">"Saturday"</span>,<span class="st">"Sunday"</span>]</span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>,<span class="dv">7</span>):</span>
@@ -611,7 +611,7 @@ Sunday</code></pre>
 </div>
 <p>Note that in the first line in the for-loop, here we print three aspects in one <code>print()</code> statement: The word <code>Day</code>, the value of <code>i+1</code>, and the words <code>of the week is:</code>. As <span class="math inline">i</span> ranges from <span class="math inline">0</span> to <span class="math inline">6</span>, the values of <span class="math inline">i+1</span> ranges from <span class="math inline">1</span> to <span class="math inline">7</span>.</p>
 <p>We note that we only use two print statements for the sake of illustration. The above could have been printed with one <code>print()</code> statement as well.</p>
-<div id="d7aaa5dc" class="cell" data-execution_count="25">
+<div id="5aa43408" class="cell" data-execution_count="25">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>days <span class="op">=</span> [<span class="st">"Monday"</span>,<span class="st">"Tuesday"</span>,<span class="st">"Wednesday"</span>,<span class="st">"Thursday"</span>,<span class="st">"Friday"</span>,<span class="st">"Saturday"</span>,<span class="st">"Sunday"</span>]</span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>,<span class="dv">7</span>):</span>
@@ -636,11 +636,11 @@ Day 7 of the week is: Sunday</code></pre>
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Take your list <code>courses</code> from the previous exercise and consider the list <code>days</code> from above. Print the five sentences: “On Monday the course [course0] is being taught”, “On Tuesday the course [course1] is being taught”, etc. by using a for-loop in which you index the courses and weekdays from the two lists, and where [course0], [course1], etc. are the first, second, etc. course names from the list.</p>
+<p>Take your list <code>courses</code> from the previous exercise and consider the list <code>days</code> from above. Print the five sentences: “On Monday the course [course0] is being taught”, “On Tuesday the course [course1] is being taught”, etc. by using a for-loop in which you index the courses and days from the two lists, and where [course0], [course1], etc. are the first, second, etc. course names from the list.</p>
 </div>
 </div>
 <p>We remark that it is also possible to directly iterate over the values in a list (the iterable).</p>
-<div id="83f9b34c" class="cell" data-execution_count="26">
+<div id="f75ead9f" class="cell" data-execution_count="26">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>days <span class="op">=</span> [<span class="st">"Monday"</span>,<span class="st">"Tuesday"</span>,<span class="st">"Wednesday"</span>,<span class="st">"Thursday"</span>,<span class="st">"Friday"</span>,<span class="st">"Saturday"</span>,<span class="st">"Sunday"</span>]</span>
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> days:</span>
@@ -659,9 +659,9 @@ Sunday</code></pre>
 </section>
 <section id="conditional-statements" class="level2" data-number="3.6">
 <h2 data-number="3.6" class="anchored" data-anchor-id="conditional-statements"><span class="header-section-number">3.6</span> Conditional statements</h2>
-<p>It is also possible in Python to let the computer make decisions based on conditions. For this we use an <strong>if/else statement</strong>. This allows the program to execute certain lines of code only when a condition is true.</p>
+<p>It is also possible in Python have different lines of code executed based on conditions. For this we use an <strong>if/else statement</strong>. This allows the program to execute certain lines of code only when a condition is true.</p>
 <p>For example, suppose we store a number in the variable x and want to print a message only if x is greater than 5.</p>
-<div id="04822d4c" class="cell" data-execution_count="27">
+<div id="6b2fe328" class="cell" data-execution_count="27">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">8</span></span>
 <span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> x <span class="op">&gt;</span> <span class="dv">5</span>:</span>
@@ -672,7 +672,7 @@ Sunday</code></pre>
 </div>
 <p>The line if <code>x &gt; 5:</code> checks whether the condition x &gt; 5 is true. If it is true, Python executes the indented line below it. If the condition is false, nothing happens and Python continues with the rest of the code. You can check this yourself by changing the value of <span class="math inline">x</span> to something strictly smaller than <span class="math inline">5</span>. If you run the code snippet, nothing should be printed.</p>
 <p>We can also tell Python what to do if the condition is false by adding an <strong>else statement</strong>.</p>
-<div id="03e4e74b" class="cell" data-execution_count="28">
+<div id="1fbda948" class="cell" data-execution_count="28">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">3</span></span>
 <span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> x <span class="op">&gt;</span> <span class="dv">5</span>:</span>
@@ -686,7 +686,7 @@ Sunday</code></pre>
 <p>Here Python checks the condition. Since 3 &gt; 5 is false, i.e., the condition <span class="math inline">x &gt; 5</span> is not true, the code under <code>else:</code> is executed instead.</p>
 <p>Just like with for-loops, <strong>indentation is important</strong>. All lines that belong to the if or else block must be indented so Python knows which code belongs to which condition.</p>
 <p>We can also check more than two conditions using <code>elif</code> (short for “else if”):</p>
-<div id="ac6365db" class="cell" data-execution_count="29">
+<div id="6624e164" class="cell" data-execution_count="29">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">5</span></span>
 <span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> x <span class="op">&gt;</span> <span class="dv">5</span>:</span>
@@ -752,7 +752,7 @@ You can execute multiple lines of code when a condition is true</code></pre>
 </tbody>
 </table>
 <p>You can also combine multiple statements into one condition using the <code>and</code> and <code>or</code> <em>keyword arguments</em>. In the code below, we do not finish with an <code>else</code> statement; this is not mandatory.</p>
-<div id="526ce09d" class="cell" data-execution_count="30">
+<div id="0c4bc85e" class="cell" data-execution_count="30">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">5</span></span>
 <span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> x <span class="op">&gt;</span> <span class="dv">5</span> <span class="kw">and</span> x <span class="op">&lt;</span> <span class="dv">10</span>:</span>
@@ -764,7 +764,7 @@ You can execute multiple lines of code when a condition is true</code></pre>
 </div>
 </div>
 <p>You can also combine for-loops and if/else statements. For example, recall the original if/else statement where we checked whether <span class="math inline">x</span> was greater or equal than <span class="math inline">5</span>.</p>
-<div id="97da39f5" class="cell" data-execution_count="31">
+<div id="122dbf01" class="cell" data-execution_count="31">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">3</span></span>
 <span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> x <span class="op">&gt;</span> <span class="dv">5</span>:</span>
@@ -776,7 +776,7 @@ You can execute multiple lines of code when a condition is true</code></pre>
 </div>
 </div>
 <p>We can also check this for a collection of numbers stored in a list <code>numbers</code> by iterating with a for-loop over these numbers and check the conditions for every element in the list.</p>
-<div id="e24850b4" class="cell" data-execution_count="32">
+<div id="1eb1e78f" class="cell" data-execution_count="32">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>numbers <span class="op">=</span> [<span class="dv">3</span>, <span class="dv">7</span>, <span class="op">-</span><span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">10</span>]</span>
 <span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x <span class="kw">in</span> numbers:</span>
@@ -803,9 +803,9 @@ x is greater than 5</code></pre>
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Consider the list of temparatures (in degrees Celsius) <span class="math inline">[20, 14, 12, 18, 25, 30, 31]</span> corresponding to the days of the week. For every day you have to print the message “[day] is a [cold/normal/hot] summer day”, where a day is cold if the temperature is below 15, normal if it is in the interval <span class="math inline">[15,25]</span> (i.e., greater or equal than <span class="math inline">15</span> and smaller or equal than <span class="math inline">25</span>, and hot if it is higher than <span class="math inline">25</span>.</p>
+<p>Consider the list of temparatures (in degrees Celsius) <span class="math inline">[20, 14, 12, 18, 25, 30, 31]</span> corresponding to the days of the week Monday through Sunday. For every day you have to print the message “[day] is a [cold/normal/hot] summer day”, where a day is cold if the temperature is below 15, normal if it is in the interval <span class="math inline">[15,25]</span> (i.e., greater or equal than <span class="math inline">15</span> and smaller or equal than <span class="math inline">25</span>, and hot if it is higher than <span class="math inline">25</span>.</p>
 <p>The output of your code should be:</p>
-<div id="4aeb5d74" class="cell" data-execution_count="33">
+<div id="edf1e9de" class="cell" data-execution_count="33">
 <div class="cell-output cell-output-stdout">
 <pre><code>Monday is a normal summer day.
 Tuesday is a cold day.

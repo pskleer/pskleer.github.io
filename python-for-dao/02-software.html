@@ -238,7 +238,7 @@ window.Quarto = {
 
 
 <p><link rel="preconnect" href="https://fonts.googleapis.com"> <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""> <link href="https://fonts.googleapis.com/css2?family=Fira+Mono&amp;family=Fira+Sans&amp;display=swap" rel="stylesheet"></p>
-<p>In this chapter we will learn how to install Python and run our very first command.</p>
+<p>In this chapter we will learn how to install Python and run our very first command. You are of course also free to use your own Python installation. In that case it is best to check the Gurobi documentation to see how to properly install this program.</p>
 <section id="anaconda" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="anaconda"><span class="header-section-number">2.1</span> Anaconda</h2>
 <p>The easiest way to install Python and the Spyder editor at once is by installing Anaconda, which is a software package that includes Python, Spyder, and various other software applications. In the block below, you can find an outline for installing Anaconda.</p>
@@ -319,9 +319,9 @@ window.Quarto = {
 <section id="code-snippets-in-this-online-book" class="level3" data-number="2.2.3">
 <h3 data-number="2.2.3" class="anchored" data-anchor-id="code-snippets-in-this-online-book"><span class="header-section-number">2.2.3</span> Code snippets in this online book</h3>
 <p>In this book, we won’t always show screenshots like we did above. Instead we will show code snippets in boxes like this:</p>
-<div id="4bd9c1c4" class="cell" data-execution_count="1">
+<div id="e7ed8d9e" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="op">+</span> <span class="dv">1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="17">
+<div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>2</code></pre>
 </div>
 </div>
@@ -434,9 +434,14 @@ Warning
 <section id="test-your-installation" class="level3" data-number="2.3.6">
 <h3 data-number="2.3.6" class="anchored" data-anchor-id="test-your-installation"><span class="header-section-number">2.3.6</span> Test your installation</h3>
 <p>Now you can test whether everything is setup correctly. Open an interactive Python session, for instance using Spyder. Try the following commands by adding them into a script (make sure there are no spaces at the beginning of the lines) and press Enter.</p>
-<div id="c5f880f0" class="cell" data-execution_count="2">
+<div id="ed3aab45" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gurobipy <span class="im">import</span> Model</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> Model()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Set parameter Username
+Set parameter LicenseID to value 2715549
+Academic license - for non-commercial use only - expires 2026-09-29</code></pre>
+</div>
 </div>
 <p>If both these commands succeed, you should see some output related to your academic license.</p>
 <p>If the first command fails, then the Gurobi python module has not been installed correctly. If the second command fails, then the license has not been setup correctly (make sure the license file is at the right location).</p>

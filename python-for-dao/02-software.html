@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.24">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>2&nbsp; Software – Python for Decision Analytics and Optimization</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<link href="./03-basics.html" rel="next">
+<link href="./index.html" rel="prev">
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-a6e161b2431e1f94a14e0f5d32135a3c.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-fe80fb519f0892010506c40733b33e0a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./02-software.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Software</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Python for Decision Analytics and Optimization</a> 
+        <div class="sidebar-tools-main">
+    <a href="./Python-for-Decision-Analytics-and-Optimization.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+</div>
+    </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Welcome</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-software.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Software</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Python basics</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#anaconda" id="toc-anaconda" class="nav-link active" data-scroll-target="#anaconda"><span class="header-section-number">2.1</span> Anaconda</a></li>
+  <li><a href="#spyder" id="toc-spyder" class="nav-link" data-scroll-target="#spyder"><span class="header-section-number">2.2</span> Spyder</a>
+  <ul class="collapse">
+  <li><a href="#python-console" id="toc-python-console" class="nav-link" data-scroll-target="#python-console"><span class="header-section-number">2.2.1</span> Python Console</a></li>
+  <li><a href="#python-scripts" id="toc-python-scripts" class="nav-link" data-scroll-target="#python-scripts"><span class="header-section-number">2.2.2</span> Python Scripts</a></li>
+  <li><a href="#code-snippets-in-this-online-book" id="toc-code-snippets-in-this-online-book" class="nav-link" data-scroll-target="#code-snippets-in-this-online-book"><span class="header-section-number">2.2.3</span> Code snippets in this online book</a></li>
+  </ul></li>
+  <li><a href="#gurobi-installation" id="toc-gurobi-installation" class="nav-link" data-scroll-target="#gurobi-installation"><span class="header-section-number">2.3</span> Gurobi installation</a>
+  <ul class="collapse">
+  <li><a href="#register-at-gurobi" id="toc-register-at-gurobi" class="nav-link" data-scroll-target="#register-at-gurobi"><span class="header-section-number">2.3.1</span> Register at Gurobi</a></li>
+  <li><a href="#download-gurobi" id="toc-download-gurobi" class="nav-link" data-scroll-target="#download-gurobi"><span class="header-section-number">2.3.2</span> Download Gurobi</a></li>
+  <li><a href="#install-gurobi" id="toc-install-gurobi" class="nav-link" data-scroll-target="#install-gurobi"><span class="header-section-number">2.3.3</span> Install Gurobi</a></li>
+  <li><a href="#gurobi-license" id="toc-gurobi-license" class="nav-link" data-scroll-target="#gurobi-license"><span class="header-section-number">2.3.4</span> Gurobi license</a></li>
+  <li><a href="#using-gurobi-in-python" id="toc-using-gurobi-in-python" class="nav-link" data-scroll-target="#using-gurobi-in-python"><span class="header-section-number">2.3.5</span> Using Gurobi in Python</a></li>
+  <li><a href="#test-your-installation" id="toc-test-your-installation" class="nav-link" data-scroll-target="#test-your-installation"><span class="header-section-number">2.3.6</span> Test your installation</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="sec-getting-started" class="quarto-section-identifier"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Software</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><link rel="preconnect" href="https://fonts.googleapis.com"> <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""> <link href="https://fonts.googleapis.com/css2?family=Fira+Mono&amp;family=Fira+Sans&amp;display=swap" rel="stylesheet"></p>
+<p>In this chapter we will learn how to install Python and run our very first command.</p>
+<section id="anaconda" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="anaconda"><span class="header-section-number">2.1</span> Anaconda</h2>
+<p>The easiest way to install Python and the Spyder editor at once is by installing Anaconda, which is a software package that includes Python, Spyder, and various other software applications. In the block below, you can find an outline for installing Anaconda.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Anaconda installation steps
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Go to <a href="https://www.anaconda.com/download">https://www.anaconda.com/download</a></li>
+<li>Click on “Get started” and sign up with an e-mail address of your choice; verify your e-mail address as instructed.</li>
+<li>Go back to the above Anaconda webpage (either by signing in or via the verification e-mail) and download the <em>Graphical Installer</em> installation file (both for MacOS and Windows).<br><br> <img src="figs/anaconda-download.png" class="img-fluid" style="width:80.0%" alt="Anaconda Download Page"><br><br></li>
+<li>After downloading the installation file, install it. Follow the installation wizard and keep all the default options during installation.</li>
+</ol>
+</div>
+</div>
+<p>After installation, you can see all the newly installed applications using the <em>Anaconda Navigator.</em> You can open the navigator by searching for the Anaconda Navigator in the Start menu (on Windows) or the equivalent on MacOS.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/anaconda-navigator.png" class="img-fluid figure-img"></p>
+<figcaption>Anaconda Navigator</figcaption>
+</figure>
+</div>
+</section>
+<section id="spyder" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="spyder"><span class="header-section-number">2.2</span> Spyder</h2>
+<p>To create Python code and scripts, we will be using the Spyder application, which you can open by clicking on <em>Launch</em> in the Anaconda Navigator or by searching for the Spyder application on your computer directly. We note that there are many other applications that you can use to create Python code with (such as Visual Studio Code and Jupyter Notebook; two other applications also installed in the Anaconda distribution).</p>
+<p>Once you have opened Spyder, you should see an application that looks like this:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/spyder01.png" class="img-fluid figure-img"></p>
+<figcaption>Spyder</figcaption>
+</figure>
+</div>
+<section id="python-console" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="python-console"><span class="header-section-number">2.2.1</span> Python Console</h3>
+<p>In the bottom right pane you see a console with IPython. IPython is short for <em>Interactive Python</em>. We can type Python commands into this console and see the output directly. To find <span class="math inline">1+1</span> in Python, we can use the command <code>1+1</code>, similar to how we would do it in Excel or in the Google search engine. Let’s try this out in the console. First, click on the console to move the cursor there. Then type <code>1+1</code> and press <code>Enter</code>. We will see the output <code>2</code> on the next line next to a red <code>Out [1]</code>:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/spyder02.png" class="img-fluid figure-img"></p>
+<figcaption>IPython Console</figcaption>
+</figure>
+</div>
+<p>The red <code>Out [1]</code> means this is the output from the first line of input (after the green <code>In [1]</code>). The second command will have input <code>In [2]</code> and output <code>Out [2]</code>.</p>
+</section>
+<section id="python-scripts" class="level3" data-number="2.2.2">
+<h3 data-number="2.2.2" class="anchored" data-anchor-id="python-scripts"><span class="header-section-number">2.2.2</span> Python Scripts</h3>
+<p>Typing commands directly into the IPython console is fine if all you want to do is try out a few different simple commands (like we do at the start of the next chapter). However, when working on a project you will often be executing many commands. If you were to do all of this in the interactive console it would be very easy to lose track of what you are doing. It would also be very easy to make mistakes.</p>
+<p>Writing your commands in Python scripts is a solution to this problem. A Python script is a text file with a <code>.py</code> extension where you can write all of your commands in the order you want them run. You can then get Spyder to run the entire file of commands (or only a part of them).</p>
+<!--
+- If you have run 10 commands to calculate something and then afterwards you decide to change what happened in one of the earlier commands, you would often have type all the commands again. In a script you would just need to edit the line with that command. So scripts can save you a lot of time.
+- You or anyone else can easily reproduce your work by re-running the Python script.
+- By having all the commands in a script you can more easily spot any mistakes you might have.
+- It is a way of saving your work.
+-->
+<p>In Spyder, in the left pane you see a file open called <code>temp.py</code> when you start up Spyder. This is an example Python script. We can ignore what is written in the first 6 lines of the script. In fact, you can remove these lines if you want. We can add our <code>1 + 1</code> command to the bottom of the script like this and save it:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/spyder03.png" class="img-fluid figure-img"></p>
+<figcaption>Python Script</figcaption>
+</figure>
+</div>
+<p>In the Toolbar there are several ways to run this command from the script. For example, you can run the entire file, or run only the current line or selected area. If the cursor is on the line with <code>1 + 1</code> and we press the “Run selection or current line” button, then we will see the command and output appear in the IPython console, just like how we typed it there before. Using the script, however, we have saved and documented our work.</p>
+<p>If you try run the entire file, you will see <code>runfile('...')</code> in the IPython console with the <code>...</code> being the path to the Python script you are running. However, you don’t see a <code>2</code> in the output. This is because when running an entire file, Python does not show the output of each line being run. To see the output of any command we need to put it inside the <code>print()</code> function. We can change our line to <code>print(1 + 1)</code> to see the output when running the entire file:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/spyder04.png" class="img-fluid figure-img"></p>
+<figcaption>Using the print() function</figcaption>
+</figure>
+</div>
+<p>When you run the entire file you should now see a <code>2</code> below the <code>runfile('...')</code> command. We now know how to write and run Python scripts! In the next chapter we will learn more Python commands.</p>
+</section>
+<section id="code-snippets-in-this-online-book" class="level3" data-number="2.2.3">
+<h3 data-number="2.2.3" class="anchored" data-anchor-id="code-snippets-in-this-online-book"><span class="header-section-number">2.2.3</span> Code snippets in this online book</h3>
+<p>In this book, we won’t always show screenshots like we did above. Instead we will show code snippets in boxes like this:</p>
+<div id="787ea38c" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="op">+</span> <span class="dv">1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="21">
+<pre><code>2</code></pre>
+</div>
+</div>
+<p><br> The top part is code and the bottom part in gray is the output of the executed code. There is a small clipboard icon on the right which you can use to copy the code to paste into your own Python file to be able to experiment with it yourself.</p>
+<!--
+## Jupyter Notebook {#sec-jn}
+
+
+You can open the Jupyter Notebook application either by pressing 'Launch' in the Anaconda Navigator, or you can search for the application directly on your computer.
+
+The application will open as a tab in a web browser, and you should then see a list of folders.
+
+![Jupyter Notebook application](figs/jupyter-notebook.png)
+
+We first create a new folder in the Desktop folder, where we will store our Jupyter notebook files. We will also create our first notebook in this folder. 
+
+Note that you can also create this folder in a different location by navigating to the desired location on your device. If so, you should replace think of the Desktop folder in the below as your own folder location. 
+
+
+::: {.callout-note}
+# Creating your first notebook
+1. (Double-click) on the Desktop folder to navigate into it.
+2. Click *New* in the top-right corner and choose *New folder*. .<br><br>
+![Creating folder](figs/desktop-new-folder.png){width=100%}<br><br>
+Name the folder as you like; we choose the name *Decision Analytics and Optimization*.
+3. Navigate into the folder by clicking on it. Again go to *New* in the top-right corner but this time select *Python 3 (ipykernel)*.<br><br>
+![Creating notebook](figs/desktop-dao-new-file.png)<br><br>
+4. A new tab should now open in your browser as illustrated below.<br><br>
+![Newly created notebook](figs/first-notebook.png)<br><br>
+This is our newly created Jupyter notebook.
+5. The file is called *Untitled.ipynb* (ipynb being the extension of Jupyter notebook files) and can also be seen in the Decision Analytics and Optimization folder. You can rename it by navigating to `File -> Rename`.<br><br>
+![Renaming file](figs/file-rename.png){width=50%}<br><br>
+6. Here we rename the file to *First notebook.ipynb*.<br><br>
+![Renaming filesk](figs/file-rename-fn.png){width=50%}<br><br>
+:::
+
+
+In the bar you can type Python code. Let us execute our first code, which is a simple calculation $1 + 1$. This also allows to check whether everything has been installed correctly.
+
+To implement $1+1$ in Python, we can use the command `1+1`, similar to how we would do it in Excel or in the Google search engine. Let’s try this out. Type 1+1 in the code block followed by clicking <kbd>$\blacktriangleright$ Run </kbd> (or hit <kbd>Shift</kbd> + <kbd>Enter</kbd> on your keyboard). 
+We will see the output $2$ on the next line next to a red <span style="color:red">Out [1]</span>: 
+
+![First Python code](figs/jupyter-notebook-first-code.png)
+
+The red <span style="color:red">Out [1]</span> means this is the output from the code snippet <span style="color:blue">In [1]</span> executed in this notebook. If we continue typing code in the second bar, it will be called <span style="color:blue">In [2]</span> and its output <span style="color:red">Out [2]</span>. However, the same happens if we would re-run the first code snippet with `1+1`: It will also be called <span style="color:blue">In [2]</span> and its output <span style="color:red">Out [2]</span>. The index keeps track of how many code snippets have been executed in the notebook.
+
+::: {.callout-note}
+# Saving progress
+
+Do not forget to save your Jupyter notebook when closing the application. You can do this with the Save symbol located approximately below the `File` menu.
+:::
+ 
+### Opening existing notebook {#sec-opening-jn}
+
+The extension of a Jupyter Notebook file is `.ipynb` and sometimes denoted as Jupyter Source File. If you have stored such a file on your computer, you can open in it Jupyter Notebook as follows:
+
+- Open Jupyter Notebook (see above) and navigate to the folder where you stored the file.
+- Click on the .ipynb file and then it should open in a new tab of the browser.
+
+![Open existing file](figs/open-file.png)
+
+
+
+-->
+</section>
+</section>
+<section id="gurobi-installation" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="gurobi-installation"><span class="header-section-number">2.3</span> Gurobi installation</h2>
+<p>Based on the above Anaconda installation, we will next explain how to install Gurobi, which is a software package that can solve (linear) optimization problems via Python. We assume in the below that you already have Anaconda/Python installed on your system as in the above steps.</p>
+<p>If you get stuck anywhere in the installation process, then you can find more information on Gurobi’s <a href="https://www.gurobi.com/documentation/quickstart.html">Quick Start Guide</a>.</p>
+<section id="register-at-gurobi" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="register-at-gurobi"><span class="header-section-number">2.3.1</span> Register at Gurobi</h3>
+<p>Visit the <a href="https://www.gurobi.com/">Gurobi website</a> and click on the register button. Open the registration form and make sure that you select the <em>Academic</em> account type, and select <em>Student</em> for the academic position. Register with your TIAS e-mail account.</p>
+</section>
+<section id="download-gurobi" class="level3" data-number="2.3.2">
+<h3 data-number="2.3.2" class="anchored" data-anchor-id="download-gurobi"><span class="header-section-number">2.3.2</span> Download Gurobi</h3>
+<p>Download Gurobi from the website. Note that you need to login with your Gurobi account before you can download Gurobi. Select the distribution that corresponds to your system (e.g., Windows or macOS), and select the regular “Gurobi Optimizer”, not any of the AMPL variations. Unless mentioned otherwise, download the most recent version.</p>
+</section>
+<section id="install-gurobi" class="level3" data-number="2.3.3">
+<h3 data-number="2.3.3" class="anchored" data-anchor-id="install-gurobi"><span class="header-section-number">2.3.3</span> Install Gurobi</h3>
+<p>Run the installer and follow the installation steps. At some point, the installer may ask whether to add Gurobi to your execution path. This is probably useful to accept.</p>
+</section>
+<section id="gurobi-license" class="level3" data-number="2.3.4">
+<h3 data-number="2.3.4" class="anchored" data-anchor-id="gurobi-license"><span class="header-section-number">2.3.4</span> Gurobi license</h3>
+<p>You cannot use Gurobi without a license, so you need to apply for a license. As a student you can request a <a href="https://www.gurobi.com/academia/academic-program-and-licenses">free academic license</a>; take the <strong>Named-User Academic</strong> one. After you have obtained the license, you need to activate it for your Gurobi installation. If you open the license details on the Gurobi website, you can see what you need to do: open a Command Prompt (Windows) or Terminal (MacOS) and run the <code>grbgetkey</code> command with the code that corresponds to your license. This command will create your license file. Make sure that you remember where the license file is saved. The default location suggested by your device is probably the best choice.</p>
+<p>Note that the <code>grbgetkey</code> command will check that you are on an academic domain, so you need to perform this step on the <strong>university network</strong> (possibly via a <a href="https://www.tilburguniversity.edu/students/it/vpn">VPN</a> connection). Once installed correctly, you can also run Gurobi without an active VPN connection.</p>
+</section>
+<section id="using-gurobi-in-python" class="level3" data-number="2.3.5">
+<h3 data-number="2.3.5" class="anchored" data-anchor-id="using-gurobi-in-python"><span class="header-section-number">2.3.5</span> Using Gurobi in Python</h3>
+<p>Gurobi should now be correctly installed, but we also want to be able to use it from Python. Therefore, we need to install Gurobi’s Python package. Open the Anaconda prompt application (can also be found in the Anaconda Navigator) and run the following commands one by one (first line + Enter, second line + Enter).</p>
+<ul>
+<li><code>conda config --add channels http://conda.anaconda.org/gurobi</code></li>
+<li><code>conda install gurobi</code></li>
+</ul>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The Anaconda prompt application is NOT the same as the Command Prompt (Windows) or Terminal (MacOS)</p>
+</div>
+</div>
+<p>If you don’t have the Anaconda installation, then you can do something similar with the <code>pip</code> command, most likely, for those familiar with it.</p>
+</section>
+<section id="test-your-installation" class="level3" data-number="2.3.6">
+<h3 data-number="2.3.6" class="anchored" data-anchor-id="test-your-installation"><span class="header-section-number">2.3.6</span> Test your installation</h3>
+<p>Now you can test whether everything is setup correctly. Open an interactive Python session, for instance using Spyder. Try the following commands by adding them into a script (make sure there are no spaces at the beginning of the lines) and press Enter.</p>
+<div id="682bf7bd" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gurobipy <span class="im">import</span> Model</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> Model()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>If both these commands succeed, i.e., you see similar output as above in the Console in Spyder, then you are done.</p>
+<p>If the first command fails, then the Gurobi python module has not been installed correctly. If the second command fails, then the license has not been setup correctly (make sure the license file is at the right location).</p>
+<p>If at any point, you need more information about Gurobi, then you can always go to the official Gurobi documention <a href="http://www.gurobi.com/documentation/">online</a> or send the teacher an e-mail. <!--
+Note that the documentation is also included in your local Gurobi installation. E.g., `C:/Program%20Files/gurobi810/win64/docs/refman/py_python_api_overview.html#sec:Python`
+--></p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./index.html" class="pagination-link" aria-label="Welcome">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Welcome</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./03-basics.html" class="pagination-link" aria-label="Python basics">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Python basics</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

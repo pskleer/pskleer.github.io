@@ -8,7 +8,7 @@
 
 <meta name="author" content="Pieter Kleer">
 
-<title>Computational Aspects in Econometrics - Python II module</title>
+<title>Python for Decision Analysis and Optimization</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -26,7 +26,7 @@ ul.task-list li input[type="checkbox"] {
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
-<link href="./02-good-coding.html" rel="next">
+<link href="./02-software.html" rel="next">
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -68,7 +68,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">About</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Welcome</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -82,9 +82,9 @@ ul.task-list li input[type="checkbox"] {
       <a href="./index.html" class="sidebar-logo-link">
       </a>
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">Computational Aspects in Econometrics - Python II module</a> 
+      <a href="./">Python for Decision Analysis and Optimization</a> 
         <div class="sidebar-tools-main">
-    <a href="./Computational-Aspects-in-Econometrics---Python-II-module.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+    <a href="./Python-for-Decision-Analysis-and-Optimization.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
 </div>
     </div>
       </div>
@@ -93,92 +93,33 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./index.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">About</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Welcome</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./02-good-coding.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Good coding practices</span></span></a>
+  <a href="./02-software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Software</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./03-numpy-arrays.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">NumPy arrays</span></span></a>
+  <a href="./03-basics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Python basics</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./04-vectorization.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Vectorization</span></span></a>
+  <a href="./04-linear-optimization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Linear optimization</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./05-linear.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Linear algebra and optimization</span></span></a>
+  <a href="./05-monte-carlo-simulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Monte Carlo simulation</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./06-nonlinear.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Nonlinear algebra and optimization</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./07-visualization.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Visualization</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./08-probability.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Probability theory</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./09-data-fitting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Statistics and fitting</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./10-learning.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Learning problems</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./11-higher-dimensional.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Higher-dimensional arrays</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Appendices</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./A-documentation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Documentation (Spyder)</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./B-function-basics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Function basics</span></span></a>
-  </div>
-</li>
-      </ul>
-  </li>
     </ul>
     </div>
 </nav>
@@ -189,13 +130,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#about" id="toc-about" class="nav-link active" data-scroll-target="#about"><span class="header-section-number">1</span> About</a>
-  <ul class="collapse">
-  <li><a href="#welcome" id="toc-welcome" class="nav-link" data-scroll-target="#welcome"><span class="header-section-number">1.1</span> Welcome</a></li>
-  <li><a href="#goal" id="toc-goal" class="nav-link" data-scroll-target="#goal"><span class="header-section-number">1.2</span> Goal</a></li>
-  <li><a href="#use-of-spyder" id="toc-use-of-spyder" class="nav-link" data-scroll-target="#use-of-spyder"><span class="header-section-number">1.3</span> Use of Spyder</a></li>
-  <li><a href="#about-ai" id="toc-about-ai" class="nav-link" data-scroll-target="#about-ai"><span class="header-section-number">1.4</span> About AI</a></li>
-  </ul></li>
+  <li><a href="#welcome" id="toc-welcome" class="nav-link active" data-scroll-target="#welcome"><span class="header-section-number">1</span> Welcome</a></li>
   </ul>
 </nav>
     </div>
@@ -204,7 +139,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Computational Aspects in Econometrics - Python II module</h1>
+<h1 class="title">Python for Decision Analysis and Optimization</h1>
 </div>
 
 
@@ -227,31 +162,27 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="about" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> About</h1>
+<section id="welcome" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Welcome</h1>
 <p><link rel="preconnect" href="https://fonts.googleapis.com"> <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""> <link href="https://fonts.googleapis.com/css2?family=Fira+Mono&amp;family=Fira+Sans&amp;display=swap" rel="stylesheet"></p>
-<section id="welcome" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="welcome"><span class="header-section-number">1.1</span> Welcome</h2>
-<p>Welcome to the online “book” for the Python II module of Computational Aspects in Econometrics (<a href="https://uvt.osiris-student.nl/onderwijscatalogus/extern/cursussen">35V3A1</a>). We will follow the content in this book during the lectures and it is the basis of the material that will appear on the exam, so you should read through this book carefully. Because this book is new, it is likely that we will make some edits throughout the course.</p>
-<p>Please not that this is a more advanced Python module. We assume familiarity with the basics of programming in Python. For students enrolled in the bachelor Econometrics and Operations Research, the topics of the course Computer Programming (<a href="https://uvt.osiris-student.nl/onderwijscatalogus/extern/cursussen">346022</a>) is a good example of what you should be familiar with. An online book covering most of these topis can be found <a href="https://tisem-eds.github.io/prog/">here</a>. This book also contains some topics not covered in the course Computer Programming.</p>
-</section>
-<section id="goal" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="goal"><span class="header-section-number">1.2</span> Goal</h2>
-<p>The goal of this module is to teach you the basics of <i>scientific computing</i> with Python. Here you should think mostly of implementing algorithmic tasks that you encounter during your Econometrics and Operations Research courses, such as, linear algebra, optimization, statistics and machine learning. We hope that the skills you are taught here can be useful for, e.g., numerical work in your Bachelor’s or (perhaps later) Master’s thesis. Furthermore, many companies nowadays program in Python, so the topics of this module can also be useful in your professional career later in life.</p>
-<p>Next to teaching you how to implement certain mathematical tasks in a <em>correct</em> manner in Python, we also put emphasis on <em>good coding</em> practices. Especially if you start to write scripts with hundres of lines of code, it is important that you learn how to do this in a structured fashion using efficient Python functionality. Good coding practices are the topic of the next chapter. The idea is that you use these practices when doing the exercises corresponding to every lecture, as well as the group assignment.</p>
-</section>
-<section id="use-of-spyder" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="use-of-spyder"><span class="header-section-number">1.3</span> Use of Spyder</h2>
-<p>This course document is based on the use of Spyder as integrated development environment (IDE) for creating Python code, i.e., the program that the code is written in. You can also use Visual Studio Code or any other IDE to do the exercises and/or assignment in, but be aware that you only have access to Spyder and Visual Studio Code during the exam. Whenever this book contains screenshots to illustrate something, they will have been taken in Spyder.</p>
-<p>To install the Anaconda distribution containing Spyder, follow the steps <a href="https://tisem-eds.github.io/prog/02-getting-started.html">here</a>. This is the installation that was also recommended in the Python I module.</p>
-</section>
-<section id="about-ai" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="about-ai"><span class="header-section-number">1.4</span> About AI</h2>
-<p>Nowadays, chatbots (large language models) like ChatGPT are very good programming assistants. However, when you are creating more complicated code projects or work on problems that such bots are not trained on properly, they might give wrong output.</p>
-<p>Although you are recommended to use them in your future career as an assistant, the goal of this module is to teach you the basics of scientific computing and have you think about the underlying mathematical structures of a problem, as well as the translation into code, so that you will also be able in the future to spot more easily potential mistakes that AI assistants might make.</p>
+<p>In this online book we will learn some elementary Python programming tools, as well as the implementation of (linear) optimization problems in Python.</p>
+<p>To install Python we will use the Anaconda distribution, which contains all relevant Python software that we will need. In particular, we will use the Spyder editor, or integrated development environment (IDE), to construct our Python programs.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/anaconda.jpg" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption>Anaconda</figcaption>
+</figure>
+</div>
+<p>To solve (linear) optimization problems we will use Gurobi, a state-of-the-art software package for solving optimization problems that is used extensively in businesses and academia. We will use this software within Python.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figs/gurobi.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption>Gurobi</figcaption>
+</figure>
+</div>
+<p>In the next chapter we describe how you can install the relevant software, after which we explain some Python basics in Chapter 3. In Chapter 4, we will explain how to implement optimization problems in Python and solve them with the Gurobi solver.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -328,7 +259,7 @@ ul.task-list li input[type="checkbox"] {
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/pskleer\.github\.io");
+        var filterRegex = new RegExp('/' + window.location.host + '/');
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -659,8 +590,8 @@ ul.task-list li input[type="checkbox"] {
   <div class="nav-page nav-page-previous">
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./02-good-coding.html" class="pagination-link" aria-label="Good coding practices">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Good coding practices</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./02-software.html" class="pagination-link" aria-label="Software">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Software</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

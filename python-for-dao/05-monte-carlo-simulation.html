@@ -289,7 +289,7 @@ window.Quarto = {
 </table>
 <p><br></p>
 <p>To solve the Duplo problem repeatedly in Python using a different scenario every time, we can use a for-loop. We specify the different values of <span class="math inline">s_1</span> and <span class="math inline">s_2</span> in two separate lists, where <code>s1[i]</code> is the value of <span class="math inline">s_1</span> in scenario <span class="math inline">i+1</span> (recall Python starts indexing at zero), and similarly <code>s2[i]</code> the value of <span class="math inline">s_2</span> in scenario <span class="math inline">i+1</span>.</p>
-<div id="50c7f6af" class="cell" data-execution_count="1">
+<div id="cb35beb6" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gurobipy <span class="im">import</span> Model, GRB</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Different scenarios</span></span>
@@ -338,7 +338,7 @@ Optimal solution for scenario 4 is [ 2.0 , 2.0 ]</code></pre>
 <h2 data-number="5.2" class="anchored" data-anchor-id="random-scenarios"><span class="header-section-number">5.2</span> Random scenarios</h2>
 <p>In the previous section, we chose the values of the objective function coefficients in every scenario ourselves. These can also be generated randomly using random number generation functions in Python contained in the <em>NumPy package</em>, which contains a lot of the mathematical functionality that Python has to offer.</p>
 <p>This package is typically imported under the <em>alias</em> <code>np</code>, which is shorthand notation so that we do not have to type <code>numpy</code> everytime.</p>
-<div id="3de8e0de" class="cell" data-execution_count="2">
+<div id="2a7bcc3a" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>We treat two functions for generating random numbers. The first one can be used to generate fractional random numbers.</p>
@@ -346,7 +346,7 @@ Optimal solution for scenario 4 is [ 2.0 , 2.0 ]</code></pre>
 <li><code>np.random.rand(n)</code> : Generates <span class="math inline">n</span> random numbers from the interval <span class="math inline">[0,1]</span>.</li>
 </ul>
 <p>The generated numbers are stored in a list. Technically speaking, they are stored in a NumPy array, which you can think of as a “mathematical” list (but this is not important for us).</p>
-<div id="5e3f8476" class="cell" data-execution_count="3">
+<div id="6714d120" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate five random (fractional) numbers from [0,1]</span></span>
@@ -355,12 +355,12 @@ Optimal solution for scenario 4 is [ 2.0 , 2.0 ]</code></pre>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the numbers</span></span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[0.38006491 0.531259   0.7078735  0.17354098 0.96874226]</code></pre>
+<pre><code>[0.87983832 0.21412419 0.1294719  0.48420194 0.44129602]</code></pre>
 </div>
 </div>
 <p>Note that if you want to generate a (fractional) number from an interval <span class="math inline">[a,b]</span>, you can do this by generating a number <span class="math inline">x</span> from the interval <span class="math inline">[0,1]</span>, multiplying this number by <span class="math inline">(b-a)</span> and then adding <span class="math inline">a</span> to the result.</p>
 <p>In other words, if <span class="math inline">x</span> is a random number from <span class="math inline">[0,1]</span>, then the number <span class="math inline">a + (b-a) \cdot x</span> is a random number from <span class="math inline">[a,b]</span>.</p>
-<div id="4d4643d8" class="cell" data-execution_count="4">
+<div id="b0c08b41" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Interval values</span></span>
@@ -376,18 +376,18 @@ Optimal solution for scenario 4 is [ 2.0 , 2.0 ]</code></pre>
 <span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Random number from interval [a,b]</span></span>
 <span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(y)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[5.1166158]</code></pre>
+<pre><code>[3.21321503]</code></pre>
 </div>
 </div>
 <p>Note that, in the above code snippet, even though we only generate one number, it is still given to us in a list. If you only want to get the number (not in a list) you should index the list at position <span class="math inline">0</span>. This is important if you want to use such a number for defining the objective function or a constraint.</p>
-<div id="d1b00611" class="cell" data-execution_count="5">
+<div id="2b3749e9" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(y[<span class="dv">0</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>5.1166157980882145</code></pre>
+<pre><code>3.2132150286167445</code></pre>
 </div>
 </div>
 <p>You can also generate multiple numbers from an interval <span class="math inline">[a,b]</span> if <span class="math inline">x = [x_0, x_1, \dots]</span> is a list of numbers generated from <span class="math inline">[0,1]</span>. If you multiply <span class="math inline">x</span> with <span class="math inline">(b-a)</span>, then all numbers in the list are multiplied by <span class="math inline">(b-a)</span>, i.e., <span class="math inline">(b-a)*x = [(b-a)*x_0, (b-a)*x_1,\dots]</span>. Similarly, if we add <span class="math inline">a</span> to <span class="math inline">(b-a)*x</span>, then <span class="math inline">a</span> is added to every number in the list <span class="math inline">(b-a)*x</span>, i.e., we get <span class="math inline">a + (b-a)*x = [a + (b-a)*x_0, a + (b-a)*x_1, \dots]</span>.</p>
-<div id="6086bba8" class="cell" data-execution_count="6">
+<div id="c1e10fb0" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Interval values</span></span>
@@ -403,14 +403,14 @@ Optimal solution for scenario 4 is [ 2.0 , 2.0 ]</code></pre>
 <span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the numbers</span></span>
 <span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(y)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[5.24308389 3.91262511 5.3492736  6.60265397 3.76078162]</code></pre>
+<pre><code>[6.29617634 3.97447146 6.99756199 5.41748576 5.56632036]</code></pre>
 </div>
 </div>
 <p>The second function we discuss can generate integer-valued numbers from a specified range of integers:</p>
 <ul>
 <li><code>np.random.randint(low=a, high=b, size=n)</code> : Generates <span class="math inline">n</span> random integers from the set <span class="math inline">\{a, a+1, \dots, b-1\}</span>.</li>
 </ul>
-<div id="75fd91b5" class="cell" data-execution_count="7">
+<div id="c20cab5b" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate five random integers from the set {2,3,4,5,6,7,8,9}</span></span>
@@ -419,11 +419,11 @@ Optimal solution for scenario 4 is [ 2.0 , 2.0 ]</code></pre>
 <span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the numbers</span></span>
 <span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(y)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[4 9 4 3 9]</code></pre>
+<pre><code>[4 8 9 9 8]</code></pre>
 </div>
 </div>
 <p>We can use these random numbers to generate random scenarios and then solve the Duplo example for those scenarios.</p>
-<div id="66123c5a" class="cell" data-execution_count="8">
+<div id="5e1b73c8" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gurobipy <span class="im">import</span> Model, GRB</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Different 20 random scenarios</span></span>
@@ -455,20 +455,20 @@ Optimal solution for scenario 4 is [ 2.0 , 2.0 ]</code></pre>
 <span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"Optimal solution for scenario"</span>, i<span class="op">+</span><span class="dv">1</span>, <span class="st">"is ["</span>, x1.X, <span class="st">","</span>, x2.X, <span class="st">"]"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Optimal solution for scenario 1 is [ 2.0 , 2.0 ]
-Optimal solution for scenario 2 is [ 2.0 , 2.0 ]
+Optimal solution for scenario 2 is [ 4.0 , 0.0 ]
 Optimal solution for scenario 3 is [ 2.0 , 2.0 ]
 Optimal solution for scenario 4 is [ 2.0 , 2.0 ]
 Optimal solution for scenario 5 is [ 2.0 , 2.0 ]
 Optimal solution for scenario 6 is [ 2.0 , 2.0 ]
 Optimal solution for scenario 7 is [ 2.0 , 2.0 ]
-Optimal solution for scenario 8 is [ 2.0 , 2.0 ]
+Optimal solution for scenario 8 is [ 4.0 , 0.0 ]
 Optimal solution for scenario 9 is [ 2.0 , 2.0 ]
-Optimal solution for scenario 10 is [ 0.0 , 3.0 ]
+Optimal solution for scenario 10 is [ 2.0 , 2.0 ]
 Optimal solution for scenario 11 is [ 2.0 , 2.0 ]
 Optimal solution for scenario 12 is [ 2.0 , 2.0 ]
 Optimal solution for scenario 13 is [ 2.0 , 2.0 ]
 Optimal solution for scenario 14 is [ 2.0 , 2.0 ]
-Optimal solution for scenario 15 is [ 2.0 , 2.0 ]
+Optimal solution for scenario 15 is [ 0.0 , 3.0 ]
 Optimal solution for scenario 16 is [ 2.0 , 2.0 ]
 Optimal solution for scenario 17 is [ 2.0 , 2.0 ]
 Optimal solution for scenario 18 is [ 2.0 , 2.0 ]
@@ -479,7 +479,7 @@ Optimal solution for scenario 20 is [ 2.0 , 2.0 ]</code></pre>
 <p>Note that the solution <span class="math inline">(2,2)</span> appears very often, meaning it is a stable solution in the sense that even though the objective function coefficients change, the solution remains optimal.</p>
 <p>You can also generate the random numbers inside of the for-loop. Note that in this case you should use <code>s1[0]</code> and <code>s2[0]</code> in the objective function. As discussed before, this is because <code>s1 = np.random.randint(low=15, high=25, size=1)</code> is a list of length <span class="math inline">1</span>, and so to get the number in this list, you have to index <code>s1</code> at index <span class="math inline">0</span>.</p>
 <p>Note that in every iteration, first two random numbers <code>s1</code> and <code>s2</code> are generated, which are then later used to define the objective function. Because new numbers are generated at the start of every iteration, we are solving a different problem every time.</p>
-<div id="689c24c0" class="cell" data-execution_count="9">
+<div id="714e8732" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gurobipy <span class="im">import</span> Model, GRB</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>,<span class="dv">20</span>):</span>
@@ -512,24 +512,24 @@ Optimal solution for scenario 20 is [ 2.0 , 2.0 ]</code></pre>
 <div class="cell-output cell-output-stdout">
 <pre><code>Optimal solution for scenario 1 is [ 4.0 , 0.0 ]
 Optimal solution for scenario 2 is [ 4.0 , 0.0 ]
-Optimal solution for scenario 3 is [ 4.0 , 0.0 ]
-Optimal solution for scenario 4 is [ 2.0 , 2.0 ]
-Optimal solution for scenario 5 is [ 2.0 , 2.0 ]
+Optimal solution for scenario 3 is [ 2.0 , 2.0 ]
+Optimal solution for scenario 4 is [ 4.0 , 0.0 ]
+Optimal solution for scenario 5 is [ 4.0 , 0.0 ]
 Optimal solution for scenario 6 is [ 4.0 , 0.0 ]
-Optimal solution for scenario 7 is [ 4.0 , 0.0 ]
-Optimal solution for scenario 8 is [ 4.0 , 0.0 ]
+Optimal solution for scenario 7 is [ 2.0 , 2.0 ]
+Optimal solution for scenario 8 is [ 2.0 , 2.0 ]
 Optimal solution for scenario 9 is [ 4.0 , 0.0 ]
-Optimal solution for scenario 10 is [ 4.0 , 0.0 ]
-Optimal solution for scenario 11 is [ 2.0 , 2.0 ]
-Optimal solution for scenario 12 is [ 4.0 , 0.0 ]
+Optimal solution for scenario 10 is [ 2.0 , 2.0 ]
+Optimal solution for scenario 11 is [ 4.0 , 0.0 ]
+Optimal solution for scenario 12 is [ 2.0 , 2.0 ]
 Optimal solution for scenario 13 is [ 2.0 , 2.0 ]
 Optimal solution for scenario 14 is [ 2.0 , 2.0 ]
-Optimal solution for scenario 15 is [ 4.0 , 0.0 ]
-Optimal solution for scenario 16 is [ 4.0 , 0.0 ]
-Optimal solution for scenario 17 is [ 2.0 , 2.0 ]
+Optimal solution for scenario 15 is [ 2.0 , 2.0 ]
+Optimal solution for scenario 16 is [ 2.0 , 2.0 ]
+Optimal solution for scenario 17 is [ 4.0 , 0.0 ]
 Optimal solution for scenario 18 is [ 2.0 , 2.0 ]
 Optimal solution for scenario 19 is [ 2.0 , 2.0 ]
-Optimal solution for scenario 20 is [ 4.0 , 0.0 ]</code></pre>
+Optimal solution for scenario 20 is [ 2.0 , 2.0 ]</code></pre>
 </div>
 </div>
 

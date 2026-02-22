@@ -252,16 +252,74 @@ window.Quarto = {
 
 <p><link rel="preconnect" href="https://fonts.googleapis.com"> <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""> <link href="https://fonts.googleapis.com/css2?family=Fira+Mono&amp;family=Fira+Sans&amp;display=swap" rel="stylesheet"></p>
 <p>In this chapter we will show how to implement linear optimization problems using Python. The goal is to model optimization problems in Python and then solve them using Gurobi, which is a software package dedicated to solving optimization problems. Note that it is important that you installed Gurobi correctly as explained in Chapter 2.</p>
+<p>In the coming section, we will explain the fundamental commands for defining, optimizing and printing the optimal solution of the Duplo example.</p>
+<p>The full code we will be explaining is given below already.</p>
+<div id="26a19ba7" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gurobipy <span class="im">import</span> Model, GRB</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize Gurobi model.</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>duplo <span class="op">=</span> Model(name<span class="op">=</span><span class="st">'Duplo problem'</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Declare the two decision variables.</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>x1 <span class="op">=</span> duplo.addVar(name<span class="op">=</span><span class="st">'chairs'</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>x2 <span class="op">=</span> duplo.addVar(name<span class="op">=</span><span class="st">'tables'</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Specify the objective function.</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>duplo.setObjective(<span class="dv">15</span><span class="op">*</span>x1 <span class="op">+</span> <span class="dv">20</span><span class="op">*</span>x2, sense<span class="op">=</span>GRB.MAXIMIZE)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the resource constraints on bricks.</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>duplo.addConstr(x1 <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>x2 <span class="op">&lt;=</span> <span class="dv">6</span>, name<span class="op">=</span><span class="st">'big-bricks'</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>duplo.addConstr(<span class="dv">2</span><span class="op">*</span>x1 <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>x2 <span class="op">&lt;=</span> <span class="dv">8</span>, name<span class="op">=</span><span class="st">'small-bricks'</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Optimize the duplo</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>duplo.optimize()</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Print optimal solution with X attribute of variables</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'x1 = '</span>, x1.X)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'x2 = '</span>, x2.X)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Print objective value of optimal solution with ObjVal attribute</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Objective value:'</span>, duplo.ObjVal)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Set parameter Username
+Set parameter LicenseID to value 2715549
+Academic license - for non-commercial use only - expires 2026-09-29
+Gurobi Optimizer version 12.0.1 build v12.0.1rc0 (win64 - Windows 10.0 (19045.2))
+
+CPU model: 12th Gen Intel(R) Core(TM) i7-1265U, instruction set [SSE2|AVX|AVX2]
+Thread count: 10 physical cores, 12 logical processors, using up to 12 threads
+
+Optimize a model with 2 rows, 2 columns and 4 nonzeros
+Model fingerprint: 0xadc88607
+Coefficient statistics:
+  Matrix range     [1e+00, 2e+00]
+  Objective range  [2e+01, 2e+01]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [6e+00, 8e+00]
+Presolve time: 0.00s
+Presolved: 2 rows, 2 columns, 4 nonzeros
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+       0    3.5000000e+31   3.500000e+30   3.500000e+01      0s
+       2    7.0000000e+01   0.000000e+00   0.000000e+00      0s
+
+Solved in 2 iterations and 0.00 seconds (0.00 work units)
+Optimal objective  7.000000000e+01
+x1 =  2.0
+x2 =  2.0
+Objective value: 70.0</code></pre>
+</div>
+</div>
 <section id="basics" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="basics"><span class="header-section-number">4.1</span> Basics</h2>
-<p>All the relevant functionality needed to use Gurobi via Python is contained in the <code>gurobipy</code> package. For our purposes, we only need two <em>modules</em> from this package:</p>
+<p>All the relevant functionality needed to use Gurobi via Python is contained in the <code>gurobipy</code> package. This package was created so that the Gurobi solver and Python can communicate with each other. For our purposes, we for now only need two <em>modules</em> from this package:</p>
 <ul>
 <li>The <code>Model</code> module that we will use to build optimization problems</li>
 <li>The <code>GRB</code> module that contains various “constants” that we use to include words such as <em>maximize</em> and <em>minimize</em>.</li>
 </ul>
 <p>In Python you can include the modules by adding the following line at the top of a script.</p>
-<div id="f9fcb62d" class="cell" data-execution_count="1">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gurobipy <span class="im">import</span> Model, GRB</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="0770ccef" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gurobipy <span class="im">import</span> Model, GRB</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <section id="example-duplo-problem" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="example-duplo-problem">Example: Duplo problem</h3>
@@ -283,14 +341,9 @@ window.Quarto = {
 <h3 data-number="4.1.1" class="anchored" data-anchor-id="model-object"><span class="header-section-number">4.1.1</span> Model() object</h3>
 <p>To start, we will create a variable (or object) <code>duplo</code> that will contain all the information of the problem, such as the decision variables, objective function and constraints.</p>
 <p>In programming terms, we create an <em>object</em> from the <code>Model()</code> class. We can give the instance a name by adding the <code>name</code> <em>keyword argument</em>, with value <code>'Duplo problem'</code> in our case. We add this name with quotations so that Python knows this is plain text.</p>
-<div id="ea12e152" class="cell" data-execution_count="2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize Gurobi model.</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>duplo <span class="op">=</span> Model(name<span class="op">=</span><span class="st">'Duplo problem'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Set parameter Username
-Set parameter LicenseID to value 2715549
-Academic license - for non-commercial use only - expires 2026-09-29</code></pre>
-</div>
+<div id="c71adfe8" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize Gurobi model.</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>duplo <span class="op">=</span> Model(name<span class="op">=</span><span class="st">'Duplo problem'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>You can think of the Model class object <code>duplo</code> as a large box that we are going to fill with decision variables, an objective function, and constraints. We will also reserve a small space in this box to store information about the optimal solution to the linear optimization problem, once we have optimized the problem.</p>
 <p>The concept of having “objects” is in fact what the programming language Python is centered around. This is known as <em>object-oriented programming</em>.</p>
@@ -299,10 +352,10 @@ Academic license - for non-commercial use only - expires 2026-09-29</code></pre>
 <h3 data-number="4.1.2" class="anchored" data-anchor-id="decision-variables"><span class="header-section-number">4.1.2</span> Decision variables</h3>
 <p>To add decision variables, an objective function, and constraints, to our Model object we use so-called <em>methods</em> which are Python functions.</p>
 <p>To create a decision variable, we can use the <code>addVar()</code> method. As input argument, we include a name for the decision variables.</p>
-<div id="1d20f64e" class="cell" data-execution_count="3">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Declare the two decision variables.</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>x1 <span class="op">=</span> duplo.addVar(name<span class="op">=</span><span class="st">'chairs'</span>)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>x2 <span class="op">=</span> duplo.addVar(name<span class="op">=</span><span class="st">'tables'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="3477ce81" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Declare the two decision variables.</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>x1 <span class="op">=</span> duplo.addVar(name<span class="op">=</span><span class="st">'chairs'</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>x2 <span class="op">=</span> duplo.addVar(name<span class="op">=</span><span class="st">'tables'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <blockquote class="blockquote">
 <p>If your Model object is not called <code>duplo</code>, but for example <code>production_planning</code>, then you should use <code>production_planning.addVar(name='chairs')</code> instead. The same applies for all later methods that are introduced. Never call a model <code>Model</code> (with capital M) because this spelling is reserved for the <code>Model()</code> class in Gurobi.</p>
@@ -312,19 +365,19 @@ Academic license - for non-commercial use only - expires 2026-09-29</code></pre>
 <h3 data-number="4.1.3" class="anchored" data-anchor-id="objective-function"><span class="header-section-number">4.1.3</span> Objective function</h3>
 <p>Now that we have our decision variables, we can use them to define the objective function and the constraints.</p>
 <p>We use the <code>setObjective()</code> method to do so by refering to the variables created above. The <code>sense</code> keyword argument must be used to specify whether we want to maximize or minimize the objective function. For this, we use <code>GRB.MAXIMIZE</code> or <code>GRB.MINIMIZE</code>, respectively.</p>
-<div id="37cc6423" class="cell" data-execution_count="4">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Specify the objective function.</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>duplo.setObjective(<span class="dv">15</span><span class="op">*</span>x1 <span class="op">+</span> <span class="dv">20</span><span class="op">*</span>x2, sense<span class="op">=</span>GRB.MAXIMIZE)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="35efbd5b" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Specify the objective function.</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>duplo.setObjective(<span class="dv">15</span><span class="op">*</span>x1 <span class="op">+</span> <span class="dv">20</span><span class="op">*</span>x2, sense<span class="op">=</span>GRB.MAXIMIZE)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="constraints" class="level3" data-number="4.1.4">
 <h3 data-number="4.1.4" class="anchored" data-anchor-id="constraints"><span class="header-section-number">4.1.4</span> Constraints</h3>
 <p>The next step is to declare the constraints using the <code>addConstr()</code> method. Also here, we can specify the constraints refering to the variables <code>x1</code> and <code>x2</code>. We give the constraints a name as well.</p>
-<div id="6b1da25a" class="cell" data-execution_count="5">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the resource constraints on bricks.</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>duplo.addConstr(x1 <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>x2 <span class="op">&lt;=</span> <span class="dv">6</span>, name<span class="op">=</span><span class="st">'big-bricks'</span>)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>duplo.addConstr(<span class="dv">2</span><span class="op">*</span>x1 <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>x2 <span class="op">&lt;=</span> <span class="dv">8</span>, name<span class="op">=</span><span class="st">'small-bricks'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="5">
+<div id="f8143d58" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the resource constraints on bricks.</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>duplo.addConstr(x1 <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>x2 <span class="op">&lt;=</span> <span class="dv">6</span>, name<span class="op">=</span><span class="st">'big-bricks'</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>duplo.addConstr(<span class="dv">2</span><span class="op">*</span>x1 <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>x2 <span class="op">&lt;=</span> <span class="dv">8</span>, name<span class="op">=</span><span class="st">'small-bricks'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>&lt;gurobi.Constr *Awaiting Model Update*&gt;</code></pre>
 </div>
 </div>
@@ -333,9 +386,9 @@ Academic license - for non-commercial use only - expires 2026-09-29</code></pre>
 <section id="optimal-solution" class="level3" data-number="4.1.5">
 <h3 data-number="4.1.5" class="anchored" data-anchor-id="optimal-solution"><span class="header-section-number">4.1.5</span> Optimal solution</h3>
 <p>Now the model is completely specified, we are ready to compute the optimal solution. We can do this using the <code>optimize()</code> method applied to our model <code>duplo</code>.</p>
-<div id="003afcd6" class="cell" data-execution_count="6">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Optimize the model</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>duplo.optimize()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="826ce141" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Optimize the model</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>duplo.optimize()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Gurobi Optimizer version 12.0.1 build v12.0.1rc0 (win64 - Windows 10.0 (19045.2))
 
@@ -349,60 +402,60 @@ Coefficient statistics:
   Objective range  [2e+01, 2e+01]
   Bounds range     [0e+00, 0e+00]
   RHS range        [6e+00, 8e+00]
-Presolve time: 0.01s
+Presolve time: 0.00s
 Presolved: 2 rows, 2 columns, 4 nonzeros
 
 Iteration    Objective       Primal Inf.    Dual Inf.      Time
        0    3.5000000e+31   3.500000e+30   3.500000e+01      0s
        2    7.0000000e+01   0.000000e+00   0.000000e+00      0s
 
-Solved in 2 iterations and 0.01 seconds (0.00 work units)
+Solved in 2 iterations and 0.00 seconds (0.00 work units)
 Optimal objective  7.000000000e+01</code></pre>
 </div>
 </div>
 <p>We can see some output from Gurobi, and the last line tells us that Gurobi found an optimal solution with objective value 70.</p>
 <p>To summarize all the step above, we have given the complete code below (but not executed this time).</p>
-<div id="faa38796" class="cell" data-execution_count="7">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gurobipy <span class="im">import</span> Model, GRB</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize Gurobi model.</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>duplo <span class="op">=</span> Model(name<span class="op">=</span><span class="st">'Duplo problem'</span>)</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Declare the two decision variables.</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>x1 <span class="op">=</span> duplo.addVar(name<span class="op">=</span><span class="st">'chairs'</span>)</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>x2 <span class="op">=</span> duplo.addVar(name<span class="op">=</span><span class="st">'tables'</span>)</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Specify the objective function.</span></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>duplo.setObjective(<span class="dv">15</span><span class="op">*</span>x1 <span class="op">+</span> <span class="dv">20</span><span class="op">*</span>x2, sense<span class="op">=</span>GRB.MAXIMIZE)</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the resource constraints on bricks.</span></span>
-<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>duplo.addConstr(x1 <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>x2 <span class="op">&lt;=</span> <span class="dv">6</span>, name<span class="op">=</span><span class="st">'big-bricks'</span>)</span>
-<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>duplo.addConstr(<span class="dv">2</span><span class="op">*</span>x1 <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>x2 <span class="op">&lt;=</span> <span class="dv">8</span>, name<span class="op">=</span><span class="st">'small-bricks'</span>)</span>
-<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Optimize the duplo</span></span>
-<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>duplo.optimize()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="d4ced762" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gurobipy <span class="im">import</span> Model, GRB</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize Gurobi model.</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>duplo <span class="op">=</span> Model(name<span class="op">=</span><span class="st">'Duplo problem'</span>)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Declare the two decision variables.</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>x1 <span class="op">=</span> duplo.addVar(name<span class="op">=</span><span class="st">'chairs'</span>)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>x2 <span class="op">=</span> duplo.addVar(name<span class="op">=</span><span class="st">'tables'</span>)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Specify the objective function.</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>duplo.setObjective(<span class="dv">15</span><span class="op">*</span>x1 <span class="op">+</span> <span class="dv">20</span><span class="op">*</span>x2, sense<span class="op">=</span>GRB.MAXIMIZE)</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the resource constraints on bricks.</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>duplo.addConstr(x1 <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>x2 <span class="op">&lt;=</span> <span class="dv">6</span>, name<span class="op">=</span><span class="st">'big-bricks'</span>)</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>duplo.addConstr(<span class="dv">2</span><span class="op">*</span>x1 <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>x2 <span class="op">&lt;=</span> <span class="dv">8</span>, name<span class="op">=</span><span class="st">'small-bricks'</span>)</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Optimize the duplo</span></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>duplo.optimize()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Recalling our linear optimization problem object as being a “box” filled with decision variables, an objective function and constraints, the box now also contains a small space where the optimal solution is stored.</p>
 <p>Let us have a look at how to access information about the optimal solution. The objective function value of the optimal solution, that was also displayed in the output when optimization the model with <code>duplo.optimize()</code> is stored in the <code>ObjVal</code> <em>attribute</em>. An attribute is a piece of information about an object in Python.</p>
-<div id="87bb1541" class="cell" data-execution_count="8">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print text 'Objective value:' and the duplo.ObjVal attribute value</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Objective value:'</span>, duplo.ObjVal)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="0e2e0f08" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print text 'Objective value:' and the duplo.ObjVal attribute value</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Objective value:'</span>, duplo.ObjVal)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Objective value: 70.0</code></pre>
 </div>
 </div>
 <p>The optimal values of a decision variables can be obtained by accessing the <code>X</code> <em>attribute</em> of a variable.</p>
-<div id="16990d41" class="cell" data-execution_count="9">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'x1 = '</span>, x1.X)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'x2 = '</span>, x2.X)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="bf343fb6" class="cell" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'x1 = '</span>, x1.X)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'x2 = '</span>, x2.X)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>x1 =  2.0
 x2 =  2.0</code></pre>
 </div>
 </div>
 <p>If the model has many variables, printing variables in this way is a cumbersome approach. It is then easier to iterate over all variables of the model using the <code>getVars()</code> method. This method creates a list of all the decision variables of the model.</p>
-<div id="48fb2de9" class="cell" data-execution_count="10">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(duplo.getVars())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="1ef7a901" class="cell" data-execution_count="11">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(duplo.getVars())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[&lt;gurobi.Var chairs (value 2.0)&gt;, &lt;gurobi.Var tables (value 2.0)&gt;]</code></pre>
 </div>
@@ -410,9 +463,9 @@ x2 =  2.0</code></pre>
 <p>As you can see above, we already see the optimal values of the decision variables, but also a lot of unnecessary information.</p>
 <p>Let us print these values in a nicer format by iterating over the list <code>duplo.getVars()</code> using a for-loop with index variable <code>var</code>; you can choose another name here if you want. We print for every variable <code>var</code> its name, stored in the attribute <code>VarName</code>, and its value, stored in the attribute <code>X</code>. In between, we print the <span class="math inline">=</span> symbol in plain text (hence, the quotations).</p>
 <p>Recall that if you want to print multiple date types (such as a variables and text) in a <code>print()</code> statement, you should separate them with commas.</p>
-<div id="0d8893ac" class="cell" data-execution_count="11">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> var <span class="kw">in</span> duplo.getVars():</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(var.VarName, <span class="st">"="</span>, var.X)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="3d6addf3" class="cell" data-execution_count="12">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> var <span class="kw">in</span> duplo.getVars():</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(var.VarName, <span class="st">"="</span>, var.X)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>chairs = 2.0
 tables = 2.0</code></pre>
@@ -422,8 +475,8 @@ tables = 2.0</code></pre>
 <section id="sec-help" class="level3" data-number="4.1.6">
 <h3 data-number="4.1.6" class="anchored" data-anchor-id="sec-help"><span class="header-section-number">4.1.6</span> Help functionality</h3>
 <p>To see all these properties of method, e.g., <code>addVar</code>, you can check out the <code>addVar</code> documentation by typing <code>help(Model.addVar)</code> in Python. Looking up the documentation in this way can be done for every method.</p>
-<div id="47ef77a7" class="cell" data-execution_count="12">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="bu">help</span>(Model.addVar)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="1b15ea1f" class="cell" data-execution_count="13">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="bu">help</span>(Model.addVar)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Help on cython_function_or_method in module gurobipy._model:
 
@@ -467,34 +520,34 @@ addVar(self, lb=0.0, ub=1e+100, obj=0.0, vtype='C', name='', column=None)
   background-color: #ffffff;
 }
 </style>
-<div id="af0d2ad5" class="cell" data-execution_count="13">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sensitivity_analysis <span class="im">import</span> report</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>report([model_object])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="c40b50a2" class="cell" data-execution_count="14">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sensitivity_analysis <span class="im">import</span> report</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>report([model_object])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The following code defines again the Duplo problem in Gurobi and generates the sensitivity report.</p>
-<div id="e9f9f908" class="cell" data-execution_count="14">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gurobipy <span class="im">import</span> Model, GRB</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize Gurobi model.</span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>duplo <span class="op">=</span> Model(name<span class="op">=</span><span class="st">'Duplo problem'</span>)</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Declare the two decision variables.</span></span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>x1 <span class="op">=</span> duplo.addVar(name<span class="op">=</span><span class="st">'chairs'</span>)</span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>x2 <span class="op">=</span> duplo.addVar(name<span class="op">=</span><span class="st">'tables'</span>)</span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Specify the objective function.</span></span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>duplo.setObjective(<span class="dv">15</span><span class="op">*</span>x1 <span class="op">+</span> <span class="dv">20</span><span class="op">*</span>x2, sense<span class="op">=</span>GRB.MAXIMIZE)</span>
-<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the resource constraints on bricks.</span></span>
-<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>duplo.addConstr(x1 <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>x2 <span class="op">&lt;=</span> <span class="dv">6</span>, name<span class="op">=</span><span class="st">'big-bricks'</span>)</span>
-<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>duplo.addConstr(<span class="dv">2</span><span class="op">*</span>x1 <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>x2 <span class="op">&lt;=</span> <span class="dv">8</span>, name<span class="op">=</span><span class="st">'small-bricks'</span>)</span>
-<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Optimize the duplo</span></span>
-<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a>duplo.optimize()</span>
-<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate sensitivity report</span></span>
-<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sensitivity_analysis <span class="im">import</span> report</span>
-<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a>report(duplo)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="c9d596ec" class="cell" data-execution_count="15">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gurobipy <span class="im">import</span> Model, GRB</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize Gurobi model.</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>duplo <span class="op">=</span> Model(name<span class="op">=</span><span class="st">'Duplo problem'</span>)</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Declare the two decision variables.</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>x1 <span class="op">=</span> duplo.addVar(name<span class="op">=</span><span class="st">'chairs'</span>)</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>x2 <span class="op">=</span> duplo.addVar(name<span class="op">=</span><span class="st">'tables'</span>)</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Specify the objective function.</span></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>duplo.setObjective(<span class="dv">15</span><span class="op">*</span>x1 <span class="op">+</span> <span class="dv">20</span><span class="op">*</span>x2, sense<span class="op">=</span>GRB.MAXIMIZE)</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the resource constraints on bricks.</span></span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>duplo.addConstr(x1 <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>x2 <span class="op">&lt;=</span> <span class="dv">6</span>, name<span class="op">=</span><span class="st">'big-bricks'</span>)</span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>duplo.addConstr(<span class="dv">2</span><span class="op">*</span>x1 <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>x2 <span class="op">&lt;=</span> <span class="dv">8</span>, name<span class="op">=</span><span class="st">'small-bricks'</span>)</span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Optimize the duplo</span></span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>duplo.optimize()</span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate sensitivity report</span></span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sensitivity_analysis <span class="im">import</span> report</span>
+<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a>report(duplo)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Gurobi Optimizer version 12.0.1 build v12.0.1rc0 (win64 - Windows 10.0 (19045.2))
 
@@ -515,13 +568,13 @@ Iteration    Objective       Primal Inf.    Dual Inf.      Time
        0    3.5000000e+31   3.500000e+30   3.500000e+01      0s
        2    7.0000000e+01   0.000000e+00   0.000000e+00      0s
 
-Solved in 2 iterations and 0.01 seconds (0.00 work units)
+Solved in 2 iterations and 0.00 seconds (0.00 work units)
 Optimal objective  7.000000000e+01</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="04-linear-optimization_files/figure-html/cell-15-output-2.png" class="quarto-figure quarto-figure-center figure-img" width="758" height="470"></p>
+<p><img src="04-linear-optimization_files/figure-html/cell-16-output-2.png" class="quarto-figure quarto-figure-center figure-img" width="758" height="470"></p>
 </figure>
 </div>
 </div>
@@ -540,24 +593,24 @@ Optimal objective  7.000000000e+01</code></pre>
 <p>If we define a <code>Model()</code> object with name <code>problem</code>, we can use the syntax <code>x = problem.addVars(n)</code> to tell Python to create <span class="math inline">n</span> decision variables. You can use the <span class="math inline">i</span>-th decision variable to define constraints and the objective function by indexing <code>x</code> at position <span class="math inline">i-1</span>, i.e, by using <code>x[i-1]</code>. Recall that Python starts counting from zero when indexing data objects such as lists.</p>
 <p>If you want you can also add a list of names for the decision variables using the <code>name</code> keyword argument. Make sure that the number of elements in the list matches the value of <span class="math inline">n</span>.</p>
 <p>Below we use <code>addVars()</code> to again define the Duplo example with <span class="math inline">n = 2</span>.</p>
-<div id="46657544" class="cell" data-execution_count="15">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gurobipy <span class="im">import</span> Model, GRB</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize Gurobi model.</span></span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>duplo <span class="op">=</span> Model(name<span class="op">=</span><span class="st">'Duplo problem'</span>)</span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Declare the two decision variables using addVars()</span></span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> duplo.addVars(<span class="dv">2</span>,name<span class="op">=</span>[<span class="st">"chairs"</span>,<span class="st">"tables"</span>])</span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Specify the objective function in terms of x[0] and x[1]</span></span>
-<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>duplo.setObjective(<span class="dv">15</span><span class="op">*</span>x[<span class="dv">0</span>] <span class="op">+</span> <span class="dv">20</span><span class="op">*</span>x[<span class="dv">1</span>], sense<span class="op">=</span>GRB.MAXIMIZE)</span>
-<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the resource constraints on bricks in terms of x[0] and x[1]</span></span>
-<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>duplo.addConstr(x[<span class="dv">0</span>] <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>x[<span class="dv">1</span>] <span class="op">&lt;=</span> <span class="dv">6</span>, name<span class="op">=</span><span class="st">'big-bricks'</span>)</span>
-<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>duplo.addConstr(<span class="dv">2</span><span class="op">*</span>x[<span class="dv">0</span>] <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>x[<span class="dv">1</span>] <span class="op">&lt;=</span> <span class="dv">8</span>, name<span class="op">=</span><span class="st">'small-bricks'</span>)</span>
-<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb24-16"><a href="#cb24-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Optimize the duplo</span></span>
-<span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a>duplo.optimize()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="195b00d0" class="cell" data-execution_count="16">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gurobipy <span class="im">import</span> Model, GRB</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize Gurobi model.</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>duplo <span class="op">=</span> Model(name<span class="op">=</span><span class="st">'Duplo problem'</span>)</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Declare the two decision variables using addVars()</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> duplo.addVars(<span class="dv">2</span>,name<span class="op">=</span>[<span class="st">"chairs"</span>,<span class="st">"tables"</span>])</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Specify the objective function in terms of x[0] and x[1]</span></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>duplo.setObjective(<span class="dv">15</span><span class="op">*</span>x[<span class="dv">0</span>] <span class="op">+</span> <span class="dv">20</span><span class="op">*</span>x[<span class="dv">1</span>], sense<span class="op">=</span>GRB.MAXIMIZE)</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the resource constraints on bricks in terms of x[0] and x[1]</span></span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>duplo.addConstr(x[<span class="dv">0</span>] <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>x[<span class="dv">1</span>] <span class="op">&lt;=</span> <span class="dv">6</span>, name<span class="op">=</span><span class="st">'big-bricks'</span>)</span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>duplo.addConstr(<span class="dv">2</span><span class="op">*</span>x[<span class="dv">0</span>] <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>x[<span class="dv">1</span>] <span class="op">&lt;=</span> <span class="dv">8</span>, name<span class="op">=</span><span class="st">'small-bricks'</span>)</span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Optimize the duplo</span></span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a>duplo.optimize()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="defining-constraints-quickly" class="level3" data-number="4.3.2">
@@ -569,66 +622,66 @@ Optimal objective  7.000000000e+01</code></pre>
 <li>Create the list <code>y = [c[0]*x[0], c[1]*x[1]]</code> using the concept of <em>list comprehension</em>.</li>
 <li>Use the <code>quicksum()</code> function to add up the elements in the list <code>y</code> and set the resulting variable <code>obj</code> as our objective function.</li>
 </ol>
-<div id="de1ca34f" class="cell" data-execution_count="16">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gurobipy <span class="im">import</span> Model, GRB, quicksum</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize Gurobi model.</span></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>duplo <span class="op">=</span> Model(name<span class="op">=</span><span class="st">'Duplo problem'</span>)</span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Declare the two decision variables using addVars()</span></span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> duplo.addVars(<span class="dv">2</span>,name<span class="op">=</span>[<span class="st">"chairs"</span>,<span class="st">"tables"</span>])</span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Coefficients of objective function</span></span>
-<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> [<span class="dv">2</span>,<span class="dv">2</span>]</span>
-<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Define list [c[0]*x[0], c[1]*x[1]]</span></span>
-<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> [c[j]<span class="op">*</span>x[j] <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>)] </span>
-<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Sum up the terms in the list y</span></span>
-<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a>obj <span class="op">=</span> quicksum(y) </span>
-<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Define objective </span></span>
-<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a>duplo.setObjective(obj, sense<span class="op">=</span>GRB.MAXIMIZE) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="b3ad5cc5" class="cell" data-execution_count="17">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gurobipy <span class="im">import</span> Model, GRB, quicksum</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize Gurobi model.</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>duplo <span class="op">=</span> Model(name<span class="op">=</span><span class="st">'Duplo problem'</span>)</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Declare the two decision variables using addVars()</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> duplo.addVars(<span class="dv">2</span>,name<span class="op">=</span>[<span class="st">"chairs"</span>,<span class="st">"tables"</span>])</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Coefficients of objective function</span></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> [<span class="dv">2</span>,<span class="dv">2</span>]</span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Define list [c[0]*x[0], c[1]*x[1]]</span></span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> [c[j]<span class="op">*</span>x[j] <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>)] </span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Sum up the terms in the list y</span></span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>obj <span class="op">=</span> quicksum(y) </span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Define objective </span></span>
+<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a>duplo.setObjective(obj, sense<span class="op">=</span>GRB.MAXIMIZE) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The part <code>[c[j]*x[j] for j in range(2)]</code> is the compact <em>list comprehension</em> syntax for creating <code>[c[0]*x[0], c[1]*x[1]]</code>. Recall from <a href="./03-basics.html#sec-for-loop">Section 3.5</a> that <code>j in range(0,2)</code> means we iterate over the values <span class="math inline">j = 0</span> and <span class="math inline">j = 1</span> (the value <span class="math inline">2</span> is not included).</p>
 <p>This time we are only creating a list with two elements, but imagine then if you have <span class="math inline">100</span> variables, then <code>[c[j]*x[j] for j in range(100)]</code> would be all you need to create an objective function of the form <span class="math inline">c_1x_1 + c_2x_2 + \dots + c_{100}x_{100}</span> which consists of <span class="math inline">100</span> terms!</p>
 <p>We remark that you can also combine the above steps into a more compact code that carries out the last three lines in one line.</p>
-<div id="4641c17b" class="cell" data-execution_count="17">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define objective </span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>duplo.setObjective(quicksum(c[j]<span class="op">*</span>x[j] <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>)), sense<span class="op">=</span>GRB.MAXIMIZE) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="e7dae51d" class="cell" data-execution_count="18">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define objective </span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>duplo.setObjective(quicksum(c[j]<span class="op">*</span>x[j] <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>)), sense<span class="op">=</span>GRB.MAXIMIZE) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>In a similar fashion you can define the left hand side of a constraint <span class="math inline">a_1x_1 + a_2x_2 + \dots + a_nx_n \leq b</span> quickly with <code>quicksum()</code>. Below we have given the Duplo example implemented with the use of <code>quicksum()</code> and <code>addVars()</code>.</p>
-<div id="27f72c31" class="cell" data-execution_count="18">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gurobipy <span class="im">import</span> Model, GRB</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize Gurobi model.</span></span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>duplo <span class="op">=</span> Model(name<span class="op">=</span><span class="st">'Duplo problem'</span>)</span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Declare the two decision variables using addVars()</span></span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> duplo.addVars(<span class="dv">2</span>,name<span class="op">=</span>[<span class="st">"chairs"</span>,<span class="st">"tables"</span>])</span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Objective function coefficients</span></span>
-<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> [<span class="dv">2</span>,<span class="dv">2</span>]</span>
-<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Big brick coefficients</span></span>
-<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> [<span class="dv">1</span>,<span class="dv">2</span>]</span>
-<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Small brick coefficients</span></span>
-<span id="cb27-16"><a href="#cb27-16" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> [<span class="dv">2</span>,<span class="dv">2</span>]</span>
-<span id="cb27-17"><a href="#cb27-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Specify the objective function in terms of x[0] and x[1]</span></span>
-<span id="cb27-19"><a href="#cb27-19" aria-hidden="true" tabindex="-1"></a>duplo.setObjective(quicksum(c[j]<span class="op">*</span>x[j] <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>)), sense<span class="op">=</span>GRB.MAXIMIZE)</span>
-<span id="cb27-20"><a href="#cb27-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-21"><a href="#cb27-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the resource constraints on bricks in terms of x[0] and x[1]</span></span>
-<span id="cb27-22"><a href="#cb27-22" aria-hidden="true" tabindex="-1"></a>duplo.addConstr(quicksum(b[j]<span class="op">*</span>x[j] <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>)) <span class="op">&lt;=</span> <span class="dv">6</span>, name<span class="op">=</span><span class="st">'big-bricks'</span>)</span>
-<span id="cb27-23"><a href="#cb27-23" aria-hidden="true" tabindex="-1"></a>duplo.addConstr(quicksum(s[j]<span class="op">*</span>x[j] <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>)) <span class="op">&lt;=</span> <span class="dv">8</span>, name<span class="op">=</span><span class="st">'small-bricks'</span>)</span>
-<span id="cb27-24"><a href="#cb27-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-25"><a href="#cb27-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Optimize the duplo</span></span>
-<span id="cb27-26"><a href="#cb27-26" aria-hidden="true" tabindex="-1"></a>duplo.optimize()</span>
-<span id="cb27-27"><a href="#cb27-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-28"><a href="#cb27-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Print optimal values of decision variables</span></span>
-<span id="cb27-29"><a href="#cb27-29" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> var <span class="kw">in</span> duplo.getVars():</span>
-<span id="cb27-30"><a href="#cb27-30" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(var.VarName, <span class="st">"="</span>, var.X)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="51c9f26b" class="cell" data-execution_count="19">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gurobipy <span class="im">import</span> Model, GRB</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize Gurobi model.</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>duplo <span class="op">=</span> Model(name<span class="op">=</span><span class="st">'Duplo problem'</span>)</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Declare the two decision variables using addVars()</span></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> duplo.addVars(<span class="dv">2</span>,name<span class="op">=</span>[<span class="st">"chairs"</span>,<span class="st">"tables"</span>])</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Objective function coefficients</span></span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> [<span class="dv">2</span>,<span class="dv">2</span>]</span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Big brick coefficients</span></span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> [<span class="dv">1</span>,<span class="dv">2</span>]</span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Small brick coefficients</span></span>
+<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> [<span class="dv">2</span>,<span class="dv">2</span>]</span>
+<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Specify the objective function in terms of x[0] and x[1]</span></span>
+<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a>duplo.setObjective(quicksum(c[j]<span class="op">*</span>x[j] <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>)), sense<span class="op">=</span>GRB.MAXIMIZE)</span>
+<span id="cb28-20"><a href="#cb28-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-21"><a href="#cb28-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the resource constraints on bricks in terms of x[0] and x[1]</span></span>
+<span id="cb28-22"><a href="#cb28-22" aria-hidden="true" tabindex="-1"></a>duplo.addConstr(quicksum(b[j]<span class="op">*</span>x[j] <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>)) <span class="op">&lt;=</span> <span class="dv">6</span>, name<span class="op">=</span><span class="st">'big-bricks'</span>)</span>
+<span id="cb28-23"><a href="#cb28-23" aria-hidden="true" tabindex="-1"></a>duplo.addConstr(quicksum(s[j]<span class="op">*</span>x[j] <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>)) <span class="op">&lt;=</span> <span class="dv">8</span>, name<span class="op">=</span><span class="st">'small-bricks'</span>)</span>
+<span id="cb28-24"><a href="#cb28-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-25"><a href="#cb28-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Optimize the duplo</span></span>
+<span id="cb28-26"><a href="#cb28-26" aria-hidden="true" tabindex="-1"></a>duplo.optimize()</span>
+<span id="cb28-27"><a href="#cb28-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-28"><a href="#cb28-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Print optimal values of decision variables</span></span>
+<span id="cb28-29"><a href="#cb28-29" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> var <span class="kw">in</span> duplo.getVars():</span>
+<span id="cb28-30"><a href="#cb28-30" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(var.VarName, <span class="st">"="</span>, var.X)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Gurobi Optimizer version 12.0.1 build v12.0.1rc0 (win64 - Windows 10.0 (19045.2))
 
@@ -668,87 +721,87 @@ tables = 2.0</code></pre>
 &amp; &amp;x_1, &amp; &amp; x_2  &amp; \geq &amp; 0 &amp;
 \end{array},
 </span></p>
-<div id="c7bac6d7" class="cell" data-execution_count="19">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize Gurobi model.</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>model_frac <span class="op">=</span> Model(name<span class="op">=</span><span class="st">'Fractional problem'</span>)</span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Suppress Gurobi Optimizer output</span></span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>model_frac.setParam(<span class="st">'OutputFlag'</span>,<span class="dv">0</span>)</span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Declare the two decision variables.</span></span>
-<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>x1 <span class="op">=</span> model_frac.addVar(name<span class="op">=</span><span class="st">"x1"</span>) </span>
-<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>x2 <span class="op">=</span> model_frac.addVar(name<span class="op">=</span><span class="st">"x2"</span>) </span>
-<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Specify the objective function.</span></span>
-<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>model_frac.setObjective(<span class="dv">2</span><span class="op">*</span>x1 <span class="op">+</span> x2, sense<span class="op">=</span>GRB.MAXIMIZE)</span>
-<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the resource constraints on bricks.</span></span>
-<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>model_frac.addConstr(x1 <span class="op">+</span> x2 <span class="op">&lt;=</span> <span class="fl">2.5</span>)</span>
-<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Optimize the model</span></span>
-<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a>model_frac.optimize()</span>
-<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Print optimal values of decision variables</span></span>
-<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> var <span class="kw">in</span> model_frac.getVars():</span>
-<span id="cb29-22"><a href="#cb29-22" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(var.VarName, <span class="st">"="</span>, var.X)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="c0bfd964" class="cell" data-execution_count="20">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize Gurobi model.</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>model_frac <span class="op">=</span> Model(name<span class="op">=</span><span class="st">'Fractional problem'</span>)</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Suppress Gurobi Optimizer output</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>model_frac.setParam(<span class="st">'OutputFlag'</span>,<span class="dv">0</span>)</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Declare the two decision variables.</span></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>x1 <span class="op">=</span> model_frac.addVar(name<span class="op">=</span><span class="st">"x1"</span>) </span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>x2 <span class="op">=</span> model_frac.addVar(name<span class="op">=</span><span class="st">"x2"</span>) </span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Specify the objective function.</span></span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>model_frac.setObjective(<span class="dv">2</span><span class="op">*</span>x1 <span class="op">+</span> x2, sense<span class="op">=</span>GRB.MAXIMIZE)</span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the resource constraints on bricks.</span></span>
+<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a>model_frac.addConstr(x1 <span class="op">+</span> x2 <span class="op">&lt;=</span> <span class="fl">2.5</span>)</span>
+<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Optimize the model</span></span>
+<span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a>model_frac.optimize()</span>
+<span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-20"><a href="#cb30-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Print optimal values of decision variables</span></span>
+<span id="cb30-21"><a href="#cb30-21" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> var <span class="kw">in</span> model_frac.getVars():</span>
+<span id="cb30-22"><a href="#cb30-22" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(var.VarName, <span class="st">"="</span>, var.X)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>x1 = 2.5
 x2 = 0.0</code></pre>
 </div>
 </div>
 <p>If we specify <code>vtype=GRB.INTEGER</code> in the <code>addVar()</code> method when creating the variables, Gurobi will find an optimal solution with all decision variables being integers.</p>
-<div id="a6a66c5b" class="cell" data-execution_count="20">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize Gurobi model.</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>model_int <span class="op">=</span> Model(name<span class="op">=</span><span class="st">'Integer problem'</span>)</span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Suppress Gurobi Optimizer output</span></span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>model_int.setParam(<span class="st">'OutputFlag'</span>,<span class="dv">0</span>)</span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Declare the two decision variables.</span></span>
-<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>x1 <span class="op">=</span> model_int.addVar(name<span class="op">=</span><span class="st">"x1"</span>,vtype<span class="op">=</span>GRB.INTEGER) </span>
-<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>x2 <span class="op">=</span> model_int.addVar(name<span class="op">=</span><span class="st">"x2"</span>,vtype<span class="op">=</span>GRB.INTEGER) </span>
-<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Specify the objective function.</span></span>
-<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>model_int.setObjective(<span class="dv">2</span><span class="op">*</span>x1 <span class="op">+</span> x2, sense<span class="op">=</span>GRB.MAXIMIZE)</span>
-<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the resource constraints on bricks.</span></span>
-<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a>model_int.addConstr(x1 <span class="op">+</span> x2 <span class="op">&lt;=</span> <span class="fl">2.5</span>)</span>
-<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Optimize the model</span></span>
-<span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a>model_int.optimize()</span>
-<span id="cb31-19"><a href="#cb31-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-20"><a href="#cb31-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Print optimal values of decision variables</span></span>
-<span id="cb31-21"><a href="#cb31-21" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> var <span class="kw">in</span> model_int.getVars():</span>
-<span id="cb31-22"><a href="#cb31-22" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(var.VarName, <span class="st">"="</span>, var.X)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="394b6473" class="cell" data-execution_count="21">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize Gurobi model.</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>model_int <span class="op">=</span> Model(name<span class="op">=</span><span class="st">'Integer problem'</span>)</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Suppress Gurobi Optimizer output</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>model_int.setParam(<span class="st">'OutputFlag'</span>,<span class="dv">0</span>)</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Declare the two decision variables.</span></span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>x1 <span class="op">=</span> model_int.addVar(name<span class="op">=</span><span class="st">"x1"</span>,vtype<span class="op">=</span>GRB.INTEGER) </span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>x2 <span class="op">=</span> model_int.addVar(name<span class="op">=</span><span class="st">"x2"</span>,vtype<span class="op">=</span>GRB.INTEGER) </span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Specify the objective function.</span></span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>model_int.setObjective(<span class="dv">2</span><span class="op">*</span>x1 <span class="op">+</span> x2, sense<span class="op">=</span>GRB.MAXIMIZE)</span>
+<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the resource constraints on bricks.</span></span>
+<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a>model_int.addConstr(x1 <span class="op">+</span> x2 <span class="op">&lt;=</span> <span class="fl">2.5</span>)</span>
+<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Optimize the model</span></span>
+<span id="cb32-18"><a href="#cb32-18" aria-hidden="true" tabindex="-1"></a>model_int.optimize()</span>
+<span id="cb32-19"><a href="#cb32-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-20"><a href="#cb32-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Print optimal values of decision variables</span></span>
+<span id="cb32-21"><a href="#cb32-21" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> var <span class="kw">in</span> model_int.getVars():</span>
+<span id="cb32-22"><a href="#cb32-22" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(var.VarName, <span class="st">"="</span>, var.X)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>x1 = 2.0
 x2 = -0.0</code></pre>
 </div>
 </div>
 <p>Anoter common case is where the decision variables are supposed to be binary, meaning they can only take values in <span class="math inline">\{0,1\}</span>. Setting variables to be binary can be done with <code>vtype=GRB.BINARY</code>.</p>
-<div id="1e1006d0" class="cell" data-execution_count="21">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize Gurobi model.</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>model_bin <span class="op">=</span> Model(name<span class="op">=</span><span class="st">'Binary problem'</span>)</span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Suppress Gurobi Optimizer output</span></span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>model_bin.setParam(<span class="st">'OutputFlag'</span>,<span class="dv">0</span>)</span>
-<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Declare the two decision variables.</span></span>
-<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>x1 <span class="op">=</span> model_bin.addVar(name<span class="op">=</span><span class="st">"x1"</span>,vtype<span class="op">=</span>GRB.BINARY) </span>
-<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>x2 <span class="op">=</span> model_bin.addVar(name<span class="op">=</span><span class="st">"x2"</span>,vtype<span class="op">=</span>GRB.BINARY) </span>
-<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Specify the objective function.</span></span>
-<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>model_bin.setObjective(<span class="dv">2</span><span class="op">*</span>x1 <span class="op">+</span> x2, sense<span class="op">=</span>GRB.MAXIMIZE)</span>
-<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the resource constraints on bricks.</span></span>
-<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a>model_bin.addConstr(x1 <span class="op">+</span> x2 <span class="op">&lt;=</span> <span class="fl">2.5</span>)</span>
-<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Optimize the model</span></span>
-<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a>model_bin.optimize()</span>
-<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-20"><a href="#cb33-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Print optimal values of decision variables</span></span>
-<span id="cb33-21"><a href="#cb33-21" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> var <span class="kw">in</span> model_bin.getVars():</span>
-<span id="cb33-22"><a href="#cb33-22" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(var.VarName, <span class="st">"="</span>, var.X)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="33fffb7a" class="cell" data-execution_count="22">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize Gurobi model.</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>model_bin <span class="op">=</span> Model(name<span class="op">=</span><span class="st">'Binary problem'</span>)</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Suppress Gurobi Optimizer output</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>model_bin.setParam(<span class="st">'OutputFlag'</span>,<span class="dv">0</span>)</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Declare the two decision variables.</span></span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>x1 <span class="op">=</span> model_bin.addVar(name<span class="op">=</span><span class="st">"x1"</span>,vtype<span class="op">=</span>GRB.BINARY) </span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>x2 <span class="op">=</span> model_bin.addVar(name<span class="op">=</span><span class="st">"x2"</span>,vtype<span class="op">=</span>GRB.BINARY) </span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Specify the objective function.</span></span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>model_bin.setObjective(<span class="dv">2</span><span class="op">*</span>x1 <span class="op">+</span> x2, sense<span class="op">=</span>GRB.MAXIMIZE)</span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the resource constraints on bricks.</span></span>
+<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a>model_bin.addConstr(x1 <span class="op">+</span> x2 <span class="op">&lt;=</span> <span class="fl">2.5</span>)</span>
+<span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-17"><a href="#cb34-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Optimize the model</span></span>
+<span id="cb34-18"><a href="#cb34-18" aria-hidden="true" tabindex="-1"></a>model_bin.optimize()</span>
+<span id="cb34-19"><a href="#cb34-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-20"><a href="#cb34-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Print optimal values of decision variables</span></span>
+<span id="cb34-21"><a href="#cb34-21" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> var <span class="kw">in</span> model_bin.getVars():</span>
+<span id="cb34-22"><a href="#cb34-22" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(var.VarName, <span class="st">"="</span>, var.X)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>x1 = 1.0
 x2 = 1.0</code></pre>

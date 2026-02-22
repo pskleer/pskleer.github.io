@@ -9,7 +9,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 
-def report(model, decimals=4, figsize=(8, 5)):
+def report(model, decimals=2, figsize=(8, 5)):
     """
     Generates sensitivity report tables and plots them as matplotlib figures.
 

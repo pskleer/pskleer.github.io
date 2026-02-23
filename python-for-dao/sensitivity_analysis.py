@@ -105,11 +105,11 @@ def report(model, decimals=2, figsize=(8, 5)):
     # Formats the table nicely
     table1.auto_set_font_size(False)
     table1.set_fontsize(10)
-    table1.scale(0.7, 1.5)
+    table1.scale(1, 1.5)
     
     table2.auto_set_font_size(False)
     table2.set_fontsize(10)
-    table2.scale(0.7, 1.5)
+    table2.scale(1, 1.5)
     
     plt.tight_layout() 
     plt.show()
@@ -167,5 +167,6 @@ print(OFC_report)
 
 print("\nCONSTRAINT REPORT")
 print(RHS_report)
+
 
 """

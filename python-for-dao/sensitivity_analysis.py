@@ -108,4 +108,5 @@ def report(model, decimals=2):
     plt.tight_layout()
     plt.show()
 
-    return variables_df, constraints_df
+
+    return 

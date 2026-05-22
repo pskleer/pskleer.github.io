@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.24">
+<meta name="generator" content="quarto-1.9.37">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>1&nbsp; Basics – Gurobi tutorials for JBM035</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -65,15 +68,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-a6e161b2431e1f94a14e0f5d32135a3c.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-acf12a64177840b8d86f2d4f01b2e9fb.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-fe80fb519f0892010506c40733b33e0a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-843f08c53b99c524b45113508bb491a8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "language": {
     "search-no-results-text": "No results",
@@ -156,9 +158,7 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="./index.html" class="sidebar-logo-link">
-      </a>
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Gurobi tutorials for JBM035</a> 
         <div class="sidebar-tools-main">
@@ -217,8 +217,7 @@ window.Quarto = {
   <li><a href="#gurobi-module" id="toc-gurobi-module" class="nav-link active" data-scroll-target="#gurobi-module"><span class="header-section-number">1.1</span> Gurobi module</a></li>
   <li><a href="#example-duplo-problem" id="toc-example-duplo-problem" class="nav-link" data-scroll-target="#example-duplo-problem"><span class="header-section-number">1.2</span> Example: Duplo problem</a>
   <ul class="collapse">
-  <li><a href="#export-model-to-text-file" id="toc-export-model-to-text-file" class="nav-link" data-scroll-target="#export-model-to-text-file"><span class="header-section-number">1.2.1</span> Export model to text file</a></li>
-  <li><a href="#optimizing-the-model" id="toc-optimizing-the-model" class="nav-link" data-scroll-target="#optimizing-the-model"><span class="header-section-number">1.2.2</span> Optimizing the model</a></li>
+  <li><a href="#optimizing-the-model" id="toc-optimizing-the-model" class="nav-link" data-scroll-target="#optimizing-the-model"><span class="header-section-number">1.2.1</span> Optimizing the model</a></li>
   </ul></li>
   <li><a href="#slack-variables" id="toc-slack-variables" class="nav-link" data-scroll-target="#slack-variables"><span class="header-section-number">1.3</span> Slack variables</a></li>
   <li><a href="#infeasible-models" id="toc-infeasible-models" class="nav-link" data-scroll-target="#infeasible-models"><span class="header-section-number">1.4</span> Infeasible models</a></li>
@@ -253,11 +252,11 @@ window.Quarto = {
 <section id="gurobi-module" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="gurobi-module"><span class="header-section-number">1.1</span> Gurobi module</h2>
 <p>If you look at the examples in the Gurobi documentation, then you will notice that the Gurobi is loaded in the global namespace:</p>
-<div id="eb6a30e3" class="cell" data-execution_count="1">
+<div id="fe464db2" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gurobipy <span class="im">import</span> <span class="op">*</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>However, I would <strong>not recommend</strong> this, but instead make exactly clear what objects and functions we are using from the Gurobi module. Usually we need only a few objects and/or functions. The object that we will always need is the <code>Model</code>, so let’s import that. Additionally, we will import <code>GRB</code>, which contains a collection of constants that we occassionally need.</p>
-<div id="d81cf08b" class="cell" data-execution_count="2">
+<div id="b7be943e" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gurobipy <span class="im">import</span> Model, GRB</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
@@ -276,20 +275,22 @@ window.Quarto = {
 <li><span class="math inline">x_2</span>: number of tables</li>
 </ul>
 <p>Now let’s implement the Duplo problem in Gurobi.</p>
-<div id="108fe867" class="cell" data-execution_count="3">
+<div id="fe34a94d" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize Gurobi model.</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> Model(<span class="st">'Duplo problem'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Set parameter Username
-Set parameter LicenseID to value 2715549
-Academic license - for non-commercial use only - expires 2026-09-29</code></pre>
+Set parameter LicenseID to value 2805707
+Academic license - for non-commercial use only - expires 2027-04-10</code></pre>
 </div>
 </div>
 <p>Next, we need to declare the variables. We can do this with the <code>addVar</code> method, which creates a <code>Var</code> object. Below you can see the <code>addVar</code> documentation. By default Gurobi assumes that a variable is continuous and non-negative, so we don’t have to specify the <code>lb</code> (lower bound), <code>ub</code> (upper bound), and <code>vtype</code> arguments. It it usefull to add a <code>name</code> as we will see later.</p>
-<div id="c2e3cef0" class="cell" data-execution_count="4">
+<div id="62a4fe81" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">help</span>(Model.addVar)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>
+<pre><code>Help on cython_function_or_method in module gurobipy._model:
+
+addVar(self, lb=0.0, ub=1e+100, obj=0.0, vtype='C', name='', column=None)
     ROUTINE:
       addVar(lb, ub, obj, vtype, name, column)
 
@@ -309,68 +310,152 @@ Academic license - for non-commercial use only - expires 2026-09-29</code></pre>
 
     EXAMPLE:
       v = model.addVar(ub=2.0, name="NewVar")
-    </code></pre>
+</code></pre>
 </div>
 </div>
-<div id="fcd2eb34" class="cell" data-execution_count="5">
+<div id="0239210d" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Declare the two decision variables.</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>x1 <span class="op">=</span> model.addVar(name<span class="op">=</span><span class="st">'chairs'</span>)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>x2 <span class="op">=</span> model.addVar(name<span class="op">=</span><span class="st">'tables'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Note that we also didn’t use the <code>obj</code> argument to specify the objective coefficients. We use the <code>setObjective</code> method to do so by refering to the variables created above. The <code>sense</code> argument must be used to specify whether we want to maximize or minimize the objective function. For this, we use <code>GRB.MAXIMIZE</code> or <code>GRB.MINIMIZE</code>, respectively.</p>
-<div id="c8fc6bad" class="cell" data-execution_count="6">
+<div id="1c539ab0" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Specifiy the objective function.</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>model.setObjective(<span class="dv">15</span><span class="op">*</span>x1 <span class="op">+</span> <span class="dv">20</span><span class="op">*</span>x2, sense<span class="op">=</span>GRB.MAXIMIZE)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The next step is to declare the constraints using the <code>addConstr</code> method. Again we can specify the constraint using the variables, and we give the constraint a name as well.</p>
-<div id="e68cbce7" class="cell" data-execution_count="7">
+<div id="35230e12" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the resource constraints on bricks.</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>c1 <span class="op">=</span> model.addConstr(x1 <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>x2 <span class="op">&lt;=</span> <span class="dv">6</span>, name<span class="op">=</span><span class="st">'big-bricks'</span>)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>c2 <span class="op">=</span> model.addConstr(<span class="dv">2</span><span class="op">*</span>x1 <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>x2 <span class="op">&lt;=</span> <span class="dv">8</span>, name<span class="op">=</span><span class="st">'small-bricks'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<section id="export-model-to-text-file" class="level3" data-number="1.2.1">
-<h3 data-number="1.2.1" class="anchored" data-anchor-id="export-model-to-text-file"><span class="header-section-number">1.2.1</span> Export model to text file</h3>
-<p>Optionally, you can save your model in various formats, which allow you to inspect your model or export it to other solvers and/or modeling languages. One of these formats is the LP format. In the output, you can see the names we have used to declare the variables and constraints of the model.</p>
-<div id="e5dfb113" class="cell" data-execution_count="8">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save model as text file.</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>model.write(<span class="st">'duplo.lp'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<div id="7dbc2af6" class="cell" data-execution_count="9">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Show file contents.</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">open</span>(<span class="st">'duplo.lp'</span>).read())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>\ Model Duplo problem
+<!--
+### Export model to text file
+
+Optionally, you can save your model in various formats, which allow you to inspect your model or export it to other solvers and/or modeling languages. One of these formats is the LP format. In the output, you can see the names we have used to declare the variables and constraints of the model.
+
+::: {#15fe7d10 .cell execution_count=8}
+``` {.python .cell-code}
+# Save model as text file.
+model.write('duplo.lp')
+```
+:::
+
+
+::: {#52fe2dba .cell execution_count=9}
+``` {.python .cell-code}
+# Show file contents.
+print(open('duplo.lp').read())
+```
+
+::: {.cell-output .cell-output-stdout}
+```
+\ Model Duplo problem
 \ LP format - for model browsing. Use MPS format to capture full model detail.
-\ Signature: 0x1fc7b21e380e81e5
+\ Signature: 0x1fc7b21e380fe213
 Maximize
   15 chairs + 20 tables
 Subject To
- big-bricks: chairs + 2 tables &lt;= 6
- small-bricks: 2 chairs + 2 tables &lt;= 8
+ big-bricks: chairs + 2 tables <= 6
+ small-bricks: 2 chairs + 2 tables <= 8
 Bounds
 End
-</code></pre>
-</div>
-</div>
-</section>
-<section id="optimizing-the-model" class="level3" data-number="1.2.2">
-<h3 data-number="1.2.2" class="anchored" data-anchor-id="optimizing-the-model"><span class="header-section-number">1.2.2</span> Optimizing the model</h3>
+
+```
+:::
+:::
+
+
+-->
+<section id="optimizing-the-model" class="level3" data-number="1.2.1">
+<h3 data-number="1.2.1" class="anchored" data-anchor-id="optimizing-the-model"><span class="header-section-number">1.2.1</span> Optimizing the model</h3>
 <p>Now the model is completely specified, we are ready to compute the optimal solution.</p>
-<div id="da377c59" class="cell" data-execution_count="10">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>model.optimize()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="c95e2edf" class="cell" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>model.optimize()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Gurobi Optimizer version 12.0.1 build v12.0.1rc0 (win64 - Windows 10.0 (19045.2))
+<pre><code>Gurobi Optimizer version 13.0.1 build v13.0.1rc0 (win64 - Windows 11+.0 (26200.2))
 
 CPU model: 12th Gen Intel(R) Core(TM) i7-1265U, instruction set [SSE2|AVX|AVX2]
 Thread count: 10 physical cores, 12 logical processors, using up to 12 threads
 
-Optimize a model with 2 rows, 2 columns and 4 nonzeros
+Optimize a model with 2 rows, 2 columns and 4 nonzeros (Max)
 Model fingerprint: 0xadc88607
+Model has 2 linear objective coefficients
 Coefficient statistics:
   Matrix range     [1e+00, 2e+00]
   Objective range  [2e+01, 2e+01]
   Bounds range     [0e+00, 0e+00]
   RHS range        [6e+00, 8e+00]
+
+Presolve time: 0.00s
+Presolved: 2 rows, 2 columns, 4 nonzeros
+
+Iteration    Objective       Primal Inf.    Dual Inf.      Time
+       0    3.5000000e+31   3.500000e+30   3.500000e+01      0s
+       2    7.0000000e+01   0.000000e+00   0.000000e+00      0s
+
+Solved in 2 iterations and 0.00 seconds (0.00 work units)
+Optimal objective  7.000000000e+01</code></pre>
+</div>
+</div>
+<p>We can see some output from Gurobi, and the last line tells us that Gurobi found an optimal solution with objective value 70. We can also access the objective value using the <code>ObjVal</code> attribute.</p>
+<div id="9f8d220f" class="cell" data-execution_count="11">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Objective value:'</span>, model.ObjVal)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Objective value: 70.0</code></pre>
+</div>
+</div>
+<p>Now, what is the optimal solution? We can obtain it by accessing the <code>X</code> <em>attribute</em> from the variables.</p>
+<div id="0df2eeab" class="cell" data-execution_count="12">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'x1 = '</span>, x1.X)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'x2 = '</span>, x2.X)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>x1 =  2.0
+x2 =  2.0</code></pre>
+</div>
+</div>
+<p>Below we have given an overview of the complete code that defines and solves the Duplo example. Note that here we use the object name <code>duplo</code> instead of <code>model</code>.</p>
+<div id="cfd8ec43" class="cell" data-execution_count="13">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gurobipy <span class="im">import</span> Model, GRB</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize Gurobi model.</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>duplo <span class="op">=</span> Model(name<span class="op">=</span><span class="st">'Duplo problem'</span>)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Declare the two decision variables.</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>y1 <span class="op">=</span> duplo.addVar(name<span class="op">=</span><span class="st">'chairs'</span>)</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>y2 <span class="op">=</span> duplo.addVar(name<span class="op">=</span><span class="st">'tables'</span>)</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Specify the objective function.</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>duplo.setObjective(<span class="dv">15</span><span class="op">*</span>y1 <span class="op">+</span> <span class="dv">20</span><span class="op">*</span>y2, sense<span class="op">=</span>GRB.MAXIMIZE)</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the resource constraints on bricks.</span></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>d1 <span class="op">=</span> duplo.addConstr(y1 <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>y2 <span class="op">&lt;=</span> <span class="dv">6</span>, name<span class="op">=</span><span class="st">'big-bricks'</span>)</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>d2 <span class="op">=</span> duplo.addConstr(<span class="dv">2</span><span class="op">*</span>y1 <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>y2 <span class="op">&lt;=</span> <span class="dv">8</span>, name<span class="op">=</span><span class="st">'small-bricks'</span>)</span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Optimize the duplo</span></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>duplo.optimize()</span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Print optimal solution with X attribute of variables</span></span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'y1 = '</span>, y1.X)</span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'y2 = '</span>, y2.X)</span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Print objective value of optimal solution with ObjVal attribute</span></span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Objective value:'</span>, duplo.ObjVal)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Gurobi Optimizer version 13.0.1 build v13.0.1rc0 (win64 - Windows 11+.0 (26200.2))
+
+CPU model: 12th Gen Intel(R) Core(TM) i7-1265U, instruction set [SSE2|AVX|AVX2]
+Thread count: 10 physical cores, 12 logical processors, using up to 12 threads
+
+Optimize a model with 2 rows, 2 columns and 4 nonzeros (Max)
+Model fingerprint: 0xadc88607
+Model has 2 linear objective coefficients
+Coefficient statistics:
+  Matrix range     [1e+00, 2e+00]
+  Objective range  [2e+01, 2e+01]
+  Bounds range     [0e+00, 0e+00]
+  RHS range        [6e+00, 8e+00]
+
 Presolve time: 0.00s
 Presolved: 2 rows, 2 columns, 4 nonzeros
 
@@ -379,29 +464,16 @@ Iteration    Objective       Primal Inf.    Dual Inf.      Time
        2    7.0000000e+01   0.000000e+00   0.000000e+00      0s
 
 Solved in 2 iterations and 0.01 seconds (0.00 work units)
-Optimal objective  7.000000000e+01</code></pre>
+Optimal objective  7.000000000e+01
+y1 =  2.0
+y2 =  2.0
+Objective value: 70.0</code></pre>
 </div>
 </div>
-<p>We can see some output from Gurobi, and the last line tells us that Gurobi found an optimal solution with objective value 70. We can also access the objective value using the <code>ObjVal</code> attribute.</p>
-<div id="97c60401" class="cell" data-execution_count="11">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Objective value:'</span>, model.ObjVal)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Objective value: 70.0</code></pre>
-</div>
-</div>
-<p>Now, what is the optimal solution? We can obtain it by accessing the <code>X</code> <em>attribute</em> from the variables.</p>
-<div id="2d90dc3b" class="cell" data-execution_count="12">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'x1 = '</span>, x1.X)</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'x2 = '</span>, x2.X)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>x1 =  2.0
-x2 =  2.0</code></pre>
-</div>
-</div>
-<p>If the model has many variables, this is a cumbersome approach, and it’s easier to iterate over all variables of the model using the <code>getVars</code> method.</p>
-<div id="8c6b7b3d" class="cell" data-execution_count="13">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> var <span class="kw">in</span> model.getVars():</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span>var<span class="sc">.</span>VarName<span class="sc">}</span><span class="ss"> = </span><span class="sc">{</span>var<span class="sc">.</span>X<span class="sc">}</span><span class="ss">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>If the model has many variables, printing every variable separately can be a cumbersome approach, and it’s easier to iterate over all variables of the model using the <code>getVars</code> method.</p>
+<div id="d7309330" class="cell" data-execution_count="14">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> var <span class="kw">in</span> duplo.getVars():</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span>var<span class="sc">.</span>VarName<span class="sc">}</span><span class="ss"> = </span><span class="sc">{</span>var<span class="sc">.</span>X<span class="sc">}</span><span class="ss">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>chairs = 2.0
 tables = 2.0</code></pre>
@@ -461,10 +533,10 @@ tables = 2.0</code></pre>
 <section id="slack-variables" class="level2" data-number="1.3">
 <h2 data-number="1.3" class="anchored" data-anchor-id="slack-variables"><span class="header-section-number">1.3</span> Slack variables</h2>
 <p>An alternative is to collect the solution in a Python dictionary.</p>
-<div id="ff568017" class="cell" data-execution_count="14">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>solution <span class="op">=</span> {var.VarName: var.X <span class="cf">for</span> var <span class="kw">in</span> model.getVars()}</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>solution</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="14">
+<div id="8481f60e" class="cell" data-execution_count="15">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>solution <span class="op">=</span> {var.VarName: var.X <span class="cf">for</span> var <span class="kw">in</span> model.getVars()}</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>solution</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="15">
 <pre><code>{'chairs': 2.0, 'tables': 2.0}</code></pre>
 </div>
 </div>
@@ -476,16 +548,16 @@ x_1 + 2x_2 + s_1 &amp;= 6 &amp;&amp;\text{ (big bricks)} \\
 \end{array}
 </span></p>
 <p>Below we can check that the slacks of both constraints are zero, from which we can conclude the constraints are binding (active), because the slacks are both zero.</p>
-<div id="6146ae27" class="cell" data-execution_count="15">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>c1.slack, c2.slack</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="15">
+<div id="8917dd62" class="cell" data-execution_count="16">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>c1.slack, c2.slack</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="16">
 <pre><code>(0.0, 0.0)</code></pre>
 </div>
 </div>
 <p>Instead of using our constraint references <code>c1</code> and <code>c2</code>, we can also iterate over all constraints using the <code>getConstrs</code> method:</p>
-<div id="82fd0633" class="cell" data-execution_count="16">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>{cons.ConstrName: cons.slack <span class="cf">for</span> cons <span class="kw">in</span> model.getConstrs()}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="16">
+<div id="3f8db3f4" class="cell" data-execution_count="17">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>{cons.ConstrName: cons.slack <span class="cf">for</span> cons <span class="kw">in</span> model.getConstrs()}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="17">
 <pre><code>{'big-bricks': 0.0, 'small-bricks': 0.0}</code></pre>
 </div>
 </div>
@@ -493,9 +565,9 @@ x_1 + 2x_2 + s_1 &amp;= 6 &amp;&amp;\text{ (big bricks)} \\
 <section id="infeasible-models" class="level2" data-number="1.4">
 <h2 data-number="1.4" class="anchored" data-anchor-id="infeasible-models"><span class="header-section-number">1.4</span> Infeasible models</h2>
 <p>We already knew that the Duplo problem had an optimal solution, but sometimes a model can be infeasible or unbounded as well, as we saw in Lecture 3. The <code>status</code> attribute contains information about the outcome of the solution process.</p>
-<div id="1298cea5" class="cell" data-execution_count="17">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>model.Status</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-display" data-execution_count="17">
+<div id="40447cf8" class="cell" data-execution_count="18">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>model.Status</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="18">
 <pre><code>2</code></pre>
 </div>
 </div>
@@ -516,57 +588,59 @@ x_1 + 2x_2 + s_1 &amp;= 6 &amp;&amp;\text{ (big bricks)} \\
 14: INPROGRESS
 15: USER_OBJ_LIMIT</code></pre>
 <p>In your code, it might be useful to use a line such as:</p>
-<div id="c30e663a" class="cell" data-execution_count="18">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> model.Status <span class="op">==</span> GRB.OPTIMAL:</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'We found an optimal solution.'</span>)</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'An optimal solution could not be found.'</span>)</span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'Status code:'</span>, model.Status)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="cdb5b9ea" class="cell" data-execution_count="19">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> model.Status <span class="op">==</span> GRB.OPTIMAL:</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'We found an optimal solution.'</span>)</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'An optimal solution could not be found.'</span>)</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'Status code:'</span>, model.Status)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>We found an optimal solution.</code></pre>
 </div>
 </div>
 <p>Let’s add a constraint that requires us to produce at least 10 chairs, which is impossible with the current resources.</p>
-<div id="615f47e6" class="cell" data-execution_count="19">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>c3 <span class="op">=</span> model.addConstr(x1 <span class="op">&gt;=</span> <span class="dv">10</span>, name<span class="op">=</span><span class="st">'ten-chairs'</span>)</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>model.optimize()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="4a167434" class="cell" data-execution_count="20">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>c3 <span class="op">=</span> model.addConstr(x1 <span class="op">&gt;=</span> <span class="dv">10</span>, name<span class="op">=</span><span class="st">'ten-chairs'</span>)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>model.optimize()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Gurobi Optimizer version 12.0.1 build v12.0.1rc0 (win64 - Windows 10.0 (19045.2))
+<pre><code>Gurobi Optimizer version 13.0.1 build v13.0.1rc0 (win64 - Windows 11+.0 (26200.2))
 
 CPU model: 12th Gen Intel(R) Core(TM) i7-1265U, instruction set [SSE2|AVX|AVX2]
 Thread count: 10 physical cores, 12 logical processors, using up to 12 threads
 
-Optimize a model with 3 rows, 2 columns and 5 nonzeros
+Optimize a model with 3 rows, 2 columns and 5 nonzeros (Max)
+Model has 2 linear objective coefficients
 Coefficient statistics:
   Matrix range     [1e+00, 2e+00]
   Objective range  [2e+01, 2e+01]
   Bounds range     [0e+00, 0e+00]
   RHS range        [6e+00, 1e+01]
+
 LP warm-start: use basis
 
 Iteration    Objective       Primal Inf.    Dual Inf.      Time
        0    7.0000000e+01   8.000000e+00   0.000000e+00      0s
 
-Solved in 1 iterations and 0.00 seconds (0.00 work units)
+Solved in 1 iterations and 0.01 seconds (0.00 work units)
 Infeasible model</code></pre>
 </div>
 </div>
-<div id="53e15e99" class="cell" data-execution_count="20">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> model.Status <span class="op">==</span> GRB.OPTIMAL:</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'We found an optimal solution.'</span>)</span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'An optimal solution could not be found.'</span>)</span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'Status code:'</span>, model.Status)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="562f6d48" class="cell" data-execution_count="21">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> model.Status <span class="op">==</span> GRB.OPTIMAL:</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'We found an optimal solution.'</span>)</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'An optimal solution could not be found.'</span>)</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'Status code:'</span>, model.Status)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>An optimal solution could not be found.
 Status code: 3</code></pre>
 </div>
 </div>
 <p>If we don’t add a check about the model status, and just implement the solution, then weird things can happen. Below you can see that we can access the <code>X</code> attributes of the variables, but corresponding solution is <em>infeasible</em>.</p>
-<div id="c1a53c67" class="cell" data-execution_count="21">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> var <span class="kw">in</span> model.getVars():</span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span>var<span class="sc">.</span>VarName<span class="sc">}</span><span class="ss"> = </span><span class="sc">{</span>var<span class="sc">.</span>X<span class="sc">}</span><span class="ss">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="39ceb531" class="cell" data-execution_count="22">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> var <span class="kw">in</span> model.getVars():</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span>var<span class="sc">.</span>VarName<span class="sc">}</span><span class="ss"> = </span><span class="sc">{</span>var<span class="sc">.</span>X<span class="sc">}</span><span class="ss">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>chairs = 10.0
 tables = -6.0</code></pre>

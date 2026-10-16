@@ -2,19 +2,19 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://pskleer.github.io/index.html</loc>
-    <lastmod>2025-10-17T19:22:39.635Z</lastmod>
+    <lastmod>2026-10-16T05:38:08.662Z</lastmod>
   </url>
   <url>
     <loc>https://pskleer.github.io/02-good-coding.html</loc>
-    <lastmod>2025-10-20T05:11:09.080Z</lastmod>
+    <lastmod>2026-10-16T05:38:14.267Z</lastmod>
   </url>
   <url>
     <loc>https://pskleer.github.io/03-numpy-arrays.html</loc>
-    <lastmod>2025-10-23T06:01:43.426Z</lastmod>
+    <lastmod>2026-10-16T05:38:19.504Z</lastmod>
   </url>
   <url>
     <loc>https://pskleer.github.io/04-vectorization.html</loc>
-    <lastmod>2025-10-23T06:59:46.124Z</lastmod>
+    <lastmod>2025-10-23T06:59:46.000Z</lastmod>
   </url>
   <url>
     <loc>https://pskleer.github.io/05-linear.html</loc>
@@ -22,7 +22,7 @@
   </url>
   <url>
     <loc>https://pskleer.github.io/06-nonlinear.html</loc>
-    <lastmod>2025-11-09T19:58:26.477Z</lastmod>
+    <lastmod>2025-11-09T19:58:26.000Z</lastmod>
   </url>
   <url>
     <loc>https://pskleer.github.io/07-visualization.html</loc>
@@ -30,15 +30,15 @@
   </url>
   <url>
     <loc>https://pskleer.github.io/08-probability.html</loc>
-    <lastmod>2025-11-16T20:46:33.282Z</lastmod>
+    <lastmod>2025-11-16T20:46:33.000Z</lastmod>
   </url>
   <url>
     <loc>https://pskleer.github.io/09-data-fitting.html</loc>
-    <lastmod>2025-11-20T20:50:10.364Z</lastmod>
+    <lastmod>2025-11-20T20:50:10.000Z</lastmod>
   </url>
   <url>
     <loc>https://pskleer.github.io/10-learning.html</loc>
-    <lastmod>2025-11-24T08:33:19.799Z</lastmod>
+    <lastmod>2025-11-24T08:33:19.000Z</lastmod>
   </url>
   <url>
     <loc>https://pskleer.github.io/11-higher-dimensional.html</loc>
@@ -54,6 +54,6 @@
   </url>
   <url>
     <loc>https://pskleer.github.io/Computational-Aspects-in-Econometrics---Python-II-module.pdf</loc>
-    <lastmod>2025-11-24T08:36:20.647Z</lastmod>
+    <lastmod>2026-10-16T05:47:11.413Z</lastmod>
   </url>
 </urlset>

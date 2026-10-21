@@ -303,7 +303,7 @@ window.Quarto = {
 <p>Perhaps the most important topic of this course is that of <em>efficient computation</em>, i.e., to make efficient use of the mathematical functionality that Python has to offer, in particular the functionality of the <a href="https://numpy.org/">NumPy</a> package.</p>
 <p>The way to think of this is as follows: Many of the mathematical tasks and exercises that we will see could, in theory, be solved using for- and/or while-loops, as well as if/else-statements. However, there are often more efficient functions programmed in the NumPy package in Python that can carry out these tasks in a quicker way using less code!</p>
 <p>Let us look at an example. Suppose you are given the daily percentage returns of an investment, and are asked to compute the total number of days on which the investment made money. One way to solve this directly would be by using a for-loop and an if-statement to count the number of days with a positive return. We will illustrate this next for eight daily returns.</p>
-<div id="9ed18b61" class="cell" data-execution_count="1">
+<div id="8ccfb9a5" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Daily percentage returns</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>returns <span class="op">=</span> [<span class="fl">1.2</span>, <span class="op">-</span><span class="fl">0.5</span>, <span class="fl">0.8</span>, <span class="fl">0.0</span>, <span class="op">-</span><span class="fl">1.1</span>, <span class="fl">2.3</span>, <span class="fl">0.4</span>, <span class="op">-</span><span class="fl">0.7</span>]</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -320,7 +320,7 @@ window.Quarto = {
 </div>
 </div>
 <p>Another way to do this is given below and avoids the use of the for-loop as well as the if-statement.</p>
-<div id="8ebadc6b" class="cell" data-execution_count="2">
+<div id="1276f64a" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Import Numpy package under the alias np</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -338,7 +338,7 @@ window.Quarto = {
 </div>
 <p>This is a much cleaner way to compute the total number of days with a positive return, but harder to understand than the for-loop approach. However, especially for large numbers of observations, the second piece of code that exploits the NumPy functionality will be much faster! We will learn how the second piece of code works in this course.</p>
 <p>The Python code below (which we will not discuss) illustrates this comparison by timing how long both approaches require to count the positive returns for <span class="math inline">n = 30,000,000</span> (i.e., thirty million) simulated returns. Both approaches use the same data, generated before timing begins. If you run the code in the dropdown menu below on your own device, you might get different outputs, but, in general, there should be a significant (multiplicative) difference in execution time.</p>
-<div id="4c9ceed1" class="cell" data-execution_count="3">
+<div id="e03f40bd" class="cell" data-execution_count="3">
 <details class="code-fold">
 <summary>Code that times execution of the two approaches above</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -388,9 +388,9 @@ window.Quarto = {
 <span id="cb5-45"><a href="#cb5-45" aria-hidden="true" tabindex="-1"></a>          <span class="op">%</span> (loop_time <span class="op">/</span> numpy_time))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>8.5048639774 seconds needed for counting positive returns with for-loop
-0.0681777000 seconds needed for counting positive returns with NumPy functions
-NumPy is 124.7 times faster than the for-loop approach.</code></pre>
+<pre><code>11.9913594723 seconds needed for counting positive returns with for-loop
+0.0950160027 seconds needed for counting positive returns with NumPy functions
+NumPy is 126.2 times faster than the for-loop approach.</code></pre>
 </div>
 </div>
 <p>One important take-away of the above comparison is the following:</p>
@@ -409,7 +409,7 @@ $$
 $$
 of this vector. One way to solve this directly would be by using a for-loop to compute the sum inside the square root, and then take the square root of this number. We will illustrate this next for the vector $x = [1,2,3,\dots,300.000]$.
 
-::: {#fcb9e1b0 .cell execution_count=4}
+::: {#59937a5f .cell execution_count=4}
 ``` {.python .cell-code}
 # Length of vector
 n = 300000
@@ -438,7 +438,7 @@ Another way to do this is to define the vector $x$ efficiently making use of the
 
 It is standard convention to import the NumPy package under the alias `np`.
 
-::: {#44d083f9 .cell execution_count=5}
+::: {#5c344d7d .cell execution_count=5}
 ``` {.python .cell-code}
 #Import NumPy package under the alias np
 import numpy as np
@@ -468,7 +468,7 @@ This is a much cleaner and faster way to compute the $L^2$-norm of the vector $x
 
 The Python code below (which we will not discuss) illustrates this comparison by timing how long both approaches require to compute the norm for $n = 30.000.000$ (i.e., thirty million). If you run the code in the dropdown menu below on your own device, you might get different outputs, but, in general, there should be a significant (multiplicative) difference in execution time.
 
-::: {#79c38987 .cell execution_count=6}
+::: {#5702cbbe .cell execution_count=6}
 ``` {.python .cell-code code-fold="true" code-summary="Code that times execution of the two approaches above"}
 import numpy as np
 import time
@@ -526,9 +526,9 @@ if numpy_time != 0:
 
 ::: {.cell-output .cell-output-stdout}
 ```
-8.1777918339 seconds needed for computing norm with for-loop
-0.2294514179 seconds needed for computing norm with Numpy functions
-NumPy's is 35 times more efficient than for-loop approach.
+11.7683227062 seconds needed for computing norm with for-loop
+0.3599081039 seconds needed for computing norm with Numpy functions
+NumPy's is 32 times more efficient than for-loop approach.
 ```
 :::
 :::
@@ -575,7 +575,7 @@ Test
 <section id="no-hard-coding" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="no-hard-coding"><span class="header-section-number">2.2</span> No hard coding</h2>
 <p>Suppose we are given the function <span class="math inline">f(x) = a \cdot x^2+ a\cdot b \cdot x - a \cdot b \cdot c</span> and the goal is to compute <span class="math inline">f(10)</span> for <span class="math inline">a = 3, b = 4</span> and <span class="math inline">c = -2</span>. One way of doing this would be to plug in all the variables and return the resulting function value.</p>
-<div id="ab07a655" class="cell" data-execution_count="7">
+<div id="83ef1975" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Hard coding</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">3</span><span class="op">*</span>(<span class="dv">10</span><span class="op">**</span><span class="dv">2</span>) <span class="op">+</span> <span class="dv">3</span><span class="op">*</span><span class="dv">4</span><span class="op">*</span><span class="dv">10</span> <span class="op">+</span> <span class="dv">4</span><span class="op">*</span><span class="dv">3</span><span class="op">*</span>(<span class="op">-</span><span class="dv">2</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -583,7 +583,7 @@ Test
 </div>
 </div>
 <p>However, this is inefficient for the following reason: If we wanted to change the number <span class="math inline">x = 10</span> to, e.g., <span class="math inline">x = 20</span>, we would have to replace <span class="math inline">10</span> by <span class="math inline">20</span> twice. The same is true for the variable <span class="math inline">a</span>, which appears in three places. In general, in large scripts, variables can appear in more than a hundred places. To overcome this inefficiency issue, it is better to separate the input data (the <span class="math inline">x,a,b</span> and <span class="math inline">c</span> in this case) from the function execution.</p>
-<div id="500eeb62" class="cell" data-execution_count="8">
+<div id="1e0e6c1d" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># No hard coding</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x, a, b, c):</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> a<span class="op">*</span>x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> a<span class="op">*</span>b<span class="op">*</span>x <span class="op">+</span> b<span class="op">*</span>c<span class="op">*</span>a</span>
@@ -603,7 +603,7 @@ Test
 <section id="dont-repeat-yourself-dry" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="dont-repeat-yourself-dry"><span class="header-section-number">2.3</span> Don’t repeat yourself (DRY)</h2>
 <p>If you have to carry out a piece of code for multiple sets of input data, always avoid copy-pasting the code. For example, suppose that for the upcoming week (Monday through Sunday), we have temperature predictions <code>temperatures = [17, 20, 25, 21, 16, 19, 14]</code>, and we want to print the prediction per day in a nice message. We could do this by writing the message for Monday and then copying and pasting the code and replacing the day and temperature by that of the next day.</p>
-<div id="f08d62b4" class="cell" data-execution_count="9">
+<div id="d170646b" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The predicted temperature for Monday is 17 degrees Celsius."</span>)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The predicted temperature for Tuesday is 20 degrees Celsius."</span>)</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The predicted temperature for Wednesday is 25 degrees Celsius."</span>)</span>
@@ -622,7 +622,7 @@ The predicted temperature for Sunday is 14 degrees Celsius.</code></pre>
 </div>
 </div>
 <p>This is quite tedious and very inefficient, for example, if you want to print longer forecasts. Instead we can use a for-loop that only requires two lines of code, and generalizes to longer forecasts.</p>
-<div id="f451056c" class="cell" data-execution_count="10">
+<div id="4581baf6" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>temperatures <span class="op">=</span> [<span class="dv">17</span>, <span class="dv">20</span>, <span class="dv">25</span>, <span class="dv">21</span>, <span class="dv">16</span>, <span class="dv">19</span>, <span class="dv">14</span>]</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>weekdays <span class="op">=</span> [<span class="st">"Monday"</span>, <span class="st">"Tuesday"</span>, <span class="st">"Wednesday"</span>, <span class="st">"Thursday"</span>, </span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>                                <span class="st">"Friday"</span>, <span class="st">"Saturday"</span>, <span class="st">"Sunday"</span>]</span>
@@ -658,7 +658,7 @@ x_{i+1} = x_i - \frac{f(x_i)}{f'(x_i)}
   background-color: #ffffff;
 }
 </style>
-<div id="d58264a4" class="cell" data-execution_count="11">
+<div id="eeeeff99" class="cell" data-execution_count="11">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -668,7 +668,7 @@ x_{i+1} = x_i - \frac{f(x_i)}{f'(x_i)}
 </div>
 </div>
 <p>The goal is to implement this formula for the function <span class="math inline">f(x) = (x-1)^2 - 1</span>, whose derivative is <span class="math inline">f'(x) = 2(x-1)</span>. The roots of this function are <span class="math inline">x = 0</span> and <span class="math inline">x = 2</span>.</p>
-<div id="0a4928cf" class="cell" data-execution_count="12">
+<div id="f8545aa7" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># We implement the function y = x - f(x)/f'(x)</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> y(x):</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x <span class="op">-</span> ((x<span class="op">-</span><span class="dv">1</span>)<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> <span class="dv">1</span>)<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>(x<span class="op">-</span><span class="dv">1</span>))</span>
@@ -682,7 +682,7 @@ x_{i+1} = x_i - \frac{f(x_i)}{f'(x_i)}
 </div>
 </div>
 <p>A clearer way to implement the formula <span class="math inline">x_{i+1} = x_i - f(x_i)/f'(x_i)</span> is to define separate functions for the evaluation of the functions <span class="math inline">f</span> and <span class="math inline">f'</span>, and then combine these to create the recursive formula. In this way, we get three functions that are each responsible for one aspect of Newton’s formula, namely implementing the function <span class="math inline">f</span>, implementing the function <span class="math inline">f'</span> and computing the recursive formula. This also makes it easier for a user of the code to understand what is happening.</p>
-<div id="df36fc52" class="cell" data-execution_count="13">
+<div id="13670b31" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Single responsibility version</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Define f</span></span>
@@ -713,7 +713,7 @@ x_{i+1} = x_i - \frac{f(x_i)}{f'(x_i)}
 <section id="documentation" class="level2" data-number="2.5">
 <h2 data-number="2.5" class="anchored" data-anchor-id="documentation"><span class="header-section-number">2.5</span> Documentation</h2>
 <p>The final good coding practice that we discuss is documentation. Ideally, you should always explain inside a function what the inputs and outputs are, and for larger scripts it is good to indicate what every part of the script does. For smaller functions and scripts this is not always necessary. We will next give an example for Newton’s method as in the previous section.</p>
-<div id="5afa5e63" class="cell" data-execution_count="14">
+<div id="f642e477" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">## Function that implements Newton's method</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> newton(f,fprime,x0,iters):</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
@@ -743,7 +743,7 @@ x_{i+1} = x_i - \frac{f(x_i)}{f'(x_i)}
 <span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Next we run the function <code>newton()</code> on some inputs.</p>
-<div id="20df3812" class="cell" data-execution_count="15">
+<div id="0e436173" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co">## An example of Newton's method as implemented above</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Define f</span></span>

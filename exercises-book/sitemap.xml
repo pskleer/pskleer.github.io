@@ -2,14 +2,18 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://pskleer.github.io/index.html</loc>
-    <lastmod>2026-10-15T20:24:06.556Z</lastmod>
+    <lastmod>2026-10-16T05:35:18.005Z</lastmod>
   </url>
   <url>
     <loc>https://pskleer.github.io/exercises-lec1.html</loc>
-    <lastmod>2026-10-15T20:20:03.321Z</lastmod>
+    <lastmod>2026-10-21T08:28:10.439Z</lastmod>
+  </url>
+  <url>
+    <loc>https://pskleer.github.io/exercises-lec2.html</loc>
+    <lastmod>2026-10-21T08:29:30.221Z</lastmod>
   </url>
   <url>
     <loc>https://pskleer.github.io/Python-II-module---Exercises.pdf</loc>
-    <lastmod>2026-10-15T20:25:59.152Z</lastmod>
+    <lastmod>2026-10-21T08:29:53.226Z</lastmod>
   </url>
 </urlset>

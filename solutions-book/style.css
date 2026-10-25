@@ -1,0 +1,28 @@
+
+.cell-output {
+   background-color: #f1f1f1;
+   border-radius: 4px;
+ }
+
+
+ @font-face {
+  font-family: "Fira Sans";
+  src: url("fonts/FiraSans-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Fira Mono";
+  src: url("fonts/FiraMono-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+body {
+  font-family: "Fira Sans", sans-serif;
+}
+
+code, pre {
+  font-family: "Fira Mono", monospace;
+}

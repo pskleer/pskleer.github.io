@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Lecture 3: Section 5.1 – Python II module - Exercises</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<link href="./exercises-lec2.html" rel="prev">
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-acf12a64177840b8d86f2d4f01b2e9fb.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-843f08c53b99c524b45113508bb491a8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./exercises-lec3.html">Lecture 3: Section 5.1</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Python II module - Exercises</a> 
+        <div class="sidebar-tools-main">
+    <a href="./Python-II-module---Exercises.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+</div>
+    </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./exercises-lec1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 1: Sections 3.1-3.5</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./exercises-lec2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 2: Sections 3.6-3.7 and 4.1-4.3</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./exercises-lec3.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Lecture 3: Section 5.1</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Lecture 3: Section 5.1</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Make sure to import NumPy to be able to do all the exercises.</p>
+<div id="a58bf984" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>np.set_printoptions(precision<span class="op">=</span><span class="dv">3</span>, floatmode<span class="op">=</span><span class="st">"fixed"</span>, suppress<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="question-1" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="question-1">Question 1</h4>
+<p>Suppose that <span class="math inline">A \in \mathbb{R}^{m \times n}</span> is matrix and <span class="math inline">b \in \mathbb{R}^{m}</span> a vector. If <span class="math inline">m \geq n</span> and the columns of <span class="math inline">A</span> are linearly independent, i.e., if the column rank of <span class="math inline">A</span> is <span class="math inline">n</span>, then the unique least squares solution to <span class="math display">
+\min_x ||Ax - b||_2.
+</span> is given by <span class="math inline">x^* = (A^TA)^{-1}A^Tb</span>. (The combination of <span class="math inline">m \geq n</span> and <span class="math inline">A</span> having linearly independent columns guarantees that <span class="math inline">(A^TA)^{-1}</span> exists.)</p>
+<p>Write a function that takes as input a matrix <span class="math inline">A</span> and vector <span class="math inline">b</span>. It should return the least squares solution <span class="math inline">x^*</span> if <span class="math inline">A</span> has full rank, and a message saying that <span class="math inline">A</span> does not have full column rank if not. You may use an if/else-statement for this case distinction.</p>
+<p>It should give the following output on the inputs below.</p>
+<div id="550b14c0" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a> [<span class="fl">0.61776137</span>, <span class="fl">0.9880466</span>,  <span class="fl">0.93526716</span>],</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a> [<span class="fl">0.25839379</span>, <span class="fl">0.66983101</span>, <span class="fl">0.55140378</span>],</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a> [<span class="fl">0.42598981</span>, <span class="fl">0.47034738</span>, <span class="fl">0.67713771</span>],</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a> [<span class="fl">0.05808045</span>, <span class="fl">0.60282648</span>, <span class="fl">0.968094</span>  ],</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a> [<span class="fl">0.6152295</span>,  <span class="fl">0.18224588</span>, <span class="fl">0.23185116</span>]])</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> np.array([</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a> [<span class="fl">0.68873052</span>],</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a> [<span class="fl">0.01618962</span>],</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a> [<span class="fl">0.67498566</span>],</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a> [<span class="fl">0.73718501</span>],</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a> [<span class="fl">0.0448842</span> ]])</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(least_squares(A,b))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[ 0.052]
+ [-0.769]
+ [ 1.329]]</code></pre>
+</div>
+</div>
+<div id="ee670770" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a> [<span class="fl">0.61776137</span>, <span class="fl">0.9880466</span>,  <span class="fl">0.9880466</span>],</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a> [<span class="fl">0.25839379</span>, <span class="fl">0.66983101</span>, <span class="fl">0.66983101</span>],</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a> [<span class="fl">0.42598981</span>, <span class="fl">0.47034738</span>, <span class="fl">0.47034738</span>],</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a> [<span class="fl">0.05808045</span>, <span class="fl">0.60282648</span>, <span class="fl">0.60282648</span>],</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a> [<span class="fl">0.6152295</span>,  <span class="fl">0.60282648</span>, <span class="fl">0.60282648</span>]])</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> np.array([<span class="fl">0.68873052</span>,<span class="fl">0.01618962</span>, <span class="fl">0.67498566</span>, <span class="fl">0.73718501</span>, <span class="fl">0.0448842</span>])</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Columns are not linearly independent</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(least_squares(A,b))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Matrix A does not have full column rank</code></pre>
+</div>
+</div>
+<!--
+
+::: {#36cac404 .cell execution_count=5}
+``` {.python .cell-code}
+def least_squares(A,b):
+    m, n = np.shape(A)
+    rank_A = np.linalg.matrix_rank(A)
+    
+    if rank_A == n:
+        return (np.linalg.inv(A.T @ A) @ A.T) @ b
+    else:
+        return "Matrix A does not have full column rank"
+```
+:::
+
+
+-->
+</section>
+<section id="question-2" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="question-2">Question 2</h4>
+<p>In this exercise we are going to implement <a href="https://en.wikipedia.org/wiki/Cramer%27s_rule">Cramer’s rule</a> for solving the system <span class="math inline">Ax = b</span> when <span class="math inline">A \in \mathbb{R}^{n \times n}</span> is an invertible matrix. Cramer’s rule determines the solution <span class="math inline">x = [x_0,\dots,x_{n-1}]</span> by <span class="math display">
+x_i = \frac{\text{det}(A_i)}{\text{det}(A)} \ \ \ \text{ for } i = 0,\dots,n-1,
+</span> where <span class="math inline">A_i</span> is the matrix <span class="math inline">A</span> in which column <span class="math inline">i</span> is replaced by <span class="math inline">b</span>.</p>
+<p>Write a function <code>cramer(A,b)</code> that computes the solution <span class="math inline">x</span> according to Cramer’s rule (you may use one for-loop in your implementation).</p>
+<p>Your function should give the following output on the given input.</p>
+<div id="bd17e34f" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a> [<span class="fl">0.61776137</span>, <span class="fl">0.9880466</span>,  <span class="fl">0.93526716</span>],</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a> [<span class="fl">0.25839379</span>, <span class="fl">0.66983101</span>, <span class="fl">0.55140378</span>],</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a> [<span class="fl">0.42598981</span>, <span class="fl">0.47034738</span>, <span class="fl">0.67713771</span>]</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a> ])</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> np.array([<span class="fl">0.68873052</span>, <span class="fl">0.01618962</span>, <span class="fl">0.67498566</span>])</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Solution with Cramer's rule</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(cramer(A,b))</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Solution with np.linalg.solve() for comparison</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.linalg.solve(A,b))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[ 2.884 -0.970 -0.144]
+[ 2.884 -0.970 -0.144]</code></pre>
+</div>
+</div>
+<!--
+
+::: {#7ea0ab26 .cell execution_count=8}
+``` {.python .cell-code}
+def cramer(A, b):
+    m, n = np.shape(A)
+    
+    x = np.zeros(m) 
+    # Compute determinant after replacing i-th column by `b`.
+    for i in range(m):
+        A_mod = A.copy()
+        A_mod[:, i] = b
+        x[i] = np.linalg.det(A_mod) 
+    return x / np.linalg.det(A) 
+```
+:::
+
+
+-->
+</section>
+<section id="question-3" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="question-3">Question 3</h4>
+<p>Assume we are given a matrix <span class="math inline">A \in \mathbb{R}^{m \times n}</span> with the property that every subset of <span class="math inline">m</span> columns of <span class="math inline">A</span> is linearly independent. This is, e.g., typically the case if the entries in <span class="math inline">A</span> were randomly generated (we will see this later in the course).</p>
+<p>One way to obtain a solution to an underdetermined system (<span class="math inline">n &gt; m</span>) <span class="math inline">Ax = b</span> is to pick a set of indices <span class="math inline">R \subseteq \{0,\dots,n-1\}</span> of size <span class="math inline">|R| = m</span>. Set <span class="math inline">x_i = 0</span> for all <span class="math inline">i \notin R</span> (there are <span class="math inline">n - m</span> such variables), and determine the values in <span class="math inline">x_R = (x_i)_{i \in R}</span> by solving the system <span class="math inline">Bx_R = b</span>, where <span class="math inline">B</span> is the matrix containing the columns of <span class="math inline">A</span> corresponding to the indices in <span class="math inline">R</span>.</p>
+<p>Write a function <code>underdetermined(A,b,R)</code> that takes as input arrays <span class="math inline">A,b</span> and a set <span class="math inline">R</span> (using a list) as above, and returns a solution <span class="math inline">x \in \mathbb{R}^n</span> to <span class="math inline">Ax = b</span> satisfying the above description.</p>
+<p>Your function should give the following output on the given input.</p>
+<div id="c8772cdc" class="cell" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a> [<span class="fl">0.83</span>, <span class="fl">0.43</span>, <span class="fl">0.16</span>, <span class="fl">0.01</span>, <span class="fl">0.86</span>, <span class="fl">0.87</span>, <span class="fl">0.36</span>, <span class="fl">0.68</span>],</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a> [<span class="fl">0.29</span>, <span class="fl">0.81</span>, <span class="fl">0.78</span>, <span class="fl">0.97</span>, <span class="fl">0.2</span>,  <span class="fl">0.28</span>, <span class="fl">0.44</span>, <span class="fl">0.07</span>],</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a> [<span class="fl">0.18</span>, <span class="fl">0.81</span>, <span class="fl">0.91</span>, <span class="fl">0.88</span>, <span class="fl">0.54</span>, <span class="fl">0.89</span>, <span class="fl">0.53</span>, <span class="fl">0.88</span>]])</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> np.array([<span class="fl">0.68873052</span>, <span class="fl">0.01618962</span>, <span class="fl">0.67498566</span>])</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>R <span class="op">=</span> [<span class="dv">0</span>,<span class="dv">4</span>,<span class="dv">7</span>]</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Determine solution</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> underdetermined(A,b,R)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Verify correctness</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(A <span class="op">@</span> x <span class="op">-</span> b) <span class="co"># All numbers almost zero (e-16 is numerical inaccuracies)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[-3.163  0.000  0.000  0.000  5.314  0.000  0.000 -1.847]
+[0.000 0.000 0.000]</code></pre>
+</div>
+</div>
+<!--
+
+::: {#19ba2ba0 .cell execution_count=11}
+``` {.python .cell-code}
+def underdetermined(A,b,R):
+    m, n = np.shape(A)
+    
+    x = np.zeros(n)
+    x[R] = np.linalg.solve(A[:,R],b)
+    return x
+```
+:::
+
+
+-->
+</section>
+<section id="question-4" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="question-4">Question 4</h4>
+<p>In this exercise, we will look into the basics of principal component analysis (PCA); we emphasize that this is not a complete explanation, but we hope it helps.</p>
+<p>We are given an <span class="math inline">m \times n</span> matrix <span class="math inline">A</span> containing <span class="math inline">n \geq 2</span> data points that each have <span class="math inline">m</span> features. That is, every column of <span class="math inline">A</span> corresponds to a data point.</p>
+<p>We will be working with the dataset below, in which we have <span class="math inline">n = 30</span> data points, each with <span class="math inline">m = 3</span> features: weight, height and IQ. In practice, datasets are typically much larger, but we keep the set small here to be able to visualize it.</p>
+<div id="97883707" class="cell" data-execution_count="12">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Rows: weight (kg), height (cm), IQ; columns: 30 data points</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">10.0</span>, <span class="fl">12.8</span>, <span class="fl">15.5</span>, <span class="fl">18.3</span>, <span class="fl">21.0</span>, <span class="fl">23.8</span>, <span class="fl">26.6</span>, <span class="fl">29.3</span>, <span class="fl">32.1</span>, <span class="fl">34.8</span>,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>     <span class="fl">37.6</span>, <span class="fl">40.3</span>, <span class="fl">43.1</span>, <span class="fl">45.9</span>, <span class="fl">48.6</span>, <span class="fl">51.4</span>, <span class="fl">54.1</span>, <span class="fl">56.9</span>, <span class="fl">59.7</span>, <span class="fl">62.4</span>,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>     <span class="fl">65.2</span>, <span class="fl">67.9</span>, <span class="fl">70.7</span>, <span class="fl">73.4</span>, <span class="fl">76.2</span>, <span class="fl">79.0</span>, <span class="fl">81.7</span>, <span class="fl">84.5</span>, <span class="fl">87.2</span>, <span class="fl">90.0</span>],</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">50.0</span>, <span class="fl">55.2</span>, <span class="fl">59.1</span>, <span class="fl">65.0</span>, <span class="fl">68.8</span>, <span class="fl">74.6</span>, <span class="fl">78.5</span>, <span class="fl">84.3</span>, <span class="fl">88.0</span>, <span class="fl">94.0</span>,</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>     <span class="fl">97.8</span>, <span class="fl">103.6</span>, <span class="fl">107.5</span>, <span class="fl">113.2</span>, <span class="fl">117.0</span>, <span class="fl">123.0</span>, <span class="fl">126.8</span>, <span class="fl">132.5</span>, <span class="fl">136.4</span>, <span class="fl">142.2</span>,</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>     <span class="fl">146.0</span>, <span class="fl">151.9</span>, <span class="fl">155.7</span>, <span class="fl">161.5</span>, <span class="fl">165.4</span>, <span class="fl">171.2</span>, <span class="fl">175.0</span>, <span class="fl">180.9</span>, <span class="fl">185.1</span>, <span class="fl">190.0</span>],</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">110.0</span>, <span class="fl">109.0</span>, <span class="fl">112.0</span>, <span class="fl">110.0</span>, <span class="fl">113.0</span>, <span class="fl">108.0</span>, <span class="fl">111.0</span>, <span class="fl">110.0</span>, <span class="fl">106.0</span>, <span class="fl">112.0</span>,</span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>     <span class="fl">109.0</span>, <span class="fl">114.0</span>, <span class="fl">110.0</span>, <span class="fl">108.0</span>, <span class="fl">111.0</span>, <span class="fl">109.0</span>, <span class="fl">113.0</span>, <span class="fl">110.0</span>, <span class="fl">107.0</span>, <span class="fl">112.0</span>,</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>     <span class="fl">110.0</span>, <span class="fl">108.0</span>, <span class="fl">111.0</span>, <span class="fl">114.0</span>, <span class="fl">109.0</span>, <span class="fl">110.0</span>, <span class="fl">112.0</span>, <span class="fl">107.0</span>, <span class="fl">111.0</span>, <span class="fl">110.0</span>]</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Although every data point is three-dimensional, it turns out these points, roughly speaking, can be “summarized” in a lower dimension. Indeed, the line in the figure below describes the data quite well and is one-dimensional.</p>
+<style>
+.cell-output-display {
+  background-color: #ffffff;
+}
+</style>
+<div id="e8ed9fb8" class="cell" data-execution_count="13">
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="exercises-lec3_files/figure-html/cell-14-output-1.png" width="678" height="662" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The rough idea is to establish a description of the so-called principal component line, which mathematically speaking is a one-dimensional affine subspace <span class="math display">
+\begin{bmatrix} \bar{\mu}_1 \\ \bar{\mu}_2 \\ \bar{\mu}_3 \end{bmatrix} + \text{span}\{v_0\}
+</span> where the <span class="math inline">\bar{\mu}_i</span>’s will be the row averages of <span class="math inline">A</span> and <span class="math inline">v_0 \in \mathbb{R}^3</span> is a vector we determine later. Every data point column <span class="math inline">A_i</span> of <span class="math inline">A</span> can be approximated on this line by <span class="math display">
+\hat{A}_i =  \begin{bmatrix} \bar{\mu}_0 \\ \bar{\mu}_1 \\ \bar{\mu}_2 \end{bmatrix}  + v_0 \cdot Z_i
+</span> for some <span class="math inline">Z_i \in \mathbb{R}</span>. This <span class="math inline">Z_i</span> is the one-dimensional representation of <span class="math inline">\hat{A}_i</span>, which in turn is close to <span class="math inline">A_i</span>.</p>
+<p>More generally, it turns out that there are many datasets for which the <span class="math inline">m</span> features can be summarized in a <span class="math inline">k</span>-dimensional subspace <span class="math inline">\text{span}\{v_0,\dots,v_{k-1}\} \subset \mathbb{R}^m</span> with <span class="math inline">k \ll m</span>. Every data point is approximated by an affine linear combination of <span class="math inline">k</span> lines, i.e., <span class="math display">
+\hat{A}_i  = \begin{bmatrix} \bar{\mu}_{0} \\ \vdots\\ \bar{\mu}_{m-1} \end{bmatrix} + V_k Z_i = \begin{bmatrix} \bar{\mu}_{0} \\ \vdots\\ \bar{\mu}_{m-1} \end{bmatrix} + \sum_{j=0}^{k-1} z_{ij} v_j
+</span> with <span class="math inline">V_k = [v_0 \ \dots \ v_{k-1}]</span> having the <span class="math inline">v_i</span>’s as columns, and <span class="math inline">Z_i = [z_{i0} \dots z_{i(k-1)}]^T \in \mathbb{R}^k</span> the <span class="math inline">k</span>-dimensional column vector representation of <span class="math inline">\hat{A}_i</span>.</p>
+<p>This type of dimensionality reduction in data is often useful for advanced machine learning algorithms so that they can run more efficiently by using the lower-dimensional <span class="math inline">Z_i</span> points instead of the original higher-dimensional <span class="math inline">A_i</span> data points.</p>
+<p>In the procedure that follows, we will show how this lower-dimensional subspace can be constructed, using eigenvalues and eigenvectors. For a given feature, the sample mean <span class="math inline">\bar{\mu}_i</span> of row <span class="math inline">i</span> in <span class="math inline">A</span> is defined as the average of all the values in that row. By subtracting from all elements in a row the row mean, we obtain the matrix <span class="math display">
+B = A - \bar{\mu} \mathbf{1}^T,
+</span> where <span class="math inline">\mathbf{1}^T \in \mathbb{R}^n</span> is an all-ones row vector (so that <span class="math inline">\bar{\mu} \mathbf{1}^T</span> is indeed a matrix). Next, the (symmetric) <span class="math inline">m \times m</span> covariance matrix <span class="math inline">S</span> is defined by <span class="math display">
+S = \frac{1}{n-1} BB^T
+</span></p>
+<ol type="a">
+<li>Write a function <code>covariance()</code> that takes as input the matrix <span class="math inline">A</span> and outputs the matrix <span class="math inline">S</span>.</li>
+</ol>
+<p>Testing your function on the data points in the array <span class="math inline">A</span> given above should yield the following results.</p>
+<div id="b767e912" class="cell" data-execution_count="15">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Covariance matrix</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>S <span class="op">=</span> covariance(A)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'S = </span><span class="ch">\n</span><span class="st">'</span>,S, <span class="st">'</span><span class="ch">\n</span><span class="st">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>S = 
+ [[ 589.528 1032.059   -0.421]
+ [1032.059 1807.019   -0.712]
+ [  -0.421   -0.712    4.097]] 
+</code></pre>
+</div>
+</div>
+<!--
+
+::: {#751602a8 .cell execution_count=16}
+``` {.python .cell-code}
+# Covariance matrix function
+def covariance(A):
+    m, n = np.shape(A)
+    
+    # Compute matrix S
+    B = A - np.mean(A, axis=1)[:,None]
+    S = 1/(n-1)*(B @ B.T)
+    return S
+```
+:::
+
+
+-->
+<p>The covariance matrix contains for <span class="math inline">i = 0,\dots,m-1</span> on its main diagonal the sample variances <span class="math display">
+S_{ii} = \frac{1}{n-1} \sum_{j=0}^{n-1} (A_{ij} - \bar{\mu}_i)^2
+</span> and on its off-diagonal elements the covariance of features <span class="math inline">i</span> and <span class="math inline">j</span> at position <span class="math inline">(i,j)</span>. The trace of <span class="math inline">S</span>, the total variance in the data, is equal to the sum of the eigenvalues of the matrix <span class="math inline">S</span>, because of the spectral decomposition (recall from your Linear Algebra course) <span class="math display">
+S = \sum_{i=0}^{m-1} \lambda_i v_iv_i^T
+</span> where <span class="math inline">\lambda_i</span> are the eigenvalues of <span class="math inline">S</span> and <span class="math inline">v_i</span> the eigenvector corresponding to <span class="math inline">\lambda_i</span> for <span class="math inline">i = 0,\dots,m-1</span>, with the <span class="math inline">v_i</span> forming an orthonormal basis.</p>
+<ol start="2" type="a">
+<li>Write a function <code>ordered_components()</code> that takes as input a symmetric matrix <span class="math inline">S</span> and outputs a vector containing the eigenvalues in descending order (largest to smallest), and a matrix containing the corresponding eigenvectors ordered according to the order of the eigenvalues.<br>
+<br>
+As an example, if we have three eigenvalues <span class="math inline">\{\lambda_0, \lambda_1, \lambda_2\}</span> with <span class="math inline">\lambda_2 \geq \lambda_0 \geq \lambda_1</span>, then the output should be <span class="math inline">[\lambda_2, \lambda_0, \lambda_1]</span> and the matrix should be <span class="math inline">[v_2 \ v_0 \ v_1]</span> where the <span class="math inline">v_i</span> are the eigenvectors corresponding to eigenvalues <span class="math inline">\lambda_i</span>.<br>
+<em>Hint: The function <code>np.argsort()</code> from Chapter 4 might be useful here.</em></li>
+</ol>
+<p>Testing your function on the computed <span class="math inline">S</span> in part a) should give the following results.</p>
+<div id="dbce6f08" class="cell" data-execution_count="18">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ordered eigenvalues and eigenvectors </span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>S_values, S_vectors <span class="op">=</span> ordered_components(S)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Eigenvalues are </span><span class="ch">\n</span><span class="st">'</span>, S_values, <span class="st">'</span><span class="ch">\n</span><span class="st">'</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Eigenvectors are </span><span class="ch">\n</span><span class="st">'</span>, S_vectors, <span class="st">'</span><span class="ch">\n</span><span class="st">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Eigenvalues are 
+ [2396.487    4.096    0.059] 
+
+Eigenvectors are 
+ [[ 0.496 -0.002  0.868]
+ [ 0.868  0.002 -0.496]
+ [-0.000  1.000  0.003]] 
+</code></pre>
+</div>
+</div>
+<!--
+
+::: {#a6386c3a .cell execution_count=19}
+``` {.python .cell-code}
+def ordered_components(S):
+    # Compute eigenvalues and eigenvectors
+    eig_values, eig_vectors = np.linalg.eig(S)
+
+    # Compute positions in ascending order of eigenvalues
+    order = np.argsort(eig_values) 
+    # np.argsort() gives positions in the ordered array from smallest to largest. 
+    # NumPy version 2.5 (2026) can also give positions in the ordered array from largest to smallest,
+    # which would avoid the reversing using [::-1] below,
+    # but this version might not yet be in your Python installation, nor is it installed on the university computers.
+
+    # Re-order eigenvalues from smallest to largest
+    values_small_to_large = eig_values[order]
+
+    # Flip to largest to smallest
+    values_large_to_small = values_small_to_large[::-1]
+
+    # Re-order eigenvectors
+    vectors_small_to_large = eig_vectors[:,order]
+    vectors_large_to_small = vectors_small_to_large[::-1]
+
+    return  values_large_to_small, vectors_large_to_small   
+```
+:::
+
+
+-->
+<p>The covariance matrix is a sum of rank-one matrices <span class="math inline">\lambda_i v_iv_i^T</span>. Each eigenvector gives a principal direction, and its eigenvalue gives the variance along that direction. We will next try to understand which eigenvectors contributes most to the data, by looking at the impact of their eigenvalues.</p>
+<ol start="3" type="a">
+<li>Write a function <code>contributions()</code> that takes a one-dimensional array <span class="math inline">x = [x_0,\dots,x_{n-1}]</span> as input and outputs the numbers <span class="math display">
+y_i = \frac{\displaystyle \sum_{j=0}^{i} x_j}{\displaystyle \sum_{j=0}^{n-1} x_j}
+</span> for <span class="math inline">i = 0,\dots,n-1</span>, i.e., <span class="math inline">y_i</span> is the fraction that the last <span class="math inline">i+1</span> numbers contribute to the sum of all numbers in <span class="math inline">x</span>.</li>
+</ol>
+<p>Applying the function to the output of part b) should give the following.</p>
+<div id="9770366d" class="cell" data-execution_count="21">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Contributions of the k largest eigenvalues</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>k_largest <span class="op">=</span> contributions(S_values)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Contribution of the k largest eigenvalues </span><span class="ch">\n</span><span class="st">'</span>, k_largest)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Contribution of the k largest eigenvalues 
+ [0.998 1.000 1.000]</code></pre>
+</div>
+</div>
+<!--
+
+::: {#e09f9588 .cell execution_count=22}
+``` {.python .cell-code}
+def contributions(x):
+    y = np.cumsum(x)/np.sum(x)
+    return y
+```
+:::
+
+
+-->
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Further explanation
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>From the outputs above, we can see that the largest eigenvalue <span class="math inline">\lambda_0</span> is much larger than the others, and accounts for almost all of the total variance (sum of the eigenvalues), i.e., <span class="math inline">\lambda_0/(\lambda_0 + \lambda_1 + \lambda_2) \approx 1</span>.</p>
+<p>This means that <span class="math display">
+S=\lambda_0v_0v_0^T+\lambda_1v_1v_1^T+\lambda_2v_2v_2^T
+\approx\lambda_0v_0v_0^T,
+</span> and the data points <span class="math inline">A_i</span> in <span class="math inline">A</span> are approximately contained in the one-dimensional (affine) subspace <span class="math inline">\bar{\mu} + \text{span}\{v_{0}\} \subset \mathbb{R}^3</span> with <span class="math inline">v_0</span> the eigenvector corresponding to <span class="math inline">\lambda_0</span>. The approximation of <span class="math inline">A_i</span> is given by <span class="math display">
+\hat{A}_i = \bar{\mu} + v_{0} Z_i
+</span> where <span class="math inline">Z_i</span> is the <span class="math inline">i</span>-th entry in the row vector <span class="math inline">Z = v_{0}^T B \in \mathbb{R}^n</span>, with <span class="math inline">B</span> the centered data matrix.</p>
+<p>More generally, if the eigenvalues of <span class="math inline">S</span> are <span class="math inline">\lambda_0 \geq \lambda_1 \geq \dots \lambda_{m-1}</span>, and <span class="math inline">k</span> is the smallest number of component so that the <span class="math inline">k</span> largest eigenvalues account for almost all of the total variance, i.e., <span class="math display">
+\frac{\lambda_0 + \dots + \lambda_{k-1}}{\lambda_0 + \lambda_1 + \dots + \lambda_{m-1}} \approx 1
+</span> then the data points are approximately contained in the affine subspace <span class="math inline">\bar{\mu} + \text{span}\{v_{0},\dots,v_{k-1}\}</span> as the columns of <span class="math display">
+\hat{A} = \bar{\mu} \mathbf{1}^T + V_k Z
+</span> where the columns of <span class="math inline">Z = V_k^T B \in \mathbb{R}^{k \times n}</span>, with <span class="math inline">V_k</span> the matrix containing as columns the eigenvectors <span class="math inline">v_0,\dots,v_{k-1}</span>, are the <span class="math inline">k</span>-dimensional representations of the approximate <span class="math inline">m</span>-dimensional columns of <span class="math inline">\hat{A}</span>.</p>
+</div>
+</div>
+</section>
+<section id="question-5" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="question-5">Question 5</h4>
+<p>Following the final explanation in Question 4, we can ask ourselves the following question: If we start out with a data array containing <span class="math inline">m</span> features, what is the smallest <span class="math inline">1 \leq k \leq m</span> that represents the data well enough? Mathematically speaking, we want the chosen <span class="math inline">k</span> largest eigenvalues, and their eigenvectors that will form the <span class="math inline">k</span>-dimensional (affine) subspace that the data is summarized in, to account for “almost all” variance (the sum of the eigenvalues) of the problem.</p>
+<p>To formalize what we mean by “almost all” variance of the data, we can introduce a parameter <span class="math inline">\delta \in [0,1]</span> that models what fraction of the total variance we want to recover; this value should be somewhat close to <span class="math inline">1</span>. For example if <span class="math inline">\delta = 0.95</span>, this means we want to recover <span class="math inline">95\%</span> of the total variance.</p>
+<p>To summarize, we choose <span class="math inline">k</span> as the smallest <span class="math inline">\ell</span> for which the ratio above is at least <span class="math inline">\delta</span>, i.e., <span class="math display">
+k(\delta) = \min\left\{ \ell \in \{1,\dots,m\} : \frac{\lambda_0 + \dots + \lambda_{\ell-1}}{\lambda_0 + \lambda_1 + \dots + \lambda_{m-1}} \geq \delta \right\}.
+</span></p>
+<ol type="a">
+<li><p>Write a function <code>dim_reduction()</code> that takes as input a data array <span class="math inline">A \in \mathbb{R}^{m \times n}</span> and parameter <span class="math inline">\delta \in [0,1]</span>. It should output the lower-dimensional data set <span class="math inline">Z = V_k^T B</span> with <span class="math inline">V_k</span> and <span class="math inline">B</span> as described in Question 4.<br>
+<em>To summarize, the function should repeat the steps of Question 4, for which you use calls to the functions created there, determine <span class="math inline">k(\delta)</span> and then compute <span class="math inline">Z</span>.</em></p></li>
+<li><p>Apply your function to the data array <span class="math inline">A</span> below with <span class="math inline">\delta = 0.95</span>.</p></li>
+</ol>
+<div id="0a5c4ae7" class="cell" data-execution_count="24">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">34.25</span>, <span class="fl">38.20</span>, <span class="fl">41.68</span>, <span class="fl">39.56</span>, <span class="fl">43.65</span>, <span class="fl">45.79</span>,</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>     <span class="fl">39.20</span>, <span class="fl">40.19</span>, <span class="fl">42.25</span>, <span class="fl">44.66</span>, <span class="fl">44.95</span>, <span class="fl">48.48</span>,</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>     <span class="fl">36.54</span>, <span class="fl">40.47</span>, <span class="fl">41.68</span>, <span class="fl">45.07</span>, <span class="fl">48.68</span>, <span class="fl">51.21</span>,</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>     <span class="fl">41.52</span>, <span class="fl">43.48</span>, <span class="fl">45.92</span>, <span class="fl">46.77</span>, <span class="fl">49.67</span>, <span class="fl">51.33</span>,</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>     <span class="fl">43.33</span>, <span class="fl">48.19</span>, <span class="fl">50.80</span>, <span class="fl">49.55</span>, <span class="fl">50.30</span>, <span class="fl">55.34</span>],</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">0.00</span>, <span class="fl">22.86</span>, <span class="fl">43.93</span>, <span class="fl">50.56</span>, <span class="fl">70.01</span>, <span class="fl">90.21</span>,</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>     <span class="fl">10.01</span>, <span class="fl">28.56</span>, <span class="fl">42.60</span>, <span class="fl">61.24</span>, <span class="fl">73.97</span>, <span class="fl">89.12</span>,</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>     <span class="fl">7.38</span>, <span class="fl">26.77</span>, <span class="fl">40.56</span>, <span class="fl">49.11</span>, <span class="fl">78.29</span>, <span class="fl">95.62</span>,</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>     <span class="fl">1.18</span>, <span class="fl">26.94</span>, <span class="fl">48.22</span>, <span class="fl">63.22</span>, <span class="fl">77.63</span>, <span class="fl">92.08</span>,</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>     <span class="fl">7.64</span>, <span class="fl">16.57</span>, <span class="fl">45.19</span>, <span class="fl">62.76</span>, <span class="fl">77.39</span>, <span class="fl">99.98</span>],</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">0.00</span>, <span class="fl">8.72</span>, <span class="fl">6.40</span>, <span class="fl">2.52</span>, <span class="fl">8.15</span>, <span class="fl">0.00</span>,</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>     <span class="fl">24.20</span>, <span class="fl">15.53</span>, <span class="fl">26.90</span>, <span class="fl">30.68</span>, <span class="fl">31.40</span>, <span class="fl">29.44</span>,</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>     <span class="fl">54.74</span>, <span class="fl">56.46</span>, <span class="fl">39.63</span>, <span class="fl">47.34</span>, <span class="fl">44.05</span>, <span class="fl">47.20</span>,</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>     <span class="fl">74.62</span>, <span class="fl">80.60</span>, <span class="fl">70.36</span>, <span class="fl">68.51</span>, <span class="fl">59.03</span>, <span class="fl">81.89</span>,</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>     <span class="fl">93.03</span>, <span class="fl">100.00</span>, <span class="fl">100.00</span>, <span class="fl">92.63</span>, <span class="fl">85.98</span>, <span class="fl">92.63</span>]</span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>])</span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>delta <span class="op">=</span> <span class="fl">0.95</span></span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(dim_reduction(A,delta))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[ 41.512  36.028  41.200  45.665  42.831  53.546  19.237  30.164  20.818
+   19.569  20.440  24.536 -11.510 -10.499   7.933   1.648   8.783   8.007
+  -31.495 -34.087 -21.148 -17.410  -6.024 -26.715 -48.751 -54.131 -50.404
+  -41.075 -32.645 -36.021]
+ [ 50.874  28.781   9.414   2.896 -15.555 -33.806  39.907  23.041   8.788
+   -9.080 -21.409 -35.069  38.795  20.755   9.362   1.095 -25.996 -42.506
+   43.959  18.875  -0.144 -14.286 -26.624 -42.512  36.284  28.061   0.954
+  -15.608 -28.935 -50.309]]</code></pre>
+</div>
+</div>
+<!--
+
+::: {#f2fbe881 .cell execution_count=25}
+``` {.python .cell-code}
+def dim_reduction(A,delta):
+    # Execute functions from part a)
+    S = covariance(A)
+    S_values, S_vectors = ordered_components(S)
+    lam = contributions(S_values)
+
+    B = A - np.mean(A, axis=1)[:,None]
+
+    # Determine k(delta)
+    k = np.argmax(lam > delta)
+
+    # Create matrix with first k eigenvectors
+    V = S_vectors[:,:k+1]
+
+    # Compute Z
+    Z = V.T @ B
+    return  Z
+```
+:::
+
+
+-->
+<p>As can be seen from the output, the data is reduced from points in <span class="math inline">\mathbb{R}^3</span> to points in <span class="math inline">\mathbb{R}^2</span>, so a dimensionality reduction from <span class="math inline">m = 3</span> to <span class="math inline">k = 2</span>. The figure below also illustrates this. Furthermore, I hope you agree that there is no way to nicely capture the data in a one-dimensional line, i.e., reduction with <span class="math inline">k = 1</span>.</p>
+<div id="b07388de" class="cell" data-execution_count="26">
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="exercises-lec3_files/figure-html/cell-27-output-1.png" width="662" height="662" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="question-6" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="question-6">Question 6</h4>
+<p>A more general version of the spectral decomposition of a symmetric <span class="math inline">n \times n</span> matrix is given by the singular value decomposition (SVD) of a general, not necessarily square matrix <span class="math inline">A\in \mathbb{R}^{m \times n}</span>. Assuming <span class="math inline">m \leq n</span>, <span class="math display">
+A = U\Sigma V^T
+=
+\underbrace{
+\begin{bmatrix}
+u_0 &amp; \cdots &amp; u_{m-1}
+\end{bmatrix}
+}_{m\times m}
+\underbrace{
+\begin{bmatrix}
+\sigma_0 &amp; &amp; 0\\
+&amp; \ddots &amp; \\
+0 &amp; &amp; \sigma_{m-1}
+\end{bmatrix}
+}_{m\times m}
+\underbrace{
+\begin{bmatrix}
+v_0^T\\
+\vdots\\
+v_{m-1}^T
+\end{bmatrix}
+}_{m\times n}
+=
+\sum_{i=0}^{m-1}\sigma_i u_i v_i^T.
+</span> with <span class="math inline">\sigma_0 \geq \sigma_1 \geq \dots \geq \sigma_{(m-1)} \geq 0</span>. For example, <span class="math display">
+A =
+\begin{bmatrix}
+2.4&amp;3.2&amp;-1.2\\
+1.8&amp;2.4&amp;1.6
+\end{bmatrix}
+=
+\underbrace{\begin{bmatrix}
+0.8&amp;-0.6\\
+0.6&amp;0.8
+\end{bmatrix}}_{U:\;2\times2}
+\underbrace{\begin{bmatrix}
+5&amp;0\\
+0&amp;2
+\end{bmatrix}}_{\Sigma:\;2\times2}
+\underbrace{\begin{bmatrix}
+0.6&amp;0.8&amp;0\\
+0&amp;0&amp;1
+\end{bmatrix}}_{V^T:\;2\times3}.
+</span> The arrays <span class="math inline">U, \Sigma</span> and <span class="math inline">V^T</span> can be computed using the <code>np.linalg.svd()</code> function. Check out the <a href="https://numpy.org/doc/stable/reference/generated/numpy.linalg.svd.html">documentation</a> to see how.</p>
+<p>Singular value decomposition can play an important role in image compression techniques, where the goal is to create an image with much smaller file size at the cost of some image detail.</p>
+<p>Each entry of (A) gives the grayscale intensity of a pixel: <span class="math inline">0</span> is black and <span class="math inline">255</span> is white. A compressed image can be obtained by replacing <span class="math inline">A</span> by the lower-rank approximation <span class="math display">
+A_k = U_k\Sigma_kV_k^T
+=
+\underbrace{
+\begin{bmatrix}
+u_0 &amp; \cdots &amp; u_{k-1}
+\end{bmatrix}
+}_{m\times k}
+\underbrace{
+\begin{bmatrix}
+\sigma_0 &amp; &amp; 0\\
+&amp; \ddots &amp; \\
+0 &amp; &amp; \sigma_{k-1}
+\end{bmatrix}
+}_{k\times k}
+\underbrace{
+\begin{bmatrix}
+v_0^T\\
+\vdots\\
+v_{k-1}^T
+\end{bmatrix}
+}_{k\times n}
+=
+\sum_{i=0}^{k-1}\sigma_i u_i v_i^T.
+</span></p>
+<ol type="a">
+<li><p>Write a function <code>compression()</code> that takes as input a two-dimensional array <span class="math inline">A</span> containing pixel values, and a one-dimensional array containing integer values for <span class="math inline">k</span>. It should return a list whose entries correspond to the arrays <span class="math inline">A_k</span> as described above. You can use a for-loop to iterate over the values in the one-dimensional array.</p></li>
+<li><p>Test your function by doing the following:</p>
+<ul>
+<li>Store the file <a href="grayscale_image.png">grayscale_image.png</a> in the folder with the <code>.py</code> file in which you are making these questions.</li>
+<li>Copy the test code below into your <code>.py</code> file, place your <code>compression()</code> function at the indicated location, and run your code. <em>You do not have to understand the additional image-handling code lines.</em><br>
+<br>
+If all went well, multiple <code>.png</code> files should have been created, in the folder containing your files for this question, with names <code>image_k_xxx.png</code> where <code>xxx</code> represents the value <span class="math inline">k</span> from the list <code>k_values</code> that has been used to create the image.<br>
+<br>
+Compare the file sizes with one another and with the original image’s file size. What do you conclude?</li>
+</ul></li>
+</ol>
+<div id="01e155dc" class="cell" data-execution_count="28">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Packages for importing and working with images</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> PIL <span class="im">import</span> Image</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Import the image</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>image_path <span class="op">=</span> Path(<span class="st">"grayscale_image.png"</span>)</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> Image.<span class="bu">open</span>(image_path) <span class="im">as</span> image:</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Convert image to array with grayscale ("L") values between 0 and 255</span></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>    A <span class="op">=</span> np.asarray(image.convert(<span class="st">"L"</span>), dtype<span class="op">=</span><span class="bu">float</span>)</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Place function compression() here</span></span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Set k_values and determine A_k matrices</span></span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>k_values <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">50</span>, <span class="dv">100</span>])</span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>Ak_matrices <span class="op">=</span> compression(A, k_values)</span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Save each reduced image beside the original image</span></span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(np.size(k_values)):</span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Round values in A_k to closest value in {0,1,2,3,...,255}</span></span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>    pixels <span class="op">=</span> np.rint(np.clip(Ak_matrices[i], <span class="dv">0</span>, <span class="dv">255</span>)).astype(np.uint8)</span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Create file name to store reduced image in</span></span>
+<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a>    png_path <span class="op">=</span> image_path.parent <span class="op">/</span> <span class="ss">f"image_k_</span><span class="sc">{</span>k_values[i]<span class="sc">:03d}</span><span class="ss">.png"</span></span>
+<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Convert pixel values to .png image</span></span>
+<span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a>    Image.fromarray(pixels).save(png_path)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/pskleer\.github\.io");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./exercises-lec2.html" class="pagination-link" aria-label="Lecture 2: Sections 3.6-3.7 and 4.1-4.3">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Lecture 2: Sections 3.6-3.7 and 4.1-4.3</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

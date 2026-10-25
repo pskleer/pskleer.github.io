@@ -222,7 +222,7 @@ window.Quarto = {
 
 
 <p>Make sure to import NumPy to be able to do all the exercises.</p>
-<div id="a58bf984" class="cell" data-execution_count="1">
+<div id="0562554a" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>np.set_printoptions(precision<span class="op">=</span><span class="dv">3</span>, floatmode<span class="op">=</span><span class="st">"fixed"</span>, suppress<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -233,7 +233,7 @@ window.Quarto = {
 </span> is given by <span class="math inline">x^* = (A^TA)^{-1}A^Tb</span>. (The combination of <span class="math inline">m \geq n</span> and <span class="math inline">A</span> having linearly independent columns guarantees that <span class="math inline">(A^TA)^{-1}</span> exists.)</p>
 <p>Write a function that takes as input a matrix <span class="math inline">A</span> and vector <span class="math inline">b</span>. It should return the least squares solution <span class="math inline">x^*</span> if <span class="math inline">A</span> has full rank, and a message saying that <span class="math inline">A</span> does not have full column rank if not. You may use an if/else-statement for this case distinction.</p>
 <p>It should give the following output on the inputs below.</p>
-<div id="550b14c0" class="cell" data-execution_count="3">
+<div id="e71b0d0f" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a> [<span class="fl">0.61776137</span>, <span class="fl">0.9880466</span>,  <span class="fl">0.93526716</span>],</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a> [<span class="fl">0.25839379</span>, <span class="fl">0.66983101</span>, <span class="fl">0.55140378</span>],</span>
@@ -255,7 +255,7 @@ window.Quarto = {
  [ 1.329]]</code></pre>
 </div>
 </div>
-<div id="ee670770" class="cell" data-execution_count="4">
+<div id="348b4421" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a> [<span class="fl">0.61776137</span>, <span class="fl">0.9880466</span>,  <span class="fl">0.9880466</span>],</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a> [<span class="fl">0.25839379</span>, <span class="fl">0.66983101</span>, <span class="fl">0.66983101</span>],</span>
@@ -273,7 +273,7 @@ window.Quarto = {
 </div>
 <!--
 
-::: {#36cac404 .cell execution_count=5}
+::: {#9d2a1394 .cell execution_count=5}
 ``` {.python .cell-code}
 def least_squares(A,b):
     m, n = np.shape(A)
@@ -296,7 +296,7 @@ x_i = \frac{\text{det}(A_i)}{\text{det}(A)} \ \ \ \text{ for } i = 0,\dots,n-1,
 </span> where <span class="math inline">A_i</span> is the matrix <span class="math inline">A</span> in which column <span class="math inline">i</span> is replaced by <span class="math inline">b</span>.</p>
 <p>Write a function <code>cramer(A,b)</code> that computes the solution <span class="math inline">x</span> according to Cramer’s rule (you may use one for-loop in your implementation).</p>
 <p>Your function should give the following output on the given input.</p>
-<div id="bd17e34f" class="cell" data-execution_count="7">
+<div id="847c037f" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a> [<span class="fl">0.61776137</span>, <span class="fl">0.9880466</span>,  <span class="fl">0.93526716</span>],</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a> [<span class="fl">0.25839379</span>, <span class="fl">0.66983101</span>, <span class="fl">0.55140378</span>],</span>
@@ -317,7 +317,7 @@ x_i = \frac{\text{det}(A_i)}{\text{det}(A)} \ \ \ \text{ for } i = 0,\dots,n-1,
 </div>
 <!--
 
-::: {#7ea0ab26 .cell execution_count=8}
+::: {#3e6db610 .cell execution_count=8}
 ``` {.python .cell-code}
 def cramer(A, b):
     m, n = np.shape(A)
@@ -341,7 +341,7 @@ def cramer(A, b):
 <p>One way to obtain a solution to an underdetermined system (<span class="math inline">n &gt; m</span>) <span class="math inline">Ax = b</span> is to pick a set of indices <span class="math inline">R \subseteq \{0,\dots,n-1\}</span> of size <span class="math inline">|R| = m</span>. Set <span class="math inline">x_i = 0</span> for all <span class="math inline">i \notin R</span> (there are <span class="math inline">n - m</span> such variables), and determine the values in <span class="math inline">x_R = (x_i)_{i \in R}</span> by solving the system <span class="math inline">Bx_R = b</span>, where <span class="math inline">B</span> is the matrix containing the columns of <span class="math inline">A</span> corresponding to the indices in <span class="math inline">R</span>.</p>
 <p>Write a function <code>underdetermined(A,b,R)</code> that takes as input arrays <span class="math inline">A,b</span> and a set <span class="math inline">R</span> (using a list) as above, and returns a solution <span class="math inline">x \in \mathbb{R}^n</span> to <span class="math inline">Ax = b</span> satisfying the above description.</p>
 <p>Your function should give the following output on the given input.</p>
-<div id="c8772cdc" class="cell" data-execution_count="10">
+<div id="f2183541" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a> [<span class="fl">0.83</span>, <span class="fl">0.43</span>, <span class="fl">0.16</span>, <span class="fl">0.01</span>, <span class="fl">0.86</span>, <span class="fl">0.87</span>, <span class="fl">0.36</span>, <span class="fl">0.68</span>],</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a> [<span class="fl">0.29</span>, <span class="fl">0.81</span>, <span class="fl">0.78</span>, <span class="fl">0.97</span>, <span class="fl">0.2</span>,  <span class="fl">0.28</span>, <span class="fl">0.44</span>, <span class="fl">0.07</span>],</span>
@@ -364,7 +364,7 @@ def cramer(A, b):
 </div>
 <!--
 
-::: {#19ba2ba0 .cell execution_count=11}
+::: {#55146605 .cell execution_count=11}
 ``` {.python .cell-code}
 def underdetermined(A,b,R):
     m, n = np.shape(A)
@@ -383,7 +383,7 @@ def underdetermined(A,b,R):
 <p>In this exercise, we will look into the basics of principal component analysis (PCA); we emphasize that this is not a complete explanation, but we hope it helps.</p>
 <p>We are given an <span class="math inline">m \times n</span> matrix <span class="math inline">A</span> containing <span class="math inline">n \geq 2</span> data points that each have <span class="math inline">m</span> features. That is, every column of <span class="math inline">A</span> corresponds to a data point.</p>
 <p>We will be working with the dataset below, in which we have <span class="math inline">n = 30</span> data points, each with <span class="math inline">m = 3</span> features: weight, height and IQ. In practice, datasets are typically much larger, but we keep the set small here to be able to visualize it.</p>
-<div id="97883707" class="cell" data-execution_count="12">
+<div id="c7c44d81" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Rows: weight (kg), height (cm), IQ; columns: 30 data points</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">10.0</span>, <span class="fl">12.8</span>, <span class="fl">15.5</span>, <span class="fl">18.3</span>, <span class="fl">21.0</span>, <span class="fl">23.8</span>, <span class="fl">26.6</span>, <span class="fl">29.3</span>, <span class="fl">32.1</span>, <span class="fl">34.8</span>,</span>
@@ -405,7 +405,7 @@ def underdetermined(A,b,R):
   background-color: #ffffff;
 }
 </style>
-<div id="e8ed9fb8" class="cell" data-execution_count="13">
+<div id="2c9051e3" class="cell" data-execution_count="13">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -432,7 +432,7 @@ S = \frac{1}{n-1} BB^T
 <li>Write a function <code>covariance()</code> that takes as input the matrix <span class="math inline">A</span> and outputs the matrix <span class="math inline">S</span>.</li>
 </ol>
 <p>Testing your function on the data points in the array <span class="math inline">A</span> given above should yield the following results.</p>
-<div id="b767e912" class="cell" data-execution_count="15">
+<div id="4b044f45" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Covariance matrix</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>S <span class="op">=</span> covariance(A)</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'S = </span><span class="ch">\n</span><span class="st">'</span>,S, <span class="st">'</span><span class="ch">\n</span><span class="st">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -446,7 +446,7 @@ S = \frac{1}{n-1} BB^T
 </div>
 <!--
 
-::: {#751602a8 .cell execution_count=16}
+::: {#6cafff52 .cell execution_count=16}
 ``` {.python .cell-code}
 # Covariance matrix function
 def covariance(A):
@@ -473,7 +473,7 @@ As an example, if we have three eigenvalues <span class="math inline">\{\lambda_
 <em>Hint: The function <code>np.argsort()</code> from Chapter 4 might be useful here.</em></li>
 </ol>
 <p>Testing your function on the computed <span class="math inline">S</span> in part a) should give the following results.</p>
-<div id="dbce6f08" class="cell" data-execution_count="18">
+<div id="7dd6f1d0" class="cell" data-execution_count="18">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ordered eigenvalues and eigenvectors </span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>S_values, S_vectors <span class="op">=</span> ordered_components(S)</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Eigenvalues are </span><span class="ch">\n</span><span class="st">'</span>, S_values, <span class="st">'</span><span class="ch">\n</span><span class="st">'</span>)</span>
@@ -491,7 +491,7 @@ Eigenvectors are
 </div>
 <!--
 
-::: {#a6386c3a .cell execution_count=19}
+::: {#9eb7ab44 .cell execution_count=19}
 ``` {.python .cell-code}
 def ordered_components(S):
     # Compute eigenvalues and eigenvectors
@@ -527,7 +527,7 @@ y_i = \frac{\displaystyle \sum_{j=0}^{i} x_j}{\displaystyle \sum_{j=0}^{n-1} x_j
 </span> for <span class="math inline">i = 0,\dots,n-1</span>, i.e., <span class="math inline">y_i</span> is the fraction that the last <span class="math inline">i+1</span> numbers contribute to the sum of all numbers in <span class="math inline">x</span>.</li>
 </ol>
 <p>Applying the function to the output of part b) should give the following.</p>
-<div id="9770366d" class="cell" data-execution_count="21">
+<div id="a977fed5" class="cell" data-execution_count="21">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Contributions of the k largest eigenvalues</span></span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>k_largest <span class="op">=</span> contributions(S_values)</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Contribution of the k largest eigenvalues </span><span class="ch">\n</span><span class="st">'</span>, k_largest)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -538,7 +538,7 @@ y_i = \frac{\displaystyle \sum_{j=0}^{i} x_j}{\displaystyle \sum_{j=0}^{n-1} x_j
 </div>
 <!--
 
-::: {#e09f9588 .cell execution_count=22}
+::: {#fcee22d4 .cell execution_count=22}
 ``` {.python .cell-code}
 def contributions(x):
     y = np.cumsum(x)/np.sum(x)
@@ -585,7 +585,7 @@ k(\delta) = \min\left\{ \ell \in \{1,\dots,m\} : \frac{\lambda_0 + \dots + \lamb
 <em>To summarize, the function should repeat the steps of Question 4, for which you use calls to the functions created there, determine <span class="math inline">k(\delta)</span> and then compute <span class="math inline">Z</span>.</em></p></li>
 <li><p>Apply your function to the data array <span class="math inline">A</span> below with <span class="math inline">\delta = 0.95</span>.</p></li>
 </ol>
-<div id="0a5c4ae7" class="cell" data-execution_count="24">
+<div id="62f48ab8" class="cell" data-execution_count="24">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">34.25</span>, <span class="fl">38.20</span>, <span class="fl">41.68</span>, <span class="fl">39.56</span>, <span class="fl">43.65</span>, <span class="fl">45.79</span>,</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>     <span class="fl">39.20</span>, <span class="fl">40.19</span>, <span class="fl">42.25</span>, <span class="fl">44.66</span>, <span class="fl">44.95</span>, <span class="fl">48.48</span>,</span>
@@ -622,7 +622,7 @@ k(\delta) = \min\left\{ \ell \in \{1,\dots,m\} : \frac{\lambda_0 + \dots + \lamb
 </div>
 <!--
 
-::: {#f2fbe881 .cell execution_count=25}
+::: {#9a099f46 .cell execution_count=25}
 ``` {.python .cell-code}
 def dim_reduction(A,delta):
     # Execute functions from part a)
@@ -647,7 +647,7 @@ def dim_reduction(A,delta):
 
 -->
 <p>As can be seen from the output, the data is reduced from points in <span class="math inline">\mathbb{R}^3</span> to points in <span class="math inline">\mathbb{R}^2</span>, so a dimensionality reduction from <span class="math inline">m = 3</span> to <span class="math inline">k = 2</span>. The figure below also illustrates this. Furthermore, I hope you agree that there is no way to nicely capture the data in a one-dimensional line, i.e., reduction with <span class="math inline">k = 1</span>.</p>
-<div id="b07388de" class="cell" data-execution_count="26">
+<div id="aadb2368" class="cell" data-execution_count="26">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -686,8 +686,8 @@ v_{m-1}^T
 </span> with <span class="math inline">\sigma_0 \geq \sigma_1 \geq \dots \geq \sigma_{(m-1)} \geq 0</span>. For example, <span class="math display">
 A =
 \begin{bmatrix}
-2.4&amp;3.2&amp;-1.2\\
-1.8&amp;2.4&amp;1.6
+22&amp;13&amp;2\\
+4&amp;16&amp;14
 \end{bmatrix}
 =
 \underbrace{\begin{bmatrix}
@@ -695,12 +695,12 @@ A =
 0.6&amp;0.8
 \end{bmatrix}}_{U:\;2\times2}
 \underbrace{\begin{bmatrix}
-5&amp;0\\
-0&amp;2
+30&amp;0\\
+0&amp;15
 \end{bmatrix}}_{\Sigma:\;2\times2}
 \underbrace{\begin{bmatrix}
-0.6&amp;0.8&amp;0\\
-0&amp;0&amp;1
+\frac{2}{3}&amp;\frac{2}{3}&amp;\frac{1}{3}\\[6pt]
+-\frac{2}{3}&amp;\frac{1}{3}&amp;\frac{2}{3}
 \end{bmatrix}}_{V^T:\;2\times3}.
 </span> The arrays <span class="math inline">U, \Sigma</span> and <span class="math inline">V^T</span> can be computed using the <code>np.linalg.svd()</code> function. Check out the <a href="https://numpy.org/doc/stable/reference/generated/numpy.linalg.svd.html">documentation</a> to see how.</p>
 <p>Singular value decomposition can play an important role in image compression techniques, where the goal is to create an image with much smaller file size at the cost of some image detail.</p>
@@ -741,7 +741,7 @@ If all went well, multiple <code>.png</code> files should have been created, in 
 Compare the file sizes with one another and with the original image’s file size. What do you conclude?</li>
 </ul></li>
 </ol>
-<div id="01e155dc" class="cell" data-execution_count="28">
+<div id="7c531c9b" class="cell" data-execution_count="28">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Packages for importing and working with images</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> PIL <span class="im">import</span> Image</span>

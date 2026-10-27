@@ -1,0 +1,79 @@
+[
+  {
+    "objectID": "teaching.html",
+    "href": "teaching.html",
+    "title": "Teaching",
+    "section": "",
+    "text": "I am involved in (co)-teaching various courses at Tilburg University and related institutions.\nIn recent years, I have designed and improved various courses with the help of Quarto (including this website). For some of the courses below, a link is provided to an open-access course document made with Quarto."
+  },
+  {
+    "objectID": "teaching.html#tilburg-university",
+    "href": "teaching.html#tilburg-university",
+    "title": "Teaching",
+    "section": "Tilburg University",
+    "text": "Tilburg University\nI am currently involved in (co)-teaching the following courses at Tilburg University:\n\nLinear Optimization for Data Science\n\nBachelor Data Science (joint TiU and TU/e program)\n\nComputational Aspects in Econometrics\n\nBachelor Econometrics and Operations Research\nOnline course document\n\nDecentralized Finance and Blockchains\n\nElective in various master programs of TiSEM\nOnline course document (game theory part)\n\n\nI am also one of the main contributors of an initiative within our Econometrics and Operations Research bachelor program to incorporate more (Python) programming in the curriculum. We introduce students to Python early on in various courses for which we have one centralized online course document.\nUntil the academic year 2025-2026, I was also involved in the following courses:\n\nLinear Optimization (computer labs)\n\nBachelor Econometrics and Operations Research\nOnline course document\n\nProgramming\n\nTiSEM Essential Digital Skills Minor Program\nOnline course document"
+  },
+  {
+    "objectID": "teaching.html#lnmb",
+    "href": "teaching.html#lnmb",
+    "title": "Teaching",
+    "section": "LNMB",
+    "text": "LNMB\nWithin the PhD course curriculum of the Dutch Network on the Mathematics of Operations Research (LNMB), I biennially co-teach the course Algorithmic Game Theory"
+  },
+  {
+    "objectID": "teaching.html#tias-school-for-business-and-society",
+    "href": "teaching.html#tias-school-for-business-and-society",
+    "title": "Teaching",
+    "section": "TIAS School for Business and Society",
+    "text": "TIAS School for Business and Society\nI co-teach the course Decision Analysis and Optimization as part of the Business Analytics track within the Master in Management/Business Administration (MScBA)."
+  },
+  {
+    "objectID": "professional-activities.html",
+    "href": "professional-activities.html",
+    "title": "Professional activities",
+    "section": "",
+    "text": "Besides research and teaching, I am also involved in various professional activities, such as serving on program committees, reviewing for a large number of journals, and organizing scientific events. Below you can find an outline of some of these activities."
+  },
+  {
+    "objectID": "professional-activities.html#program-committees",
+    "href": "professional-activities.html#program-committees",
+    "title": "Professional activities",
+    "section": "Program committees",
+    "text": "Program committees\nBelow an overview of the program committees of competitive, peer-reviewed conferences that I serve(d) on:\n\nACM Conference on Economics and Computation (EC) in 2024, 2025, 2026\nConference on Web and Internet Economics (WINE) in 2025,\nInternational Symposium on Algorithmic Game Theory (SAGT) in 2022, 2024, 2025\nACM Web Conference (formerly known as WWW) in 2026."
+  },
+  {
+    "objectID": "professional-activities.html#event-organization",
+    "href": "professional-activities.html#event-organization",
+    "title": "Professional activities",
+    "section": "Event organization",
+    "text": "Event organization\nThe list below contains scientific events that I (co)-organized.\n\nOne of the main organizers of the  Dutch Day on Optimization 2025.\nMain organizer of the  15th Day(s) on Computational Game Theory.\nOne of the main organizers of the 21st Max Planck Advanced Course on the Foundations of Computer Science (ADFOCS)."
+  },
+  {
+    "objectID": "professional-activities.html#membership-roles",
+    "href": "professional-activities.html#membership-roles",
+    "title": "Professional activities",
+    "section": "Membership roles",
+    "text": "Membership roles\nBelow an overview of membership roles in which I help serve my (intern)national research community.\n\nActive member of the Dutch Network on the Mathematics of Operations Research (LNMB).\nTilburg University representative of the Dutch Optimization Seminar."
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Pieter Kleer",
+    "section": "",
+    "text": "Welcome\nThis is my personal (academic) website. I am an assistant professor in the department of Econometrics and Operations Research (EOR) at the Tilburg School of Economics and Management (TiSEM).\nI completed my PhD research at CWI in Amsterdam, the Netherlands, under the supervision of Guido Schäfer. After that I was a postdoctoral researcher at the Max Planck Institute for Informatics in Saarbrücken, Germany, in the D1 group of (at the time) Kurt Mehlhorn. I completed my Bachelor and Master studies at the TU Delft.\n\n\nContact\nPieter Kleer  Warandelaan 2 (K 410) 5037 AB Tilburg Netherlands  Email: p (dot) s (dot) kleer (at) tilburguniversity (dot) edu"
+  },
+  {
+    "objectID": "research.html",
+    "href": "research.html",
+    "title": "Research",
+    "section": "",
+    "text": "I mostly work on problems at the intersection of economics and (theoretical) computer science, an area often referred to as EconCS. My current main research interests here are mechanism design, resource allocation games and online algorithms.\nI have also worked on Markov Chain Monte Carlo (MCMC) methods for the approximate sampling and counting of combinatorial objects, mostly for the problem of sampling graphs with given degrees (and related problems)."
+  },
+  {
+    "objectID": "research.html#publications",
+    "href": "research.html#publications",
+    "title": "Research",
+    "section": "Publications",
+    "text": "Publications\nMy papers sometimes first appear in peer-reviewed conference proceedings, and most of them are then sent to a journal afterwards (as is common practice in the area of theoretical computer science). Some of my more economical or mathematical works are sent directly to a journal.\nBelow you can find a list of my publications ordered chronologically. Papers without any journal or conference indication are preprints or under submission.\n\nSamples-based Prophet Inequalities for Random Walks\nwith Johan van Leeuwaarden and Daan Noordenbos\n\nConference: WINE 2026\n\nPersonalized versus Posted Pricing with Samples\nwith Johan van Leeuwaarden and Daan Noordenbos\n\nConference: WINE 2026\n\nRobust Competitive Ratio for Robust Deterministic Pricing\nwith Tim van Eck and Johan van Leeuwaarden\n\nJournal: Mathematical Methods of Operations Research (2026)\n\nDistributionally robust monopoly pricing: Switching from low to high prices in volatile markets\nwith Tim van Eck and Johan van Leeuwaarden\n\nJournal: Manufacturing & Service Operations Management (2026)\n\nClassical beats and white noise: Unveiling the effect of different music characteristics on heart rate variability\nwith Shari Pepplinkhuizen, Nicole J. van Steijn, E. Madelief J. Marsman, Sanne ten Berg, Lucas M. de Haas, I. Tarik Küçük, Kay Lamerigts, Astrid C. van Nieuwkerk, Jolien A. de Veld, Jos W.R. Twisk, Puck J. Peltenburg, Tinka J. van Trier and Michiel M. Winter\n\nJournal: Complementary Therapies in Medicine (2025)\n\nRobust Optimality of Bundling Goods Beyond Finite Variance\nwith Tim van Eck and Johan van Leeuwaarden\n\nConference: WINE 2025\n\nBayesian Optimal Stopping with Maximum Value Knowledge\nwith Daan Noordenbos\n\nConference: SAGT 2025\nJournal: ACM Transactions on Economics and Computation (2026)\n\nPrice of Anarchy in Parallel Link Networks with Generalized Mean Objective\nsingle-author\n\nJournal: OR Spectrum (2023)\n\nPrimal and Dual Combinatorial Dimensions\nwith Hans Simon\n\nJournal: Discrete Applied Mathematics (2023)\n\nApproximate Sampling and Counting of Graphs with Near-Regular Degree Intervals\nwith Georgios Amanatidis\n\nConference: STACS 2023\nJournal: SIAM Journal on Discrete Mathematics (2024)\n\nSampling from the Gibbs Distribution in Congestion Games\nsingle-author\n\nConference: EC 2021\nJournal: Mathematics of Operations Research (2023)\n\nSampling Hypergraphs with Given Degrees\nwith Martin Dyer, Catherine Greenhill, James Ross and Leen Stougie\n\nJournal: Discrete Mathematics (2021)\n\nSecretary and Online Matching Problems with Machine-Learned Advice\nwith Antonios Antoniadis, Themis Gouleakis and Pavel Kolev\n\nConference: NeurIPS 2020\nJournal: Discrete Optimization (2023)\n\nSwitch-based Markov Chains for Sampling Hamilton Cycles\nwith Viresh Patel and Fabian Stroh\n\nJournal: Electronic Journal of Combinatorics (2020)\n\nTopological Inefficiency Bounds for Clustering Games on Networks\nwith Guido Schäfer\n\nConference: WINE 2019\nJournal: ACM Transactions on Economics and Computation (2023)\n\nBudget-Feasible Mechanism Design for Non-Monotone Submodular Objectives: Offline and Online\nwith Georgios Amanatidis and Guido Schäfer\n\nConference: EC 2019\nJournal: Mathematics of Operations Research (2022)\n\nRapid Mixing of the Switch Markov Chain for Strongly Stable Degree Sequences and 2-Class Joint Degree Matrices\nwith Georgios Amanatidis\n\nConference: SODA 2019\nJournal (part I): Random Structures and Algorithms (2020)\nJournal (part II): SIAM Journal on Discrete Mathematics (2022)\n\nSpeeding up Switch Markov Chains for Sampling Bipartite Graphs with Given Degree Sequence\nwith Corrie Jacobien Carstens\n\nConference: APPROX-RANDOM 2018\n\nPath Deviations Outperform Approximate Stability in Heterogeneous Congestion Games\nwith Guido Schäfer\n\nConference: SAGT 2017\n\nPotential Function Minimizers in Combinatorial Congestion Games\nwith Guido Schäfer\n\nConference: EC 2017\nJournal: Mathematical Programming (2021)\n\nTight Inefficiency Bounds for Perception-Parameterized Affine Congestion Games\nwith Guido Schäfer\n\nConference: CIAC 2017\nJournal: Theoretical Computer Science (2019)\n\nThe Impact of Worst-Case Deviations in Non-Atomic Network Routing Games\nwith Guido Schäfer\n\nConference: SAGT 2016\nJournal: Theory of Computing Systems (2019)"
+  }
+]

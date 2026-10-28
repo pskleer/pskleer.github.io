@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Lecture 4: Section 5.2 – Python II module - Exercises</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<link href="./exercises-lec3.html" rel="prev">
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-acf12a64177840b8d86f2d4f01b2e9fb.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-843f08c53b99c524b45113508bb491a8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./exercises-lec4.html">Lecture 4: Section 5.2</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Python II module - Exercises</a> 
+        <div class="sidebar-tools-main">
+    <a href="./Python-II-module---Exercises.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+</div>
+    </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./exercises-lec1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 1: Sections 3.1-3.5</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./exercises-lec2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 2: Sections 3.6-3.7 and 4.1-4.3</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./exercises-lec3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 3: Section 5.1</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./exercises-lec4.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Lecture 4: Section 5.2</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Lecture 4: Section 5.2</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Make sure to import NumPy and the relevant functions from Gurobi.</p>
+<div id="70c3117c" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gurobipy <span class="im">import</span> Model, GRB, quicksum</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="question-1" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="question-1">Question 1</h4>
+<p>M<span class="math inline">\text{\'e}</span>decins sans Fronti<span class="math inline">\text{\`e}</span>res (MSF) (Dutch: Artsen zonder Grenzen) wants to build medical kits for use in region experiencing an epidemic. The following constraints should be taken into account.</p>
+<ul>
+<li>MSF has raised € 6400 to build two types of medical kits: vaccination and surgical kits. Assembling a surgical kit costs € 320; a vaccination kit € 210.<br>
+</li>
+<li>MSF has a total of <span class="math inline">80</span> labor hours available during which employees can build these kits. Building a surgical kit requires 2.5 labor hours; a vaccination kit requires 4.5 labor hours.</li>
+<li>At most <span class="math inline">15</span> vaccination kits can be built.</li>
+</ul>
+<p>A linear optimization problem that maximizes the total number of produced kits is given below. The (possibly fractional) decision variables are the number of surgical kits (<span class="math inline">x_1</span>) and the number of vaccination kits <span class="math inline">(x_2)</span> to assemble.</p>
+<p><span class="math display">
+\begin{array}{lrrrrrrl}
+\max &amp; z  = &amp; x_{1} &amp;+ &amp;x_{2} &amp; &amp; &amp; \ \ \ \textit{total number of kits}\\
+\text{s.t. } &amp; &amp; 320x_1 &amp;+ &amp; 210x_2&amp; \leq &amp; 6400 &amp; \ \ \ \textit{budget constraint}\\
+&amp;&amp; 2.5x_1 &amp;+ &amp; 4.5x_2&amp; \leq &amp; 80 &amp; \ \ \ \textit{labor hours constraint}\\  
+  &amp;&amp; &amp; &amp; x_2&amp; \leq &amp; 15 &amp; \ \ \ \textit{at most $15$ vac. kits}\\  
+&amp; &amp;x_1, &amp; &amp; x_2  &amp; \geq &amp; 0 &amp; \ \ \ \textit{nonneg. constraints}
+\end{array}
+</span></p>
+<ol type="a">
+<li>Implement this model in Python with a Model object called <code>msf</code>, with (continuous) decision variables whose <code>name</code> keyword arguments are <code>'Surgical kits'</code> and <code>'Vaccination kits'</code>, respectively. Optimize your model.<br>
+<br>
+If you include the following lines at the end of your code, you should get the output as indicated.</li>
+</ol>
+<div id="22614481" class="cell" data-execution_count="2">
+<div class="cell-output cell-output-stdout">
+<pre><code>Set parameter Username
+Set parameter LicenseID to value 2805707
+Academic license - for non-commercial use only - expires 2027-04-10</code></pre>
+</div>
+</div>
+<div id="15cbc03c" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print optimal decision variables Model() object called msf</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> var <span class="kw">in</span> msf.getVars():</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(var.VarName, <span class="st">"="</span>, var.X)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Surgical kits = 13.114754098360653
+Vaccination kits = 10.491803278688531</code></pre>
+</div>
+</div>
+<!--
+
+::: {#f6733be9 .cell execution_count=4}
+``` {.python .cell-code}
+# Initialize Gurobi model.
+msf = Model(name='MSF')
+
+# Suppress Gurobi optimization output
+msf.setParam('OutputFlag',0)
+
+# Declare the two decision variables.
+x1 = msf.addVar(name='Surgical kits')
+x2 = msf.addVar(name='Vaccination kits', ub=15) # ub can also be constraint
+
+# Specify the objective function.
+msf.setObjective(x1 + x2, sense=GRB.MAXIMIZE)
+
+# Add the budget and labor hours constraints
+msf.addConstr(320*x1 + 210*x2 <= 6400, name='budget')
+msf.addConstr(2.5*x1 + 4.5*x2 <= 80, name='labor hours')
+
+# Optimize the model
+msf.optimize()
+
+# Print optimal decision variables from the Model() object called msf
+for var in msf.getVars():
+    print(var.VarName, "=", var.X)
+```
+
+::: {.cell-output .cell-output-stdout}
+```
+Surgical kits = 13.114754098360653
+Vaccination kits = 10.491803278688531
+```
+:::
+:::
+
+
+-->
+<ol start="2" type="a">
+<li>Next, copy and paste your solution from part a) and rename the Python <code>Model()</code> object holding the model from <code>msf</code> to <code>msf_int</code> in all relevant places. Furthermore, adjust the decision variables so that they can only take integer values. Re-optimize the model.<br>
+<br>
+If you include the following lines at the end of your code, you should get the output as indicated (the solution is actually not unique so other outcomes might also be possible; what is important is that the total number of produced kits should be <span class="math inline">23</span>).</li>
+</ol>
+<div id="64fc8261" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print optimal decision variables from the Model() object called msf_int</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> var <span class="kw">in</span> msf_int.getVars():</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(var.VarName, <span class="st">"="</span>, var.X)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Surgical kits = 12.0
+Vaccination kits = 11.0</code></pre>
+</div>
+</div>
+<!--
+
+::: {#84ecf9ed .cell execution_count=7}
+``` {.python .cell-code}
+# Initialize Gurobi model.
+msf_int = Model(name='MSF')
+
+# Suppress Gurobi optimization output
+msf_int.setParam('OutputFlag',0)
+
+# Declare the two decision variables.
+x1 = msf_int.addVar(name='Surgical kits',vtype=GRB.INTEGER)
+x2 = msf_int.addVar(name='Vaccination kits', ub=15, vtype=GRB.INTEGER) 
+
+# Specify the objective function.
+msf_int.setObjective(x1 + x2, sense=GRB.MAXIMIZE)
+
+# Add the resource constraints on bricks.
+msf_int.addConstr(320*x1 + 210*x2 <= 6400, name='budget')
+msf_int.addConstr(2.5*x1 + 4.5*x2 <= 80, name='labor hours')
+
+# Optimize the model
+msf_int.optimize()
+
+# Print optimal decision variables of Model() object called msf_int
+for var in msf_int.getVars():
+    print(var.VarName, "=", var.X)
+```
+
+::: {.cell-output .cell-output-stdout}
+```
+Surgical kits = 12.0
+Vaccination kits = 11.0
+```
+:::
+:::
+
+
+-->
+</section>
+<section id="question-2" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="question-2">Question 2</h4>
+<p>A brewery produces beer in Haarlem and Eindhoven (plants), and ships beer to Amsterdam, Amersfoort, Gouda, Den Bosch and Breda (customers).</p>
+<p>We can ship beer units from the plants to the customers, taking into account transportation costs, customer demand and plant supply capacities. In the table below we have indicated the following input data:</p>
+<ul>
+<li><span style="color:red;">Unit transport costs (in euros)</span> from the <strong>plants</strong> (Haarlem, Eindhoven) to the <strong>customers</strong> (Amsterdam, Breda, Gouda, Amersfoort, Den Bosch);</li>
+<li><span style="color:green;">Demand</span> of each customer: what needs to <em>at least</em> be delivered;</li>
+<li><span style="color:blue;">Maximum supply capacity</span> of each plant: what can <em>at most</em> be supplied.</li>
+</ul>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 18%">
+<col style="width: 13%">
+<col style="width: 13%">
+<col style="width: 13%">
+<col style="width: 13%">
+<col style="width: 13%">
+<col style="width: 13%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>A’dam</th>
+<th>Breda</th>
+<th>Gouda</th>
+<th>A’foort</th>
+<th>Den Bosch</th>
+<th>Supply</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Haarlem</strong></td>
+<td><span style="color:red;">131</span></td>
+<td><span style="color:red;">405</span></td>
+<td><span style="color:red;">188</span></td>
+<td><span style="color:red;">396</span></td>
+<td><span style="color:red;">485</span></td>
+<td><span style="color:blue;">47</span></td>
+</tr>
+<tr class="even">
+<td><strong>Eindhoven</strong></td>
+<td><span style="color:red;">554</span></td>
+<td><span style="color:red;">351</span></td>
+<td><span style="color:red;">479</span></td>
+<td><span style="color:red;">366</span></td>
+<td><span style="color:red;">155</span></td>
+<td><span style="color:blue;">63</span></td>
+</tr>
+<tr class="odd">
+<td><strong>Demand</strong></td>
+<td><span style="color:green;">28</span></td>
+<td><span style="color:green;">16</span></td>
+<td><span style="color:green;">22</span></td>
+<td><span style="color:green;">31</span></td>
+<td><span style="color:green;">12</span></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>We define decision variables <span class="math inline">x_{pc}</span> that model the number of units shipped from plant <span class="math inline">p</span> to customer <span class="math inline">c</span>, with the meaning of the indices <span class="math inline">p</span> and <span class="math inline">c</span> as follows:</p>
+<ul>
+<li>Plants: <span class="math inline">p = 1</span> for Haarlem, <span class="math inline">p = 2</span> for Eindhoven.</li>
+<li>Customers: <span class="math inline">c = 1</span> for Amsterdam, <span class="math inline">c = 2</span> for Breda, <span class="math inline">c = 3</span> for Gouda, <span class="math inline">c = 4</span> for Amersfoort, <span class="math inline">c = 5</span> for Den Bosch.</li>
+</ul>
+<p>A linear optimization problem that minimizes the total transportation costs subject to the demand and supply constraints is given below.</p>
+<p><span class="math display">
+\begin{array}{rll}
+\min &amp; \displaystyle  131x_{11} + 405x_{12} + 188x_{13} + 396x_{14} + 485x_{15} +   \\
+&amp;  554x_{21} + 351x_{22} + 479x_{23} + 366x_{24} + 155x_{25}   &amp; \\
+{\rm s.t.} &amp; \displaystyle   x_{11} + x_{12} + x_{13} + x_{14} + x_{15} \leq   47 &amp; \textit{supply  Haarlem}\\  
+&amp; \displaystyle   x_{21} + x_{22} + x_{23} + x_{24} + x_{25}  \leq  63 &amp; \textit{supply Eindhoven} \\  
+&amp; \displaystyle   x_{11} + x_{21} \geq 28 &amp; \textit{demand A'dam} \\  
+&amp; \displaystyle   x_{12} + x_{22} \geq 16 &amp; \textit{demand Breda} \\  
+&amp; \displaystyle   x_{13} + x_{23} \geq 22 &amp; \textit{demand Gouda} \\  
+&amp; \displaystyle   x_{14} + x_{24} \geq 31 &amp; \textit{demand A'foort} \\  
+&amp; \displaystyle   x_{15} + x_{25} \geq 12 &amp; \textit{demand Den Bosch} \\  
+&amp; x_{11}, x_{12}, x_{13},x_{14},x_{15},x_{21},x_{22},x_{23},x_{24},x_{25} \geq 0  &amp;   \textit{ship nonneg. amounts}
+\end{array}
+</span></p>
+<p>Implement this model in Gurobi with a <code>Model()</code> object called <code>model_beer</code>. Instantiate all <span class="math inline">2 \cdot 5 = 10</span> decision variables separately. In the <code>name</code> keyword argument of a decision variable, indicate the plant-customer combination it represents; for example, you could define</p>
+<p><code>x11 = model_beer.addVar(name='Haarlem-Amsterdam')</code></p>
+<p>for the decision variable <span class="math inline">x_{11}</span> modeling the Haarlem-Amsterdam combination).</p>
+<p>If you include the following lines at the end of your code, you should get the output as indicated.</p>
+<div id="981d1a95" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> var <span class="kw">in</span> model_beer.getVars():</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(var.VarName, <span class="st">"="</span>, var.X)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Haarlem-Amsterdam = 28.0
+Haarlem-Breda = 0.0
+Haarlem-Gouda = 19.0
+Haarlem-Amersfoort = 0.0
+Haarlem-Den Bosch = 0.0
+Eindhoven-Amsterdam = 0.0
+Eindhoven-Breda = 16.0
+Eindhoven-Gouda = 3.0
+Eindhoven-Amersfoort = 31.0
+Eindhoven-Den Bosch = 12.0</code></pre>
+</div>
+</div>
+<!--
+
+::: {#b84c39ff .cell execution_count=10}
+``` {.python .cell-code}
+model_beer = Model('Transportation problem')
+model_beer.setParam('OutputFlag',0)
+
+"""
+Below we use the following indices:
+1 = Haarlem, 2 = Eindhoven, 
+1 = Amsterdam, 2 = Breda, 3 = Gouda, 4 = Amersfoort, 5 = Den Bosch
+"""
+
+x11 = model_beer.addVar(name='Haarlem-Amsterdam')
+x12 = model_beer.addVar(name='Haarlem-Breda')
+x13 = model_beer.addVar(name='Haarlem-Gouda')
+x14 = model_beer.addVar(name='Haarlem-Amersfoort')
+x15 = model_beer.addVar(name='Haarlem-Den Bosch')
+
+x21 = model_beer.addVar(name='Eindhoven-Amsterdam')
+x22 = model_beer.addVar(name='Eindhoven-Breda')
+x23 = model_beer.addVar(name='Eindhoven-Gouda')
+x24 = model_beer.addVar(name='Eindhoven-Amersfoort')
+x25 = model_beer.addVar(name='Eindhoven-Den Bosch')
+
+obj = 131*x11 + 405*x12 + 188*x13 + 396*x14 + 485*x15 + \
+      554*x21 + 351*x22 + 479*x23 + 366*x24 + 155*x25
+      
+model_beer.setObjective(obj, sense=GRB.MINIMIZE)
+
+model_beer.addConstr(x11+x12+x13+x14+x15 <= 47,name='supply Haarlem')
+model_beer.addConstr(x21+x22+x23+x24+x25 <= 63,name='supply Eindhoven')
+
+model_beer.addConstr(x11 + x21 >= 28,name='demand Amsterdam')
+model_beer.addConstr(x12 + x22 >= 16,name='demand Breda')
+model_beer.addConstr(x13 + x23 >= 22,name='demand Gouda')
+model_beer.addConstr(x14 + x24 >= 31,name='demand Amersfoort')
+model_beer.addConstr(x15 + x25 >= 12,name='demand Den Bosch')
+
+model_beer.optimize()
+
+# Print optimal decision variables
+for var in model_beer.getVars():
+    print(var.VarName, "=", var.X)
+```
+
+::: {.cell-output .cell-output-stdout}
+```
+Haarlem-Amsterdam = 28.0
+Haarlem-Breda = 0.0
+Haarlem-Gouda = 19.0
+Haarlem-Amersfoort = 0.0
+Haarlem-Den Bosch = 0.0
+Eindhoven-Amsterdam = 0.0
+Eindhoven-Breda = 16.0
+Eindhoven-Gouda = 3.0
+Eindhoven-Amersfoort = 31.0
+Eindhoven-Den Bosch = 12.0
+```
+:::
+:::
+
+
+-->
+</section>
+<section id="question-3" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="question-3">Question 3</h4>
+<p>In this question we will extend the transportation problem from Question 2 to an arbitrary number of plants and customers. Consider the general transportation problem for <span class="math inline">m</span> plants and <span class="math inline">n</span> customers:</p>
+<p><span class="math display">
+\begin{array}{rlll}
+\min &amp; \displaystyle  \sum\limits_{p=1}^m \sum\limits_{c=1}^n u_{pc}
+x_{pc} &amp; &amp; \textit{total transportation costs}\\
+{\rm s.t.} &amp; \displaystyle   \sum\limits_{c=1}^n x_{pc} \leq s_p \quad &amp; \forall p &amp; \textit{supply available at each p(lant) is $s_p$} \\
+&amp; \displaystyle
+\sum\limits_{p=1}^m x_{pc}  \geq d_c \quad &amp; \forall c &amp; \textit{demand $d_c$  met for each c(ustomer)} \\  
+&amp; x_{pc} \geq 0 &amp; \forall (p,c) &amp; \textit{ship nonneg. amounts}
+\end{array}
+</span></p>
+<p>where <span class="math inline">u_{pc}</span> is the cost of transporting one unit from plant <span class="math inline">p \in \{1,\dots,m\}</span> to customer <span class="math inline">c \in \{1,\dots,n\}</span>, <span class="math inline">s_p</span> the supply of plant <span class="math inline">p</span> and <span class="math inline">d_c</span> the demand of customer <span class="math inline">c</span>.</p>
+<p>Write a function <code>transport()</code> that takes as input a two-dimensional array <span class="math inline">u \in \mathbb{R}^{m \times n}</span> containing the transportation costs for every plant-customer combination, a one-dimensional array <span class="math inline">s \in \mathbb{R}_{\geq 0}^{m}</span> with the supplies of the plants and a one-dimensional array <span class="math inline">d \in \mathbb{R}_{\geq 0}^{n}</span> with the demands of the customers. It should output a <code>Model()</code> object that implements the above problem; do not yet optimize the model in this function!<br>
+<em>Hint: Section 5.2.3 on the use of double-indexed variables is useful.</em></p>
+<p>Test your function on the input from Question 2 by executing the following code below your function.</p>
+<div id="f08b6c63" class="cell" data-execution_count="12">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>u <span class="op">=</span> np.array([[<span class="dv">131</span>, <span class="dv">405</span>, <span class="dv">188</span>, <span class="dv">396</span>, <span class="dv">485</span>],[<span class="dv">554</span>, <span class="dv">351</span>, <span class="dv">479</span>, <span class="dv">366</span>, <span class="dv">155</span>]])</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> np.array([<span class="dv">47</span>, <span class="dv">63</span>])</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> np.array([<span class="dv">28</span>, <span class="dv">16</span>, <span class="dv">22</span>, <span class="dv">31</span>,<span class="dv">12</span>])</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Define Model() object through transport()</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>question2_data <span class="op">=</span> transport(u,s,d)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Optimize the model</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>question2_data.optimize()</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Print optimal decision variables</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> var <span class="kw">in</span> question2_data.getVars():</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'</span><span class="sc">{</span>var<span class="sc">.</span>VarName<span class="sc">}</span><span class="ss"> = </span><span class="sc">{</span>var<span class="sc">.</span>X<span class="sc">}</span><span class="ss">'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>combinations[0,0] = 28.0
+combinations[0,1] = 0.0
+combinations[0,2] = 19.0
+combinations[0,3] = 0.0
+combinations[0,4] = 0.0
+combinations[1,0] = 0.0
+combinations[1,1] = 16.0
+combinations[1,2] = 3.0
+combinations[1,3] = 31.0
+combinations[1,4] = 12.0</code></pre>
+</div>
+</div>
+<!--
+
+::: {#d37c066e .cell execution_count=13}
+``` {.python .cell-code}
+def transport(u,s,d):   
+    #Create the model
+    problem = Model('Transportation problem (general)')
+    problem.setParam('OutputFlag',0)
+    
+    # Obtaining values of m and n
+    m = len(s) # number of plants
+    n = len(d) # number of customers
+    
+    # Decision variables
+    x = problem.addVars(m, n, name='combinations')
+    
+    # Objective function
+    problem.setObjective(quicksum(quicksum(u[i,j]*x[i,j] for i in range(m)) 
+                                                            for j in range(n)), 
+                                                              sense=GRB.MINIMIZE)
+    # Add supply constraints
+    for i in range(m):
+        problem.addConstr(quicksum(x[i,j] for j in range(n)) <= s[i])
+    
+    # Add demand constraints
+    for j in range(n):
+        problem.addConstr(quicksum(x[i,j] for i in range(m)) >= d[j])
+    
+    return problem
+```
+:::
+
+
+-->
+</section>
+<section id="question-4" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="question-4">Question 4</h4>
+<p>Consider a knapsack problem in which we have <span class="math inline">k = n^2 \in \mathbb{N}</span> items <span class="math inline">I = \{1,\dots,k\}</span> that all have a weight <span class="math inline">w_i</span> and a value <span class="math inline">v_i</span> for <span class="math inline">i \in I</span>. We want to select a subset of items whose total weight is at most <span class="math inline">W</span>, whilst their total value is maximized at the same time. Furthermore, we can select at most <span class="math inline">r</span> items from the first group of <span class="math inline">n</span> items <span class="math inline">\{1,\dots,n\}</span>, at most <span class="math inline">r</span> from the second group of <span class="math inline">n</span> items <span class="math inline">\{n+1,\dots,2n\}</span> etc.</p>
+<p>This problem can be modelled with the following binary linear optimization problem, where <span class="math inline">x_i = 1</span> if item <span class="math inline">i</span> is included, and <span class="math inline">x_i = 0</span> otherwise.</p>
+<p><span class="math display">
+\begin{array}{lllll}
+\max &amp; \displaystyle \sum_{i=1}^{n^2} v_ix_i &amp; &amp; \\
+\rm{s.t. } &amp; \displaystyle \sum_{i=a\cdot n+1}^{(a+1)\cdot n} x_{i} &amp;  \leq &amp; r &amp; \text{for } a = 0,\dots,n-1 \\
+&amp; \displaystyle \sum_{i=1}^{n^2} w_ix_{i} &amp;  \leq &amp; W &amp; \\
+&amp; x_{i} &amp; \in &amp; \{0,1\} &amp; \text{for all } i = 1,\dots,n^2
+\end{array}
+</span></p>
+<ol type="a">
+<li>Define a function <code>knapsack(n,w,v,W,r)</code> that takes as input <span class="math inline">n, r \in \mathbb{N}, v, w \in \mathbb{R}^{n^2}_{\geq 0}</span> and <span class="math inline">W \in \mathbb{R}_{\geq 0}</span>, and returns the implemented problem as a <code>Model()</code> object. Do not optimize the model inside this function!</li>
+</ol>
+<p>Test your function by copying and pasting the code below (the solution is not unique so other outputs might also be possible; check they have the same objective function as the displayed optimal solution here).</p>
+<div id="ecddc1a5" class="cell" data-execution_count="15">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 16 items divided into four consecutive groups of four items</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">4</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> np.array([<span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">7</span>,</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>              <span class="dv">3</span>, <span class="dv">6</span>, <span class="dv">2</span>, <span class="dv">8</span>,</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>              <span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">3</span>,</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>              <span class="dv">6</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">4</span>])</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> np.array([<span class="dv">6</span>, <span class="dv">12</span>, <span class="dv">9</span>, <span class="dv">15</span>,</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>              <span class="dv">8</span>, <span class="dv">14</span>, <span class="dv">5</span>, <span class="dv">18</span>,</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>              <span class="dv">11</span>, <span class="dv">10</span>, <span class="dv">16</span>, <span class="dv">7</span>,</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>              <span class="dv">13</span>, <span class="dv">6</span>, <span class="dv">12</span>, <span class="dv">9</span>])</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>W <span class="op">=</span> <span class="dv">25</span>  <span class="co"># Maximum total weight</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="dv">2</span>   <span class="co"># At most two items from each group</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>model_knapsack <span class="op">=</span> knapsack(n, w, v, W, r)</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>model_knapsack.optimize()</span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> var <span class="kw">in</span> model_knapsack.getVars():</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(var.VarName, <span class="st">"="</span>, var.X)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>items[0] = 1.0
+items[1] = 1.0
+items[2] = 0.0
+items[3] = -0.0
+items[4] = 1.0
+items[5] = 1.0
+items[6] = 0.0
+items[7] = 0.0
+items[8] = -0.0
+items[9] = 1.0
+items[10] = 0.0
+items[11] = 1.0
+items[12] = -0.0
+items[13] = 1.0
+items[14] = 0.0
+items[15] = 0.0</code></pre>
+</div>
+</div>
+<!--
+
+::: {#b8ad58c5 .cell execution_count=16}
+``` {.python .cell-code}
+def knapsack(n, w, v, W, r):
+    # Create the model
+    problem = Model('Knapsack problem with group constraints')
+    problem.setParam('OutputFlag',0)
+
+    # Obtain the number of items
+    k = len(w)
+
+    # Decision variables
+    x = problem.addVars(k, vtype=GRB.BINARY, name='items')
+
+    # Objective function
+    problem.setObjective(quicksum(v[i]*x[i] for i in range(k)),
+                         sense=GRB.MAXIMIZE)
+
+    # Add the weight constraint
+    problem.addConstr(quicksum(w[i]*x[i] for i in range(k)) <= W)
+
+    # Add a selection constraint for each group
+    for a in range(n):
+        problem.addConstr(quicksum(x[i] for i in range(a*n, (a+1)*n)) <= r)
+
+    return problem
+```
+:::
+
+
+-->
+<ol start="2" type="a">
+<li>Is it necessary to have <span class="math inline">n</span> as an input argument of <code>knapsack(n,w,v,W,r)</code>, or can you implement the same problem without <span class="math inline">n</span> as input, i.e., <code>knapsack(w,v,W,r)</code>? You may still assume that <span class="math inline">k = n^2</span> to answer this question.</li>
+</ol>
+</section>
+<section id="question-5" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="question-5">Question 5</h4>
+<p>A university wants to assign bachelor students to thesis topics. Each teacher proposes exactly one topic, and each topic is proposed by exactly one teacher. Assigning a student to a topic therefore also determines their supervisor.</p>
+<p>There are <span class="math inline">m</span> students and <span class="math inline">n</span> teachers. Every student has given every teacher’s topic a grade between <span class="math inline">1</span> and <span class="math inline">10</span>, where a higher grade indicates a stronger preference. These grades are stored in a matrix <span class="math inline">G \in [1,10]^{m \times n}</span>, where <span class="math inline">G_{ij}</span> is the grade given by student <span class="math inline">i</span> to the topic proposed by teacher <span class="math inline">j</span>.</p>
+<p>The university wants to maximize the total preference score, subject to the following constraints:</p>
+<ul>
+<li>Every student must be assigned to exactly one teacher.</li>
+<li>Each teacher can supervise at most <span class="math inline">U = 5</span> students.</li>
+<li>For any two teachers, the numbers of students they supervise may differ by at most <span class="math inline">2</span>.</li>
+</ul>
+<p>We use student indices <span class="math inline">i = 0,\dots,m-1</span> and teacher indices <span class="math inline">j = 0,\dots,n-1</span>. Define binary decision variables <span class="math display">
+x_{ij} =
+\begin{cases}
+1 &amp; \text{if student } i \text{ is assigned to teacher } j,\\
+0 &amp; \text{otherwise}.
+\end{cases}
+</span></p>
+<p>The problem can be formulated as the following binary linear optimization problem: <span class="math display">
+\begin{array}{rll}
+\max
+&amp; \displaystyle\sum_{i=0}^{m-1}\sum_{j=0}^{n-1}G_{ij}x_{ij}
+&amp; \text{total preference score}\\[6pt]
+\text{s.t.}
+&amp; \displaystyle\sum_{j=0}^{n-1}x_{ij}=1
+&amp; \forall i=0,\dots,m-1,\\[6pt]
+&amp; \displaystyle\sum_{i=0}^{m-1}x_{ij}\leq U
+&amp; \forall j=0,\dots,n-1,\\[6pt]
+&amp; \displaystyle\sum_{i=0}^{m-1}x_{ip}
+  -\sum_{i=0}^{m-1}x_{iq}\leq2
+&amp; \forall\,0\leq p&lt;q&lt;n,\\[6pt]
+&amp; \displaystyle\sum_{i=0}^{m-1}x_{iq}
+  -\sum_{i=0}^{m-1}x_{ip}\leq2
+&amp; \forall\,0\leq p&lt;q&lt;n,\\[6pt]
+&amp; x_{ij}\in\{0,1\}
+&amp; \forall i,j.
+\end{array}
+</span></p>
+<p>The two constraints for each pair of teachers ensure that their supervision loads differ by at most <span class="math inline">2</span> in either direction. Teachers who supervise no students are included in this comparison.</p>
+<ol type="a">
+<li>Write a function <code>thesis_assignment()</code> that takes as input a two-dimensional array <code>G</code> containing the preference grades and the maximum number of students per teacher, <code>U</code>. Return a <code>Model()</code> object implementing the problem. Do not optimize the model inside the function.<br>
+<em>Hint: You can store each teacher’s supervision load as a <code>quicksum()</code> expression and reuse these expressions in the balancing constraints.</em></li>
+</ol>
+<p><strong>Solution</strong></p>
+<ol start="2" type="a">
+<li>Test your function on the following data for <span class="math inline">12</span> students and <span class="math inline">4</span> teachers.</li>
+</ol>
+<div id="d69d2d02" class="cell" data-execution_count="18">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Rows: students; columns: teachers' topics</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> np.array([</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">10</span>, <span class="dv">8</span>,  <span class="dv">3</span>,  <span class="dv">2</span>],</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">10</span>, <span class="dv">7</span>,  <span class="dv">4</span>,  <span class="dv">3</span>],</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    [ <span class="dv">9</span>, <span class="dv">8</span>,  <span class="dv">3</span>,  <span class="dv">4</span>],</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">10</span>, <span class="dv">9</span>,  <span class="dv">2</span>,  <span class="dv">3</span>],</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    [ <span class="dv">9</span>, <span class="dv">7</span>,  <span class="dv">4</span>,  <span class="dv">2</span>],</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">10</span>, <span class="dv">8</span>,  <span class="dv">3</span>,  <span class="dv">4</span>],</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    [ <span class="dv">9</span>, <span class="dv">8</span>,  <span class="dv">4</span>,  <span class="dv">3</span>],</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    [ <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">10</span>,  <span class="dv">6</span>],</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    [ <span class="dv">3</span>, <span class="dv">4</span>,  <span class="dv">9</span>,  <span class="dv">5</span>],</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    [ <span class="dv">5</span>, <span class="dv">3</span>, <span class="dv">10</span>,  <span class="dv">7</span>],</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    [ <span class="dv">3</span>, <span class="dv">4</span>,  <span class="dv">6</span>, <span class="dv">10</span>],</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>    [ <span class="dv">4</span>, <span class="dv">3</span>,  <span class="dv">5</span>,  <span class="dv">9</span>]</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>])</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>U <span class="op">=</span> <span class="dv">5</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>model_thesis <span class="op">=</span> thesis_assignment(G, U)</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>model_thesis.optimize()</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the selected student-teacher combinations</span></span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> var <span class="kw">in</span> model_thesis.getVars():</span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> var.X <span class="op">&gt;</span> <span class="fl">0.5</span>: <span class="co"># Print only variables with value 1</span></span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(var.VarName, <span class="st">'='</span>, <span class="bu">round</span>(var.X))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>assignment[0,0] = 1
+assignment[1,0] = 1
+assignment[2,1] = 1
+assignment[3,1] = 1
+assignment[4,0] = 1
+assignment[5,0] = 1
+assignment[6,1] = 1
+assignment[7,2] = 1
+assignment[8,2] = 1
+assignment[9,2] = 1
+assignment[10,3] = 1
+assignment[11,3] = 1</code></pre>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/pskleer\.github\.io");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./exercises-lec3.html" class="pagination-link" aria-label="Lecture 3: Section 5.1">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Lecture 3: Section 5.1</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

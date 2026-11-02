@@ -233,10 +233,8 @@ window.Quarto = {
 </header>
 
 
-<section id="solutions-to-the-exercises" class="level4 unnumbered">
-<h4 class="unnumbered anchored" data-anchor-id="solutions-to-the-exercises"><strong>Solutions to the exercises</strong></h4>
 <p>Make sure to import NumPy and the <code>optimize</code> module from SciPy. Avoid explicit for-loops unless specified otherwise.</p>
-<div id="f6dca62c" class="cell" data-execution_count="1">
+<div id="2d565354" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import relevant packages</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.optimize <span class="im">as</span> optimize</span>
@@ -244,19 +242,18 @@ window.Quarto = {
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Set numerical precision for printing</span></span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>np.set_printoptions(precision<span class="op">=</span><span class="dv">3</span>, floatmode<span class="op">=</span><span class="st">"fixed"</span>, suppress<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section>
 <section id="question-1" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="question-1">Question 1</h4>
 <p>Execute <code>fsolve()</code> with initial guesses in <span class="math inline">[-10,-9.5,-9,\dots,9,9.5,10]</span> to find roots of the function <span class="math inline">f(x) = x \cdot \cos(x)</span>. You may use a for-loop to iterate over the initial guesses. Store the roots found in a list called <code>roots</code>.</p>
 <p>The output list <code>roots</code> should look like this. Recall that <code>fsolve()</code> returns an array with one element (which you can access by indexing it at position <span class="math inline">0</span>).</p>
-<div id="a9fb515f" class="cell" data-execution_count="2">
+<div id="1a64d05d" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-stdout">
 <pre><code>[np.float64(-10.995574287564276), np.float64(1.5707963267948954), np.float64(-7.853981633974491), np.float64(-7.853981633974483), np.float64(-7.853981633974498), np.float64(-7.853981633974479), np.float64(-7.853981633974455), np.float64(-7.853981633974483), np.float64(-4.712388980384539), np.float64(-4.71238898038469), np.float64(-4.71238898038469), np.float64(-4.71238898038469), np.float64(-4.71238898038469), np.float64(1.5707963267948966), np.float64(-1.5707963267948966), np.float64(-1.570796326794901), np.float64(-1.5707963267948974), np.float64(-1.5707963267948966), np.float64(-1.5707963267948961), np.float64(0.0), np.float64(0.0), np.float64(0.0), np.float64(1.5707963267948961), np.float64(1.5707963267948966), np.float64(1.5707963267948974), np.float64(1.570796326794901), np.float64(1.5707963267948966), np.float64(-1.5707963267948966), np.float64(4.71238898038469), np.float64(4.71238898038469), np.float64(4.71238898038469), np.float64(4.71238898038469), np.float64(4.712388980384539), np.float64(7.853981633974483), np.float64(7.853981633974455), np.float64(7.853981633974479), np.float64(7.853981633974498), np.float64(7.853981633974483), np.float64(7.853981633974491), np.float64(-7.853981633974483), np.float64(10.995574287564276)]</code></pre>
 </div>
 </div>
 <!--
 
-::: {#7996ef26 .cell execution_count=3}
+::: {#1c9e021b .cell execution_count=3}
 ``` {.python .cell-code}
 def f(x):
     return x*np.cos(x)
@@ -295,7 +292,7 @@ print(roots)
 The output property <code>converged</code> of <code>root_scalar()</code> tells you whether or not Newton’s method has found a point sufficiently close to a root. Also, you will need to use the <code>args</code> keyword argument.</p></li>
 </ol>
 <p>Your functions should give the following output on the input below.</p>
-<div id="9e68c2d5" class="cell" data-execution_count="7">
+<div id="c3a343cd" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First polynomial</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> np.array([<span class="fl">1.5</span>, <span class="dv">0</span>, <span class="op">-</span><span class="fl">2.5</span>, <span class="fl">0.3</span>, <span class="dv">1</span>])</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="fl">1.5</span></span>
@@ -316,7 +313,7 @@ No root was found; it might be that no root exists.</code></pre>
 </div>
 <!--
 
-::: {#d2c4c755 .cell execution_count=8}
+::: {#e0caa4f4 .cell execution_count=8}
 ``` {.python .cell-code}
 def root_polynomial(a,r):
     x = optimize.root_scalar(f, args=(a,), x0=r, method='newton',
@@ -380,7 +377,7 @@ For <span class="math inline">k = 50</span> evenly spaced points in <span class=
 </ol>
 <!--
 
-::: {#52c5cdaf .cell execution_count=11}
+::: {#8a251585 .cell execution_count=11}
 
 ::: {.cell-output .cell-output-stdout}
 ```
@@ -439,7 +436,7 @@ For guess = [ 2.000 -0.000], found root is [0.000 1.000]
 :::
 
 
-::: {#7cfb5f4a .cell execution_count=12}
+::: {#225059d0 .cell execution_count=12}
 ``` {.python .cell-code}
 # Evenly spaced points in the interval [0,2*pi]
 k = 50
@@ -523,7 +520,7 @@ f(x) = f(x_0,\dots,x_{n-1}) = \frac{1}{2}x^TAx + b^Tx + c = \frac{1}{2}\sum_{i =
 </span> that takes as input a one-dimensional array <span class="math inline">x</span>. The gradient of this function is given by <span class="math inline">\nabla f(x) = Ax + b</span>. If the matrix <span class="math inline">A</span> has positive eigenvalues, then <span class="math inline">f</span> is guaranteed to have a minimizer.</p>
 <p>Write a function <code>quadratic_minimizer</code> that takes as input <span class="math inline">A,b</span> and <span class="math inline">c</span>. It should compute a (local) minimizer of the function <span class="math inline">f</span> using <code>minimize()</code> with gradient information, the <code>'CG'</code> method, and initial guess <span class="math inline">x = [1,1,\dots,1]</span>.</p>
 <p>It should give the following output on the given input.</p>
-<div id="931343b0" class="cell" data-execution_count="14">
+<div id="f511b55e" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example usage</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([[<span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">0</span>], [<span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">0</span>], [<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">5</span>]])</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> np.array([<span class="op">-</span><span class="dv">1</span>, <span class="op">-</span><span class="dv">4</span>, <span class="dv">1</span>])</span>
@@ -539,7 +536,7 @@ Function value at optimal point: 3.7333333333333325</code></pre>
 </div>
 <!--
 
-::: {#3a4ccd2a .cell execution_count=15}
+::: {#94f41828 .cell execution_count=15}
 ``` {.python .cell-code}
 def f(x, A, b, c):
     return (1/2) * x.T @ (A @ x) + b @ x + c
@@ -581,7 +578,7 @@ Function value at optimal point: 3.7333333333333325
 
 -->
 <p>Because the matrix <span class="math inline">A</span> is symmetric and has positive eigenvalues, the function <span class="math inline">f</span> is convex, meaning that an optimal solution can be found at the point where the gradient is the all-zeros vector, that is, <span class="math inline">x^* = -A^{-1}b</span>. This is indeed the solution that we found.</p>
-<div id="620e38b0" class="cell" data-execution_count="16">
+<div id="fb318b8e" class="cell" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>eig_A, _ <span class="op">=</span> np.linalg.eig(A)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"The eigenvalues of A are </span><span class="sc">{</span>eig_A<span class="sc">}</span><span class="ss">"</span>)</span>
@@ -611,7 +608,7 @@ Function value at point where gradient is zero: 3.7333333333333334</code></pre>
 <p>using <code>minimize()</code> with the <code>'trust-constr'</code> method. Take <span class="math inline">a</span> as the initial guess. You may assume that <span class="math inline">\sum_i w_ia_i \leq W</span>, so that this problem always has a non-empty feasible region.<br>
 <br>
 <em>Hint:</em> You may want to have a look at the <code>constraints</code> keyword argument in the documentation of <code>minimize()</code> to see how you can pass additional arguments to a constraint.</p>
-<div id="0c3c4011" class="cell" data-execution_count="18">
+<div id="72c0edb8" class="cell" data-execution_count="18">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Input data</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">7</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> np.array([<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">7</span>])</span>
@@ -630,7 +627,7 @@ Function value at point where gradient is zero: 3.7333333333333334</code></pre>
 </div>
 <!--
 
-::: {#770521b9 .cell execution_count=19}
+::: {#c5690195 .cell execution_count=19}
 ``` {.python .cell-code}
 def f(x):
     return - np.linalg.norm(x)

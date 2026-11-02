@@ -63,6 +63,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
+<link href="./exercises-lec5.html" rel="next">
 <link href="./exercises-lec3.html" rel="prev">
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
@@ -197,6 +198,12 @@ window.Quarto = {
  <span class="menu-text">Lecture 4: Section 5.2</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./exercises-lec5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 5: Section 6</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -228,7 +235,7 @@ window.Quarto = {
 
 
 <p>Make sure to import NumPy and the relevant functions from Gurobi.</p>
-<div id="70c3117c" class="cell" data-execution_count="1">
+<div id="3ffa5670" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gurobipy <span class="im">import</span> Model, GRB, quicksum</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -256,14 +263,14 @@ window.Quarto = {
 <br>
 If you include the following lines at the end of your code, you should get the output as indicated.</li>
 </ol>
-<div id="22614481" class="cell" data-execution_count="2">
+<div id="6c44790f" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-stdout">
 <pre><code>Set parameter Username
 Set parameter LicenseID to value 2805707
 Academic license - for non-commercial use only - expires 2027-04-10</code></pre>
 </div>
 </div>
-<div id="15cbc03c" class="cell" data-execution_count="3">
+<div id="19dd8103" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print optimal decision variables Model() object called msf</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> var <span class="kw">in</span> msf.getVars():</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(var.VarName, <span class="st">"="</span>, var.X)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -274,7 +281,7 @@ Vaccination kits = 10.491803278688531</code></pre>
 </div>
 <!--
 
-::: {#f6733be9 .cell execution_count=4}
+::: {#256fe98d .cell execution_count=4}
 ``` {.python .cell-code}
 # Initialize Gurobi model.
 msf = Model(name='MSF')
@@ -316,7 +323,7 @@ Vaccination kits = 10.491803278688531
 <br>
 If you include the following lines at the end of your code, you should get the output as indicated (the solution is actually not unique so other outcomes might also be possible; what is important is that the total number of produced kits should be <span class="math inline">23</span>).</li>
 </ol>
-<div id="64fc8261" class="cell" data-execution_count="6">
+<div id="f7ab9a48" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print optimal decision variables from the Model() object called msf_int</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> var <span class="kw">in</span> msf_int.getVars():</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(var.VarName, <span class="st">"="</span>, var.X)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -327,7 +334,7 @@ Vaccination kits = 11.0</code></pre>
 </div>
 <!--
 
-::: {#84ecf9ed .cell execution_count=7}
+::: {#56b8150a .cell execution_count=7}
 ``` {.python .cell-code}
 # Initialize Gurobi model.
 msf_int = Model(name='MSF')
@@ -449,7 +456,7 @@ Vaccination kits = 11.0
 <p><code>x11 = model_beer.addVar(name='Haarlem-Amsterdam')</code></p>
 <p>for the decision variable <span class="math inline">x_{11}</span> modeling the Haarlem-Amsterdam combination).</p>
 <p>If you include the following lines at the end of your code, you should get the output as indicated.</p>
-<div id="981d1a95" class="cell" data-execution_count="9">
+<div id="cec68e69" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> var <span class="kw">in</span> model_beer.getVars():</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(var.VarName, <span class="st">"="</span>, var.X)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -467,7 +474,7 @@ Eindhoven-Den Bosch = 12.0</code></pre>
 </div>
 <!--
 
-::: {#b84c39ff .cell execution_count=10}
+::: {#62c2f4ee .cell execution_count=10}
 ``` {.python .cell-code}
 model_beer = Model('Transportation problem')
 model_beer.setParam('OutputFlag',0)
@@ -547,7 +554,7 @@ x_{pc} &amp; &amp; \textit{total transportation costs}\\
 <p>Write a function <code>transport()</code> that takes as input a two-dimensional array <span class="math inline">u \in \mathbb{R}^{m \times n}</span> containing the transportation costs for every plant-customer combination, a one-dimensional array <span class="math inline">s \in \mathbb{R}_{\geq 0}^{m}</span> with the supplies of the plants and a one-dimensional array <span class="math inline">d \in \mathbb{R}_{\geq 0}^{n}</span> with the demands of the customers. It should output a <code>Model()</code> object that implements the above problem; do not yet optimize the model in this function!<br>
 <em>Hint: Section 5.2.3 on the use of double-indexed variables is useful.</em></p>
 <p>Test your function on the input from Question 2 by executing the following code below your function.</p>
-<div id="f08b6c63" class="cell" data-execution_count="12">
+<div id="943ed3b1" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>u <span class="op">=</span> np.array([[<span class="dv">131</span>, <span class="dv">405</span>, <span class="dv">188</span>, <span class="dv">396</span>, <span class="dv">485</span>],[<span class="dv">554</span>, <span class="dv">351</span>, <span class="dv">479</span>, <span class="dv">366</span>, <span class="dv">155</span>]])</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> np.array([<span class="dv">47</span>, <span class="dv">63</span>])</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> np.array([<span class="dv">28</span>, <span class="dv">16</span>, <span class="dv">22</span>, <span class="dv">31</span>,<span class="dv">12</span>])</span>
@@ -576,7 +583,7 @@ combinations[1,4] = 12.0</code></pre>
 </div>
 <!--
 
-::: {#d37c066e .cell execution_count=13}
+::: {#2b4343bd .cell execution_count=13}
 ``` {.python .cell-code}
 def transport(u,s,d):   
     #Create the model
@@ -625,7 +632,7 @@ def transport(u,s,d):
 <li>Define a function <code>knapsack(n,w,v,W,r)</code> that takes as input <span class="math inline">n, r \in \mathbb{N}, v, w \in \mathbb{R}^{n^2}_{\geq 0}</span> and <span class="math inline">W \in \mathbb{R}_{\geq 0}</span>, and returns the implemented problem as a <code>Model()</code> object. Do not optimize the model inside this function!</li>
 </ol>
 <p>Test your function by copying and pasting the code below (the solution is not unique so other outputs might also be possible; check they have the same objective function as the displayed optimal solution here).</p>
-<div id="ecddc1a5" class="cell" data-execution_count="15">
+<div id="9a0e8ba2" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 16 items divided into four consecutive groups of four items</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">4</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> np.array([<span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">7</span>,</span>
@@ -667,7 +674,7 @@ items[15] = 0.0</code></pre>
 </div>
 <!--
 
-::: {#b8ad58c5 .cell execution_count=16}
+::: {#16bb09a3 .cell execution_count=16}
 ``` {.python .cell-code}
 def knapsack(n, w, v, W, r):
     # Create the model
@@ -747,7 +754,7 @@ x_{ij} =
 <ol start="2" type="a">
 <li>Test your function on the following data for <span class="math inline">12</span> students and <span class="math inline">4</span> teachers.</li>
 </ol>
-<div id="d69d2d02" class="cell" data-execution_count="18">
+<div id="cfc089c0" class="cell" data-execution_count="18">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Rows: students; columns: teachers' topics</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> np.array([</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">10</span>, <span class="dv">8</span>,  <span class="dv">3</span>,  <span class="dv">2</span>],</span>
@@ -1200,6 +1207,9 @@ assignment[11,3] = 1</code></pre>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./exercises-lec5.html" class="pagination-link" aria-label="Lecture 5: Section 6">
+        <span class="nav-page-text">Lecture 5: Section 6</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

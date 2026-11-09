@@ -247,7 +247,7 @@ window.Quarto = {
 
 
 <p>Make sure to import NumPy to be able to use all its functionality. We also add a command that displays floating-point numbers in arrays to three decimal places. You do not have to know this command.</p>
-<div id="f546969d" class="cell" data-execution_count="1">
+<div id="8b99ee21" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>np.set_printoptions(precision<span class="op">=</span><span class="dv">3</span>, floatmode<span class="op">=</span><span class="st">"fixed"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -271,7 +271,7 @@ M =
 <p>by combining two functions seen in Chapter 3.</p>
 <!-- Answer
 
-::: {#633b0995 .cell execution_count=2}
+::: {#91cc441e .cell execution_count=2}
 ``` {.python .cell-code}
 M = np.arange(1,25).reshape(6,4)
 
@@ -300,7 +300,7 @@ x = [1, 5, 9, 2, 6, 10, 3, 7, 11, 4, 8, 12]
 </span> from the first three rows of <span class="math inline">M</span> (using reshaping functionality in combination with transposing a matrix).</p>
 <!-- Answer
 
-::: {#8de6bf05 .cell execution_count=3}
+::: {#bb32f2a8 .cell execution_count=3}
 ``` {.python .cell-code}
 x = M[0:3,:].T.flatten()
 
@@ -331,7 +331,7 @@ x^2 + 3 &amp; \text{ if } 0 \leq x &lt; 1\\
 </span></p>
 <p>so that it can handle both single numbers <span class="math inline">x</span> and one-dimensional arrays <span class="math inline">x \in \mathbb{R}^n</span> as input. You might want to look at the Heaviside function example in Section 4.1 for some inspiration.</p>
 <p>Your function should give the following output on the given input <span class="math inline">x</span>.</p>
-<div id="1c5854e3" class="cell" data-execution_count="5">
+<div id="ea611153" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.arange(<span class="op">-</span><span class="dv">5</span>,<span class="dv">6</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(f(x))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -340,7 +340,7 @@ x^2 + 3 &amp; \text{ if } 0 \leq x &lt; 1\\
 </div>
 <!-- Answer
 
-::: {#40980ba0 .cell execution_count=6}
+::: {#fc35e250 .cell execution_count=6}
 ``` {.python .cell-code}
 def f(x):
     term1 = (-x + 3)*(x < 0)
@@ -370,7 +370,7 @@ print(f(x))
 </ol>
 <!-- Answer
 
-::: {#09b600e2 .cell execution_count=7}
+::: {#54dbc18e .cell execution_count=7}
 ``` {.python .cell-code}
 n = 10
 y = 1/np.arange(1,n+1)
@@ -393,7 +393,7 @@ print(y)
 </span> for <span class="math inline">i = 0,\dots,n-1</span>.</li>
 </ol>
 <p>It should give the following output on the given input <span class="math inline">x</span>.</p>
-<div id="630858c5" class="cell" data-execution_count="9">
+<div id="5dce2615" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Some test data</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.array([<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">2</span>,<span class="dv">5</span>])</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(cum_mean(x))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -403,7 +403,7 @@ print(y)
 </div>
 <!-- Answer
 
-::: {#72f0f0d7 .cell execution_count=10}
+::: {#e8c889f0 .cell execution_count=10}
 ``` {.python .cell-code}
 # Define cumulative mean function
 def cum_mean(x):
@@ -431,7 +431,7 @@ print(cum_mean(x))
 <ol start="3" type="a">
 <li>Vectorize your function from part b) so that it takes as input two-dimensional arrays, and outputs the cumulative mean of every row of the two-dimensional array. Your function should give the following output on the given input matrix <span class="math inline">M</span>.</li>
 </ol>
-<div id="177cdb9c" class="cell" data-execution_count="12">
+<div id="9b4bace8" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Some test data</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>M <span class="op">=</span> np.array([[<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">2</span>,<span class="dv">5</span>],[<span class="dv">1</span>,<span class="dv">10</span>,<span class="dv">12</span>,<span class="dv">8</span>],[<span class="op">-</span><span class="dv">1</span>,<span class="dv">9</span>,<span class="dv">3</span>,<span class="op">-</span><span class="dv">10</span>]])</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(cum_mean(M))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -443,7 +443,7 @@ print(cum_mean(x))
 </div>
 <!-- Answer
 
-::: {#b3634493 .cell execution_count=13}
+::: {#58f72ad9 .cell execution_count=13}
 ``` {.python .cell-code}
 # Cumulative mean function  
 def cum_mean(x):
@@ -481,7 +481,7 @@ g(x_0,\dots,x_{n-1}) = \sum_{i=0}^{n-1} \sin(x_i) \cdot (x_i)^{2 \cdot i}
 <ol type="a">
 <li>Implement the function <span class="math inline">g</span>. It should give the following output on the given input <span class="math inline">x</span>.</li>
 </ol>
-<div id="3a8c4e36" class="cell" data-execution_count="15">
+<div id="370362ce" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Some input data</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.array([<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">2</span>,<span class="dv">6</span>,<span class="dv">4</span>,<span class="dv">5</span>])</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(g(x))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -491,7 +491,7 @@ g(x_0,\dots,x_{n-1}) = \sum_{i=0}^{n-1} \sin(x_i) \cdot (x_i)^{2 \cdot i}
 </div>
 <!-- Answer
 
-::: {#9e59041a .cell execution_count=16}
+::: {#e3bee6d0 .cell execution_count=16}
 ``` {.python .cell-code}
 def g(x):
     n = np.size(x)
@@ -515,7 +515,7 @@ print(g(x))
 <li>Vectorize the function <span class="math inline">g</span> so that it can take as input a two-dimensional array, and return the function value <span class="math inline">g(x)</span> for every row <span class="math inline">x</span> of the array.</li>
 </ol>
 <p>It should give the following output on the given input <span class="math inline">M</span>.</p>
-<div id="9cbe35dc" class="cell" data-execution_count="18">
+<div id="4b73aa91" class="cell" data-execution_count="18">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Some input data</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>M <span class="op">=</span> np.array([[<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">2</span>,<span class="dv">6</span>,<span class="dv">4</span>,<span class="dv">5</span>],[<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">2</span>,<span class="dv">6</span>,<span class="dv">4</span>,<span class="dv">5</span>],[<span class="dv">7</span>,<span class="dv">4</span>,<span class="dv">9</span>,<span class="dv">6</span>,<span class="dv">3</span>,<span class="dv">5</span>]])</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(g(M))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -525,7 +525,7 @@ print(g(x))
 </div>
 <!-- Answer
 
-::: {#1aa5e0b3 .cell execution_count=19}
+::: {#87e73b7b .cell execution_count=19}
 ``` {.python .cell-code}
 def g(x):
     n = np.shape(x)[1]
@@ -553,7 +553,7 @@ print(g(M))
 \left( \displaystyle \prod_{i=0}^{n-1} x_i \right)^{1/n}
 </span></p>
 <p>It should give the following output on the given input <span class="math inline">M</span>.</p>
-<div id="6af7daa6" class="cell" data-execution_count="21">
+<div id="aa1c3214" class="cell" data-execution_count="21">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Some input data</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>M <span class="op">=</span> np.array([[<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">2</span>,<span class="dv">6</span>,<span class="dv">4</span>,<span class="dv">5</span>],[<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">7</span>,<span class="dv">1</span>,<span class="dv">5</span>],[<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">2</span>,<span class="dv">6</span>,<span class="dv">8</span>,<span class="dv">50</span>]])</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(geom(M))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -563,7 +563,7 @@ print(g(M))
 </div>
 <!-- Answer
 
-::: {#76b90684 .cell execution_count=22}
+::: {#870172ea .cell execution_count=22}
 ``` {.python .cell-code}
 def geom(x):
     m = np.shape(x)[0]
@@ -593,7 +593,7 @@ print(geom(M))
 </span> where <span class="math inline">x_{\min} = \min_i x_i</span> and <span class="math inline">x_{\max} = \max_i x_i</span>. You may assume that <span class="math inline">x_{\max} \neq x_{\min}</span> to avoid dividing by zero. <em>You could add a check for this case into your function, but is not needed.</em></li>
 </ol>
 <p>It should give the following output on the given input <span class="math inline">x</span>.</p>
-<div id="210cfb03" class="cell" data-execution_count="24">
+<div id="d58c916b" class="cell" data-execution_count="24">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Some input data</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.array([<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">2</span>,<span class="op">-</span><span class="dv">6</span>,<span class="dv">4</span>,<span class="dv">5</span>])</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(normalize(x))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -603,7 +603,7 @@ print(geom(M))
 </div>
 <!-- Answer
 
-::: {#822cb57b .cell execution_count=25}
+::: {#4251a479 .cell execution_count=25}
 ``` {.python .cell-code}
 def normalize(x):
     return (x - np.min(x))/(np.max(x) - np.min(x))
@@ -626,7 +626,7 @@ print(normalize(x))
 <li>Vectorize your function so that it can normalize every column of a two-dimensional array using the formula in part a). You may, again, assume that the maximum and minimum element in each column are different.</li>
 </ol>
 <p>It should give the following output on the given input <span class="math inline">M</span>.</p>
-<div id="45c24797" class="cell" data-execution_count="27">
+<div id="5060f63c" class="cell" data-execution_count="27">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Some input data</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>M <span class="op">=</span> np.array([[<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">2</span>,<span class="op">-</span><span class="dv">6</span>,<span class="dv">4</span>,<span class="dv">5</span>],[<span class="op">-</span><span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">2</span>],[<span class="dv">9</span>,<span class="dv">8</span>,<span class="dv">7</span>,<span class="dv">6</span>,<span class="dv">5</span>,<span class="dv">4</span>]])</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(normalize(M))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -638,7 +638,7 @@ print(normalize(x))
 </div>
 <!-- Answer
 
-::: {#e4e81fd9 .cell execution_count=28}
+::: {#1791ab22 .cell execution_count=28}
 ``` {.python .cell-code}
 def normalize(x):
     col_min = np.min(x,axis = 0)
@@ -670,7 +670,7 @@ print(normalize(M))
 <em>Hint: A good understanding of the notion of broadcasting, see, e.g., Section 4.1, might be useful here.</em></li>
 </ol>
 <p>It should give the following output on the given input <span class="math inline">M</span>.</p>
-<div id="3c3eb4e7" class="cell" data-execution_count="30">
+<div id="4e8bf1b2" class="cell" data-execution_count="30">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Some test data</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>M <span class="op">=</span> np.array([[ <span class="dv">1</span>,  <span class="dv">2</span>,  <span class="dv">3</span>,  <span class="dv">0</span>],</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>       [ <span class="dv">5</span>,  <span class="dv">6</span>,  <span class="op">-</span><span class="dv">7</span>,  <span class="dv">0</span>],</span>
@@ -690,7 +690,7 @@ print(normalize(M))
 </div>
 <!-- Answer
 
-::: {#663de4bf .cell execution_count=31}
+::: {#068b0b08 .cell execution_count=31}
 ``` {.python .cell-code}
 def normal(x):
     row_means = np.mean(x, axis = 1) # Note that this is row array
@@ -729,7 +729,7 @@ print(normal(M))
 </ol>
 <!-- Answer
 
-::: {#3ccf4fb8 .cell execution_count=32}
+::: {#3c29293e .cell execution_count=32}
 ``` {.python .cell-code}
 mu = np.mean(normal(M),axis=1)
 print(mu) # All numbers are (almost) zero 
@@ -749,7 +749,7 @@ print(mu) # All numbers are (almost) zero
 </ol>
 <!-- Answer
 
-::: {#aea3b657 .cell execution_count=33}
+::: {#0ea046fc .cell execution_count=33}
 ``` {.python .cell-code}
 sigma = np.std(normal(M),axis=1)
 print(sigma) # All numbers are (almost) one

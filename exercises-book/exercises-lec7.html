@@ -1,0 +1,1239 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Lecture 7: Section 8 – Python II module - Exercises</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<link href="./exercises-lec6.html" rel="prev">
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-acf12a64177840b8d86f2d4f01b2e9fb.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-843f08c53b99c524b45113508bb491a8.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./exercises-lec7.html">Lecture 7: Section 8</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Python II module - Exercises</a> 
+        <div class="sidebar-tools-main">
+    <a href="./Python-II-module---Exercises.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+</div>
+    </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./exercises-lec1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 1: Sections 3.1-3.5</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./exercises-lec2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 2: Sections 3.6-3.7 and 4.1-4.3</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./exercises-lec3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 3: Section 5.1</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./exercises-lec4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 4: Section 5.2</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./exercises-lec5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 5: Section 6</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./exercises-lec6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 6: Section 7</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./exercises-lec7.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Lecture 7: Section 8</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Lecture 7: Section 8</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Make sure to import Numpy, SciPy and Matplotlib to be able to complete all the exercises.</p>
+<div id="e9412323" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import relevant packages</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.optimize <span class="im">as</span> optimize</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Set numerical precision for printing</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>np.set_printoptions(precision<span class="op">=</span><span class="dv">3</span>, floatmode<span class="op">=</span><span class="st">"fixed"</span>, suppress<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="question-1" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="question-1">Question 1</h4>
+<p>In this exercise we will construct the Box-Muller transform that allows the generation of random samples of the normal distribution using samples from the uniform distribution.</p>
+<p>If <span class="math inline">U_0</span> and <span class="math inline">U_1</span> are independent uniform random variables on <span class="math inline">[0,1]</span>, then <span class="math display">
+Z_0 = \sqrt{-2\cdot\ln(U_0)}\cos(2\pi U_1)
+</span> and <span class="math display">
+Z_1 = \sqrt{-2\cdot\ln(U_0)}\sin(2\pi U_1)
+</span> are independent random variables that follow a normal distribution.</p>
+<ol type="a">
+<li>Write a function <code>unif_to_norm</code> that takes as input parameters <span class="math inline">m</span> and <span class="math inline">n</span> and returns two <span class="math inline">m \times n</span> two-dimensional arrays <span class="math inline">z_0</span> and <span class="math inline">z_1</span>, where <code>z_0[i,j]</code> is a sample according to the formula <span class="math inline">Z_0</span> and every <code>z_1[i,j]</code> a sample according to the formula of <span class="math inline">Z_1</span>.<br>
+<br>
+That is, you should generate samples from the uniform distribution and transform them to samples from the normal distribution using the formulas above.</li>
+</ol>
+<!--
+
+::: {#5d9a70da .cell execution_count=3}
+``` {.python .cell-code}
+def unif_to_norm(m,n):
+    u_0 = np.random.rand(m,n)
+    u_1 = np.random.rand(m,n)
+    
+    z_0 = np.sqrt(-2*np.log(u_0))*np.cos(2*np.pi*u_1)
+    z_1 = np.sqrt(-2*np.log(u_0))*np.sin(2*np.pi*u_1)
+    return z_0, z_1
+```
+:::
+
+
+-->
+<ol start="2" type="a">
+<li>See if your function works for <span class="math inline">m = 10</span> and <span class="math inline">n = 100</span> and do a sanity check by computing the mean (should be close to zero) and standard deviation (should be close to 1) of all elements in <code>z0</code> and <code>z1</code>.</li>
+</ol>
+<div id="d9adb069" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>m, n <span class="op">=</span> <span class="dv">10</span>, <span class="dv">100</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>z0, z1 <span class="op">=</span> unif_to_norm(m,n)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="33232bf3" class="cell" data-execution_count="5">
+<div class="cell-output cell-output-stdout">
+<pre><code>Mean of elements in z0 is: 0.014958376822834523
+Standard deviation of elements in z0 is: 0.9882516241626027 
+
+Mean of elements in z1 is: 0.012733093824109603
+Standard deviation of elements in z1 is: 0.9913565225930875</code></pre>
+</div>
+</div>
+</section>
+<section id="question-2" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="question-2">Question 2</h4>
+<p>In this exercise, we will write a function that mimics <code>np.random.choice()</code> with a specified distribution <span class="math inline">x</span> in the keyword argument <code>p</code>.</p>
+<ol type="a">
+<li>Write a function <code>index_sample(x)</code> that, for given nonnegative input vector <span class="math inline">x = [x_0,\dots,x_{n-1}]</span> with <span class="math inline">\sum_i x_i = 1</span>, returns an index <span class="math inline">i \in \{0,\dots,n-1\}</span> with probability <span class="math inline">x_i</span>. As a source of randomness, your are allowed to use the <code>np.random.rand()</code> function. Do not use for-loops.<br>
+</li>
+</ol>
+<p><em>Hint: Identify every index with a subinterval of <span class="math inline">[0,1]</span>, and recall that <code>np.argmax()</code> applied to a Boolean vector returns the location of the first <code>True</code> element (assuming at least one exists).</em></p>
+<div id="242df882" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fix randomness</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">3</span>) </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Probabilities</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.array([<span class="dv">1</span><span class="op">/</span><span class="dv">4</span>,<span class="dv">1</span><span class="op">/</span><span class="dv">10</span>,<span class="dv">1</span><span class="op">/</span><span class="dv">10</span>,<span class="dv">1</span><span class="op">/</span><span class="dv">20</span>,<span class="dv">1</span><span class="op">/</span><span class="dv">4</span>,<span class="dv">1</span><span class="op">/</span><span class="dv">4</span>])</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Randomly generated index in {0,1,2,3,4,5} according to x</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>index <span class="op">=</span> index_sample(x)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(index)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>4</code></pre>
+</div>
+</div>
+<!--
+
+::: {#8b8d9953 .cell execution_count=8}
+``` {.python .cell-code}
+def index_sample(x):
+    # Input: Normalized vector x
+    # Output: Index sampled according to probabilities x_i
+    
+    u = np.random.rand()
+    return np.argmax(u < np.cumsum(x))
+```
+:::
+
+
+-->
+<ol start="2" type="a">
+<li>Vectorize your function to <code>index_samples(x,k)</code> so that it can return <span class="math inline">k</span> sampled indices according to the probabilities in <span class="math inline">x</span>. Do not use for-loops.</li>
+</ol>
+<div id="c80245f0" class="cell" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fix randomness</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">3</span>) </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Probabilities</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.array([<span class="dv">1</span><span class="op">/</span><span class="dv">4</span>,<span class="dv">1</span><span class="op">/</span><span class="dv">10</span>,<span class="dv">1</span><span class="op">/</span><span class="dv">10</span>,<span class="dv">1</span><span class="op">/</span><span class="dv">20</span>,<span class="dv">1</span><span class="op">/</span><span class="dv">4</span>,<span class="dv">1</span><span class="op">/</span><span class="dv">4</span>])</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>k <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>index <span class="op">=</span> index_samples(x,k)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(index)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[4 4 1 4 5 5 0 0 0 2]</code></pre>
+</div>
+</div>
+<!--
+
+::: {#f66d7644 .cell execution_count=11}
+``` {.python .cell-code}
+def index_samples(x,k):
+    # Input: Normalized vector x, number of samples k
+    # Output: k indices sampled according to probabilities x_i
+    
+    u = np.random.rand(k,1)
+    return np.argmax(u < np.cumsum(x),axis=1)
+```
+:::
+
+
+-->
+</section>
+<section id="question-3" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="question-3">Question 3</h4>
+<p>The probability density function (pdf) of the exponential distribution <span class="math inline">\text{Exp}(\beta)</span> with scale parameter <span class="math inline">\beta &gt; 0</span> is given by <span class="math display">\begin{align}
+f_{\beta}(x) = \left\{
+\begin{array}{ll}
+\frac{1}{\beta} e^{-\frac{1}{\beta} x} &amp; x &gt; 0\\
+0 &amp; x \leq 0
+\end{array}\right..
+\end{align}</span></p>
+<p>First, let <span class="math inline">X_i \sim \text{Exp}(\beta_i)</span> for <span class="math inline">i = 0,\dots,n-1</span> be independent exponential random variables and let <span class="math inline">X_{\min} = \min_i X_i</span>.</p>
+<p>In this question we will numerically verify the property that the minimum of exponentially random variables is again a random variable with an exponential distribution.</p>
+<ol type="a">
+<li>Write a function <code>min_samples()</code> that takes as input an array <span class="math inline">\beta = [\beta_0,\dots,\beta_{n-1}]</span> and a number <span class="math inline">T</span>. For every <span class="math inline">\beta_i</span> it should generate samples <span class="math inline">x_i^t</span> from <span class="math inline">X_i</span> for <span class="math inline">t = 1,\dots,T</span>. The function should output an array of length <span class="math inline">T</span> with the minima <span class="math display">
+\min_{i=0,\dots,n-1} x_i^t
+</span> for <span class="math inline">t = 1,\dots,T</span>. Do not use for-loops.<br>
+<em>Hint: Make a convenient choice for the <code>scale</code> and <code>size</code> keyword arguments of <code>np.random.exponential</code>; see the documentation.</em></li>
+</ol>
+<div id="34d13c54" class="cell" data-execution_count="13">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">3</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>beta <span class="op">=</span> np.array([<span class="dv">5</span>,<span class="dv">2</span>,<span class="dv">3</span>])</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>min_data <span class="op">=</span> min_samples(beta,T)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(min_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1.031 3.575 0.159 0.061 0.653 0.049 1.000 0.512 1.097 0.982]</code></pre>
+</div>
+</div>
+<!--
+
+::: {#34d4de19 .cell execution_count=14}
+``` {.python .cell-code}
+def min_samples(beta,T):
+    samples = np.random.exponential(scale=beta,size=(T,np.size(beta)))
+    return np.min(samples,axis=1)
+
+np.random.seed(3)
+
+beta = np.array([5,2,3])
+T = 10
+
+min_data = min_samples(beta,T)
+print(min_data)
+```
+
+::: {.cell-output .cell-output-stdout}
+```
+[1.031 3.575 0.159 0.061 0.653 0.049 1.000 0.512 1.097 0.982]
+```
+:::
+:::
+
+
+-->
+<ol start="2" type="a">
+<li>Write a function <code>exp_fit()</code> that takes as input an array of numbers, and fits an exponential distribution (of the form above) to these numbers. Do this by using the <code>fit()</code> method for an exponential distribution object in <code>stats</code>, which you can read about in the <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.expon.html">documentation</a>.<br>
+<br>
+The output of your function should be the scale parameter of the fitted exponential distribution, where the exponential distribution is as introduced in the beginning of this question. Make sure you lock the location parameter to be <span class="math inline">0</span>.</li>
+</ol>
+<div id="dc56cb7d" class="cell" data-execution_count="16">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">3</span>)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>beta <span class="op">=</span> np.array([<span class="dv">5</span>,<span class="dv">2</span>,<span class="dv">3</span>])</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> <span class="dv">10000000</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>min_data <span class="op">=</span> min_samples(beta,T)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>scale <span class="op">=</span> exp_fit(min_data)</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(scale)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0.9680113499245498</code></pre>
+</div>
+</div>
+<!--
+
+::: {#bd3d1888 .cell execution_count=17}
+``` {.python .cell-code}
+import scipy
+
+def exp_fit(data):
+    #expon.fit returns 'loc' and 'scale'. We want loc = 0, hence we choose 'floc=0'
+    return scipy.stats.expon.fit(data,floc=0)[1]
+ 
+beta = np.array([5,2,3])
+T = 10000000
+min_data = min_samples(beta,T)
+
+scale = exp_fit(min_data)
+print(scale)
+```
+
+::: {.cell-output .cell-output-stdout}
+```
+0.9680341501788498
+```
+:::
+:::
+
+
+-->
+<ol start="3" type="a">
+<li>Compute the number <span class="math display">
+\displaystyle \frac{1}{\displaystyle \sum_{i}  \frac{1}{\beta_i}}
+</span> and observe that it is almost the same as the parameter <code>scale</code> in the test output of part b).<br>
+<br>
+This means the fitted distribution has a scale parameter that is close to <span class="math display">
+\frac{1}{\beta_{\min}} = \sum_{i=0}^{n-1} \frac{1}{\beta_i}.
+</span></li>
+</ol>
+<!--
+
+::: {#4387bb21 .cell execution_count=18}
+``` {.python .cell-code}
+beta_min = 1/(np.sum(1/beta))
+
+print(beta_min)
+```
+
+::: {.cell-output .cell-output-stdout}
+```
+0.9677419354838711
+```
+:::
+:::
+
+
+-->
+</section>
+<section id="question-4" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="question-4">Question 4</h4>
+<p>Suppose you want to sell a laptop to a potential buyer. The valuation the buyer has for the laptop is a nonnegative continuous random variable <span class="math inline">X</span> with distribution <span class="math inline">\mathbb{P}</span>. The seller sets a price <span class="math inline">p</span> for the laptop; the buyer will buy the laptop if the realization of <span class="math inline">X</span> exceeds the price <span class="math inline">p</span>.</p>
+<p>The revenue of the seller is given by <span class="math inline">p \cdot \mathbb{P}(X \geq p)</span> if the seller sets price <span class="math inline">p</span>. The optimal price maximizing the revenue is the so-called <em>monopoly price</em> <span class="math inline">p^*</span> given by <span class="math display">\begin{align}
+p^* = \text{argmax}_p \, p \cdot \mathbb{P}(X \geq p).
+\end{align}</span> The monopoly price <span class="math inline">p^*</span> can be found (under some assumptions we do not worry about here) by solving the equation <span class="math display">\begin{align}
+\frac{(1 - F(p))}{f(p)} = p
+\end{align}</span> where <span class="math inline">F(p)</span> is the cumulative distribution function (cdf) of <span class="math inline">X</span>, and <span class="math inline">f(p)</span> the probability density function (pdf) of <span class="math inline">X</span>.</p>
+<ol type="a">
+<li>Write a function <code>monopoly_price</code> that takes as input a continuous distribution (<code>stats.rv_continous</code> object) and a number <span class="math inline">\alpha \in (0,1)</span>. It should return the monopoly price by solving the equation <span class="math inline">(3)</span> above. Use the <code>brentq</code> method for root finding in your solution with as left-bracket <span class="math inline">0</span>, and right-bracket the point <span class="math inline">\bar{p}</span> for which <span class="math inline">F^{-1}(\bar{p}) = \alpha</span>.</li>
+</ol>
+<div id="527cf0c0" class="cell" data-execution_count="20">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate instance of halfnormal distribution</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>distribution <span class="op">=</span> scipy.stats.halfnorm()</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Set alpha value</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>alpha <span class="op">=</span> <span class="fl">0.99</span> </span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute monopoly price</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>mp <span class="op">=</span> monopoly_price(distribution,alpha)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mp)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0.7517915246935725</code></pre>
+</div>
+</div>
+<!--
+
+::: {#ec0ac183 .cell execution_count=21}
+``` {.python .cell-code}
+def monopoly_equation(p,dist): 
+    return (1 - dist.cdf(p))/dist.pdf(p) - p
+
+def monopoly_price(dist,alpha):
+    a = 0
+    b = dist.ppf(alpha)
+    result = optimize.root_scalar(monopoly_equation,args=(dist), \
+                                      method="brentq",bracket=(a,b)) 
+    return result.root 
+
+# Generate instance of halfnormal distribution
+distribution = scipy.stats.halfnorm()
+
+# Set alpha value
+alpha = 0.99 
+
+# Compute monopoly price
+mp = monopoly_price(distribution,alpha)
+
+print(mp)
+```
+
+::: {.cell-output .cell-output-stdout}
+```
+0.7517915246935725
+```
+:::
+:::
+
+
+-->
+<ol start="2" type="a">
+<li>Write a function <code>revenue_plot</code> that takes as input a continuous distribution (<code>stats.rv_continous</code> object) and a number <span class="math inline">\alpha \in (0,1)</span>. It should return a plot of the revenue function <span class="math inline">g(p) = p \cdot \mathbb{P}(X \geq p)</span> on the interval <span class="math inline">[0,\bar{p}]</span> with <span class="math inline">\bar{p}</span> such that <span class="math inline">F^{-1}(\bar{p}) = \alpha</span>. Obtain the monopoly price found using the function <code>monopoly_price</code> and add it to your figure with a dot.</li>
+</ol>
+<style>
+.cell-output-display {
+  background-color: #ffffff;
+}
+</style>
+<div id="19cbd79c" class="cell" data-execution_count="23">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>distribution <span class="op">=</span> scipy.stats.halfnorm()</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>alpha <span class="op">=</span> <span class="fl">0.99</span> </span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>revenue_plot(distribution,alpha)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="exercises-lec7_files/figure-html/cell-24-output-1.png" width="589" height="449" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<!--
+
+::: {#0145e89f .cell execution_count=24}
+``` {.python .cell-code}
+def revenue(p,dist):
+    return p*dist.sf(p)
+    
+def revenue_plot(dist, alpha):
+    b = dist.ppf(alpha) # Set upper bound price range
+    
+    p = np.linspace(0,b,1000) 
+    
+    rev = revenue(p,dist) # Compute revenue curve
+    
+    #Create the figure
+    plt.figure()
+    
+    #Create the plot
+    plt.plot(p,rev)
+    
+    # Monopoly price
+    mp = monopoly_price(dist,alpha)
+    plt.scatter(mp,revenue(mp,dist),label='Monopoly price')
+    
+    # Create labels for axes
+    plt.xlabel('Price')
+    plt.ylabel('Revenue')
+        
+    # Fix the range of the axes
+    plt.xlim(0,b)
+    plt.ylim(0,b)
+
+    # Add title to the plot
+    plt.title('Revenue curve')
+    
+    # Add legend
+    plt.legend()
+    
+    # Add grid to the background
+    plt.grid()
+
+    # Show the plot
+    plt.show()
+    
+distribution = scipy.stats.halfnorm()
+alpha = 0.99 
+
+revenue_plot(distribution,alpha)
+```
+
+::: {.cell-output .cell-output-display}
+![](exercises-lec7_files/figure-html/cell-25-output-1.png){width=589 height=449}
+:::
+:::
+
+
+-->
+</section>
+<section id="question-5" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="question-5">Question 5</h4>
+<p>In this exercise, we will look the problem of sparse vector approximation.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> You should not use for-loops to answer the questions posed here.</p>
+<p>We consider the following setting: We are given an <span class="math inline">m \times n</span> matrix <span class="math inline">A \in [0,1]^{m \times n}</span>, a non-negative vector <span class="math inline">x = [x_0,\dots,x_{n-1}] \in [0,1]^n</span> with <span class="math inline">\sum_i x_i = 1</span>, and a non-negative vector <span class="math inline">y = [y_0,\dots,y_{m-1}] \in [0,1]^m</span> with <span class="math inline">\sum_j y_j = 1</span>.</p>
+<p>We can interpret <span class="math inline">x</span> and <span class="math inline">y</span> as discrete probability distributions over the column indices <span class="math inline">\{0,\dots,n-1\}</span> and row indices <span class="math inline">\{0,\dots,m-1\}</span> of the matrix <span class="math inline">A</span>, respectively. That is, we have a random variable <span class="math inline">X</span> that samples column <span class="math inline">i</span> with prob. <span class="math inline">x_i</span> for <span class="math inline">i = 0,\dots,n-1</span>, and a random variable <span class="math inline">Y</span> that samples row <span class="math inline">j</span> with prob. <span class="math inline">y_j</span> for <span class="math inline">j = 0,\dots,m-1</span>.</p>
+<p>The idea of sparse vector appoximation is to sample a number of column indices <span class="math inline">c_0,\dots,c_{K-1} \in \{0,1,\dots,n-1\}</span>, i.e., <span class="math inline">K</span> samples of the random variable <span class="math inline">X</span>, and row indices <span class="math inline">r_0,\dots,r_{L-1} \in \{0,1\dots,m-1\}</span>, i.e., <span class="math inline">L</span> samples of the random variable <span class="math inline">Y</span>. Note that the <span class="math inline">c_i</span> do not have to be distinct. The same holds for the <span class="math inline">r_j</span>. We then consider for <span class="math inline">k = 0,\dots,K-1</span> and <span class="math inline">\ell = 0,\dots,L-1</span> the absolute difference <span class="math display">\begin{equation}
+|yAx - y^{(\ell)}Ax^{(k)}|
+\end{equation}</span> where <span class="math display">
+x^{(k)} = \frac{1}{k+1}\sum_{i=0}^{k} e^{c_i} \ \ \text{ and } \ \ y^{(\ell)} = \frac{1}{\ell+1}\sum_{i=0}^{\ell} (f^{r_i})^T
+</span> with <span class="math inline">e^j \in \{0,1\}^n</span> the unit column vector given by <span class="math display">
+e^{j}_i = \left\{ \begin{array}{ll}
+1 &amp; \text{ if } i = j\\
+0 &amp; \text{ if } i \neq j
+\end{array}\right.
+</span> for <span class="math inline">j = 0,\dots,n-1</span>, and similarly <span class="math inline">(f^{r_i})^T \in \{0,1\}^m</span> the row vector with a <span class="math inline">1</span> in position <span class="math inline">j</span> and zeros elsewhere.</p>
+<p>Sparse vector approximation now means that the expression above for <span class="math inline">k = K-1</span> and <span class="math inline">\ell = L-1</span> converges to zero as <span class="math inline">K</span> and <span class="math inline">L</span> grow large, and this happens already for relatively small values (compared to <span class="math inline">m</span> and <span class="math inline">n</span>). Informally speaking, <span class="math inline">y^{(L)}Ax^{(K)}</span> serves as a good approximation to <span class="math inline">yAx</span>. We will verify this numerically.</p>
+<ol type="a">
+<li>Write a function <code>partial_sums</code> that for a number <span class="math inline">n</span> and vector of column indices <span class="math inline">c = [c_0,\dots,c_{K-1}] \in \{0,\dots,n-1\}</span>, returns a two-dimensional array whose rows are <span class="math inline">x^{(0)},\dots,x^{(K-1)}.</span> Do not use for-loops.</li>
+</ol>
+<div id="aafa9458" class="cell" data-execution_count="26">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> [<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">6</span>]</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">7</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> partial_sums(c,n)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.around(x, decimals<span class="op">=</span><span class="dv">2</span>) <span class="co"># Round to two decimals</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[0.000 0.000 1.000 0.000 0.000 0.000 0.000]
+ [0.000 0.000 1.000 0.000 0.000 0.000 0.000]
+ [0.000 0.330 0.670 0.000 0.000 0.000 0.000]
+ [0.000 0.250 0.500 0.250 0.000 0.000 0.000]
+ [0.000 0.200 0.400 0.200 0.200 0.000 0.000]
+ [0.000 0.170 0.330 0.170 0.170 0.170 0.000]
+ [0.000 0.140 0.290 0.140 0.290 0.140 0.000]
+ [0.000 0.120 0.250 0.120 0.250 0.120 0.120]]</code></pre>
+</div>
+</div>
+<!--
+
+::: {#4e7522da .cell execution_count=27}
+``` {.python .cell-code}
+def partial_sums(c,n):
+    K = np.size(c)
+    x = np.zeros((K,n))
+    x[range(K),c] = 1
+    f = 1/np.arange(1,K+1)[:,None]
+    x = np.cumsum(x,axis=0)*f
+    return x
+    
+c = [2, 2, 1, 3, 4, 5, 4, 6]
+n = 7
+
+x = partial_sums(c,n)
+x = np.around(x, decimals=2) # Round to two decimals
+print(x)
+```
+
+::: {.cell-output .cell-output-stdout}
+```
+[[0.000 0.000 1.000 0.000 0.000 0.000 0.000]
+ [0.000 0.000 1.000 0.000 0.000 0.000 0.000]
+ [0.000 0.330 0.670 0.000 0.000 0.000 0.000]
+ [0.000 0.250 0.500 0.250 0.000 0.000 0.000]
+ [0.000 0.200 0.400 0.200 0.200 0.000 0.000]
+ [0.000 0.170 0.330 0.170 0.170 0.170 0.000]
+ [0.000 0.140 0.290 0.140 0.290 0.140 0.000]
+ [0.000 0.120 0.250 0.120 0.250 0.120 0.120]]
+```
+:::
+:::
+
+
+-->
+<ol start="2" type="a">
+<li>Write a function <code>differences</code> that takes as input vectors <span class="math inline">x</span> and <span class="math inline">y</span>, vectors <span class="math inline">y^{(\ell)} \in \mathbb{R}^n</span> for <span class="math inline">\ell = 0,1\dots,L-1</span> and <span class="math inline">x^{(k)}  \in \mathbb{R}^n</span> for <span class="math inline">k = 0,\dots,K-1</span>, and an <span class="math inline">n \times n</span> matrix <span class="math inline">A</span>, and returns the <span class="math inline">K \times L</span> matrix <span class="math inline">D = (d_{ij})</span> whose entries are <span class="math display">
+d_{ij} = |yAx - y^{(\ell)}Ax^{(k)}|
+</span> Think about an appropriate way to input the vectors yourself. Do not use for-loops in your function.</li>
+</ol>
+<div id="fc1e79ea" class="cell" data-execution_count="28">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> differences(x,y,X,Y,A):</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Input:  Y is matrix with vectors y^l on rows, </span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">#         X is matrix with vectors x^ k on rows,</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">#         A is square matrix</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Output: Differences </span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.<span class="bu">abs</span>(y <span class="op">@</span> (A <span class="op">@</span> x[:,<span class="va">None</span>]) <span class="op">-</span> Y <span class="op">@</span> (A <span class="op">@</span> X.T))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<ol start="3" type="a">
+<li>Take <span class="math inline">n = 100</span> and <span class="math inline">x = y = \frac{1}{n} (1,1,\dots,1)</span>. Generate resp. <span class="math inline">K = 10</span> samples of <span class="math inline">x</span>, corresponding to <span class="math inline">c_0,\dots,c_{9}</span>, and <span class="math inline">L = 12</span> samples of <span class="math inline">y</span>, corresponding to <span class="math inline">r_0,\dots,r_{11}</span>. Take <span class="math inline">A</span> a randomly generated <span class="math inline">n \times n</span> matrix with entries in <span class="math inline">\{1,2,3,\dots,50\}</span> and apply your function from the previous question to it.</li>
+</ol>
+<div id="c5a6aa72" class="cell" data-execution_count="30">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fix randomness</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">21</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>D <span class="op">=</span> differences(x,y,X,Y,A)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>D <span class="op">=</span> np.around(D,decimals<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"D = </span><span class="ch">\n</span><span class="st">"</span>, D)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>D = 
+ [[ 8.500  4.000  9.200  6.000  6.500  5.200  5.000  3.300  1.200  1.800]
+ [ 6.500  3.700  0.800  0.200  2.400  3.100  2.300  3.000  2.100  3.000]
+ [12.500  9.600  7.300  6.100  3.700  1.200  0.600  1.000  1.000  1.200]
+ [ 3.200  4.100  2.100  1.100  0.600  1.800  2.700  3.500  2.600  2.200]
+ [ 7.100  6.800  5.100  4.300  2.400  0.400  0.800  2.000  1.400  1.400]
+ [ 4.600  4.600  4.900  4.400  2.900  1.700  0.700  0.100  0.400  0.100]
+ [ 1.900  4.000  3.200  3.000  2.200  1.500  0.200  0.200  0.100  0.700]
+ [ 1.000  4.200  3.400  3.800  2.700  1.500  0.100  0.500  0.500  1.300]
+ [ 2.300  4.800  3.500  4.100  3.200  2.000  0.200  0.300  0.100  1.000]
+ [ 0.100  3.300  3.200  3.300  3.000  2.100  0.300  0.300  0.100  0.800]
+ [ 1.600  2.100  2.600  2.900  2.500  1.800  0.000  0.400  0.000  0.700]
+ [ 3.500  1.700  1.600  1.800  2.000  1.100  0.700  1.000  0.300  1.000]]</code></pre>
+</div>
+</div>
+<!--
+
+::: {#bf93ec13 .cell execution_count=31}
+``` {.python .cell-code}
+# Fix randomness
+np.random.seed(21)
+
+n = 100
+
+x = np.ones(n)/n
+y = np.ones(n)/n
+
+A = np.random.randint(1,51,(n,n))
+
+K = 10
+L = 12
+
+c = np.random.choice(range(n),size=K)
+r = np.random.choice(range(n),size=L)
+
+X = partial_sums(c,n)
+Y = partial_sums(r,n)
+
+
+D = differences(x,y,X,Y,A)
+D = np.around(D,decimals=1)
+
+print("D = \n", D)
+```
+
+::: {.cell-output .cell-output-stdout}
+```
+D = 
+ [[ 8.500  4.000  9.200  6.000  6.500  5.200  5.000  3.300  1.200  1.800]
+ [ 6.500  3.700  0.800  0.200  2.400  3.100  2.300  3.000  2.100  3.000]
+ [12.500  9.600  7.300  6.100  3.700  1.200  0.600  1.000  1.000  1.200]
+ [ 3.200  4.100  2.100  1.100  0.600  1.800  2.700  3.500  2.600  2.200]
+ [ 7.100  6.800  5.100  4.300  2.400  0.400  0.800  2.000  1.400  1.400]
+ [ 4.600  4.600  4.900  4.400  2.900  1.700  0.700  0.100  0.400  0.100]
+ [ 1.900  4.000  3.200  3.000  2.200  1.500  0.200  0.200  0.100  0.700]
+ [ 1.000  4.200  3.400  3.800  2.700  1.500  0.100  0.500  0.500  1.300]
+ [ 2.300  4.800  3.500  4.100  3.200  2.000  0.200  0.300  0.100  1.000]
+ [ 0.100  3.300  3.200  3.300  3.000  2.100  0.300  0.300  0.100  0.800]
+ [ 1.600  2.100  2.600  2.900  2.500  1.800  0.000  0.400  0.000  0.700]
+ [ 3.500  1.700  1.600  1.800  2.000  1.100  0.700  1.000  0.300  1.000]]
+```
+:::
+:::
+
+
+-->
+<!--
+#### Question 8 {-}
+
+Implement formula of multivariate normal distribution
+
+#### Question 9 {-}
+-->
+
+
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>This problem has many applications, for example, in learning theory and in the computation of Nash equilibria in game theory.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/pskleer\.github\.io");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./exercises-lec6.html" class="pagination-link" aria-label="Lecture 6: Section 7">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Lecture 6: Section 7</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

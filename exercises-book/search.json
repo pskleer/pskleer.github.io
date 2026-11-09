@@ -68,5 +68,25 @@
     "crumbs": [
       "Lecture 6: Section 7"
     ]
+  },
+  {
+    "objectID": "exercises-lec7.html",
+    "href": "exercises-lec7.html",
+    "title": "Lecture 7: Section 8",
+    "section": "",
+    "text": "Question 1\nMake sure to import Numpy, SciPy and Matplotlib to be able to complete all the exercises.\nIn this exercise we will construct the Box-Muller transform that allows the generation of random samples of the normal distribution using samples from the uniform distribution.\nIf U_0 and U_1 are independent uniform random variables on [0,1], then \nZ_0 = \\sqrt{-2\\cdot\\ln(U_0)}\\cos(2\\pi U_1)\n and \nZ_1 = \\sqrt{-2\\cdot\\ln(U_0)}\\sin(2\\pi U_1)\n are independent random variables that follow a normal distribution.\nm, n = 10, 100\n\nz0, z1 = unif_to_norm(m,n)\nMean of elements in z0 is: 0.014958376822834523\nStandard deviation of elements in z0 is: 0.9882516241626027 \n\nMean of elements in z1 is: 0.012733093824109603\nStandard deviation of elements in z1 is: 0.9913565225930875",
+    "crumbs": [
+      "Lecture 7: Section 8"
+    ]
+  },
+  {
+    "objectID": "exercises-lec7.html#footnotes",
+    "href": "exercises-lec7.html#footnotes",
+    "title": "Lecture 7: Section 8",
+    "section": "",
+    "text": "This problem has many applications, for example, in learning theory and in the computation of Nash equilibria in game theory.↩︎",
+    "crumbs": [
+      "Lecture 7: Section 8"
+    ]
   }
 ]

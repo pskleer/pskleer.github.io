@@ -245,10 +245,8 @@ window.Quarto = {
 </header>
 
 
-<section id="solutions-to-the-exercises" class="level4 unnumbered">
-<h4 class="unnumbered anchored" data-anchor-id="solutions-to-the-exercises"><strong>Solutions to the exercises</strong></h4>
 <p>Make sure to import NumPy, SciPy and Matplotlib to be able to complete all the exercises.</p>
-<div id="171dbc0e" class="cell" data-execution_count="1">
+<div id="8a8251ee" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import relevant packages</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.optimize <span class="im">as</span> optimize</span>
@@ -257,7 +255,6 @@ window.Quarto = {
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Set numerical precision for printing</span></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>np.set_printoptions(precision<span class="op">=</span><span class="dv">3</span>, floatmode<span class="op">=</span><span class="st">"fixed"</span>, suppress<span class="op">=</span><span class="va">True</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</section>
 <section id="question-1" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="question-1">Question 1</h4>
 <p>In this exercise we will construct the Box-Muller transform that allows the generation of random samples of the normal distribution using samples from the uniform distribution.</p>
@@ -273,7 +270,7 @@ That is, you should generate samples from the uniform distribution and transform
 </ol>
 <!--
 
-::: {#fb1565bf .cell execution_count=3}
+::: {#888f5573 .cell execution_count=3}
 ``` {.python .cell-code}
 def unif_to_norm(m,n):
     u_0 = np.random.rand(m,n)
@@ -290,18 +287,18 @@ def unif_to_norm(m,n):
 <ol start="2" type="a">
 <li>Test your function for <span class="math inline">m = 10</span> and <span class="math inline">n = 100</span>, and compute the mean (should be close to zero) and standard deviation (should be close to 1) of all elements in <code>z0</code> and <code>z1</code>.</li>
 </ol>
-<div id="c1d7040f" class="cell" data-execution_count="4">
+<div id="791216b6" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>m, n <span class="op">=</span> <span class="dv">10</span>, <span class="dv">100</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>z0, z1 <span class="op">=</span> unif_to_norm(m,n)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="8387372e" class="cell" data-execution_count="5">
+<div id="68d74893" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-stdout">
-<pre><code>Mean of elements in z0 is: -0.019431565350797753
-Standard deviation of elements in z0 is: 1.01330491553752 
+<pre><code>Mean of elements in z0 is: -0.020614089642174774
+Standard deviation of elements in z0 is: 1.0351152152216265 
 
-Mean of elements in z1 is: 0.04289981716477277
-Standard deviation of elements in z1 is: 1.0136005371039638</code></pre>
+Mean of elements in z1 is: 0.0440304298385719
+Standard deviation of elements in z1 is: 0.9944906562127269</code></pre>
 </div>
 </div>
 </section>
@@ -312,7 +309,7 @@ Standard deviation of elements in z1 is: 1.0136005371039638</code></pre>
 <li>Write a function <code>index_sample(x)</code> that, for given nonnegative input vector <span class="math inline">x = [x_0,\dots,x_{n-1}]</span> with <span class="math inline">\sum_i x_i = 1</span>, returns an index <span class="math inline">i \in \{0,\dots,n-1\}</span> with probability <span class="math inline">x_i</span>. As a source of randomness, you are allowed to use the <code>np.random.rand()</code> function. Do not use for-loops.<br>
 <em>Hint: Identify every index with a subinterval of <span class="math inline">[0,1]</span>, and recall that <code>np.argmax()</code> applied to a Boolean vector returns the location of the first <code>True</code> element (assuming at least one exists).</em></li>
 </ol>
-<div id="7076e11b" class="cell" data-execution_count="7">
+<div id="df3eaa32" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fix randomness</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">3</span>) </span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -328,7 +325,7 @@ Standard deviation of elements in z1 is: 1.0136005371039638</code></pre>
 </div>
 <!--
 
-::: {#c5948e9a .cell execution_count=8}
+::: {#21786545 .cell execution_count=8}
 ``` {.python .cell-code}
 def index_sample(x):
     # Input: Normalized vector x
@@ -344,7 +341,7 @@ def index_sample(x):
 <ol start="2" type="a">
 <li>Write a vectorized version called <code>index_samples(x,k)</code> that returns <span class="math inline">k</span> sampled indices according to the probabilities in <span class="math inline">x</span>. Do not use for-loops.</li>
 </ol>
-<div id="f9c3a11c" class="cell" data-execution_count="10">
+<div id="60a049a8" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fix randomness</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">3</span>) </span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -360,7 +357,7 @@ def index_sample(x):
 </div>
 <!--
 
-::: {#1a8c37db .cell execution_count=11}
+::: {#d98d944d .cell execution_count=11}
 ``` {.python .cell-code}
 def index_samples(x,k):
     # Input: Normalized vector x, number of samples k
@@ -391,7 +388,7 @@ f_{\beta}(x) = \left\{
 </span> for <span class="math inline">t = 1,\dots,T</span>. Do not use for-loops.<br>
 <em>Hint: Make a convenient choice for the <code>scale</code> and <code>size</code> keyword arguments of <code>np.random.exponential</code>; see the documentation.</em></li>
 </ol>
-<div id="59a6ce42" class="cell" data-execution_count="13">
+<div id="2d71baee" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">3</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>beta <span class="op">=</span> np.array([<span class="dv">5</span>,<span class="dv">2</span>,<span class="dv">3</span>])</span>
@@ -405,7 +402,7 @@ f_{\beta}(x) = \left\{
 </div>
 <!--
 
-::: {#f1563ea0 .cell execution_count=14}
+::: {#c4979d5e .cell execution_count=14}
 ``` {.python .cell-code}
 def min_samples(beta,T):
     samples = np.random.exponential(scale=beta,size=(T,np.size(beta)))
@@ -434,7 +431,7 @@ print(min_data)
 <br>
 The output of your function should be the scale parameter of the fitted exponential distribution, where the exponential distribution is as introduced in the beginning of this question. Make sure you fix the location parameter at <span class="math inline">0</span>.</li>
 </ol>
-<div id="bce63a81" class="cell" data-execution_count="16">
+<div id="a2f1d176" class="cell" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">3</span>)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>beta <span class="op">=</span> np.array([<span class="dv">5</span>,<span class="dv">2</span>,<span class="dv">3</span>])</span>
@@ -449,7 +446,7 @@ The output of your function should be the scale parameter of the fitted exponent
 </div>
 <!--
 
-::: {#84fee17a .cell execution_count=17}
+::: {#26fd0f3c .cell execution_count=17}
 ``` {.python .cell-code}
 import scipy
 
@@ -485,7 +482,7 @@ This means the fitted distribution has a scale parameter that is close to <span 
 </ol>
 <!--
 
-::: {#ecce5344 .cell execution_count=18}
+::: {#fb4da8a0 .cell execution_count=18}
 ``` {.python .cell-code}
 beta_min = 1/(np.sum(1/beta))
 
@@ -513,7 +510,7 @@ p^* = \text{argmax}_{p \geq0 } \, p \cdot \mathbb{P}(X \geq p).
 <ol type="a">
 <li>Write a function <code>monopoly_price()</code> that takes as input a continuous distribution (<code>stats.rv_continuous</code> object) and a number <span class="math inline">\alpha \in (0,1)</span>. It should return the monopoly price by solving the equation <span class="math inline">(3)</span> above. Use the <code>brentq</code> method for root finding in your solution with <span class="math inline">0</span> as the left endpoint and <span class="math inline">\bar{p}</span> as the right endpoint satisfying <span class="math inline">F^(\bar{p}) = \alpha</span>.</li>
 </ol>
-<div id="86cb788f" class="cell" data-execution_count="20">
+<div id="68bf1666" class="cell" data-execution_count="20">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a half-normal distribution object</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>distribution <span class="op">=</span> scipy.stats.halfnorm()</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -530,7 +527,7 @@ p^* = \text{argmax}_{p \geq0 } \, p \cdot \mathbb{P}(X \geq p).
 </div>
 <!--
 
-::: {#3af0070e .cell execution_count=21}
+::: {#4227a4ee .cell execution_count=21}
 ``` {.python .cell-code}
 def monopoly_equation(p,dist): 
     return 1 - dist.cdf(p) - p*dist.pdf(p)
@@ -572,7 +569,7 @@ print(mp)
   background-color: #ffffff;
 }
 </style>
-<div id="174a8b91" class="cell" data-execution_count="23">
+<div id="a5d461b2" class="cell" data-execution_count="23">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>distribution <span class="op">=</span> scipy.stats.halfnorm()</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>alpha <span class="op">=</span> <span class="fl">0.99</span> </span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -587,7 +584,7 @@ print(mp)
 </div>
 <!--
 
-::: {#c58bfdb1 .cell execution_count=24}
+::: {#5794dea1 .cell execution_count=24}
 ``` {.python .cell-code}
 def revenue(p,dist):
     return p*dist.sf(p)
@@ -645,7 +642,7 @@ revenue_plot(distribution,alpha)
 </section>
 <section id="question-5" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="question-5">Question 5</h4>
-<p>In this exercise, we will look at the problem of sparse vector approximation.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> You should not use for-loops to answer the questions posed here. Please note that this question is heavy on notation, so part of the learning experience here is also to make sure you understand all the notation and dimeneions, and can implement them correctly.</p>
+<p>In this exercise, we will look at the problem of sparse vector approximation.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> You should not use for-loops to answer the questions posed here. Please note that this question is heavy on notation, so part of the learning experience here is also to make sure you understand all the notation and dimensions, and can implement them correctly.</p>
 <p>We consider the following setting: We are given a square matrix <span class="math inline">A \in [0,1]^{n \times n}</span>, a non-negative vector <span class="math inline">x = [x_0,\dots,x_{n-1}] \in [0,1]^n</span> with <span class="math inline">\sum_i x_i = 1</span>, and a non-negative vector <span class="math inline">y = [y_0,\dots,y_{n-1}] \in [0,1]^n</span> with <span class="math inline">\sum_j y_j = 1</span>.</p>
 <p>We can interpret <span class="math inline">x</span> and <span class="math inline">y</span> as discrete probability distributions over the column indices <span class="math inline">\{0,1,\dots,n-1\}</span> and row indices <span class="math inline">\{0,1,\dots,n-1\}</span> of the matrix <span class="math inline">A</span>, respectively. That is, we have a random variable <span class="math inline">X</span> that samples column <span class="math inline">i</span> with probability <span class="math inline">x_i</span> for <span class="math inline">i = 0,1,\dots,n-1</span>, and a random variable <span class="math inline">Y</span> that samples row <span class="math inline">j</span> with probability <span class="math inline">y_j</span> for <span class="math inline">j = 0,1,\dots,n-1</span>.</p>
 <p>The idea of sparse vector approximation is to sample independently a number of column indices <span class="math inline">c_0,\dots,c_{K-1} \in \{0,1,\dots,n-1\}</span>, i.e., <span class="math inline">K</span> samples of the random variable <span class="math inline">X</span>, and row indices <span class="math inline">r_0,\dots,r_{L-1} \in \{0,1,\dots,n-1\}</span>, i.e., <span class="math inline">L</span> independent samples of the random variable <span class="math inline">Y</span>. Note that the <span class="math inline">c_i</span> do not have to be distinct. The same holds for the <span class="math inline">r_j</span>. We then consider for <span class="math inline">k = 0,\dots,K-1</span> and <span class="math inline">\ell = 0,\dots,L-1</span> the absolute difference <span class="math display">\begin{equation}
@@ -658,11 +655,13 @@ e^{j}_i = \left\{ \begin{array}{ll}
 0 &amp; \text{ if } i \neq j
 \end{array}\right.
 </span> for <span class="math inline">j = 0,\dots,n-1</span>, and similarly <span class="math inline">(f^{j})^T \in \{0,1\}^n</span> the row vector with a <span class="math inline">1</span> in position <span class="math inline">j</span> and zeros elsewhere.</p>
-<p>Sparse vector approximation now means that the expression above for <span class="math inline">k = K-1</span> and <span class="math inline">\ell = L-1</span> converges to zero as <span class="math inline">K</span> and <span class="math inline">L</span> grow large, and this often happens already for relatively small values (compared to <span class="math inline">m</span> and <span class="math inline">n</span>). Informally speaking, <span class="math inline">y^{(L-1)}Ax^{(K-1)}</span> serves as a good approximation to <span class="math inline">yAx</span>. We will verify this numerically.</p>
+<p>Sparse vector approximation now means that the expression above for <span class="math inline">k</span> and <span class="math inline">\ell</span> converges to zero as <span class="math inline">k</span> and <span class="math inline">\ell</span> grow large (we cap these values at <span class="math inline">K-1</span> and <span class="math inline">L_1</span> above), and this often happens already for relatively small values (compared to <span class="math inline">m</span> and <span class="math inline">n</span>). Informally speaking, <span class="math inline">y^{(L-1)}Ax^{(K-1)}</span> serves as a good approximation to <span class="math inline">yAx</span>. We will verify this numerically.</p>
+<p>We start with creating an array containing the <span class="math inline">x^{(k)}</span> and <span class="math inline">y^{(\ell)}</span> for a given (fixed) collection of row and columns indices. Note that it suffices to define this function for the column indices (why?).</p>
 <ol type="a">
-<li>Write a function <code>partial_sums</code> that takes as input a vector of column indices <span class="math inline">c = [c_0,\dots,c_{K-1}] \in \{0,\dots,n-1\}^K</span> and an integer <span class="math inline">n</span>. It should return a two-dimensional array whose rows are <span class="math inline">x^{(0)},\dots,x^{(K-1)}.</span> Do not use for-loops.</li>
+<li>Write a function <code>partial_sums</code> that takes as input a vector of column indices <span class="math inline">c = [c_0,\dots,c_{K-1}] \in \{0,\dots,n-1\}^K</span> and an integer <span class="math inline">n</span>. It should return a two-dimensional array whose rows are <span class="math inline">x^{(0)},\dots,x^{(K-1)}.</span> Do not use for-loops.<br>
+<em>Hint: Fancy indexing (Section 3.3.3) might be useful here.</em></li>
 </ol>
-<div id="611cd76e" class="cell" data-execution_count="26">
+<div id="81b51725" class="cell" data-execution_count="26">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> [<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">6</span>]</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">7</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -682,12 +681,13 @@ e^{j}_i = \left\{ \begin{array}{ll}
 </div>
 <!--
 
-::: {#fb261519 .cell execution_count=27}
+::: {#41625f86 .cell execution_count=27}
 ``` {.python .cell-code}
 def partial_sums(c,n):
     K = np.size(c)
     x = np.zeros((K,n))
-    x[range(K),c] = 1
+    r = np.arange(0,K)
+    x[r,c] = 1
     f = 1/np.arange(1,K+1)[:,None]
     x = np.cumsum(x,axis=0)*f
     return x
@@ -717,49 +717,68 @@ print(x)
 
 -->
 <ol start="2" type="a">
-<li><p>Write a function <code>differences</code> that takes as input vectors <span class="math inline">x</span> and <span class="math inline">y</span>, vectors <span class="math inline">y^{(\ell)} \in \mathbb{R}^n</span> for <span class="math inline">\ell = 0,1,\dots,L-1</span> and <span class="math inline">x^{(k)}  \in \mathbb{R}^n</span> for <span class="math inline">k = 0,1,\dots,K-1</span>, and an <span class="math inline">n \times n</span> matrix <span class="math inline">A</span>, and returns the <span class="math inline">L \times K</span> matrix <span class="math inline">D = (d_{\ell k})</span> whose entries are <span class="math display">
+<li>Write a function <code>differences</code> that takes as input vectors <span class="math inline">x</span> and <span class="math inline">y</span>, vectors <span class="math inline">y^{(\ell)} \in \mathbb{R}^n</span> for <span class="math inline">\ell = 0,1,\dots,L-1</span> and <span class="math inline">x^{(k)}  \in \mathbb{R}^n</span> for <span class="math inline">k = 0,1,\dots,K-1</span>, and an <span class="math inline">n \times n</span> matrix <span class="math inline">A</span>, and returns the <span class="math inline">L \times K</span> matrix <span class="math inline">D = (d_{\ell k})</span> whose entries are <span class="math display">
 d_{\ell k} = |yAx - y^{(\ell)}Ax^{(k)}|
-</span> Think about an appropriate way to input the vectors yourself. Do not use for-loops in your function.</p></li>
-<li><p>Take <span class="math inline">n = 100</span> and <span class="math inline">x = y = \frac{1}{n} (1,1,\dots,1)</span>. Draw <span class="math inline">K = 10</span> independent column indices from the distribution <span class="math inline">x</span>, corresponding to <span class="math inline">c_0,\dots,c_{9}</span>, and <span class="math inline">L = 12</span> independent row indices from the distribution <span class="math inline">y</span>, corresponding to <span class="math inline">r_0,\dots,r_{11}</span>. Let <span class="math inline">A</span> a randomly generated <span class="math inline">n \times n</span> matrix with entries in <span class="math inline">\{1/50,2/50,3,\dots,1\}</span> and apply your function from part b).</p></li>
+</span> Do not use for-loops in your function.<br>
+<em>Hint: If <span class="math inline">X</span> and <span class="math inline">Y</span> are matrices whose rows are the <span class="math inline">x^{(k)}</span> and <span class="math inline">y^{(\ell)}</span>, respectively, can you multiply (in the linear algebra sense) <span class="math inline">X,Y</span> and <span class="math inline">A</span> in some way to obtain the entries <span class="math inline">y^{(\ell)}Ax^{(k)}</span>?</em></li>
 </ol>
-<div id="848c6d4d" class="cell" data-execution_count="30">
+<!--
+
+
+
+-->
+<ol start="3" type="a">
+<li>Take <span class="math inline">n = 100</span> and <span class="math inline">x = y = \frac{1}{n} (1,1,\dots,1)</span>. Draw <span class="math inline">K = 10</span> independent column indices from the distribution <span class="math inline">x</span>, corresponding to <span class="math inline">c_0,\dots,c_{9}</span>, and <span class="math inline">L = 12</span> independent row indices from the distribution <span class="math inline">y</span>, corresponding to <span class="math inline">r_0,\dots,r_{11}</span>.<br>
+<br>
+Let <span class="math inline">A</span> be an <span class="math inline">n \times n</span> matrix with a top-left block containing zeros, top-right and bottom-left block containing <span class="math inline">0.5</span>’s, and bottom-right block containing ones; all blocks have size <span class="math inline">n/2 \times n/2</span>. Apply your function from part b) to these inputs.<br>
+<em>Hint: You might want to use a variation on your solution to Question 8 of Lecture 1 for creating <span class="math inline">A</span>.</em></li>
+</ol>
+<div id="b1beb3af" class="cell" data-execution_count="30">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fix randomness</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">21</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">487</span>)</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>D <span class="op">=</span> differences(x,y,X,Y,A)</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>D <span class="op">=</span> np.around(D,decimals<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"D = </span><span class="ch">\n</span><span class="st">"</span>, D)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"D = </span><span class="ch">\n</span><span class="st">"</span>, D)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>D = 
- [[0.200 0.100 0.200 0.100 0.100 0.100 0.100 0.100 0.000 0.000]
- [0.100 0.100 0.000 0.000 0.000 0.100 0.000 0.100 0.000 0.100]
- [0.200 0.200 0.100 0.100 0.100 0.000 0.000 0.000 0.000 0.000]
- [0.100 0.100 0.000 0.000 0.000 0.000 0.100 0.100 0.100 0.000]
- [0.100 0.100 0.100 0.100 0.000 0.000 0.000 0.000 0.000 0.000]
- [0.100 0.100 0.100 0.100 0.100 0.000 0.000 0.000 0.000 0.000]
- [0.000 0.100 0.100 0.100 0.000 0.000 0.000 0.000 0.000 0.000]
- [0.000 0.100 0.100 0.100 0.100 0.000 0.000 0.000 0.000 0.000]
- [0.000 0.100 0.100 0.100 0.100 0.000 0.000 0.000 0.000 0.000]
- [0.000 0.100 0.100 0.100 0.100 0.000 0.000 0.000 0.000 0.000]
- [0.000 0.000 0.100 0.100 0.000 0.000 0.000 0.000 0.000 0.000]
- [0.100 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000]]</code></pre>
+ [[0.500 0.500 0.500 0.375 0.300 0.250 0.286 0.250 0.278 0.250]
+ [0.250 0.250 0.250 0.125 0.050 0.000 0.036 0.000 0.028 0.000]
+ [0.333 0.333 0.333 0.208 0.133 0.083 0.119 0.083 0.111 0.083]
+ [0.375 0.375 0.375 0.250 0.175 0.125 0.161 0.125 0.153 0.125]
+ [0.300 0.300 0.300 0.175 0.100 0.050 0.086 0.050 0.078 0.050]
+ [0.333 0.333 0.333 0.208 0.133 0.083 0.119 0.083 0.111 0.083]
+ [0.286 0.286 0.286 0.161 0.086 0.036 0.071 0.036 0.063 0.036]
+ [0.250 0.250 0.250 0.125 0.050 0.000 0.036 0.000 0.028 0.000]
+ [0.222 0.222 0.222 0.097 0.022 0.028 0.008 0.028 0.000 0.028]
+ [0.250 0.250 0.250 0.125 0.050 0.000 0.036 0.000 0.028 0.000]
+ [0.227 0.227 0.227 0.102 0.027 0.023 0.013 0.023 0.005 0.023]
+ [0.250 0.250 0.250 0.125 0.050 0.000 0.036 0.000 0.028 0.000]]</code></pre>
 </div>
 </div>
 <!--
 
-::: {#6cc933ff .cell execution_count=31}
+::: {#9e97bd66 .cell execution_count=31}
 ``` {.python .cell-code}
 # Fix randomness
-np.random.seed(21)
+np.random.seed(487)
 
 n = 100
 
+
+# Not really needed, because choice() can do uniform sampling
 x = np.ones(n)/n
 y = np.ones(n)/n
 
-U = 50
-A = (1 / U) * np.random.randint(1,U+1,(n,n))
+def blocks(m,n):
+    X1 = np.zeros((m,m), dtype='int')
+    X2 = np.ones((n,n), dtype='int')
+    Y1 = (1/2)*np.ones((m,n), dtype='int')
+    Y2 = (1/2)*np.ones((n,m), dtype='int')
+    return np.vstack((np.hstack((X1,Y1)),np.hstack((Y2,X2))))
+
+m = int(n/2)
+A = blocks(m,m)
 
 K = 10
 L = 12
@@ -769,10 +788,16 @@ r = np.random.choice(range(n),size=L)
 
 X = partial_sums(c,n)
 Y = partial_sums(r,n)
+```
+:::
 
+
+::: {#393de74a .cell execution_count=32}
+``` {.python .cell-code}
+# Fix randomness
+np.random.seed(22)
 
 D = differences(x,y,X,Y,A)
-D = np.around(D,decimals=1)
 
 print("D = \n", D)
 ```
@@ -780,18 +805,18 @@ print("D = \n", D)
 ::: {.cell-output .cell-output-stdout}
 ```
 D = 
- [[0.200 0.100 0.200 0.100 0.100 0.100 0.100 0.100 0.000 0.000]
- [0.100 0.100 0.000 0.000 0.000 0.100 0.000 0.100 0.000 0.100]
- [0.200 0.200 0.100 0.100 0.100 0.000 0.000 0.000 0.000 0.000]
- [0.100 0.100 0.000 0.000 0.000 0.000 0.100 0.100 0.100 0.000]
- [0.100 0.100 0.100 0.100 0.000 0.000 0.000 0.000 0.000 0.000]
- [0.100 0.100 0.100 0.100 0.100 0.000 0.000 0.000 0.000 0.000]
- [0.000 0.100 0.100 0.100 0.000 0.000 0.000 0.000 0.000 0.000]
- [0.000 0.100 0.100 0.100 0.100 0.000 0.000 0.000 0.000 0.000]
- [0.000 0.100 0.100 0.100 0.100 0.000 0.000 0.000 0.000 0.000]
- [0.000 0.100 0.100 0.100 0.100 0.000 0.000 0.000 0.000 0.000]
- [0.000 0.000 0.100 0.100 0.000 0.000 0.000 0.000 0.000 0.000]
- [0.100 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000]]
+ [[0.500 0.500 0.500 0.375 0.300 0.250 0.286 0.250 0.278 0.250]
+ [0.250 0.250 0.250 0.125 0.050 0.000 0.036 0.000 0.028 0.000]
+ [0.333 0.333 0.333 0.208 0.133 0.083 0.119 0.083 0.111 0.083]
+ [0.375 0.375 0.375 0.250 0.175 0.125 0.161 0.125 0.153 0.125]
+ [0.300 0.300 0.300 0.175 0.100 0.050 0.086 0.050 0.078 0.050]
+ [0.333 0.333 0.333 0.208 0.133 0.083 0.119 0.083 0.111 0.083]
+ [0.286 0.286 0.286 0.161 0.086 0.036 0.071 0.036 0.063 0.036]
+ [0.250 0.250 0.250 0.125 0.050 0.000 0.036 0.000 0.028 0.000]
+ [0.222 0.222 0.222 0.097 0.022 0.028 0.008 0.028 0.000 0.028]
+ [0.250 0.250 0.250 0.125 0.050 0.000 0.036 0.000 0.028 0.000]
+ [0.227 0.227 0.227 0.102 0.027 0.023 0.013 0.023 0.005 0.023]
+ [0.250 0.250 0.250 0.125 0.050 0.000 0.036 0.000 0.028 0.000]]
 ```
 :::
 :::

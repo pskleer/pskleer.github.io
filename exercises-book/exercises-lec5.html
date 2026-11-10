@@ -247,7 +247,7 @@ window.Quarto = {
 
 
 <p>Make sure to import NumPy and the <code>optimize</code> module from SciPy. Avoid explicit for-loops unless specified otherwise.</p>
-<div id="6257eda4" class="cell" data-execution_count="1">
+<div id="4b75b67a" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import relevant packages</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.optimize <span class="im">as</span> optimize</span>
@@ -259,7 +259,7 @@ window.Quarto = {
 <h4 class="unnumbered anchored" data-anchor-id="question-1">Question 1</h4>
 <p>Execute <code>fsolve()</code> with initial guesses in <span class="math inline">[-10,-9.5,-9,\dots,9,9.5,10]</span> to find roots of the function <span class="math inline">f(x) = x \cdot \cos(x)</span>. You may use a for-loop to iterate over the initial guesses. Store the roots found in an array called <code>roots</code>.</p>
 <p>The output array <code>roots</code> should look like this. Recall that <code>fsolve()</code> returns an array with one element (which you can access by indexing it at position <span class="math inline">0</span>).</p>
-<div id="5b01cfc6" class="cell" data-execution_count="2">
+<div id="29ed8ee3" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-stdout">
 <pre><code>[-10.996   1.571  -7.854  -7.854  -7.854  -7.854  -7.854  -7.854  -4.712
   -4.712  -4.712  -4.712  -4.712   1.571  -1.571  -1.571  -1.571  -1.571
@@ -270,7 +270,7 @@ window.Quarto = {
 </div>
 <!--
 
-::: {#b062f793 .cell execution_count=3}
+::: {#ff065c6d .cell execution_count=3}
 ``` {.python .cell-code}
 def f(x):
     return x*np.cos(x)
@@ -314,7 +314,7 @@ print(roots)
 The output property <code>converged</code> of <code>root_scalar()</code> tells you whether or not Newton’s method has found a point sufficiently close to a root. Also, you will need to use the <code>args</code> keyword argument.</p></li>
 </ol>
 <p>Your functions should give the following output on the input below.</p>
-<div id="40f1ca4b" class="cell" data-execution_count="7">
+<div id="d6c96d1e" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First polynomial</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> np.array([<span class="fl">1.5</span>, <span class="dv">0</span>, <span class="op">-</span><span class="fl">2.5</span>, <span class="fl">0.3</span>, <span class="dv">1</span>])</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="fl">1.5</span></span>
@@ -335,7 +335,7 @@ No root was found; it might be that no root exists.</code></pre>
 </div>
 <!--
 
-::: {#fe540cf0 .cell execution_count=8}
+::: {#4b62d5c9 .cell execution_count=8}
 ``` {.python .cell-code}
 def root_polynomial(a,r):
     x = optimize.root_scalar(f, args=(a,), x0=r, method='newton',
@@ -397,7 +397,7 @@ Have a look at the output message of the function <code>root()</code> to see how
 <br>
 For <span class="math inline">k = 50</span> evenly spaced points in <span class="math inline">[0,2\pi]</span> your output should look like this. As you can see, each of the three roots of the system is found for some initial guesses, and also sometimes no root is found.</p></li>
 </ol>
-<div id="71fe5773" class="cell" data-execution_count="11">
+<div id="256e52de" class="cell" data-execution_count="11">
 <div class="cell-output cell-output-stdout">
 <pre><code>For guess = [2.000 0.000], found root is [0.000 1.000]
 For guess = [1.984 0.256], found root is [-0.000  1.000]
@@ -453,7 +453,7 @@ For guess = [ 2.000 -0.000], found root is [0.000 1.000]</code></pre>
 </div>
 <!--
 
-::: {#42348618 .cell execution_count=12}
+::: {#ab4b64be .cell execution_count=12}
 ``` {.python .cell-code}
 # Evenly spaced points in the interval [0,2*pi]
 k = 50
@@ -537,7 +537,7 @@ f(x) = f(x_0,\dots,x_{n-1}) = \frac{1}{2}x^TAx + b^Tx + c = \frac{1}{2}\sum_{i =
 </span> that takes as input a one-dimensional array <span class="math inline">x</span>. The gradient of this function is given by <span class="math inline">\nabla f(x) = Ax + b</span>. If the matrix <span class="math inline">A</span> has positive eigenvalues, then <span class="math inline">f</span> is guaranteed to have a minimizer.</p>
 <p>Write a function <code>quadratic_minimizer</code> that takes as input <span class="math inline">A,b</span> and <span class="math inline">c</span>. It should compute a (local) minimizer of the function <span class="math inline">f</span> using <code>minimize()</code> with gradient information, the <code>'CG'</code> method, and initial guess <span class="math inline">x = [1,1,\dots,1]</span>.</p>
 <p>It should give the following output on the given input.</p>
-<div id="1be9e316" class="cell" data-execution_count="14">
+<div id="2797b6b2" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example usage</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([[<span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">0</span>], [<span class="dv">0</span>, <span class="dv">4</span>, <span class="dv">0</span>], [<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">5</span>]])</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> np.array([<span class="op">-</span><span class="dv">1</span>, <span class="op">-</span><span class="dv">4</span>, <span class="dv">1</span>])</span>
@@ -553,7 +553,7 @@ Function value at optimal point: 3.7333333333333325</code></pre>
 </div>
 <!--
 
-::: {#bfb3a33d .cell execution_count=15}
+::: {#46672323 .cell execution_count=15}
 ``` {.python .cell-code}
 def f(x, A, b, c):
     return (1/2) * x.T @ (A @ x) + b @ x + c
@@ -595,7 +595,7 @@ Function value at optimal point: 3.7333333333333325
 
 -->
 <p>Because the matrix <span class="math inline">A</span> is symmetric and has positive eigenvalues, the function <span class="math inline">f</span> is convex, meaning that an optimal solution can be found at the point where the gradient is the all-zeros vector, that is, <span class="math inline">x^* = -A^{-1}b</span>. This is indeed the solution that we found.</p>
-<div id="5d36e7dc" class="cell" data-execution_count="16">
+<div id="7752b069" class="cell" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>eig_A, _ <span class="op">=</span> np.linalg.eig(A)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"The eigenvalues of A are </span><span class="sc">{</span>eig_A<span class="sc">}</span><span class="ss">"</span>)</span>
@@ -625,7 +625,7 @@ Function value at point where gradient is zero: 3.7333333333333334</code></pre>
 <p>using <code>minimize()</code> with the <code>'trust-constr'</code> method. Take <span class="math inline">a</span> as the initial guess. You may assume that <span class="math inline">\sum_i w_ia_i \leq W</span>, so that this problem always has a non-empty feasible region.<br>
 <br>
 <em>Hint:</em> You may want to have a look at the <code>constraints</code> keyword argument in the documentation of <code>minimize()</code> to see how you can pass additional arguments to a constraint.</p>
-<div id="e6fa99e8" class="cell" data-execution_count="18">
+<div id="786a708f" class="cell" data-execution_count="18">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Input data</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">7</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> np.array([<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">7</span>])</span>
@@ -644,7 +644,7 @@ Function value at point where gradient is zero: 3.7333333333333334</code></pre>
 </div>
 <!--
 
-::: {#878b0cd3 .cell execution_count=19}
+::: {#3e4f4a97 .cell execution_count=19}
 ``` {.python .cell-code}
 def f(x):
     return - np.linalg.norm(x)

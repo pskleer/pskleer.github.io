@@ -252,7 +252,7 @@ window.Quarto = {
 
 
 <p>Make sure to import NumPy, SciPy and Matplotlib to be able to complete all the exercises.</p>
-<div id="79db423a" class="cell" data-execution_count="1">
+<div id="1d4a1af7" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.optimize <span class="im">as</span> optimize</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.interpolate <span class="im">as</span> interpolate</span>
@@ -280,7 +280,7 @@ Test your function on two randomly generated arrays <span class="math inline">x<
 </ol>
 <!--
 
-::: {#ad71e492 .cell execution_count=2}
+::: {#8c089bba .cell execution_count=2}
 ``` {.python .cell-code}
 # Function for comparison of medians
 def compare_median(x,y):
@@ -319,7 +319,7 @@ print(compare_median(x,y))
 <em>Hint: See Section 8.2.1 for an example of sampling from distributions in the same family, and consult the <a href="https://numpy.org/doc/2.0/reference/random/generated/numpy.random.uniform.html">documentation</a> for the keyword arguments to np.random.uniform().</em></p></li>
 </ol>
 <p>Test your functions from b) and c) by applying them to the test input below.</p>
-<div id="a488adf8" class="cell" data-execution_count="5">
+<div id="c9f97b43" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fix random seed</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> <span class="dv">3</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>np.random.seed(s)</span>
@@ -342,7 +342,7 @@ print(compare_median(x,y))
 </div>
 <!--
 
-::: {#d2047cf6 .cell execution_count=6}
+::: {#6b4e6284 .cell execution_count=6}
 ``` {.python .cell-code}
 # Fix random seed
 s = 3
@@ -374,7 +374,7 @@ f(x_i,\beta) = \beta_0 + \beta_1x_{i, 0} + \dots + \beta_{n}x_{i, n-1}.
 </li>
 </ul>
 <p>Test your function on the following input.</p>
-<div id="e2141a33" class="cell" data-execution_count="8">
+<div id="0371b6ad" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.array([</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>       [ <span class="fl">1.012</span>,  <span class="fl">1.008</span>,  <span class="fl">0.996</span>,  <span class="fl">0.998</span>],</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>       [ <span class="fl">1.992</span>,  <span class="fl">1.996</span>,  <span class="fl">2.015</span>,  <span class="fl">1.995</span>],</span>
@@ -405,7 +405,7 @@ Sum of squares error: 0.0005592236239137701</code></pre>
 </div>
 <!--
 
-::: {#c2a7d288 .cell execution_count=9}
+::: {#13eead19 .cell execution_count=9}
 ``` {.python .cell-code}
 # Function f 
 def f(x,beta):
@@ -434,7 +434,7 @@ def linear_regression(x,y):
 </ol>
 <!--
 
-::: {#9f83b14d .cell execution_count=11}
+::: {#cccdecb5 .cell execution_count=11}
 ``` {.python .cell-code}
 # Function f
 def f(x,beta):
@@ -462,7 +462,7 @@ def abs_regression(x,y):
 <ol start="3" type="a">
 <li>Test your functions in parts a) and b) on the data below, which contain one outlier.</li>
 </ol>
-<div id="b8ce8937" class="cell" data-execution_count="12">
+<div id="9b7476d9" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># x_i data</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.array([ <span class="fl">1.124</span>,  <span class="fl">1.965</span>,  <span class="fl">3.162</span>,  <span class="fl">4.381</span>,  <span class="fl">4.941</span>,  </span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                <span class="fl">5.941</span>,  <span class="fl">7.395</span>,  <span class="fl">8.192</span>, <span class="fl">8.883</span>, <span class="fl">10.136</span>])</span>
@@ -496,7 +496,7 @@ Sum of absolute differences fit gives beta= [-0.091  0.997] with error 11.590128
   background-color: #ffffff;
 }
 </style>
-<div id="eeeb9f85" class="cell" data-execution_count="13">
+<div id="cd551397" class="cell" data-execution_count="13">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -507,7 +507,7 @@ Sum of absolute differences fit gives beta= [-0.091  0.997] with error 11.590128
 </div>
 <!--
 
-::: {#7c0716a8 .cell execution_count=14}
+::: {#dcd9541d .cell execution_count=14}
 ``` {.python .cell-code}
 # Determine x-values for plotting 
 x_plot = np.linspace(0,np.max(x)+1,200)[:,None]
@@ -566,7 +566,7 @@ plt.show()
 <p>This can be useful if you want to find the important features in your data set. Let us first generate some synthetic data to explain what is meant with “important” features. Note that in the code below each row <span class="math display">
 x_i = [x_{i0}, x_{i1}, x_{i2}, x_{i3}, x_{i4}]
 </span> in the array <span class="math inline">x</span> is considered a data point five entries, each representing a feature.</p>
-<div id="e992c453" class="cell" data-execution_count="15">
+<div id="45bac18c" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fix random seed</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">3</span>)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -598,7 +598,7 @@ x_i = [x_{i0}, x_{i1}, x_{i2}, x_{i3}, x_{i4}]
 <br>
 Your output should look like the example below.</p></li>
 </ol>
-<div id="20119e77" class="cell" data-execution_count="17">
+<div id="8ec87333" class="cell" data-execution_count="17">
 <div class="cell-output cell-output-stdout">
 <pre><code>[[ 2.42   1.413  0.49   3.445 -1.85 ]
  [ 2.329  1.409  0.382  3.372 -1.578]
@@ -614,7 +614,7 @@ Your output should look like the example below.</p></li>
 </div>
 <!--
 
-::: {#4436c2ff .cell execution_count=18}
+::: {#e19d6872 .cell execution_count=18}
 ``` {.python .cell-code}
 # Set gamma choices
 gamma = np.arange(0,1,0.1)
@@ -652,7 +652,7 @@ print(beta)
 
 -->
 <p>As <span class="math inline">\gamma</span> increases we see that for this dataset, <span class="math inline">\beta_2</span> and <span class="math inline">\beta_4</span> shrink toward zero over the tested range. Be aware though, that if you choose <span class="math inline">\gamma</span> too large, then other <span class="math inline">\beta_i</span> values might also converge to <span class="math inline">0</span>. As an extreme case, if <span class="math inline">\gamma = 1000</span>, then all coefficients will be <span class="math inline">0</span>. Do you understand why?</p>
-<div id="c74ea60d" class="cell" data-execution_count="19">
+<div id="393a1f35" class="cell" data-execution_count="19">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>beta_fit, error_fit <span class="op">=</span> lasso_regression(x,y,<span class="dv">1000</span>)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(beta_fit)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -665,7 +665,7 @@ print(beta)
 <section id="question-4" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="question-4">Question 4</h4>
 <p>Reproduce the figure below, which shows interpolation of the function <span class="math inline">f(x) = \cos(x)</span> using piecewise polynomials of degrees <span class="math inline">k = 0,1,2,3</span> on the intervals between the given data points. The <span class="math inline">x</span>-values of the data points (the dots) are <span class="math inline">[-10, -7, -3, -1, 0, 1, 3, 7, 8, 10]</span>.</p>
-<div id="896647ca" class="cell" data-execution_count="20">
+<div id="6cfe878c" class="cell" data-execution_count="20">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
@@ -676,7 +676,7 @@ print(beta)
 </div>
 <!--
 
-::: {#c1dd4d69 .cell execution_count=21}
+::: {#4053142c .cell execution_count=21}
 ``` {.python .cell-code}
 import scipy.interpolate as interpolate
 
@@ -737,47 +737,32 @@ plt.show()
 </span> where <span class="math inline">f(x,\mu,\sigma)</span> is the probability density function of the normal distribution with mean <span class="math inline">\mu</span> and standard deviation <span class="math inline">\sigma</span>. The idea is that the parameters maximizing the function above are the ones that are most likely to yield the samples in the array <span class="math inline">x</span>.</p>
 <p>Write a function <code>norm_likelihood()</code> that takes as input a one-dimensional array <span class="math inline">x = [x_0,\dots,x_{n-1}]</span> of samples, and outputs parameters <span class="math inline">\mu</span> and <span class="math inline">\sigma</span> that maximize the function <span class="math inline">L</span> above for the given <span class="math inline">x</span>. Use the <code>optimize.minimize()</code> method for maximizing <span class="math inline">L</span> and take as initial guess the mean and standard deviation of the vector <span class="math inline">x</span>.</p>
 <p>Test your function on the input below.</p>
+<div id="f60466bc" class="cell" data-execution_count="23">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fix random seed</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">3</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate some samples</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.random.normal(loc<span class="op">=</span><span class="dv">3</span>,scale<span class="op">=</span><span class="dv">5</span>,size<span class="op">=</span><span class="dv">10</span>) <span class="co"># 10 samples</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Log-likelihood estimation</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> norm_likelihood(x)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Solution found by maximum likelihood estimation:"</span>,y)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Solution found by maximum likelihood estimation: [2.298 4.332]</code></pre>
+</div>
+</div>
+<p>The (rounded) solution found is the same as the one found by the <code>fit()</code> function.</p>
+<div id="b9c7aad1" class="cell" data-execution_count="24">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Comparison with fit()</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> scipy.stats.norm.fit(x)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Solution found by fit() function:"</span>,y)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Solution found by fit() function: (np.float64(2.2976087746123506), np.float64(4.332072061724699))</code></pre>
+</div>
+</div>
 <!--
 
-::: {#81764caf .cell execution_count=23}
-``` {.python .cell-code}
-# Fix random seed
-np.random.seed(3)
-
-# Generate some samples
-x = np.random.normal(loc=3,scale=5,size=10) # 10 samples
-
-# Log-likelihood estimation
-y = norm_likelihood(x)
-print("Solution found by maximum likelihood estimation:",y)
-```
-
-::: {.cell-output .cell-output-stdout}
-```
-Solution found by maximum likelihood estimation: [2.298 4.332]
-```
-:::
-:::
-
-
-The (rounded) solution found is the same as the one found by the `fit()` function.
-
-::: {#2dfa555e .cell execution_count=24}
-``` {.python .cell-code}
-# Comparison with fit()
-y = scipy.stats.norm.fit(x)
-print("Solution found by fit() function:",y)
-```
-
-::: {.cell-output .cell-output-stdout}
-```
-Solution found by fit() function: (np.float64(2.2976087746123506), np.float64(4.332072061724699))
-```
-:::
-:::
-
-
-::: {#d853872d .cell execution_count=25}
+::: {#32c9f2c6 .cell execution_count=25}
 ``` {.python .cell-code}
 import scipy.optimize as optimize
 import scipy.stats

@@ -310,15 +310,14 @@ window.Quarto = {
 </header>
 
 
-<p><link rel="preconnect" href="https://fonts.googleapis.com"> <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""> <link href="https://fonts.googleapis.com/css2?family=Fira+Mono&amp;family=Fira+Sans&amp;display=swap" rel="stylesheet"></p>
 <p>In this chapter, we will see some algorithms for learning problems such as classification and clustering, which are fundamental tasks in machine learning for the analysis of large data sets. We remark that some of the problems we have seen in earlier chapters, such as regression, can also be seen as learning problems.</p>
-<p>Classification is concerned with deciding for every data point (or observation) what label or category, from a pre-determined list, it belongs to. Think of (binary) tasks like determining whether an e-mail is spam or not, or deciding whether an employee should get a promotion. Classification is an example of a supervised learning problem.</p>
-<p>Clustering is concerned with grouping similar data points in clusters. Here there is not (necessarily) an underlying “ground truth” label for every cluster. The goal is merely to group similar points together. Clustering is an example of an unsupervised learning problem.</p>
-<p>One very useful package for machine learning in Python is the <a href="https://scikit-learn.org/stable/">Scikit-learn</a> package <code>sklearn</code> that builds on NumPy, SciPy and Matplotlib. If you will be doing machine learning with Python in the future, this package is a good starting point. In this chapter, we will illustrate some functionality <code>sklearn</code>.</p>
+<p>Classification is concerned with assigning each data point a label from a predetermined list. Think of (binary) tasks like determining whether an e-mail is spam or not, or deciding whether an employee should get a promotion. Classification is an example of a supervised learning problem.</p>
+<p>Clustering is concerned with grouping similar data points into clusters. Here there is not (necessarily) an underlying “ground truth” label for every cluster. The goal is merely to group similar points together. Clustering is an example of an unsupervised learning problem.</p>
+<p>One very useful package for machine learning in Python is the <a href="https://scikit-learn.org/stable/">Scikit-learn</a> package <code>sklearn</code> that builds on NumPy, SciPy and Matplotlib. If you will be doing machine learning with Python in the future, this package is a good starting point. In this chapter, we will illustrate some of the functionality provided by <code>sklearn</code>.</p>
 <section id="binary-logistic-regression" class="level2" data-number="10.1">
 <h2 data-number="10.1" class="anchored" data-anchor-id="binary-logistic-regression"><span class="header-section-number">10.1</span> Binary logistic regression</h2>
 <p>Consider the problem of deciding whether an employee should get promoted, based on an overall grade <span class="math inline">x \in [1,10]</span> representing their performance. The high-level idea is to come up with a non-decreasing function <span class="math inline">f : [1,10] \rightarrow [0,1]</span> indicating whether, given a grade <span class="math inline">x</span>, an employee should get a promotion. You may interpret <span class="math inline">f(x)</span> as the probability that, given grade <span class="math inline">x</span>, an employee gets promoted.</p>
-<p>We promote an employee with grade <span class="math inline">x</span> if and only if <span class="math inline">f(x) &gt; 0.5</span>. More formally, we define the <i>classifier function</i> <span class="math inline">g: [1,10] \rightarrow \{0,1\}</span> by <span class="math display">
+<p>We promote an employee with grade <span class="math inline">x</span> if and only if <span class="math inline">f(x) &gt; 0.5</span>. More formally, we define the <em>classifier function</em> <span class="math inline">g: [1,10] \rightarrow \{0,1\}</span> by <span class="math display">
 g(x) = \left\{
 \begin{array}{ll}
 1 &amp; f(x) &gt; 0.5 \\
@@ -326,18 +325,18 @@ g(x) = \left\{
 \end{array}
 \right..
 </span></p>
-<p>We say that an employee with grade <span class="math inline">x_i</span> has label <span class="math inline">1</span>, or is in class <span class="math inline">1</span>, if <span class="math inline">g(x_i) = 1</span>, and label/class <span class="math inline">0</span> if <span class="math inline">g(x_i) = 0</span>.</p>
+<p>We say that an employee with grade <span class="math inline">x</span> gets label <span class="math inline">1</span>, or is put in class <span class="math inline">1</span>, if <span class="math inline">g(x) = 1</span>, and label/class <span class="math inline">0</span> if <span class="math inline">g(x) = 0</span>.</p>
 <section id="input-data" class="level3" data-number="10.1.1">
 <h3 data-number="10.1.1" class="anchored" data-anchor-id="input-data"><span class="header-section-number">10.1.1</span> Input data</h3>
-<p>The idea will be to fit a function <span class="math inline">f</span> on (historical) data, and thereby indirectly also the function <span class="math inline">g</span>. The historical data points are given as <span class="math inline">(x_i,y_i)</span> for <span class="math inline">i = 0,\dots,m-1</span>, where <span class="math inline">x_i \in [1,10]</span> is the grade of person <span class="math inline">i</span> for <span class="math inline">i = 0,\dots,m-1</span> together with the decision <span class="math inline">y_i \in \{0,1\}</span> whether a person with that grade got promoted (label <span class="math inline">1</span>) or not (label <span class="math inline">0</span>).</p>
-<p>The purpose of fitting such a function is that we can use it to make promotion decisions in the future, i.e., if a new employee <span class="math inline">x_m</span> is up for promotion, we use the fitted function <span class="math inline">g</span> to decide whether this person gets promoted or not.</p>
-<p>Below we have given some historical grades and the corresponding promotion decisions at the time.</p>
+<p>The idea will be to fit a function <span class="math inline">f</span> to historical data, and thereby indirectly also the function <span class="math inline">g</span>. The historical data points are given as <span class="math inline">(x_i,y_i)</span> for <span class="math inline">i = 0,\dots,m-1</span>, where <span class="math inline">x_i \in [1,10]</span> is the grade of person <span class="math inline">i</span> together with the recorded outcome <span class="math inline">y-i \in \{0,1\}</span>, indicating whether whether a person with that grade got promoted (label <span class="math inline">1</span>) or not (label <span class="math inline">0</span>).</p>
+<p>The purpose of fitting such a function is that we can use it to make promotion decisions in the future, i.e., if a new employee <span class="math inline">m</span> with grade <span class="math inline">x_m</span> is up for promotion, we use the fitted function <span class="math inline">g</span> to decide whether this person gets promoted or not.</p>
+<p>The data below show historical grades and the corresponding promotion decisions.</p>
 <style>
 .cell-output-display {
   background-color: #ffffff;
 }
 </style>
-<div id="b497d1f0" class="cell" data-execution_count="1">
+<div id="1cdbb757" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -345,7 +344,7 @@ g(x) = \left\{
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>x_data <span class="op">=</span> np.array([<span class="fl">2.7</span>, <span class="fl">3.7</span>, <span class="fl">4.8</span>, <span class="fl">5.7</span>, <span class="fl">6.1</span>, <span class="fl">6.8</span>, <span class="fl">6.9</span>, </span>
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>                    <span class="fl">7.0</span>, <span class="fl">7.4</span>, <span class="fl">7.5</span>, <span class="dv">8</span>, <span class="fl">8.2</span>, <span class="fl">8.7</span>, <span class="fl">8.9</span>, <span class="fl">9.6</span>])</span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Promotion decisions (binary label)</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Promotion decisions (binary labels)</span></span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>y_data <span class="op">=</span> np.array([<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>,</span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>                    <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>])</span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
@@ -385,14 +384,14 @@ f(x) = \frac{1}{1 + e^{-p(x)}}
   background-color: #ffffff;
 }
 </style>
-<div id="3dc0d302" class="cell" data-execution_count="2">
+<div id="5abab522" class="cell" data-execution_count="2">
 <details class="code-fold">
 <summary>Show code generating the plot below</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># An example of a sigmoid function </span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sigmoid(x,alpha,beta):</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">1</span><span class="op">/</span>(<span class="dv">1</span> <span class="op">+</span> np.exp(<span class="op">-</span>(alpha <span class="op">+</span> beta<span class="op">*</span>x)))</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Choice of beta for plot</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters for the plot</span></span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>alpha, beta <span class="op">=</span> <span class="op">-</span><span class="dv">5</span>, <span class="dv">1</span></span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Arrays to plot</span></span>
@@ -411,7 +410,7 @@ f(x) = \frac{1}{1 + e^{-p(x)}}
 <span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'f(x)'</span>)<span class="op">;</span></span>
 <span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Add title</span></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Example of sigmoid function"</span>)</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Example of a sigmoid function"</span>)</span>
 <span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Show plot</span></span>
 <span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -424,24 +423,31 @@ f(x) = \frac{1}{1 + e^{-p(x)}}
 </div>
 </div>
 </div>
-<p>We next import the logistic regression class <code>LogisticRegression</code> from the <code>sklearn.linear_model</code> module to do the fitting with, and create an instance of this class.</p>
-<div id="38d30aa8" class="cell" data-execution_count="3">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create instance/object of class</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>promotion <span class="op">=</span> LogisticRegression(penalty<span class="op">=</span><span class="va">None</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>To fit the model, we import the logistic regression class <code>LogisticRegression</code> from the <code>sklearn.linear_model</code> and create an instance of this class. The mathematical fitting optimization problem that is being solved in this case is <span class="math display">
+\min_{\alpha,\beta}\;
+-\frac{1}{m}\sum_{i=0}^{m-1}
+\left[y_i\log f(x_i)+(1-y_i)\log(1-f(x_i))\right]
++\frac{\beta^2}{2mC},
+\qquad
+f(x_i)=\frac{1}{1+e^{-(\alpha+\beta x_i)}}.
+</span> The first summation is the <em>cross-entropy loss function</em>, which is a type of error function that is very suitable to solve logistic regression problems. Just think of this as a substitute of the sum-of-squares error function we saw in the previous chapter.</p>
+<p>The parameter <span class="math inline">C</span> is a penalty parameter that can be set using the keyword argument <code>C</code>. This penalty term has a similar purpose as the penalty term we saw in Question 3 of Lecture 8 about Lasso regression. If you do not want to add this extra penalty term, you can set <span class="math inline">C = \infty</span> using <code>C=np.inf</code> so that the term vanishes.</p>
+<div id="2c6fea0f" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create instance/object of class</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>promotion <span class="op">=</span> LogisticRegression(C<span class="op">=</span>np.inf)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>When creating the instance, we add the keyword argument <code>penalty</code> which we set to <code>None</code>. As a default, <code>LogisticRegression</code> uses a regularization term (as we saw in the exercises corresponding to the previous chapter) in the minimization problem to find the best fit.</p>
-<p>By setting <code>penalty=None</code>, this regularization term will be set to zero when we do the fitting later on. There are also other conditions you can impose on the fitting procudure; have a look at the <a href="https://scikit-learn.org/1.5/modules/generated/sklearn.linear_model.LogisticRegression.html#sklearn.linear_model.LogisticRegression.fit">documentation</a> for these.</p>
-<p>We continue with the <code>fit()</code> method that is used to do the fitting. As can be seen in the documentation (figure below), the input data of the <span class="math inline">x</span>-array should be a two-dimensional array where every column represents one feature of the data. In our setting, there is only one feature, the grade of an employee. Another feature could for example be the number of years that someone has been working for the company already.</p>
+<p>We continue with the <code>fit()</code> method that is used to do the fitting. As can be seen in the documentation (figure below), the input array <code>x_data</code> should be a two-dimensional array where every column represents one feature of the data. In our setting, there is only one feature, the grade of an employee. Another feature could, for example, be the number of years that someone has been working for the company already.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="figs/documentation_logistic_fit.png" class="img-fluid figure-img"></p>
-<figcaption>Documentation of <code>fit()</code> function for LogisticRegression instance</figcaption>
+<figcaption>Documentation of <code>fit()</code> method for LogisticRegression instance</figcaption>
 </figure>
 </div>
-<div id="0784038b" class="cell" data-execution_count="4">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Historical data (with x_data as n x 1 column array)</span></span>
+<div id="aff232a5" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Historical data (with x_data as m x 1 column array)</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>x_data <span class="op">=</span> np.array([<span class="fl">2.7</span>, <span class="fl">3.7</span>, <span class="fl">4.8</span>, <span class="fl">5.7</span>, <span class="fl">6.1</span>, <span class="fl">6.8</span>, <span class="fl">6.9</span>, </span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>                    <span class="fl">7.0</span>, <span class="fl">7.4</span>, <span class="fl">7.5</span>, <span class="dv">8</span>, <span class="fl">8.2</span>, <span class="fl">8.7</span>, <span class="fl">8.9</span>, <span class="fl">9.6</span>])[:,<span class="va">None</span>]</span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
@@ -451,18 +457,18 @@ f(x) = \frac{1}{1 + e^{-p(x)}}
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the instance with historical data</span></span>
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>promotion <span class="op">=</span> promotion.fit(x_data,y_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>The fitted model has various attributes with information about the fitted model.</p>
+<p>The fitted model has various attributes with information about the model.</p>
 <ul>
 <li><code>classes_</code>: Distinct labels that appear in label array <code>y_data</code>.</li>
 </ul>
-<div id="821475a1" class="cell" data-execution_count="5">
+<div id="c72e2616" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Distinct labels in y-data</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Classes = "</span>, promotion.classes_)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Classes =  [0 1]</code></pre>
 </div>
 </div>
-<div id="4b6d65dd" class="cell" data-execution_count="6">
+<div id="a8d78a37" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fitted parameters</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"alpha = "</span>, promotion.intercept_[<span class="dv">0</span>])</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"beta = "</span>, promotion.coef_[<span class="dv">0</span>,<span class="dv">0</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -472,15 +478,17 @@ beta =  1.4505527360985937</code></pre>
 </div>
 </div>
 <ul>
-<li><code>intercept_</code>: Fitted coefficient <span class="math inline">\alpha</span> (in one-dimensional array)</li>
-<li><code>coef_</code>: Fitted coefficient <span class="math inline">\beta</span> (in two-dimensional array)</li>
+<li><code>intercept_</code>: Fitted coefficient <span class="math inline">\alpha</span> (in a one-dimensional array)</li>
+<li><code>coef_</code>: Fitted coefficient <span class="math inline">\beta</span> (in a two-dimensional array)</li>
 </ul>
-<p>Note that <code>intercept_</code> and <code>coef_</code> return a one- and two-dimensional array, respectively. This is because, in general, we can also fit models with <span class="math inline">c \geq 2</span> classes and <span class="math inline">n</span> data features, meaning <span class="math inline">x_i \in \mathbb{R}^n</span>. Here you can think for example of <a href="https://en.wikipedia.org/wiki/Multinomial_logistic_regression">multimonomial logistic regression</a>. Then <code>intercept_</code> is an array of length <span class="math inline">c</span> and <code>coef_</code> a <span class="math inline">c \times n</span> array.</p>
-<p>Next to the attributes, there are also various functions that we can execute on the fitted model.</p>
+<p>Note that <code>intercept_</code> and <code>coef_</code> return a one- and two-dimensional array, respectively. This is because, in general, we can also fit models with <span class="math inline">c \geq 2</span> classes and <span class="math inline">n</span> data features, meaning <span class="math inline">x_i \in \mathbb{R}^n</span>. Here you can think for example of <a href="https://en.wikipedia.org/wiki/Multinomial_logistic_regression">multinomial logistic regression</a>. Then <code>intercept_</code> is an array of length <span class="math inline">c</span> and <code>coef_</code> a <span class="math inline">c \times n</span> array.</p>
+<p>Next to the attributes, there are also various methods we can call on the fitted model.</p>
 <ul>
-<li><code>predict_proba()</code>: Returns array <span class="math inline">P</span> whose rows correspond to the observations, and whose columns to the classes. Entry <span class="math inline">P_{ij}</span> is the probability that observation <span class="math inline">x_i</span> is in class <span class="math inline">j</span>. <br><br> In our example, the first column is the value <span class="math inline">1 - f(x_i)</span>, i.e., the probability of being in class <span class="math inline">0</span>, and the second column is the value <span class="math inline">f(x_i)</span>, i.e., the probability of being in class <span class="math inline">1</span>.</li>
+<li><code>predict_proba()</code>: Returns array <span class="math inline">P</span> whose rows correspond to the observations, and whose columns to the classes. Entry <span class="math inline">P_{ij}</span> is the estimated probability that observation <span class="math inline">x_i</span> is in class <span class="math inline">j</span>, i.e, in <code>classes_[j]</code>.<br>
+<br>
+In our example, the first column is the value <span class="math inline">1 - f(x_i)</span>, i.e., the estimated probability of being in class <span class="math inline">0</span>, and the second column is the value <span class="math inline">f(x_i)</span>, i.e., the estimated probability of being in class <span class="math inline">1</span>.</li>
 </ul>
-<div id="53e952ec" class="cell" data-execution_count="7">
+<div id="b250bb77" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Class prediction probabilities</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>P <span class="op">=</span> promotion.predict_proba(x_data)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -506,7 +514,7 @@ beta =  1.4505527360985937</code></pre>
 <ul>
 <li><code>predict()</code>: Gives predicted class of every observation. For us it returns <span class="math inline">1</span> if the predicted probability <span class="math inline">&gt; 0.5</span>, and <span class="math inline">0</span> otherwise. This is the implementation of the function <span class="math inline">g</span> that we introduced earlier.</li>
 </ul>
-<div id="8fe042f2" class="cell" data-execution_count="8">
+<div id="ddc73840" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Class predictions</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> promotion.predict(x_data)</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -518,9 +526,9 @@ Original classes are  [0 0 0 0 1 1 1 0 0 1 1 1 1 1 1]</code></pre>
 </div>
 </div>
 <ul>
-<li><code>score()</code>: Computes the fraction of correctly classified data points, i.e, the points <span class="math inline">(x_i,y_i)</span> for which their predicted label is the same as their true label <span class="math inline">y_i</span>.</li>
+<li><code>score()</code>: Computes the fraction of correctly classified data points, also known as the <em>training accuracy</em>. These are the points <span class="math inline">(x_i,y_i)</span> for which their predicted label <span class="math inline">g(x_i)</span> is the same as their true label <span class="math inline">y_i</span>.</li>
 </ul>
-<div id="2407678a" class="cell" data-execution_count="9">
+<div id="b7099386" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Model score</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>score <span class="op">=</span> promotion.score(x_data,y_data)</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -533,13 +541,13 @@ Original classes are  [0 0 0 0 1 1 1 0 0 1 1 1 1 1 1]</code></pre>
 <section id="visualization" class="level3" data-number="10.1.3">
 <h3 data-number="10.1.3" class="anchored" data-anchor-id="visualization"><span class="header-section-number">10.1.3</span> Visualization</h3>
 <p>We can plot the fitted sigmoid function with the observations. We have added a dashed red line at the <span class="math inline">x</span> for which <span class="math inline">f(x) = 0.5</span>. This is the boundary between values of <span class="math inline">x</span> whose predicted label is <span class="math inline">0</span> (left of the line) and whose predicted label is <span class="math inline">1</span> (right of the line).</p>
-<p>As you can see, three points are misclassified: One points receives predicted label <span class="math inline">0</span> although its true label is <span class="math inline">1</span>, and two points receive predicted label <span class="math inline">1</span> although their true label is <span class="math inline">0</span>.</p>
+<p>As you can see, three points are misclassified: One point is assigned the predicted label <span class="math inline">0</span> although its true label is <span class="math inline">1</span>, and two points receive predicted label <span class="math inline">1</span> although their true label is <span class="math inline">0</span>.</p>
 <style>
 .cell-output-display {
   background-color: #ffffff;
 }
 </style>
-<div id="f0e5de9d" class="cell" data-execution_count="10">
+<div id="9eba4764" class="cell" data-execution_count="10">
 <details class="code-fold">
 <summary>Show code generating the plot below</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.optimize <span class="im">as</span> optimize</span>
@@ -548,44 +556,45 @@ Original classes are  [0 0 0 0 1 1 1 0 0 1 1 1 1 1 1]</code></pre>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sigmoid(x,alpha,beta):</span>
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">1</span><span class="op">/</span>(<span class="dv">1</span> <span class="op">+</span> np.exp(<span class="op">-</span>(alpha <span class="op">+</span> beta<span class="op">*</span>x)))</span>
 <span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Choice of beta for plot</span></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>alpha, beta <span class="op">=</span> promotion.intercept_, promotion.coef_[<span class="dv">0</span>]</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters for the plot</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>alpha, beta <span class="op">=</span> promotion.intercept_[<span class="dv">0</span>], promotion.coef_[<span class="dv">0</span>,<span class="dv">0</span>]</span>
 <span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Determine x where f(x) = 0.5</span></span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> g(x,alpha,beta):</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f_equation(x,alpha,beta):</span>
 <span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> sigmoid(x,alpha,beta) <span class="op">-</span> <span class="fl">0.5</span></span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>x_b <span class="op">=</span> optimize.fsolve(g,x0<span class="op">=</span><span class="fl">5.5</span>,args<span class="op">=</span>(alpha,beta))</span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Arrays to plot</span></span>
-<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">1</span>,<span class="dv">10</span>)</span>
-<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> sigmoid(x,alpha,beta)</span>
-<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Create figure</span></span>
-<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>plt.figure()</span>
-<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot fitted sigmoid function</span></span>
-<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>plt.plot(x,y,label<span class="op">=</span><span class="st">"Fitted function f"</span>)</span>
-<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot vertical line at x_b </span></span>
-<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>plt.axvline(x_b,linestyle<span class="op">=</span><span class="st">'--'</span>,color<span class="op">=</span><span class="st">'red'</span>,label<span class="op">=</span><span class="st">"Point x where f(x) = 0.5"</span>)</span>
-<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatter data points</span></span>
-<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a>plt.scatter(x_data,y_data,label<span class="op">=</span><span class="st">"Data points"</span>)</span>
-<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Add labels and axis information</span></span>
-<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a>plt.xlim(<span class="dv">1</span>,<span class="dv">10</span>)</span>
-<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'x'</span>)</span>
-<span id="cb15-35"><a href="#cb15-35" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'f(x)'</span>)<span class="op">;</span></span>
-<span id="cb15-36"><a href="#cb15-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-37"><a href="#cb15-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Add title</span></span>
-<span id="cb15-38"><a href="#cb15-38" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Fitted sigmoid function"</span>)</span>
-<span id="cb15-39"><a href="#cb15-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-40"><a href="#cb15-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Add legend</span></span>
-<span id="cb15-41"><a href="#cb15-41" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb15-42"><a href="#cb15-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-43"><a href="#cb15-43" aria-hidden="true" tabindex="-1"></a><span class="co"># Show plot</span></span>
-<span id="cb15-44"><a href="#cb15-44" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="co"># The solution is in fact x_b = - alpha / beta (check yourself)</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>x_b <span class="op">=</span> optimize.fsolve(f_equation,x0<span class="op">=</span><span class="fl">5.5</span>,args<span class="op">=</span>(alpha,beta))</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Arrays to plot</span></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">1</span>,<span class="dv">10</span>)</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> sigmoid(x,alpha,beta)</span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Create figure</span></span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>plt.figure()</span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot fitted sigmoid function</span></span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>plt.plot(x,y,label<span class="op">=</span><span class="st">"Fitted function f"</span>)</span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot vertical line at x_b </span></span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>plt.axvline(x_b,linestyle<span class="op">=</span><span class="st">'--'</span>,color<span class="op">=</span><span class="st">'red'</span>,label<span class="op">=</span><span class="st">"Point x where f(x) = 0.5"</span>)</span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatter data points</span></span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a>plt.scatter(x_data,y_data,label<span class="op">=</span><span class="st">"Data points"</span>)</span>
+<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Add labels and axis information</span></span>
+<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a>plt.xlim(<span class="dv">1</span>,<span class="dv">10</span>)</span>
+<span id="cb15-35"><a href="#cb15-35" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'x'</span>)</span>
+<span id="cb15-36"><a href="#cb15-36" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'f(x)'</span>)<span class="op">;</span></span>
+<span id="cb15-37"><a href="#cb15-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-38"><a href="#cb15-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Add title</span></span>
+<span id="cb15-39"><a href="#cb15-39" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Fitted sigmoid function"</span>)</span>
+<span id="cb15-40"><a href="#cb15-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-41"><a href="#cb15-41" aria-hidden="true" tabindex="-1"></a><span class="co"># Add legend</span></span>
+<span id="cb15-42"><a href="#cb15-42" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb15-43"><a href="#cb15-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-44"><a href="#cb15-44" aria-hidden="true" tabindex="-1"></a><span class="co"># Show plot</span></span>
+<span id="cb15-45"><a href="#cb15-45" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -595,9 +604,9 @@ Original classes are  [0 0 0 0 1 1 1 0 0 1 1 1 1 1 1]</code></pre>
 </div>
 </div>
 </div>
-<p>It is also possible to visualize the number of correctly and wronlgy classified points using the <code>confusion matrix()</code> function from the <code>sklearn.metrics</code> package. If the first input argument of this function is the array with the true labels, and the second input argument the array with the predicted labels, then <code>heatmap()</code> returns a matrix <span class="math inline">C</span> where entry <span class="math inline">C_{ij}</span> is the number of observations whose true label is <span class="math inline">i</span>, but was predicted to have label <span class="math inline">j</span>.</p>
-<p>This means that the sum of the diagonal entries of this matrix is the correctly classified observations.</p>
-<div id="794f7ab2" class="cell" data-execution_count="11">
+<p>It is also possible to count the number of correctly and wrongly classified points using the <code>confusion_matrix()</code> function from the <code>sklearn.metrics</code> package. If the first input argument of this function is the array with the true labels, and the second input argument the array with the predicted labels, then it returns a matrix whose entry <span class="math inline">(i,j)</span> is the number of observations whith true label is <span class="math inline">i</span> (strictly speaking <code>classes_[i]</code> if the classes are not numbers) and predicted label <span class="math inline">j</span>.</p>
+<p>The sum of the diagonal entries of the matrix is the correctly classified observations.</p>
+<div id="93245338" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> confusion_matrix</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Inputs are true labels and predicted labels</span></span>
@@ -608,13 +617,13 @@ Original classes are  [0 0 0 0 1 1 1 0 0 1 1 1 1 1 1]</code></pre>
  [1 8]]</code></pre>
 </div>
 </div>
-<p>You can also represent this matrix visually using the <code>heatmap()</code> function from the <a href="https://seaborn.pydata.org/">Seaborn</a> package. You do not need to know this package, but we include it here for completeness. It contains functionality for visualization of statistical data.</p>
+<p>You can also represent this matrix with a heatmap using the <code>heatmap()</code> function from the <a href="https://seaborn.pydata.org/">Seaborn</a> package. You do not need to know this package, but we include it here for completeness. It contains functionality for visualization of statistical data.</p>
 <style>
 .cell-output-display {
   background-color: #ffffff;
 }
 </style>
-<div id="ac17aa39" class="cell" data-execution_count="12">
+<div id="b8cc9609" class="cell" data-execution_count="12">
 <details class="code-fold">
 <summary>Show code generating the plot below</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn</span>
@@ -635,26 +644,26 @@ Original classes are  [0 0 0 0 1 1 1 0 0 1 1 1 1 1 1]</code></pre>
 </section>
 <section id="clustering" class="level2" data-number="10.2">
 <h2 data-number="10.2" class="anchored" data-anchor-id="clustering"><span class="header-section-number">10.2</span> Clustering</h2>
-<p>Another fundamental problem in the area of machine learning and computer science is that of clustering. Here the task is to divide (unlabelled) data points <span class="math inline">x_0,\dots,x_{n-1} \in \mathbb{R}^d</span> with <span class="math inline">x_i = [x_{i0},\dots,x_{i(d-1)}]</span> having <span class="math inline">d</span> features, into groups/clusters that are ‘similar’ in a certain sense. An example is customer segmentation, where you want to have a similar advertisement policy for similar customers, and so you need to decide how to segment the customers (although a priori it is not clear what makes customers similar).</p>
-<p>The high-level idea of many clustering algoritms is to come up with <span class="math inline">K</span> centers <span class="math inline">c_0,\dots,c_{K-1} \in \mathbb{R}^d</span> with <span class="math inline">c_k =  [c_{k0},\dots,c_{k(d-1)}]</span> for <span class="math inline">k = 0,\dots,K-1</span>, and assign every point <span class="math inline">x_i</span> to a center. All the points assigned to the same center are called a cluster. The index of the cluster that a data point <span class="math inline">x_i</span> is assigned to, is called its <i>label</i>. The goal is to find the appropriate centers and an assignment from points to clusters.</p>
-<p>The quality of a clustering <span class="math inline">C = \{c_0,\dots,c_{K-1}\}</span> is often measured in terms of the <i>sum of squared errors (SSE)</i></p>
+<p>Another fundamental problem in the area of machine learning and computer science is that of clustering. Here the task is to divide (unlabelled) data points <span class="math inline">x_0,\dots,x_{n-1} \in \mathbb{R}^d</span> with <span class="math inline">x_i = [x_{i,0},\dots,x_{i,d-1}]</span> having <span class="math inline">d</span> features into groups/clusters that are ‘similar’ in a certain sense. An example is customer segmentation, where you want to have a similar advertisement policy for similar customers, and so you need to decide how to segment the customers (although a priori it is not clear what makes customers similar).</p>
+<p>The high-level idea of many clustering algorithms is to come up with <span class="math inline">K</span> centers <span class="math inline">c_0,\dots,c_{K-1} \in \mathbb{R}^d</span> with <span class="math inline">c_k =  [c_{k,0},\dots,c_{k,d-1}]</span> for <span class="math inline">k = 0,\dots,K-1</span>, and assign every point <span class="math inline">x_i</span> to a center. All the points assigned to the same center are called a cluster. The index of the cluster that a data point <span class="math inline">x_i</span> is assigned to is called its <em>label</em>. The goal is to find the appropriate centers and an assignment from points to clusters.</p>
+<p>The quality of a clustering <span class="math inline">C = \{c_0,\dots,c_{K-1}\}</span> is often measured in terms of the <em>sum of squared errors (SSE)</em>.</p>
 <p><span class="math display">
 \begin{array}{ll}
-\displaystyle \text{SSE}_{x_0,\dots,x_{n-1}}(c_1,\dots,c_k) &amp; = \displaystyle \sum_{i=0}^{n-1} \min_{k=0,\dots,K-1} ||x_i - c_k||_2^2  \\
-&amp; = \displaystyle \sum_{i=1}^{n-1} \min_{k=0,\dots,K-1} \sum_{j=0}^{d-1} (x_{ij} - c_{kj})^2
+\displaystyle \text{SSE}_{x_0,\dots,x_{n-1}}(c_0,\dots,c_{k-1}) &amp; = \displaystyle \sum_{i=0}^{n-1} \min_{k=0,\dots,K-1} ||x_i - c_k||_2^2  \\
+&amp; = \displaystyle \sum_{i=0}^{n-1} \min_{k=0,\dots,K-1} \sum_{j=0}^{d-1} (x_{ij} - c_{kj})^2
 \end{array}
 </span></p>
 <p>which aggregates the squared <span class="math inline">L^2</span>-norm distances of all data points to their closest center.</p>
 <section id="input-data-1" class="level3" data-number="10.2.1">
 <h3 data-number="10.2.1" class="anchored" data-anchor-id="input-data-1"><span class="header-section-number">10.2.1</span> Input data</h3>
-<p>Below we generate some data that we will cluster later on in this section. The data is generated using a built-in data generation function from the <code>sklearn.datasets</code> module. This module contains many functions to generate so-called <i>synthetic data</i>. You do not need to know the function <code>make_blobs</code>, but we include it here for completeness. Have a look at its documentation if you are interested.</p>
-<p>The function <code>make_blobs</code> can take as input specified centers, and then randomly generate data points around every center (based on normally distributed randomness). Those data points have as “true” label the index of the corresponding center they were generated around.</p>
-<p>Most importantly, using <code>make_blobs</code> we create an</p>
+<p>Below we generate some data that we will cluster later on in this section. The data is generated using a built-in data generation function from the <code>sklearn.datasets</code> module. This module contains many functions to generate so-called <em>synthetic data</em>. You do not need to know the function <code>make_blobs</code>, but we include it here for completeness. Have a look at its documentation if you are interested.</p>
+<p>The function <code>make_blobs</code> can take as input specified centers, and then randomly generate data points around every center (based on normally distributed randomness). Those data points have as “true” label the index of the center around which each point was generated.</p>
+<p>Most importantly, using <code>make_blobs</code> we create two arrays:</p>
 <ul>
-<li><span class="math inline">n \times d</span> array <code>x_data</code> where every row is a data point <span class="math inline">x_i \in \mathbb{R}^d</span> with <span class="math inline">d = 2</span>;</li>
-<li><span class="math inline">n</span>-dimensional array <code>x_cluster</code> with the cluster every data point was generated in.</li>
+<li>Two-dimensional array <code>x_data</code> of size $(n,d) where every row is a data point <span class="math inline">x_i \in \mathbb{R}^d</span> with <span class="math inline">d = 2</span>;</li>
+<li>One-dimensional array <code>x_cluster</code> of size <span class="math inline">(n,)</span> with the cluster every data point was generated in.</li>
 </ul>
-<div id="36581ed5" class="cell" data-execution_count="13">
+<div id="b8327c4c" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> make_blobs</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Define K = 4 centers</span></span>
@@ -692,7 +701,7 @@ Labels of first three data points:
   background-color: #ffffff;
 }
 </style>
-<div id="b60fd475" class="cell" data-execution_count="14">
+<div id="963093fb" class="cell" data-execution_count="14">
 <details class="code-fold">
 <summary>Show code generating the plot below</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -730,8 +739,8 @@ Labels of first three data points:
 </section>
 <section id="clustering-algorithm" class="level3" data-number="10.2.2">
 <h3 data-number="10.2.2" class="anchored" data-anchor-id="clustering-algorithm"><span class="header-section-number">10.2.2</span> Clustering algorithm</h3>
-<p>Next assume that only the data points <span class="math inline">x_0,\dots,x_{n-1} \in \mathbb{R}^d</span> are given to us, and our goal will be to compute centers and assign every data point to a cluster. We will do this using the <a href="https://en.wikipedia.org/wiki/K-means_clustering">K-means algorithm</a>.</p>
-<p>The <span class="math inline">K</span>-means algorithm starts with initially chosen centers <span class="math inline">c_0,\dots,c_{K-1}</span> and carries out the following two steps for <span class="math inline">T \in \mathbb{N}</span> iterations:</p>
+<p>Next assume that only the data points <span class="math inline">x_0,\dots,x_{n-1} \in \mathbb{R}^d</span> are given to us, and our goal will be to compute centers and assign every data point to such a center, resulting in a cluster of points. We will do this using the <a href="https://en.wikipedia.org/wiki/K-means_clustering"><span class="math inline">K</span>-means algorithm</a>.</p>
+<p>The <span class="math inline">K</span>-means algorithm starts with initially chosen centers <span class="math inline">c_0,\dots,c_{K-1}</span> and carries out the following two steps for at most <span class="math inline">T \in \mathbb{N}</span> iterations:</p>
 <ol type="1">
 <li>Assign every data point <span class="math inline">x_i</span> to its closest (in Euclidean distance) center from the set <span class="math inline">\{c_0,\dots,c_{K-1}\}</span>, i.e., give <span class="math inline">x_i</span> label <span class="math display">
 L_i = \text{argmin}_{k = 0,\dots,K-1} ||x_i - c_k||_2
@@ -741,14 +750,14 @@ L_i = \text{argmin}_{k = 0,\dots,K-1} ||x_i - c_k||_2
 </span> That is, the new center is the average of all points that are assigned the same label in Step 1. Set <span class="math inline">c_j \leftarrow \hat{c}_j</span> and go back to Step <span class="math inline">1</span>.</li>
 </ol>
 <p>This procedure has been implemented in Python in the <code>KMeans</code> class of the <code>sklearn.cluster</code> module. We first import and create an instance of this class. Below we explain the input keyword arguments.</p>
-<div id="60817f43" class="cell" data-execution_count="15">
+<div id="b60223a5" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.cluster <span class="im">import</span> KMeans</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>kmeans <span class="op">=</span> KMeans(</span>
 <span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>     n_clusters<span class="op">=</span><span class="dv">4</span>, <span class="co"># Our parameter K</span></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>     init<span class="op">=</span><span class="st">"random"</span>, <span class="co"># Choose initial clusters randomly from data points</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>     init<span class="op">=</span><span class="st">"random"</span>, <span class="co"># Choose initial centers randomly from data points</span></span>
 <span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>     random_state<span class="op">=</span><span class="dv">42</span>, <span class="co"># Fix randomness</span></span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>     n_init<span class="op">=</span><span class="dv">5</span>, <span class="co"># Number of runs of algorithm with initial clusters</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>     n_init<span class="op">=</span><span class="dv">5</span>, <span class="co"># Number of runs of algorithm with initial centers</span></span>
 <span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>     max_iter<span class="op">=</span><span class="dv">300</span>, <span class="co"># Our parameter T</span></span>
 <span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -757,14 +766,13 @@ L_i = \text{argmin}_{k = 0,\dots,K-1} ||x_i - c_k||_2
 <li><code>n_clusters</code>: Number of clusters/centers; this is our value <span class="math inline">K</span>.</li>
 <li><code>init</code>: Decides how initial cluster centers are chosen. Option <code>'random'</code> chooses them randomly from the list of data points.</li>
 <li><code>random_state</code>: Fixes the randomness used in the algorithm (comparable to setting a random seed).</li>
-<li><code>n_init</code>: Number of times algorithm is run with different initial centers (that are chosen according to the option specified in <code>init</code>). Clustering with lowest SSE (see above) is returned.</li>
-<li><code>max_iter</code>: Maximum number <span class="math inline">T</span> of iterations performed by the <span class="math inline">K</span>-means algorithm.</li>
+<li><code>n_init</code>: Number of times the algorithm is run with different initial centers (that are chosen according to the option specified in <code>init</code>). Among these, the clustering with the lowest SSE (see above) is returned.</li>
+<li><code>max_iter</code>: Maximum number <span class="math inline">T</span> of iterations performed by the <span class="math inline">K</span>-means algorithm. The idea here is that the algorithm continues for at most <span class="math inline">T</span> iterations, but might stop earlier if the distance between the centers of two consecutive iterations is below a certain tolerance which you can set with the <code>tol</code> keyword argument, that has a default value of <span class="math inline">0.0001</span>. See the <a href="https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html">documentation</a> for more details.</li>
 </ul>
-<p>There are other input keyword arguments, and other options for the ones above; see the documentation. We remark that the algorithm implemented in the <code>KMeans</code> class actually stops prematurely before having done <span class="math inline">T</span> iterations if no significant improvements are achieved in consecutive iterations.</p>
-<p>We also note that the choice of <span class="math inline">K</span> above is a modelling choice. We set it equal to <span class="math inline">K = 4</span> because we know that our synthetic data is generated based on four centers, but in general, an appropriate choice of <span class="math inline">K</span> might be less clear.</p>
-<p>We next run the <span class="math inline">K</span>-means algorithm on our data points using the <code>fit()</code> method. Executing this code will raise a <code>UserWarning</code> in Python, but you can ignore that for now. The method still executes correctly.</p>
-<div id="cc46da7c" class="cell" data-execution_count="16">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>kmeans <span class="op">=</span> kmeans.fit(x_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>There are other input keyword arguments, and other options for the ones above; see the <a href="https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html">documentation</a>.</p>
+<p>We also note that the choice of <span class="math inline">K</span> above is a modelling choice. We set it equal to <span class="math inline">K = 4</span> because we know that our synthetic data is generated based on four centers, but in general, an appropriate choice of <span class="math inline">K</span> might be less clear if you are given a dataset.</p>
+<p>We next run the <span class="math inline">K</span>-means algorithm on our data points using the <code>fit()</code> method. Executing this code might raise a <code>UserWarning</code> in Python, but you can ignore that for now. The method still executes correctly.</p>
+<div id="6462d118" class="cell" data-execution_count="16">
 <div class="cell-output cell-output-stderr">
 <pre><code>C:\Users\pskleer\AppData\Local\anaconda3\Lib\site-packages\sklearn\cluster\_kmeans.py:1419: UserWarning:
 
@@ -772,11 +780,14 @@ KMeans is known to have a memory leak on Windows with MKL, when there are less c
 </code></pre>
 </div>
 </div>
+<div id="9d39c3aa" class="cell" data-execution_count="17">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>kmeans.fit(x_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
 <p>After fitting there are various attributes providing information about the clustering that was found, such as</p>
 <ul>
 <li><code>cluster_centers_</code>: Gives the final cluster centers <span class="math inline">c_1,\dots,c_k</span> at the end of the execution of the <span class="math inline">K</span>-means algorithm</li>
 </ul>
-<div id="761ca603" class="cell" data-execution_count="17">
+<div id="45f99388" class="cell" data-execution_count="18">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Predicted clusters</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>pred_centers <span class="op">=</span> kmeans.cluster_centers_</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -791,7 +802,7 @@ KMeans is known to have a memory leak on Windows with MKL, when there are less c
 <ul>
 <li><code>labels_</code>: Specifies for every point the label/index of the center it is assigned to.</li>
 </ul>
-<div id="1f1abd82" class="cell" data-execution_count="18">
+<div id="fcd8435d" class="cell" data-execution_count="19">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Predicted clusters</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>pred_labels <span class="op">=</span> kmeans.labels_</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -808,7 +819,7 @@ KMeans is known to have a memory leak on Windows with MKL, when there are less c
 <ul>
 <li><code>inertia_</code>: This gives the SSE of the run of the algorithm with lowest SSE (remember that we used <code>n_init</code> to specify how often to run the algorithm with random initial clusters).</li>
 </ul>
-<div id="c6a8905d" class="cell" data-execution_count="19">
+<div id="a41a6500" class="cell" data-execution_count="20">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># SSE for best run of algorithm</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>sse <span class="op">=</span> kmeans.inertia_</span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -820,8 +831,8 @@ KMeans is known to have a memory leak on Windows with MKL, when there are less c
 </section>
 <section id="visualization-1" class="level3" data-number="10.2.3">
 <h3 data-number="10.2.3" class="anchored" data-anchor-id="visualization-1"><span class="header-section-number">10.2.3</span> Visualization</h3>
-<p>We can visualize the data as before using the following code. Below we plot all the data points that are clustered together with the same color.</p>
-<div id="9b350ac3" class="cell" data-execution_count="20">
+<p>We can visualize the data as before using the following code. The plot uses one color per cluster.</p>
+<div id="b359ac89" class="cell" data-execution_count="21">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Define parameters based on data arrays</span></span>
@@ -832,23 +843,25 @@ KMeans is known to have a memory leak on Windows with MKL, when there are less c
 <span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatter points per cluster</span></span>
 <span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(K):</span>
-<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>    mask <span class="op">=</span> (pred_labels <span class="op">==</span> k) <span class="co"># Determine rows with label k</span></span>
-<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Plot x- against y-coordinate of two-dimensional points</span></span>
-<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>    plt.scatter(x_data[mask,<span class="dv">0</span>],x_data[mask,<span class="dv">1</span>],label<span class="op">=</span><span class="ss">f"Cluster </span><span class="sc">{</span>k<span class="sc">}</span><span class="ss">"</span>) </span>
-<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot predicted centers</span></span>
-<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a>plt.scatter(pred_centers[:,<span class="dv">0</span>], pred_centers[:,<span class="dv">1</span>], </span>
-<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a>                linewidth<span class="op">=</span><span class="dv">6</span>,  label<span class="op">=</span><span class="st">"Predicted centers"</span>, color<span class="op">=</span><span class="st">'black'</span>)</span>
-<span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-19"><a href="#cb31-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Create legend</span></span>
-<span id="cb31-20"><a href="#cb31-20" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb31-21"><a href="#cb31-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-22"><a href="#cb31-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Show plot</span></span>
-<span id="cb31-23"><a href="#cb31-23" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Determine rows with label k</span></span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>    mask <span class="op">=</span> (pred_labels <span class="op">==</span> k) </span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Plot x- against y-coordinate of two-dimensional points with label k</span></span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a>    plt.scatter(x_data[mask,<span class="dv">0</span>], x_data[mask,<span class="dv">1</span>], label<span class="op">=</span><span class="ss">f"Cluster </span><span class="sc">{</span>k<span class="sc">}</span><span class="ss">"</span>) </span>
+<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot predicted centers</span></span>
+<span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a>plt.scatter(pred_centers[:,<span class="dv">0</span>], pred_centers[:,<span class="dv">1</span>], </span>
+<span id="cb31-19"><a href="#cb31-19" aria-hidden="true" tabindex="-1"></a>                s<span class="op">=</span><span class="dv">12</span>,  label<span class="op">=</span><span class="st">"Predicted centers"</span>, color<span class="op">=</span><span class="st">'black'</span>)</span>
+<span id="cb31-20"><a href="#cb31-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-21"><a href="#cb31-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Create legend</span></span>
+<span id="cb31-22"><a href="#cb31-22" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb31-23"><a href="#cb31-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-24"><a href="#cb31-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Show plot</span></span>
+<span id="cb31-25"><a href="#cb31-25" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="10-learning_files/figure-html/cell-21-output-1.png" width="578" height="411" class="figure-img"></p>
+<p><img src="10-learning_files/figure-html/cell-22-output-1.png" width="578" height="411" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -856,13 +869,13 @@ KMeans is known to have a memory leak on Windows with MKL, when there are less c
 <p>The figure above is created by looping over the <span class="math inline">K = 4</span> label choices that we have. Within the <code>for</code>-loop over <span class="math inline">k</span>, we first create a Boolean array that indicates for every <span class="math inline">i = 0,\dots,n-1</span> whether its predicted label <span class="math inline">L_i</span> equals <span class="math inline">k</span> at the end of the <span class="math inline">K</span>-means algorithm (<code>True</code>) or not (<code>False</code>).</p>
 <p>We then index the rows of <span class="math inline">x</span> where the Boolean array is <code>True</code>, i.e., we access the data points that have label <span class="math inline">k</span>. We scatter plot the first coordinates of these data points, found in the column <code>x_data[:,0]</code>, against the second coordinates of these data points, found in the column <code>x_data[:,1]</code>. Recall that the data points were stored as rows in <code>x_data</code>.</p>
 <p>Finally, we plot the centers in a similar fashion (but no Boolean indexing is needed for that). We use the <code>color</code> keyword argument to color the dots of the centers black, and the <code>linewidth</code> keyword argument to create dots that are bigger than those of the data points.</p>
-<p>We can also compare the locations of the cluster centers that were used for the data generation to the cluster centers found by the <span class="math inline">K</span>-means algorithm. As you can see from the figure, the <span class="math inline">K</span>-means algorithm was able to relatively well find the clusters that were used to generate the data.</p>
+<p>We can also compare the locations of the cluster centers that were used for the data generation to the cluster centers found by the <span class="math inline">K</span>-means algorithm. As you can see from the figure, the <span class="math inline">K</span>-means algorithm was able to found centers close to the generating centers.</p>
 <style>
 .cell-output-display {
   background-color: #ffffff;
 }
 </style>
-<div id="a32c2ce9" class="cell" data-execution_count="21">
+<div id="32a29a8c" class="cell" data-execution_count="22">
 <details class="code-fold">
 <summary>Show code generating the plot below</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -888,12 +901,12 @@ KMeans is known to have a memory leak on Windows with MKL, when there are less c
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="10-learning_files/figure-html/cell-22-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="569" height="411"></p>
+<p><img src="10-learning_files/figure-html/cell-23-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="569" height="411"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>We emphasize that, in general, clustering is typically classified as an <i>unsupervised learning</i> problem, meaning that it is not assumed that for every data point there is some “ground truth” label that is assigned to it. Instead, the goal is merely to group similar data points together without an underlying prior assumption about what makes them similar (although you might identify such criteria after having run a clustering algorithm).</p>
+<p>We emphasize that, in general, clustering is classified as an <em>unsupervised learning</em> problem, meaning that it is not assumed that for every data point there is some “ground truth” label that is assigned to it. Instead, the goal is merely to group data points together without an underlying prior assumption about why they should be in the same group (although you might identify such criteria after having run a clustering algorithm).</p>
 <p>Furthermore, we assumed that there were going to be <span class="math inline">K = 4</span> clusters based on the data generation that we did using <code>make_blobs</code>. In general, however, if you are not aware of where the data comes from, it might not even be clear how many clusters <span class="math inline">K</span> you should aim for.</p>
 </section>
 </section>
@@ -901,11 +914,11 @@ KMeans is known to have a memory leak on Windows with MKL, when there are less c
 <h2 data-number="10.3" class="anchored" data-anchor-id="support-vector-machine-svm"><span class="header-section-number">10.3</span> Support vector machine (SVM)</h2>
 <p>Another learning problem, which has some flavours of the two problems in the previous sections, is that of linear classification in higher dimensions. We are given historical data <span class="math inline">(x_i,y_i)</span> for <span class="math inline">i = 0,\dots,m-1</span> where each tuple consists of a data point <span class="math inline">x_i \in \mathbb{R}^d</span> and label <span class="math inline">y_i \in \{-1,1\}</span>. The goal is to come up with a classification algorithm that for a new data point <span class="math inline">z \in \mathbb{R}^d</span> decides for us whether the point should get label <span class="math inline">y = -1</span> or <span class="math inline">y = 1</span>.</p>
 <p>The idea of support vector machines is to compute a vector <span class="math inline">w \in \mathbb{R}^d</span> and <span class="math inline">b \in \mathbb{R}</span>, and use the hyperplane <span class="math inline">w^Tz + b = 0</span> as a boundary for deciding what label a new data point gets. The point <span class="math inline">z</span> gets label <span class="math inline">y = -1</span> if <span class="math inline">w^Tz + b \leq 0</span> and label <span class="math inline">y = 1</span> if <span class="math inline">w^Tz + b &gt; 0</span>.</p>
-<p>Among all the <i>separating</i> hyperlanes that can serve as such a boundary, we look for one that maximizes the “margin” between data points with different labels in the historical data. This idea will be made rigorous below.</p>
+<p>Among all the <em>separating hyperplanes</em> that can serve as such a boundary, we look for one that maximizes the “margin” between data points with different labels in the historical data. This idea will be made rigorous below.</p>
 <section id="input-data-2" class="level3" data-number="10.3.1">
 <h3 data-number="10.3.1" class="anchored" data-anchor-id="input-data-2"><span class="header-section-number">10.3.1</span> Input data</h3>
 <p>We consider the following historical data, which is also plotted below.</p>
-<div id="99c16fe0" class="cell" data-execution_count="22">
+<div id="ee24ea29" class="cell" data-execution_count="23">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Historical data</span></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>x_data <span class="op">=</span> np.array([[<span class="dv">3</span>,<span class="dv">3</span>],[<span class="fl">1.5</span>,<span class="fl">2.5</span>],[<span class="dv">1</span>,<span class="dv">2</span>],[<span class="fl">0.5</span>,<span class="fl">1.5</span>],[<span class="dv">2</span>,<span class="dv">2</span>],[<span class="dv">2</span>,<span class="dv">4</span>],</span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>                        [<span class="dv">4</span>,<span class="dv">4</span>],[<span class="dv">2</span>,<span class="dv">6</span>],[<span class="dv">5</span>,<span class="fl">5.5</span>],[<span class="dv">7</span>,<span class="dv">6</span>]]) <span class="co"># Data points</span></span>
@@ -918,7 +931,7 @@ KMeans is known to have a memory leak on Windows with MKL, when there are less c
   background-color: #ffffff;
 }
 </style>
-<div id="00bfe590" class="cell" data-execution_count="23">
+<div id="4e4bf661" class="cell" data-execution_count="24">
 <details class="code-fold">
 <summary>Show code generating the plot below</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> [<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>] <span class="co"># Distinct labels</span></span>
@@ -954,7 +967,7 @@ KMeans is known to have a memory leak on Windows with MKL, when there are less c
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="10-learning_files/figure-html/cell-24-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="580" height="449"></p>
+<p><img src="10-learning_files/figure-html/cell-25-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="580" height="449"></p>
 </figure>
 </div>
 </div>
@@ -966,7 +979,7 @@ KMeans is known to have a memory leak on Windows with MKL, when there are less c
   background-color: #ffffff;
 }
 </style>
-<div id="f0e83f25" class="cell" data-execution_count="24">
+<div id="8019c5bb" class="cell" data-execution_count="25">
 <details class="code-fold">
 <summary>Show code generating the plot below</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> [<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>] <span class="co"># Distinct labels</span></span>
@@ -1011,33 +1024,33 @@ KMeans is known to have a memory leak on Windows with MKL, when there are less c
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="10-learning_files/figure-html/cell-25-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="580" height="449"></p>
-</figure>
-</div>
-</div>
-</div>
-<p>We remark at this point that a hyperplane <span class="math inline">w^Tz + b = 0</span> separating the historical data points with different labels might not exist. In that case we say that the data is non-separable. If a separing hyperplane exists, we call the data separable.</p>
-</section>
-<section id="classification-model-1" class="level3" data-number="10.3.2">
-<h3 data-number="10.3.2" class="anchored" data-anchor-id="classification-model-1"><span class="header-section-number">10.3.2</span> Classification model</h3>
-<p>You might have noticed that there exist multiple hyperplanes that separate the red point with label <span class="math inline">-1</span> from the blue points with label <span class="math inline">1</span>.</p>
-<p>The goal of the support vector machine algorithm is to find the hyperplane that creates the largest margin between the hyperplane and the (perpendicular) closest data points on either side of the hyperplane. The points that are closest to the hyperplane are called the <i>support vectors</i> of the data.</p>
-<p>The below figure illustrates this margin, which is the perpendicular distance between the two dashed lines, i.e., the width of the strip created by the two dashed lines.</p>
-<style>
-.cell-output-display {
-  background-color: #ffffff;
-}
-</style>
-<div id="09dfe1a5" class="cell" data-execution_count="25">
-<div class="cell-output cell-output-display">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
 <p><img src="10-learning_files/figure-html/cell-26-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="580" height="449"></p>
 </figure>
 </div>
 </div>
 </div>
-<p>It turns out that finding a separating hyperplane <span class="math inline">w^Tz + b = 0</span>, with <span class="math inline">w = [w_{1},\dots,w_{d-1}] \in \mathbb{R}^d</span> and <span class="math inline">b \in \mathbb{R}</span> that maximizes the margin can be done by solving the minimization problem</p>
+<p>We remark at this point that a hyperplane <span class="math inline">w^Tz + b = 0</span> separating the historical data points with different labels might not exist. In that case we say that the data is non-separable. If a separating hyperplane exists, we call the data separable.</p>
+</section>
+<section id="classification-model-1" class="level3" data-number="10.3.2">
+<h3 data-number="10.3.2" class="anchored" data-anchor-id="classification-model-1"><span class="header-section-number">10.3.2</span> Classification model</h3>
+<p>You might have noticed that there exist multiple hyperplanes that separate the red points with label <span class="math inline">-1</span> from the blue points with label <span class="math inline">1</span>.</p>
+<p>The goal of the support vector machine algorithm is to find the hyperplane that creates the largest margin between the hyperplane and the (perpendicular) closest data points on either side of the hyperplane. The points that are closest to the hyperplane are called the <em>support vectors</em> of the data.</p>
+<p>The figure below illustrates this margin, which is the perpendicular distance between the two dashed lines, i.e., the width of the strip created by the two dashed lines.</p>
+<style>
+.cell-output-display {
+  background-color: #ffffff;
+}
+</style>
+<div id="dddf8c89" class="cell" data-execution_count="26">
+<div class="cell-output cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="10-learning_files/figure-html/cell-27-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="580" height="449"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>It turns out that finding a separating hyperplane <span class="math inline">w^Tz + b = 0</span>, with <span class="math inline">w = [w_{0},\dots,w_{d-1}] \in \mathbb{R}^d</span> and <span class="math inline">b \in \mathbb{R}</span> that maximizes the margin can be done by solving the minimization problem</p>
 <p><span class="math display">
 \begin{array}{ll}
 \displaystyle \min_{w_0,\dots,w_{d-1},b} &amp; \displaystyle \sum_{i=0}^{d-1} w_i^2 \\
@@ -1046,21 +1059,22 @@ KMeans is known to have a memory leak on Windows with MKL, when there are less c
 </span></p>
 <p>Note that this optimization problem has an objective function that is quadratic in the <span class="math inline">w_i</span>, and has constraints that are linear constraints in <span class="math inline">w_0,\dots,w_{d-1}</span> and <span class="math inline">b</span>. Recall that the tuples <span class="math inline">(x_i,y_i)</span> are given input data. We will not give the derivation of this formulation here. You can look this up yourself if you are interested.</p>
 <p>Solving the problem above can be done with the <code>LinearSVC</code> (linear support vector classification) class from the <code>sklearn.svm</code> module.</p>
-<div id="7a0ba23f" class="cell" data-execution_count="26">
+<div id="98c93621" class="cell" data-execution_count="27">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.svm <span class="im">import</span> LinearSVC</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>The algorithm implemented in the <code>LinearSVC</code> class actually solves a slightly different optimization problem. For a given parameters <span class="math inline">C &gt; 0</span>, and historical data <span class="math inline">\{(x_i,y_i)\}_{i=0}^{m-1}</span>, it finds a solution to the unconstrained problem <span class="math display">
-\min_{w_0,\dots,w_{d-1}, b} \frac{1}{2} \sum_{i=0}^{d-1} w_i^2 + C \sum_{i=0}^{m-1} \max(0, 1 - y_i (w^T x_i + b)).
-</span> Comparing the two minimization problems, the constrained problem above strictly enforces the historical data points to be on the correct side of the hyperplane (i.e., they should be classified correctly). The unconstrained problem allows historical data points to be on the wrong side of the hyperplane (i.e., they might be misclassified), but penalizes these points in the objective function. The unconstrained problem can therefore also be used for instances with non-separable data, i.e., data for which a separating hyperplane does not exist.</p>
-<p>For separable data, with guaranteed existence of a separating hyperplane, the two minimization problems become more or less equivalent as <span class="math inline">C \rightarrow \infty</span>.</p>
-<p>To solve the unconstrained optimization problem, we can apply the <code>fit()</code> function on an instance of the class <code>LinearSVC</code> (similar to how this was done to solve the clustering problem in the previous section).</p>
-<p>We first create an instance, for which we set two properties. For other properties you can fix, see the <a href="https://scikit-learn.org/stable/modules/generated/sklearn.svm.LinearSVC.html#sklearn.svm.LinearSVC.fit">documentation</a>. We fix the value of <span class="math inline">C</span> in the keyword argument <code>C</code>, and we fix the randomness using <code>random_state</code>. The randomness arises in the algorithm that is used by Python to solve the minimization problem.</p>
-<div id="0bfca63a" class="cell" data-execution_count="27">
+<p>The algorithm implemented in the <code>LinearSVC</code> class actually solves a slightly different optimization problem. For a given parameter <span class="math inline">C &gt; 0</span>, and historical data <span class="math inline">\{(x_i,y_i)\}_{i=0}^{m-1}</span>, it finds a solution to the unconstrained problem <span class="math display">
+\min_{w_0,\dots,w_{d-1}, b} \frac{1}{2} \sum_{i=0}^{d-1} w_i^2 + C \sum_{i=0}^{m-1} \max(0, 1 - y_i (w^T x_i + b))^2.
+</span> To be very precise, as a default <code>LinearSVC</code> also adds a term <span class="math inline">b^2/2</span>, but we will ignore this for the moment.</p>
+<p>Comparing the two minimization problems, the constrained problem above strictly enforces the historical data points to be on the correct side of the hyperplane, i.e., they should be classified correctly. The unconstrained problem allows historical data points to be on the wrong side of the hyperplane, i.e., they might be misclassified, but penalizes such points in the objective function. The unconstrained problem can therefore also be used for instances with non-separable data, i.e., data for which a separating hyperplane does not exist.</p>
+<p>For separable data, with guaranteed existence of a separating hyperplane, the two minimization problems become, rouhgly speaking, equivalent as <span class="math inline">C \rightarrow \infty</span>.</p>
+<p>To solve the unconstrained optimization problem, we can call the <code>fit()</code> method on an instance of the class <code>LinearSVC</code> similar to how this was done to solve the clustering problem in the previous section.</p>
+<p>We first create an instance, for which we set two properties. For other keyword arguments you can fix, see the <a href="https://scikit-learn.org/stable/modules/generated/sklearn.svm.LinearSVC.html#sklearn.svm.LinearSVC.fit">documentation</a>. We fix the value of <span class="math inline">C</span> in the keyword argument <code>C</code>.</p>
+<div id="24cf744c" class="cell" data-execution_count="28">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create instance of linear support vector classification</span></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>separator <span class="op">=</span> LinearSVC(C<span class="op">=</span><span class="dv">30</span>,random_state<span class="op">=</span><span class="dv">42</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>separator <span class="op">=</span> LinearSVC(C<span class="op">=</span><span class="dv">30</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>We next apply the <code>fit()</code> method on our instance.</p>
-<div id="d504def9" class="cell" data-execution_count="28">
+<div id="67d1abe2" class="cell" data-execution_count="30">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Historical data</span></span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>x_data <span class="op">=</span> np.array([[<span class="dv">3</span>,<span class="dv">3</span>],[<span class="fl">1.5</span>,<span class="fl">2.5</span>],[<span class="dv">1</span>,<span class="dv">2</span>],[<span class="fl">0.5</span>,<span class="fl">1.5</span>],[<span class="dv">2</span>,<span class="dv">2</span>],[<span class="dv">2</span>,<span class="dv">4</span>],</span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>                        [<span class="dv">4</span>,<span class="dv">4</span>],[<span class="dv">2</span>,<span class="dv">6</span>],[<span class="dv">5</span>,<span class="fl">5.5</span>],[<span class="dv">7</span>,<span class="dv">6</span>]]) <span class="co"># Data points</span></span>
@@ -1068,12 +1082,12 @@ KMeans is known to have a memory leak on Windows with MKL, when there are less c
 <span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>y_data <span class="op">=</span> np.array([<span class="op">-</span><span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>,</span>
 <span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>                        <span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>]) <span class="co"># Labels</span></span>
 <span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>                        </span>
-<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>separator <span class="op">=</span> separator.fit(x_data,y_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>separator.fit(x_data, y_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Sometimes it might happen that Python gives a message saying the algorithm did not converge. In this case you can, for example, increase the number of iterations of the underlying algorithm. We can do this with the <code>max_iter</code> keyword argument, whose default value is <span class="math inline">1000</span> (see documentation).</p>
-<div id="322a29f0" class="cell" data-execution_count="29">
+<p>Sometimes it might happen that Python gives a message saying the algorithm did not converge. In this case you can, for example, increase the maximum number of iterations of the underlying algorithm. We can do this with the <code>max_iter</code> keyword argument, whose default value is <span class="math inline">1000</span> (see documentation).</p>
+<div id="17d834c5" class="cell" data-execution_count="32">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Increase iterations to ten thousand</span></span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>separator <span class="op">=</span> LinearSVC(C<span class="op">=</span><span class="dv">30</span>,random_state<span class="op">=</span><span class="dv">42</span>,max_iter<span class="op">=</span><span class="dv">10000</span>) </span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>separator <span class="op">=</span> LinearSVC(C<span class="op">=</span><span class="dv">30</span>,random_state<span class="op">=</span><span class="dv">42</span>,max_iter<span class="op">=</span><span class="dv">10_000</span>) </span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Historical data</span></span>
 <span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>x_data <span class="op">=</span> np.array([[<span class="dv">3</span>,<span class="dv">3</span>],[<span class="fl">1.5</span>,<span class="fl">2.5</span>],[<span class="dv">1</span>,<span class="dv">2</span>],[<span class="fl">0.5</span>,<span class="fl">1.5</span>],[<span class="dv">2</span>,<span class="dv">2</span>],[<span class="dv">2</span>,<span class="dv">4</span>],</span>
@@ -1082,16 +1096,16 @@ KMeans is known to have a memory leak on Windows with MKL, when there are less c
 <span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>y_data <span class="op">=</span> np.array([<span class="op">-</span><span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>,<span class="op">-</span><span class="dv">1</span>,</span>
 <span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>                        <span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>]) <span class="co"># Labels</span></span>
 <span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a>                        </span>
-<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>separator <span class="op">=</span> separator.fit(x_data,y_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>separator.fit(x_data, y_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>The values of <span class="math inline">w = [w_0,\dots,w_{d-1}]</span> and <span class="math inline">b</span> can be accessed in the <code>coef_</code> and <code>intercept_</code> attributes, respectively, of the fitted instance. The reason we index these attributes at <span class="math inline">0</span> is because of how they are returned by the <code>fit()</code> method. This is illustrates in the documentation below.</p>
+<p>The values of <span class="math inline">w = [w_0,\dots,w_{d-1}]</span> and <span class="math inline">b</span> can be accessed in the <code>coef_</code> and <code>intercept_</code> attributes, respectively, of the fitted instance. The reason we index these attributes at <span class="math inline">0</span> is because of how they are returned by the <code>fit()</code> method. This is illustrated in the documentation below.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="figs/documentation_svm_coefficients.png" class="img-fluid figure-img"></p>
 <figcaption>Attributes of fitted <code>LinearSVC</code> instance</figcaption>
 </figure>
 </div>
-<div id="16e7486c" class="cell" data-execution_count="30">
+<div id="6c53afd8" class="cell" data-execution_count="33">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Obtain array w</span></span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> separator.coef_[<span class="dv">0</span>]</span>
 <span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Array w of hyperplane is"</span>, w)</span>
@@ -1107,8 +1121,8 @@ Scalar b of hyperplane is -5.72000353170397</code></pre>
 </section>
 <section id="visualization-2" class="level3" data-number="10.3.3">
 <h3 data-number="10.3.3" class="anchored" data-anchor-id="visualization-2"><span class="header-section-number">10.3.3</span> Visualization</h3>
-<p>We can plot the fitted separating hyperplane using the code below. This code uses similar ideas as that we have seen in earlier sections in this chapter.</p>
-<div id="69566bdd" class="cell" data-execution_count="31">
+<p>We can plot the fitted separating hyperplane using the code below. This code uses the same ideas as in earlier sections.</p>
+<div id="4b857595" class="cell" data-execution_count="34">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> [<span class="op">-</span><span class="dv">1</span>,<span class="dv">1</span>] <span class="co"># Distinct labels</span></span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>colors <span class="op">=</span> [<span class="st">'red'</span>,<span class="st">'blue'</span>] <span class="co"># Color names (strings) for plotting data points</span></span>
 <span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1121,15 +1135,15 @@ Scalar b of hyperplane is -5.72000353170397</code></pre>
 <span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a>    plt.scatter(x_data[mask,<span class="dv">0</span>], x_data[mask,<span class="dv">1</span>], color<span class="op">=</span>colors[i])</span>
 <span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a>                    </span>
 <span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Rounded hyperplane coefficients</span></span>
-<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> np.around(separator.coef_[<span class="dv">0</span>],decimals<span class="op">=</span><span class="dv">2</span>) </span>
-<span id="cb42-14"><a href="#cb42-14" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> np.around(separator.intercept_[<span class="dv">0</span>],decimals<span class="op">=</span><span class="dv">2</span>) </span>
+<span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> separator.coef_[<span class="dv">0</span>]</span>
+<span id="cb42-14"><a href="#cb42-14" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> separator.intercept_[<span class="dv">0</span>]</span>
 <span id="cb42-15"><a href="#cb42-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb42-16"><a href="#cb42-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Arrays for plotting line</span></span>
 <span id="cb42-17"><a href="#cb42-17" aria-hidden="true" tabindex="-1"></a>z0 <span class="op">=</span> np.linspace(<span class="dv">0</span>,<span class="dv">8</span>,<span class="dv">100</span>)</span>
-<span id="cb42-18"><a href="#cb42-18" aria-hidden="true" tabindex="-1"></a>z1 <span class="op">=</span> (<span class="op">-</span>b<span class="op">-</span>w[<span class="dv">0</span>]<span class="op">*</span>z0)<span class="op">/</span>w[<span class="dv">1</span>] <span class="co"># Rewrite z1 in terms of z0 </span></span>
+<span id="cb42-18"><a href="#cb42-18" aria-hidden="true" tabindex="-1"></a>z1 <span class="op">=</span> (<span class="op">-</span>b <span class="op">-</span> w[<span class="dv">0</span>] <span class="op">*</span> z0) <span class="op">/</span> w[<span class="dv">1</span>] <span class="co"># Rewrite z1 in terms of z0 </span></span>
 <span id="cb42-19"><a href="#cb42-19" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb42-20"><a href="#cb42-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Plotting hyperplane</span></span>
-<span id="cb42-21"><a href="#cb42-21" aria-hidden="true" tabindex="-1"></a>plt.plot(z0,z1,label<span class="op">=</span><span class="ss">f"$</span><span class="sc">{</span>w[<span class="dv">0</span>]<span class="sc">}</span><span class="ss">z_0 + </span><span class="sc">{</span>w[<span class="dv">1</span>]<span class="sc">}</span><span class="ss">z_1  </span><span class="sc">{</span>b<span class="sc">}</span><span class="ss"> = 0$"</span>) </span>
+<span id="cb42-21"><a href="#cb42-21" aria-hidden="true" tabindex="-1"></a>plt.plot(z0, z1, label<span class="op">=</span><span class="ss">f"$</span><span class="sc">{</span>w[<span class="dv">0</span>]<span class="sc">:.2f}</span><span class="ss">z_0 + </span><span class="sc">{</span>w[<span class="dv">1</span>]<span class="sc">:.2f}</span><span class="ss">z_1  </span><span class="sc">{</span>b<span class="sc">:.2f}</span><span class="ss"> = 0$"</span>) </span>
 <span id="cb42-22"><a href="#cb42-22" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb42-23"><a href="#cb42-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Set axes ranges</span></span>
 <span id="cb42-24"><a href="#cb42-24" aria-hidden="true" tabindex="-1"></a>plt.xlim(<span class="dv">0</span>,<span class="dv">8</span>)</span>
@@ -1150,7 +1164,7 @@ Scalar b of hyperplane is -5.72000353170397</code></pre>
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="10-learning_files/figure-html/cell-32-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="580" height="449"></p>
+<p><img src="10-learning_files/figure-html/cell-35-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="580" height="449"></p>
 </figure>
 </div>
 </div>

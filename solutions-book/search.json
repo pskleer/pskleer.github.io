@@ -68,5 +68,25 @@
     "crumbs": [
       "Lecture 6: Section 7"
     ]
+  },
+  {
+    "objectID": "exercises-lec7-solutions.html",
+    "href": "exercises-lec7-solutions.html",
+    "title": "Lecture 7: Section 8",
+    "section": "",
+    "text": "Solutions to the exercises\nMake sure to import NumPy, SciPy and Matplotlib to be able to complete all the exercises.\n# Import relevant packages\nimport numpy as np\nimport scipy.optimize as optimize\nimport matplotlib.pyplot as plt\n\n# Set numerical precision for printing\nnp.set_printoptions(precision=3, floatmode=\"fixed\", suppress=True)",
+    "crumbs": [
+      "Lecture 7: Section 8"
+    ]
+  },
+  {
+    "objectID": "exercises-lec7-solutions.html#footnotes",
+    "href": "exercises-lec7-solutions.html#footnotes",
+    "title": "Lecture 7: Section 8",
+    "section": "",
+    "text": "This problem has many applications, for example, in learning theory and in the computation of Nash equilibria in game theory.↩︎",
+    "crumbs": [
+      "Lecture 7: Section 8"
+    ]
   }
 ]

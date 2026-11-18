@@ -265,7 +265,7 @@ window.Quarto = {
 
 
 <p>Make sure to import NumPy, SciPy and Matplotlib to be able to complete all the exercises.</p>
-<div id="ef8d1abc" class="cell" data-execution_count="1">
+<div id="44dc5421" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import relevant packages</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.optimize <span class="im">as</span> optimize</span>
@@ -289,7 +289,7 @@ That is, you should generate samples from the uniform distribution and transform
 </ol>
 <!--
 
-::: {#be9acdb9 .cell execution_count=3}
+::: {#2e7a74b1 .cell execution_count=3}
 ``` {.python .cell-code}
 def unif_to_norm(m,n):
     u_0 = np.random.rand(m,n)
@@ -306,18 +306,18 @@ def unif_to_norm(m,n):
 <ol start="2" type="a">
 <li>Test your function for <span class="math inline">m = 10</span> and <span class="math inline">n = 100</span>, and compute the mean (should be close to zero) and standard deviation (should be close to 1) of all elements in <code>z0</code> and <code>z1</code>.</li>
 </ol>
-<div id="d20b548d" class="cell" data-execution_count="4">
+<div id="d721959e" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>m, n <span class="op">=</span> <span class="dv">10</span>, <span class="dv">100</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>z0, z1 <span class="op">=</span> unif_to_norm(m,n)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="b585a90a" class="cell" data-execution_count="5">
+<div id="a8fa0cd4" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-stdout">
-<pre><code>Mean of elements in z0 is: -0.025089319278876566
-Standard deviation of elements in z0 is: 1.0023282458321177 
+<pre><code>Mean of elements in z0 is: -0.0390127597271891
+Standard deviation of elements in z0 is: 1.0069088212192336 
 
-Mean of elements in z1 is: -0.003729304143786905
-Standard deviation of elements in z1 is: 0.9785422354900366</code></pre>
+Mean of elements in z1 is: -0.005418431493985979
+Standard deviation of elements in z1 is: 0.9664820593036316</code></pre>
 </div>
 </div>
 </section>
@@ -328,7 +328,7 @@ Standard deviation of elements in z1 is: 0.9785422354900366</code></pre>
 <li>Write a function <code>index_sample(x)</code> that, for given nonnegative input vector <span class="math inline">x = [x_0,\dots,x_{n-1}]</span> with <span class="math inline">\sum_i x_i = 1</span>, returns an index <span class="math inline">i \in \{0,\dots,n-1\}</span> with probability <span class="math inline">x_i</span>. As a source of randomness, you are allowed to use the <code>np.random.rand()</code> function. Do not use for-loops.<br>
 <em>Hint: Identify every index with a subinterval of <span class="math inline">[0,1]</span>, and recall that <code>np.argmax()</code> applied to a Boolean vector returns the location of the first <code>True</code> element (assuming at least one exists).</em></li>
 </ol>
-<div id="588be682" class="cell" data-execution_count="7">
+<div id="8fb45279" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fix randomness</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">3</span>) </span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -344,7 +344,7 @@ Standard deviation of elements in z1 is: 0.9785422354900366</code></pre>
 </div>
 <!--
 
-::: {#d6698092 .cell execution_count=8}
+::: {#ca567300 .cell execution_count=8}
 ``` {.python .cell-code}
 def index_sample(x):
     # Input: Normalized vector x
@@ -360,7 +360,7 @@ def index_sample(x):
 <ol start="2" type="a">
 <li>Write a vectorized version called <code>index_samples(x,k)</code> that returns <span class="math inline">k</span> sampled indices according to the probabilities in <span class="math inline">x</span>. Do not use for-loops.</li>
 </ol>
-<div id="536227db" class="cell" data-execution_count="10">
+<div id="fc333666" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fix randomness</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">3</span>) </span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -376,7 +376,7 @@ def index_sample(x):
 </div>
 <!--
 
-::: {#85c911b0 .cell execution_count=11}
+::: {#b2cb0c6d .cell execution_count=11}
 ``` {.python .cell-code}
 def index_samples(x,k):
     # Input: Normalized vector x, number of samples k
@@ -407,7 +407,7 @@ f_{\beta}(x) = \left\{
 </span> for <span class="math inline">t = 1,\dots,T</span>. Do not use for-loops.<br>
 <em>Hint: Make a convenient choice for the <code>scale</code> and <code>size</code> keyword arguments of <code>np.random.exponential()</code>; see the documentation.</em></li>
 </ol>
-<div id="e0e9bb82" class="cell" data-execution_count="13">
+<div id="24fd8848" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">3</span>)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>beta <span class="op">=</span> np.array([<span class="dv">5</span>,<span class="dv">2</span>,<span class="dv">3</span>])</span>
@@ -421,7 +421,7 @@ f_{\beta}(x) = \left\{
 </div>
 <!--
 
-::: {#ab671909 .cell execution_count=14}
+::: {#4f268939 .cell execution_count=14}
 ``` {.python .cell-code}
 def min_samples(beta,T):
     samples = np.random.exponential(scale=beta,size=(T,np.size(beta)))
@@ -450,7 +450,7 @@ print(min_data)
 <br>
 The output of your function should be the scale parameter of the fitted exponential distribution, where the exponential distribution is as introduced in the beginning of this question. Make sure you fix the location parameter at <span class="math inline">0</span>.</li>
 </ol>
-<div id="995fcfda" class="cell" data-execution_count="16">
+<div id="4b4fee3b" class="cell" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">3</span>)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>beta <span class="op">=</span> np.array([<span class="dv">5</span>,<span class="dv">2</span>,<span class="dv">3</span>])</span>
@@ -465,7 +465,7 @@ The output of your function should be the scale parameter of the fitted exponent
 </div>
 <!--
 
-::: {#a32eb86a .cell execution_count=17}
+::: {#9a5444c7 .cell execution_count=17}
 ``` {.python .cell-code}
 import scipy
 
@@ -501,7 +501,7 @@ This means the fitted distribution has a scale parameter that is close to <span 
 </ol>
 <!--
 
-::: {#b21367d1 .cell execution_count=18}
+::: {#d2e9c88d .cell execution_count=18}
 ``` {.python .cell-code}
 beta_min = 1/(np.sum(1/beta))
 
@@ -529,7 +529,7 @@ p^* = \text{argmax}_{p \geq0 } \, p \cdot \mathbb{P}(X \geq p).
 <ol type="a">
 <li>Write a function <code>monopoly_price()</code> that takes as input a continuous distribution (<code>stats.rv_continuous</code> object) and a number <span class="math inline">\alpha \in (0,1)</span>. It should return the monopoly price by solving the equation <span class="math inline">(3)</span> above. Use the <code>brentq</code> method for root finding in your solution with <span class="math inline">0</span> as the left endpoint and <span class="math inline">\bar{p}</span> as the right endpoint satisfying <span class="math inline">F^(\bar{p}) = \alpha</span>.</li>
 </ol>
-<div id="822671f7" class="cell" data-execution_count="20">
+<div id="0339c80a" class="cell" data-execution_count="20">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a half-normal distribution object</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>distribution <span class="op">=</span> scipy.stats.halfnorm()</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -546,7 +546,7 @@ p^* = \text{argmax}_{p \geq0 } \, p \cdot \mathbb{P}(X \geq p).
 </div>
 <!--
 
-::: {#0fa3cc9d .cell execution_count=21}
+::: {#71680eb9 .cell execution_count=21}
 ``` {.python .cell-code}
 def monopoly_equation(p,dist): 
     return 1 - dist.cdf(p) - p*dist.pdf(p)
@@ -588,7 +588,7 @@ print(mp)
   background-color: #ffffff;
 }
 </style>
-<div id="eeea2a3e" class="cell" data-execution_count="23">
+<div id="bf91b3d7" class="cell" data-execution_count="23">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>distribution <span class="op">=</span> scipy.stats.halfnorm()</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>alpha <span class="op">=</span> <span class="fl">0.99</span> </span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -603,7 +603,7 @@ print(mp)
 </div>
 <!--
 
-::: {#813c006e .cell execution_count=24}
+::: {#794adfa3 .cell execution_count=24}
 ``` {.python .cell-code}
 def revenue(p,dist):
     return p*dist.sf(p)
@@ -680,7 +680,7 @@ e^{j}_i = \left\{ \begin{array}{ll}
 <li>Write a function <code>partial_sums</code> that takes as input a vector of column indices <span class="math inline">c = [c_0,\dots,c_{K-1}] \in \{0,\dots,n-1\}^K</span> and an integer <span class="math inline">n</span>. It should return a two-dimensional array whose rows are <span class="math inline">x^{(0)},\dots,x^{(K-1)}.</span> Do not use for-loops.<br>
 <em>Hint: Fancy indexing (Section 3.3.3) might be useful here.</em></li>
 </ol>
-<div id="e3576c83" class="cell" data-execution_count="26">
+<div id="cba42b71" class="cell" data-execution_count="26">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> [<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">6</span>]</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">7</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -700,7 +700,7 @@ e^{j}_i = \left\{ \begin{array}{ll}
 </div>
 <!--
 
-::: {#708f2127 .cell execution_count=27}
+::: {#dae31ce0 .cell execution_count=27}
 ``` {.python .cell-code}
 def partial_sums(c,n):
     K = np.size(c)
@@ -752,7 +752,7 @@ d_{\ell k} = |yAx - y^{(\ell)}Ax^{(k)}|
 Let <span class="math inline">A</span> be an <span class="math inline">n \times n</span> matrix with a top-left block containing zeros, top-right and bottom-left block containing <span class="math inline">0.5</span>’s, and bottom-right block containing ones; all blocks have size <span class="math inline">n/2 \times n/2</span>. Apply your function from part b) to these inputs.<br>
 <em>Hint: You might want to use a variation on your solution to Question 8 of Lecture 1 to create <span class="math inline">A</span>.</em></li>
 </ol>
-<div id="7565c4ea" class="cell" data-execution_count="30">
+<div id="a786ff1c" class="cell" data-execution_count="30">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fix randomness</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">487</span>)</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -777,7 +777,7 @@ Let <span class="math inline">A</span> be an <span class="math inline">n \times 
 </div>
 <!--
 
-::: {#a7388747 .cell execution_count=31}
+::: {#f5f6c681 .cell execution_count=31}
 ``` {.python .cell-code}
 # Fix randomness
 np.random.seed(487)
@@ -811,7 +811,7 @@ Y = partial_sums(r,n)
 :::
 
 
-::: {#c67ba9b5 .cell execution_count=32}
+::: {#425b04e6 .cell execution_count=32}
 ``` {.python .cell-code}
 # Fix randomness
 np.random.seed(22)

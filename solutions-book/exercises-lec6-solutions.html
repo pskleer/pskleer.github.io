@@ -216,6 +216,12 @@ window.Quarto = {
  <span class="menu-text">Lecture 7: Section 8</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./exercises-lec8-solutions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 8: Section 9</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -249,7 +255,7 @@ window.Quarto = {
 <section id="solutions-to-the-exercises" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="solutions-to-the-exercises"><strong>Solutions to the exercises</strong></h4>
 <p>Make sure to import NumPy, SciPy and Matplotlib to be able to complete all the exercises.</p>
-<div id="a497e4bc" class="cell" data-execution_count="1">
+<div id="175258e0" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.optimize <span class="im">as</span> optimize</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -267,7 +273,7 @@ Your plot should look like this.</p>
   background-color: #ffffff;
 }
 </style>
-<div id="ae55585a" class="cell" data-execution_count="2">
+<div id="d69f254a" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -276,7 +282,7 @@ Your plot should look like this.</p>
 </div>
 </div>
 </div>
-<div id="5866fd7b" class="cell" data-execution_count="3">
+<div id="548931a4" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the function f</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x):</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x<span class="op">*</span>np.cos(x)</span>
@@ -338,7 +344,7 @@ Your plot should look like this.</p>
 <section id="question-2" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="question-2">Question 2</h4>
 <p>For a one-dimensional array <span class="math inline">x</span>, we can make a histogram of the values in <span class="math inline">x</span> using <code>plt.hist()</code> as the next example illustrates. We can use the <code>bins</code> keyword argument to specify the number of bins into which the values are grouped.</p>
-<div id="0c09aa8c" class="cell" data-execution_count="4">
+<div id="a2419da5" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.array([<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">2</span>,<span class="dv">6</span>,<span class="dv">5</span>,<span class="dv">4</span>,<span class="dv">8</span>,<span class="dv">8</span>,<span class="dv">8</span>,<span class="dv">7</span>,<span class="dv">6</span>,<span class="dv">5</span>,<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">2</span>,<span class="dv">5</span>])</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create figure</span></span>
@@ -364,7 +370,7 @@ Your plot should look like this.</p>
 </div>
 <p>It is well known that if we draw more and more samples from a probability distribution, then the histogram of these samples approximates the probability density function of the distribution better and better, if the total area of the histogram is normalized to one. We will test this for the normal distribution, but without the normalization (you can normalize with the <code>density</code> keyword argument if you want to do that; see the <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.hist.html">documentation</a>).</p>
 <p>The following code generates an array <code>samples</code> with <span class="math inline">n = 900</span> samples from the Normal distribution with mean <span class="math inline">0</span> and standard deviation <span class="math inline">1</span>. We will see more on sample generation in a later chapter of this course. For now, we will only need to work with the vector <code>samples</code>.</p>
-<div id="4be41c48" class="cell" data-execution_count="5">
+<div id="5c2c6810" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mean of the distribution</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>mean <span class="op">=</span> <span class="dv">0</span>    </span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -380,7 +386,7 @@ Your plot should look like this.</p>
 To this end, create a figure using <code>plt.subplots()</code> with nine subplots where plot <span class="math inline">i=1,\dots,9</span> contains the first <span class="math inline">100i</span> samples of <code>samples</code> in a histogram with <span class="math inline">25</span> bins. Avoid unnecessary repetition as much as possible.<br>
 <br>
 Your figure should look like the one below. Note that because of the randomness involved in the sample generation, your histograms do not have to look exactly the same. What is important is that the figures (seem to) converge to the bell-shaped curve that the Normal distribution is known for.</p>
-<div id="0104b2ab" class="cell" data-execution_count="6">
+<div id="bf79f8d7" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -389,7 +395,7 @@ Your figure should look like the one below. Note that because of the randomness 
 </div>
 </div>
 </div>
-<div id="19275744" class="cell" data-execution_count="7">
+<div id="9693a113" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Figure parameters</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> <span class="dv">7</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>k <span class="op">=</span> <span class="dv">3</span></span>
@@ -438,7 +444,7 @@ The function <code>stock_prices</code> should create and display a figure that h
 </span> where one should recall that <span class="math inline">m</span> is the number of rows of the input array, i.e., the number of functions <span class="math inline">f_i</span>.<br>
 <br>
 The figure produced by your function should look like this. Here, too, the numerical values in the plots might be different because of the randomness in the data generation.</p>
-<div id="33e76936" class="cell" data-execution_count="9">
+<div id="c3cb1554" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Samples drawn from normal distribution, rounded to three decimal places</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.array([</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    [<span class="fl">0.305</span>, <span class="op">-</span><span class="fl">1.040</span>, <span class="fl">0.750</span>, <span class="fl">0.941</span>, <span class="op">-</span><span class="fl">1.951</span>, <span class="op">-</span><span class="fl">1.302</span>,</span>
@@ -473,7 +479,7 @@ The figure produced by your function should look like this. Here, too, the numer
 </div>
 </div>
 </div>
-<div id="e5101795" class="cell" data-execution_count="10">
+<div id="447ae462" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> stock_prices(y,a,b):</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Number of functions and points</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    m, n <span class="op">=</span> np.shape(y)</span>
@@ -510,7 +516,7 @@ The figure produced by your function should look like this. Here, too, the numer
 <section id="question-4" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="question-4">Question 4</h4>
 <p>It is not always possible to use the matrices <span class="math inline">X</span> and <span class="math inline">Y</span> generated by <code>mgrid</code> directly for visualization of bivariate functions. For example, suppose that the function <span class="math inline">f : \mathbb{R}^2 \rightarrow \mathbb{R}</span> is defined by taking as input an array of shape <span class="math inline">(1,2)</span> containing two elements.</p>
-<div id="336c8df6" class="cell" data-execution_count="11">
+<div id="debc5387" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x):</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x[:,<span class="dv">0</span>]<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> x[:,<span class="dv">1</span>]<span class="op">**</span><span class="dv">2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -521,7 +527,7 @@ The figure produced by your function should look like this. Here, too, the numer
 <br>
 Your function should give the following output on the given input.</li>
 </ol>
-<div id="72480cb1" class="cell" data-execution_count="13">
+<div id="d9dcb124" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="dv">3</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="fl">5.1</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>step <span class="op">=</span> <span class="fl">0.2</span></span>
@@ -653,7 +659,7 @@ Your function should give the following output on the given input.</li>
  [5.  5. ]]</code></pre>
 </div>
 </div>
-<div id="f3a40946" class="cell" data-execution_count="14">
+<div id="cdaa18fa" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> grid_list(X,Y):</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> X.flatten()</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> Y.flatten()</span>
@@ -666,7 +672,7 @@ Do this by computing the function values <span class="math inline">f(X[i,j],Y[i,
 <br>
 Your plot should look like this.</li>
 </ol>
-<div id="b7e82a63" class="cell" data-execution_count="15">
+<div id="2fe40464" class="cell" data-execution_count="15">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -675,7 +681,7 @@ Your plot should look like this.</li>
 </div>
 </div>
 </div>
-<div id="61939d91" class="cell" data-execution_count="16">
+<div id="98242c6f" class="cell" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Grid parameters</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="dv">1</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="dv">3</span></span>

@@ -240,6 +240,18 @@ window.Quarto = {
  <span class="menu-text">Lecture 11: Section 11</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./practice-exam-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Practice exam 1</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./practice-exam-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Practice exam 2</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -271,7 +283,7 @@ window.Quarto = {
 
 
 <p>Make sure to import NumPy, Matplotlib and Scikit-learn to be able to complete all the exercises.</p>
-<div id="e3cdaeb2" class="cell" data-execution_count="1">
+<div id="89076e45" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -292,7 +304,7 @@ As an example, the shape of an array that you fill with random numbers can have 
 Try this yourself by running the script below in which you can change <code>np.random.randn(3,4)</code> to <code>np.random.randn(4,3).T</code> and observe the difference.<br>
 </p>
 </blockquote>
-<div id="82481d0a" class="cell" data-execution_count="2">
+<div id="730e1c7d" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the random seed</span></span>
@@ -367,7 +379,7 @@ y_i= \left\{
 </span> Note that the first <span class="math inline">m</span> rows of <span class="math inline">x</span> correspond to the data points in <span class="math inline">D_0</span>, and the last <span class="math inline">m</span> rows to the data points in <span class="math inline">D_1</span>. Do not use for-loops.</p></li>
 <li><p>Test your function on the following input by re-creating the figure below.</p></li>
 </ol>
-<div id="02f592c1" class="cell" data-execution_count="4">
+<div id="0292a3ee" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the random seed</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">3</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -381,7 +393,7 @@ y_i= \left\{
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>x_data, y_data <span class="op">=</span> synthetic_data(mu1,sigma1,mu2,sigma2,m)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="15f65aca" class="cell" data-execution_count="5">
+<div id="eebab1ab" class="cell" data-execution_count="5">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -399,7 +411,7 @@ f(z) = \frac{1}{1 + e^{-p(z)}}
 Call the <code>fit()</code> method on an instance of <code>LogisticRegression</code> to carry out this task with the <code>newton-cg</code> solver. Check out the <a href="https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html">documentation</a> of <code>LogisticRegression</code> for more information.</p></li>
 <li><p>Test your function on the data generated in part b).</p></li>
 </ol>
-<div id="05645b61" class="cell" data-execution_count="7">
+<div id="49ff2f63" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>p_coef, y_pred <span class="op">=</span> multi_feature_logistic_regression(x_data,y_data)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Coefficients of function p are"</span>, p_coef)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -407,7 +419,7 @@ Call the <code>fit()</code> method on an instance of <code>LogisticRegression</c
 </div>
 </div>
 <p>Also create the confusion matrix comparing the predicted labels to the true labels of the data points, i.e., the <span class="math inline">(i,j)</span>-th entry of the matrix contains the number of data points with true label <span class="math inline">i</span> and predicted label <span class="math inline">j</span>. The matrix should be the following:</p>
-<div id="6f63faf6" class="cell" data-execution_count="8">
+<div id="d5b613b6" class="cell" data-execution_count="8">
 <div class="cell-output cell-output-stdout">
 <pre><code>[[23  2]
  [ 2 23]]</code></pre>
@@ -421,7 +433,7 @@ Call the <code>fit()</code> method on an instance of <code>LogisticRegression</c
   background-color: #ffffff;
 }
 </style>
-<div id="16fbce92" class="cell" data-execution_count="9">
+<div id="08fc20c2" class="cell" data-execution_count="9">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -440,7 +452,7 @@ Call the <code>fit()</code> method on an instance of <code>LogisticRegression</c
 <em>Hint: A function from Section 8.1.2 might be useful here.</em></li>
 </ol>
 <p>Test your function on the input data below.</p>
-<div id="70d2060a" class="cell" data-execution_count="11">
+<div id="74d7e135" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the random seed</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">3</span>)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -467,7 +479,7 @@ Call the <code>fit()</code> method on an instance of <code>LogisticRegression</c
 You are allowed to use the <code>distance_matrix</code> function from the <code>scipy.spatial</code> module; check the <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.distance_matrix.html">documentation</a> to see how this function works. The function <code>np.argmin()</code> might also be useful in your solution. Do not use for-loops in your solution.</li>
 </ol>
 <p>Test your function on the <code>x</code> and <code>centers</code> arrays generated in the test input of part a).</p>
-<div id="c8c926d8" class="cell" data-execution_count="13">
+<div id="da20102a" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>label_closest <span class="op">=</span> closest(x,centers)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(label_closest)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -481,7 +493,7 @@ You are allowed to use the <code>distance_matrix</code> function from the <code>
 <li>Write a function <code>new()</code> that takes as input the arrays described above, and returns a <span class="math inline">K \times d</span> array with the <span class="math inline">\hat{c}_k</span> centers as its rows. You are allowed to use one for-loop in your solution. <em>You may assume that <span class="math inline">|G_k| &gt; 0</span> for any <span class="math inline">k</span>, i.e., every center has at least one data point that is closest to it. This also means that every label will appear at least once in the one-dimensional array with labels, and so you can obtain the value <span class="math inline">K</span> from this array. Furthermore, you may assume that <span class="math inline">|G_k| &gt; 0</span> holds in subsequent step of the <span class="math inline">K</span>-means algorithm (also in later subquestions).</em></li>
 </ol>
 <p>Test your function on the <code>x</code> array from the test input of part a), using <code>label_closest</code> as the label array generated in the test input of part b).</p>
-<div id="5b28481d" class="cell" data-execution_count="15">
+<div id="820768dc" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>new_center <span class="op">=</span> new(x,label_closest)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(new_center)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -498,7 +510,7 @@ You are allowed to use the <code>distance_matrix</code> function from the <code>
 Your function should output the final centers as well as an array of labels indicating the closest center for every data point at the end of the algorithm.</li>
 </ol>
 <p>Test your function on the input below, which is the <code>make_blobs</code> data used in Section 10.2.</p>
-<div id="ac0185f2" class="cell" data-execution_count="17">
+<div id="73a9d039" class="cell" data-execution_count="17">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> make_blobs</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Set the random seed</span></span>
@@ -550,7 +562,7 @@ Your function should output the final centers as well as an array of labels indi
 <li>Using your function <code>closest()</code> from Question 2b), define a function <code>sse()</code> that takes as input an <span class="math inline">n \times d</span> array <span class="math inline">x</span> whose rows represent data points <span class="math inline">x_i \in \mathbb{R}^d</span>, and a <span class="math inline">K \times d</span> array whose rows represent cluster centers <span class="math inline">c_0,\dots,c_{K-1}</span>. It should output the SSE error defined above. Do not use a for-loop.<br>
 <em>Hint: Try to understand the piece of code below first. Use the underlying idea to create a matrix whose rows are <span class="math inline">x_i - c_{k_i}</span> for <span class="math inline">i = 0,\dots,n-1</span>, where <span class="math inline">k_i</span> is the index of the center closest to <span class="math inline">x_i</span>.</em></li>
 </ol>
-<div id="216d79f7" class="cell" data-execution_count="18">
+<div id="c227e234" class="cell" data-execution_count="18">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> np.array([[<span class="dv">1</span>,<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">6</span>],[<span class="dv">8</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">5</span>],[<span class="dv">6</span>,<span class="dv">1</span>,<span class="dv">7</span>,<span class="dv">9</span>,<span class="dv">8</span>],[<span class="dv">41</span>,<span class="dv">1</span>,<span class="dv">17</span>,<span class="dv">9</span>,<span class="dv">18</span>]])</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>indices <span class="op">=</span> np.array([<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>])</span>
@@ -566,7 +578,7 @@ Your function should output the final centers as well as an array of labels indi
 </div>
 </div>
 <p>Test your function using the <code>x_data</code> and <code>centers</code> arrays from the test input of Question 2d). It should give the following output.</p>
-<div id="9334fb25" class="cell" data-execution_count="20">
+<div id="4384f8cc" class="cell" data-execution_count="20">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>error <span class="op">=</span> sse(x_data,centers)</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(error)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -577,7 +589,7 @@ Your function should output the final centers as well as an array of labels indi
 <li>Write a function <code>plot_sse_by_K</code> that takes as input an <span class="math inline">n \times d</span> array <span class="math inline">x</span> whose rows represent data points <span class="math inline">x_i \in \mathbb{R}^d</span>, and numbers <span class="math inline">K_{\max}</span> and <span class="math inline">T</span>. It should construct and display a scatter plot that for every <span class="math inline">K = 1,\dots,K_{\max}</span> plots the SSE computed using the centers outputted by <code>kmeans(x,K,T)</code> where <code>kmeans()</code> is the function you constructed in Question 2d).</li>
 </ol>
 <p>Test your function for <span class="math inline">K_{\max} = 10</span>, <span class="math inline">T = 100</span>, and as <span class="math inline">x</span> the array <code>x_data</code> created in the test input of Question 2d). Your figure should resemble the one below. Can you give an interpretation of what you see in the figure?</p>
-<div id="91e76ca7" class="cell" data-execution_count="22">
+<div id="c2dd537a" class="cell" data-execution_count="22">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Input parameters</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> <span class="dv">100</span></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>Kmax <span class="op">=</span> <span class="dv">10</span></span>

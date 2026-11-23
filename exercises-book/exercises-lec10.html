@@ -240,6 +240,18 @@ window.Quarto = {
  <span class="menu-text">Lecture 11: Section 11</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./practice-exam-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Practice exam 1</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./practice-exam-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Practice exam 2</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -271,7 +283,7 @@ window.Quarto = {
 
 
 <p>Make sure to import NumPy, Matplotlib and SciPy to complete all the exercises.</p>
-<div id="5d9a9f36" class="cell" data-execution_count="1">
+<div id="ac615bb6" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.optimize <span class="im">as</span> optimize</span>
@@ -319,7 +331,7 @@ X &amp; \mathbf{1}_m
 The function should return the constraint matrix <span class="math inline">A</span> and the lower bound array <span class="math inline">r</span> as above.</li>
 </ol>
 <p>Test your function on the input below.</p>
-<div id="bd279500" class="cell" data-execution_count="3">
+<div id="28af7f8d" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Historical data</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.array([[<span class="dv">3</span>,<span class="dv">3</span>],[<span class="fl">1.5</span>,<span class="fl">2.5</span>],[<span class="dv">1</span>,<span class="dv">2</span>],[<span class="fl">0.5</span>,<span class="fl">1.5</span>],[<span class="dv">2</span>,<span class="dv">2</span>],[<span class="dv">2</span>,<span class="dv">4</span>],</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>                        [<span class="dv">4</span>,<span class="dv">4</span>],[<span class="dv">2</span>,<span class="dv">6</span>],[<span class="dv">5</span>,<span class="fl">5.5</span>],[<span class="dv">7</span>,<span class="dv">6</span>]]) <span class="co"># Data points</span></span>
@@ -353,7 +365,7 @@ Lower bound array r:
 It should return the solution to the minimization problem above as an array <span class="math inline">z = [w_0,\dots,w_{d-1},b]</span> using <code>minimize()</code>. Use the mean of the rows of <span class="math inline">X</span> as the initial guess for <span class="math inline">w</span> and <span class="math inline">b = 0</span>. A system of inequality constraints <span class="math inline">Az \geq r</span> can be included in <code>minimize()</code> using <code>optimize.LinearConstraint(A,lb=r)</code> as the <code>constraints</code> keyword argument in <code>minimize()</code>. See the documentation <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.LinearConstraint.html#scipy.optimize.LinearConstraint">here</a>.</li>
 </ol>
 <p>Test your function on <span class="math inline">X</span> and <span class="math inline">y</span> as in part a).</p>
-<div id="4f6f83fe" class="cell" data-execution_count="5">
+<div id="18f939a5" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(separate(X,y))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[ 1.000  1.000 -7.000]</code></pre>
@@ -372,7 +384,7 @@ It should return the <span class="math inline">w</span> and <span class="math in
 <em>Hint: The function <code>np.maximum()</code> might be handy in your solution.</em></li>
 </ol>
 <p>Test your function with the matrix <span class="math inline">X</span> and label vector <span class="math inline">y</span> from Question 1, and <span class="math inline">C = 0.3</span>.</p>
-<div id="c4bf1913" class="cell" data-execution_count="7">
+<div id="1317ea70" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Historical data</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.array([[<span class="dv">3</span>,<span class="dv">3</span>],[<span class="fl">1.5</span>,<span class="fl">2.5</span>],[<span class="dv">1</span>,<span class="dv">2</span>],[<span class="fl">0.5</span>,<span class="fl">1.5</span>],[<span class="dv">2</span>,<span class="dv">2</span>],[<span class="dv">2</span>,<span class="dv">4</span>],</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                        [<span class="dv">4</span>,<span class="dv">4</span>],[<span class="dv">2</span>,<span class="dv">6</span>],[<span class="dv">5</span>,<span class="fl">5.5</span>],[<span class="dv">7</span>,<span class="dv">6</span>]]) <span class="co"># Data points</span></span>
@@ -398,7 +410,7 @@ Your figure should look roughly like this. Note that the coefficients <span clas
   background-color: #ffffff;
 }
 </style>
-<div id="8269413b" class="cell" data-execution_count="8">
+<div id="faf276c2" class="cell" data-execution_count="8">
 <div class="cell-output cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -424,7 +436,7 @@ Your figure should look roughly like this. Note that the coefficients <span clas
 <em>Hint: Gurobi variables are nonnegative by default (i.e., the keyword argument <code>lb=0</code>). The coefficients <span class="math inline">w_j</span> and the intercept <span class="math inline">b</span> can have either sign, so set <code>lb=-GRB.INFINITY</code> for every variable in <code>addVars()</code>. The intercept is the last variable and does not appear in the objective.</em></p></li>
 <li><p>Test your function on the same <span class="math inline">X</span> and <span class="math inline">y</span> as in Question 1 and observe that the same solution is found.</p></li>
 </ol>
-<div id="c9229ea9" class="cell" data-execution_count="10">
+<div id="6a322ca4" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gurobipy <span class="im">import</span> Model, GRB, quicksum</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -554,7 +566,7 @@ Coefficients found with Gurobi: [ 1.000  1.000 -7.000]</code></pre>
 </p></li>
 <li><p>Apply your function to the data above with <span class="math inline">C=1</span> by executing the code below.</p></li>
 </ol>
-<div id="2aea388f" class="cell" data-execution_count="12">
+<div id="1b37da4c" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gurobipy <span class="im">import</span> Model, GRB, quicksum</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -580,7 +592,7 @@ Coefficients found with Gurobi: [ 1.000  1.000 -7.000]</code></pre>
 <ol start="3" type="a">
 <li>Test your function again, but now only on the first <span class="math inline">10</span> data points and corresponding labels. Take <span class="math inline">C = 1.5</span>. How can you see from the solution that, this time, the data is separable?</li>
 </ol>
-<div id="d64a2335" class="cell" data-execution_count="13">
+<div id="5995e0df" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Parameters</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>C <span class="op">=</span> <span class="fl">1.5</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>k <span class="op">=</span> <span class="dv">10</span></span>

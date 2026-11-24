@@ -321,7 +321,7 @@ window.Quarto = {
 <p><em>Use the following (MANDATORY) template for your answers, and upload it on the next page: <a href="python-ii-template-2.py">python-ii-template</a>.</em></p>
 <p><em><span class="revision">In addition to correctness, your submission will be assessed against the usual “Good coding” criteria: efficiency, avoidance of hard coding, DRY, single responsibility, coding style and documentation, and KISS.</span></em></p>
 <p>Packages seen in the course materials are included in the template.</p>
-<div id="d23f4d17" class="cell" data-execution_count="1">
+<div id="135c57ac" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import any packages needed</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.optimize <span class="im">as</span> optimize</span>
@@ -341,7 +341,7 @@ x^2+x+1 &amp; \text{if }0\leq x&lt;1,\\
 \end{cases}
 </span></p>
 <p>Write a function <code>f()</code> that takes as input a one-dimensional array <span class="math inline">x=[x_0,\dots,x_{n-1}]\in\mathbb R^n</span> and outputs the one-dimensional array <span class="math inline">[f(x_0),\dots,f(x_{n-1})]</span>. <span class="revision">Do not use <code>for</code> loops, <code>while</code> loops, or <code>if</code> statements.</span> <em>For <span class="math inline">x=[-5,-0.5,0.5,4,9]</span>, the output should be <span class="math inline">[6,1.5,1.75,3,3]</span>.</em></p>
-<div id="52ae5650" class="cell" data-execution_count="2">
+<div id="d45a9ecb" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x):</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        (x <span class="op">&lt;</span> <span class="dv">0</span>) <span class="op">*</span> (<span class="op">-</span>x <span class="op">+</span> <span class="dv">1</span>)</span>
@@ -365,7 +365,7 @@ x^2+x+1 &amp; \text{if }0\leq x&lt;1,\\
 <li>The quantity <span class="math inline">\sum_{i=0}^{n-1}\sum_{j=0}^{n-1}a_{ij}e^{x_ix_j}</span> where <span class="revision"><span class="math inline">e\approx2.71828</span></span> is Euler’s number.</li>
 </ul>
 <p><span class="revision">Do not use <code>for</code> loops, <code>while</code> loops, or <code>if</code> statements.</span> <em>For <span class="math inline">x=[-1,1,2]</span> and <span class="math inline">A=[[-5,4,9],[1,1,1],[2,1,4]]</span>, the <span class="revision">outputs</span> should be <span class="math inline">[-180,1,8]</span> and <span class="math inline">\approx225.63</span>.</em></p>
-<div id="31a27518" class="cell" data-execution_count="3">
+<div id="fa491041" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> quantities(x,A):</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    first <span class="op">=</span> np.prod(A,axis<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    second <span class="op">=</span> np.<span class="bu">sum</span>(A<span class="op">*</span>np.exp(x<span class="op">*</span>x[:,<span class="va">None</span>]))</span>
@@ -394,7 +394,7 @@ F_{\max}(x)=F(x)^n.
 <li><strong>[8 pts]</strong> Write a function <code>max_median()</code> that takes as input a continuous probability distribution (a <code>stats.rv_continuous</code> object) and <span class="revision">a positive integer <span class="math inline">n</span>.</span> It should output <span class="revision">a median of the random variable <span class="math inline">X_{\max}</span> as a scalar, rather than a list or array. For a continuous cdf, a median satisfies <span class="math inline">F_{\max}(x)=0.5</span>. Assume that this equation has a unique solution for the input distribution.</span> Use <code>fsolve()</code> in your solution, <span class="revision">taking the median of the input distribution as the initial guess.</span><br>
 <em>Hint: Define an auxiliary function that models the equation to be solved.</em></li>
 </ol>
-<div id="37d98425" class="cell" data-execution_count="4">
+<div id="79163d61" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> equation(x, dist, n):</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> dist.cdf(x) <span class="op">**</span> n <span class="op">-</span> <span class="dv">1</span><span class="op">/</span><span class="dv">2</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -411,7 +411,7 @@ F_{\max}(x)=F(x)^n.
 <li><span class="revision">A gamma distribution</span> with shape parameter <span class="math inline">a=3</span>, scale parameter <span class="math inline">4</span>, location parameter <span class="math inline">0</span>, and <span class="math inline">n=2</span>.&nbsp;<br>
 <em>If your function works correctly, the outputs should be <span class="math inline">\approx6.64</span>, <span class="math inline">8.67</span>, and <span class="math inline">14.63</span>.</em></li>
 </ul>
-<div id="4c2dfb2a" class="cell" data-execution_count="5">
+<div id="b59cd258" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>dist <span class="op">=</span> [stats.norm(loc<span class="op">=</span><span class="dv">5</span>,scale<span class="op">=</span><span class="dv">2</span>), stats.uniform(<span class="dv">4</span>,<span class="dv">9</span><span class="op">-</span><span class="dv">4</span>),</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>        stats.gamma(a<span class="op">=</span><span class="dv">3</span>,scale<span class="op">=</span><span class="dv">4</span>)]</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> [<span class="dv">3</span>, <span class="dv">10</span>, <span class="dv">2</span>]</span>
@@ -436,7 +436,7 @@ M(x,n)=\sum_{k=0}^{n-1}\frac{(-1)^k}{(2k+1)!}x^{2k+1}.
 <li><strong>[8 pts]</strong> Write a function <code>M()</code> that takes as input a scalar <span class="math inline">x\in\mathbb R</span> and <span class="revision">a positive integer <span class="math inline">n</span>.</span> It should output the number <span class="math inline">M(x,n)</span>. You can compute the factorial <span class="math inline">r!=r(r-1)\cdots1</span> of <span class="revision">a positive integer <span class="math inline">r</span></span> with <code>special.factorial(r)</code> (<span class="revision">the import <code>import scipy.special as special</code> is included above; make sure it is enabled in the template</span>). Do not use <code>for</code> loops in your solution.<br>
 <em>For <span class="math inline">x=0.5</span> and <span class="math inline">n=5</span>, the function should output <span class="math inline">\approx0.48</span>.</em></li>
 </ol>
-<div id="9aa3df6d" class="cell" data-execution_count="6">
+<div id="85a01acd" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> M(x,n):</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    a <span class="op">=</span> np.arange(<span class="dv">0</span>,n)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    sign <span class="op">=</span> (<span class="op">-</span><span class="dv">1</span>)<span class="op">**</span>a</span>
@@ -460,7 +460,7 @@ E(a,b,n)=\max_{x\in[a,b]}\text{Error}(x,n).
 </span> That is, it returns the maximum error over <span class="math inline">[a,b]</span>. Use <code>minimize_scalar()</code> with the <code>bounded</code> method.<br>
 <em>For <span class="math inline">a=-4</span>, <span class="math inline">b=2</span>, and <span class="math inline">n=5</span>, your function should output <span class="math inline">\approx0.095</span>.</em></li>
 </ol>
-<div id="ca0624f1" class="cell" data-execution_count="7">
+<div id="2724fb75" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> objective(x, n):</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span>np.<span class="bu">abs</span>(np.sin(x) <span class="op">-</span> M(x, n))</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -487,7 +487,7 @@ E(a,b,n)=\max_{x\in[a,b]}\text{Error}(x,n).
   background-color: #ffffff;
 }
 </style>
-<div id="c0f423f9" class="cell" data-execution_count="8">
+<div id="113a53ea" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="dv">2</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure()</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>           </span>

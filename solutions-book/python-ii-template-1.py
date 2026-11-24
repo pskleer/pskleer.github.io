@@ -22,7 +22,6 @@ snr = 1234567  # replace with your student number
 # import numpy as np
 # import scipy.optimize as optimize
 # import scipy.stats as stats 
-# from scipy.optimize import linprog
 # import matplotlib.pyplot as plt
 
 

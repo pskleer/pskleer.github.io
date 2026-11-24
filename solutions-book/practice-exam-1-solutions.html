@@ -324,7 +324,7 @@ Replace black by #c00000 to see changes in red
 <p><em>Use the following (MANDATORY) template for your answers, and upload it on the next page: <a href="python-ii-template-1.py">python-ii-template</a>.</em></p>
 <p><em><span class="revision">In addition to correctness, your submission will be assessed against the usual “Good coding” criteria: efficiency, avoidance of hard coding, DRY, single responsibility, coding style and documentation, and KISS.</span></em></p>
 <p>Packages seen in the course materials are included in the template.</p>
-<div id="6408d57c" class="cell" data-execution_count="1">
+<div id="f2a10b9b" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import any packages needed</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.optimize <span class="im">as</span> optimize</span>
@@ -345,7 +345,7 @@ Replace black by #c00000 to see changes in red
 \end{aligned}
 </span></p>
 <p>Implement this problem using Gurobi, and print the optimal solution <span class="math inline">(x_1,x_2)</span> and the optimal objective value. These should be <span class="math inline">(0,-3)</span> and <span class="math inline">-60</span>, respectively.</p>
-<div id="7f5e31b2" class="cell" data-execution_count="2">
+<div id="8f3518a1" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> gurobipy <span class="im">import</span> Model, GRB</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the model</span></span>
@@ -367,9 +367,8 @@ Replace black by #c00000 to see changes in red
 <span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>model.optimize()</span>
 <span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Output the results</span></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> model.Status <span class="op">==</span> GRB.OPTIMAL:</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"The problem is solved by"</span>, [x1.X, x2.X],</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>          <span class="st">"with objective function value"</span>, model.ObjVal)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The problem is solved by"</span>, [x1.X, x2.X],</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>        <span class="st">"with objective function value"</span>, model.ObjVal)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Set parameter Username
 Set parameter LicenseID to value 2805707
@@ -387,7 +386,7 @@ The problem is solved by [0.0, -3.0] with objective function value -60.0</code><
 </ul>
 <p><span class="revision">Do not use <code>for</code> loops, <code>while</code> loops, or <code>if</code> statements.</span></p>
 <p><em>For <span class="math inline">x=[-1,1,2]</span> and <span class="math inline">A=[[-5,-10,9],[1,3,0],[2,1,4]]</span>, the outputs should be <span class="math inline">[[-10,-5,9],[0,1,3],[1,2,4]]</span> and <span class="math inline">101</span>, respectively.</em></p>
-<div id="7ff202b5" class="cell" data-execution_count="3">
+<div id="77f684fd" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> quantities(x,A):</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    first <span class="op">=</span> np.sort(A,axis<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    second <span class="op">=</span> np.<span class="bu">sum</span>(A<span class="op">*</span>(x<span class="op">*</span>x[:,<span class="va">None</span>])<span class="op">**</span><span class="dv">2</span>)</span>
@@ -417,14 +416,14 @@ f_{\max}(x)=n\cdot f(x)\cdot F(x)^{n-1}.
 <ol type="a">
 <li><strong>[5 pts]</strong> Write a function <span class="revision"><code>pdf_max(x, dist, n)</code></span> that takes as input <span class="revision">a real number <span class="math inline">x\in\mathbb R</span>,</span> a continuous probability distribution (a <code>stats.rv_continuous</code> object), <span class="revision">and a positive integer <span class="math inline">n</span>.</span> It should output the number <span class="math inline">f_{\max}(x)</span>.</li>
 </ol>
-<div id="c1fec81b" class="cell" data-execution_count="4">
+<div id="1639e58e" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> pdf_max(x,dist,n):</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> n<span class="op">*</span>dist.pdf(x)<span class="op">*</span>dist.cdf(x)<span class="op">**</span>(n<span class="op">-</span><span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ol start="2" type="a">
 <li><strong>[3 pts]</strong> Test your function on a normal distribution with mean <span class="math inline">4</span> and standard deviation <span class="math inline">2</span>, <span class="math inline">n=5</span> and <span class="math inline">x=6</span>. <em>The answer should be <span class="math inline">\approx0.30</span>.</em></li>
 </ol>
-<div id="3ee1592d" class="cell" data-execution_count="5">
+<div id="ca1b3a98" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>dist <span class="op">=</span> stats.norm(loc<span class="op">=</span><span class="dv">4</span>,scale<span class="op">=</span><span class="dv">2</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">5</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">6</span></span>
@@ -443,17 +442,15 @@ f_{\max}(x)=n\cdot f(x)\cdot F(x)^{n-1}.
 </span><br>
 Write a function <code>expectation_max</code> that takes as input <span class="revision">the grid <span class="math inline">x</span> described above,</span> a continuous probability distribution (a <code>stats.rv_continuous</code> object) supported on <span class="math inline">[x_0,x_k]</span>, and <span class="revision">a positive integer <span class="math inline">n</span>.</span> It should output the <span class="revision">sum</span> above. <span class="revision">Do not use <code>for</code> loops, <code>while</code> loops, or <code>if</code> statements.</span></li>
 </ol>
-<div id="5e1f29d3" class="cell" data-execution_count="6">
+<div id="d280a603" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> expectation_max(x,dist,n):</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    delta <span class="op">=</span> x[<span class="dv">1</span>:] <span class="op">-</span> x[:<span class="op">-</span><span class="dv">1</span>]</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.<span class="bu">sum</span>(delta<span class="op">*</span>x[:<span class="op">-</span><span class="dv">1</span>]<span class="op">*</span>pdf_max(x[:<span class="op">-</span><span class="dv">1</span>],dist,n))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ol start="4" type="a">
-<li><strong>[3 pts]</strong> Test your function on a uniform distribution on <span class="math inline">[6,10]</span> <span class="revision">with <span class="math inline">n=3</span>, using <span class="math inline">500</span> equally spaced grid points (i.e., <span class="math inline">k=499</span>).</span> <em>The answer should be <span class="math inline">\approx8.97</span>.</em><br>
-<br>
-<span class="revision">This is the Riemann-sum approximation. The exact expectation is <span class="math inline">6+(10-6)\cdot3/4=9</span>, so your approximation should be close to <span class="math inline">9</span>.</span></li>
+<li><strong>[3 pts]</strong> Test your function on a uniform distribution on <span class="math inline">[6,10]</span> <span class="revision">with <span class="math inline">n=3</span>, using <span class="math inline">500</span> equally spaced grid points (i.e., <span class="math inline">k=499</span>).</span> <em>The answer should be <span class="math inline">\approx8.97</span>.</em></li>
 </ol>
-<div id="97ed79ee" class="cell" data-execution_count="7">
+<div id="7957034b" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="dv">6</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="dv">10</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(a,b,<span class="dv">500</span>)</span>
@@ -476,7 +473,7 @@ f(x,\beta)=\sum_{j=0}^{d-1}\beta_jx^j.
 <ol type="a">
 <li><strong>[11 pts]</strong> Write a function <code>polynomial_fit</code> that takes as input an <span class="math inline">m\times2</span> matrix <span class="math inline">D</span> of <span class="math inline">m \geq d</span> data points, with one point <span class="math inline">(x_i,y_i)</span> on every row, and a positive integer <span class="math inline">d</span>. It should output the vector <span class="math inline">\beta</span> that best fits the data using <code>least_squares</code>, i.e., the vector that solves <span class="math inline">\min_\beta\sum_{i=0}^{m-1}(y_i-f(x_i,\beta))^2</span> (this formula is only mentioned to recall what <code>least_squares</code> does).<br><br> <span class="revision">As the initial guess</span> for <code>least_squares</code> you should take the all-ones vector. You may use a for-loop in your solution, but points will be deducted for this.</li>
 </ol>
-<div id="b0626712" class="cell" data-execution_count="8">
+<div id="2e12f2ae" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x,beta):</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    d <span class="op">=</span> np.size(beta)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    exponents <span class="op">=</span> np.arange(d)</span>
@@ -495,7 +492,7 @@ f(x,\beta)=\sum_{j=0}^{d-1}\beta_jx^j.
 <ol start="2" type="a">
 <li><span class="revision"><strong>[1 pt]</strong></span> <span class="revision">Test your function on the input data in the template with <span class="math inline">d=4</span>, and print the fitted coefficient vector <span class="math inline">\beta</span>.</span> <em>The solution should be <span class="math inline">\approx[2.77,5.08,1.02,-1.01]</span>.</em></li>
 </ol>
-<div id="43665e19" class="cell" data-execution_count="9">
+<div id="a1b83f1e" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> optimize</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>D <span class="op">=</span> np.array([</span>
@@ -526,7 +523,7 @@ f(x,\beta)=\sum_{j=0}^{d-1}\beta_jx^j.
   background-color: #ffffff;
 }
 </style>
-<div id="4c905f51" class="cell" data-execution_count="10">
+<div id="6b86db17" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>x_data <span class="op">=</span> D[:,<span class="dv">0</span>]</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>y_data <span class="op">=</span> D[:,<span class="dv">1</span>]</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>

@@ -285,7 +285,7 @@ window.Quarto = {
 <section id="solutions-to-the-exercises" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="solutions-to-the-exercises"><strong>Solutions to the exercises</strong></h4>
 <p>Make sure to import Numpy and <code>itertools</code> to complete all the exercises.</p>
-<div id="60ba2af1" class="cell" data-execution_count="1">
+<div id="15dba97f" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> itertools</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -296,7 +296,7 @@ window.Quarto = {
 <section id="question-1" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="question-1">Question 1</h4>
 <p>Write a function <code>sum_to_k</code> that takes as input a nonnegative integer <span class="math inline">k</span> and a positive integer <span class="math inline">n</span>. It should return the integer points <span class="math inline">x = [x_0,\dots,x_{n-1}] \in \{0,1,2,\dots,k\}^n</span> for which <span class="math inline">\sum_{i=0}^{n-1} x_i = k</span>. Use <code>itertools</code>, with a for loop, to iterate over all possible <span class="math inline">[x_0,\dots,x_{n-1}]</span> and return an array or list with all vectors that sum to <span class="math inline">k</span> on its rows.</p>
-<div id="f2c3e07a" class="cell" data-execution_count="2">
+<div id="18a52000" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sum_to_k(k,n):</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    a <span class="op">=</span> np.arange(<span class="dv">0</span>,k<span class="op">+</span><span class="dv">1</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    </span>
@@ -307,7 +307,7 @@ window.Quarto = {
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.array(sum_equals_k)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Your function should give the following output on the input below.</p>
-<div id="f6acd8c9" class="cell" data-execution_count="3">
+<div id="e93bb898" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>k <span class="op">=</span> <span class="dv">5</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">3</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -346,12 +346,12 @@ window.Quarto = {
 <ol type="a">
 <li>Write a function <code>average()</code> that takes as input the array <span class="math inline">A</span> and outputs a one-dimensional array whose entry at index <span class="math inline">i</span> is student’s <span class="math inline">i</span> average grade across all questions and assignments. You may only use the function <code>np.mean()</code> (possibly multiple times) for this.</li>
 </ol>
-<div id="4a4c975c" class="cell" data-execution_count="4">
+<div id="46ce96eb" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> average(A):</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.mean(np.mean(A,axis<span class="op">=</span><span class="dv">2</span>),axis<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Your function should give the following output on the input below.</p>
-<div id="0093785a" class="cell" data-execution_count="5">
+<div id="dd36bb0c" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>],</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">3</span>],</span>
@@ -370,14 +370,14 @@ window.Quarto = {
 <ol start="2" type="a">
 <li>Repeat part a), but first reshape <span class="math inline">A</span> and then call <code>np.mean()</code> once. Call your function <code>average_v2()</code>.</li>
 </ol>
-<div id="873e3ac0" class="cell" data-execution_count="6">
+<div id="2c80ffa3" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> average_v2(A):</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    m, n, p <span class="op">=</span> np.shape(A)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    B <span class="op">=</span> A.reshape(m,n<span class="op">*</span>p)</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.mean(B,axis<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Your function should give the following output on the input below.</p>
-<div id="77b059fa" class="cell" data-execution_count="7">
+<div id="5136166f" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>],</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">3</span>],</span>
@@ -401,13 +401,13 @@ G_{ij} = \frac{1}{\sum_{k=0}^{p-1} w_{jk}} \sum_{k=0}^{p-1} w_{jk}A_{ijk}.
 \frac{1}{m}\sum_{i=0}^{m-1} G_{ij}.
 </span> The output should therefore be a one-dimensional array of size <span class="math inline">n</span>.</li>
 </ol>
-<div id="93b2b0ac" class="cell" data-execution_count="8">
+<div id="d8d3c627" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> weighted_average(A,W):</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    total_weights <span class="op">=</span> np.<span class="bu">sum</span>(W,axis<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.mean(np.<span class="bu">sum</span>(A<span class="op">*</span>W,axis<span class="op">=</span><span class="dv">2</span>)<span class="op">/</span>total_weights,axis<span class="op">=</span><span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Your function should give the following output on the input below.</p>
-<div id="79eb35c8" class="cell" data-execution_count="9">
+<div id="0aa1a50b" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>[[<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>],</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>[<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">3</span>],</span>
@@ -435,7 +435,7 @@ G_{ij} = \frac{1}{\sum_{k=0}^{p-1} w_{jk}} \sum_{k=0}^{p-1} w_{jk}A_{ijk}.
 <br>
 Test your function on a <span class="math inline">2 \times 3 \times 4</span> array with (real-valued) numbers randomly generated from the interval <span class="math inline">[1,10]</span> using <code>np.random.uniform()</code>. Set the NumPy random seed to <span class="math inline">3</span>; you can round a real-valued scalar to its nearest integer value using <code>np.round()</code>.</li>
 </ol>
-<div id="895f60e4" class="cell" data-execution_count="10">
+<div id="0857b3ff" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Function</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> rounded_grades(A):</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    mask_outside <span class="op">=</span> (A <span class="op">&lt;=</span> <span class="dv">5</span>) <span class="op">|</span>  (A <span class="op">&gt;=</span> <span class="dv">6</span>)</span>
@@ -453,7 +453,7 @@ Test your function on a <span class="math inline">2 \times 3 \times 4</span> arr
 <span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.random.uniform(<span class="dv">1</span>,<span class="dv">10</span>,size<span class="op">=</span>(m,n,p))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Your function should give the output below on the specified input.</p>
-<div id="62da77d1" class="cell" data-execution_count="11">
+<div id="c3ced4eb" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Array A = </span><span class="ch">\n</span><span class="st">"</span>,A)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Array A = 
@@ -466,7 +466,7 @@ Test your function on a <span class="math inline">2 \times 3 \times 4</span> arr
   [3.552 7.238 4.964 2.412]]]</code></pre>
 </div>
 </div>
-<div id="8c8e7367" class="cell" data-execution_count="12">
+<div id="c2134a32" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> rounded_grades(A)</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Rounded grades are </span><span class="ch">\n</span><span class="st">"</span>, B)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -492,7 +492,7 @@ B = \{a_0,a_0+1,\dots,b_0\} \times  \{a_1,a_1+1,\dots,b_1\} \times \dots \times 
 </span> You can do this by computing all function values in the integer box and computing the minimum. You may use one for-loop, but not to iterate over all possibilities <span class="math inline">x</span> in the box.<br>
 <br>
 Test your function on the input below where <span class="math inline">B = \{-5,-4,-3,-2,-1,0,1,2,3,4,5\}^3</span>.</p>
-<div id="a93f343f" class="cell" data-execution_count="13">
+<div id="f9aa7e72" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> g(r,a,b):</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Determine box points</span></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> np.size(a)</span>
@@ -508,7 +508,7 @@ Test your function on the input below where <span class="math inline">B = \{-5,-
 <span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>       </span>
 <span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.<span class="bu">min</span>(g_values)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="c57dcf6c" class="cell" data-execution_count="14">
+<div id="51d2c705" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Test the function here</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> np.array([<span class="dv">3</span><span class="op">/</span><span class="dv">2</span>,<span class="dv">21</span><span class="op">/</span><span class="dv">8</span>,<span class="op">-</span><span class="dv">4</span><span class="op">/</span><span class="dv">3</span>])</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> np.array([<span class="op">-</span><span class="dv">5</span>,<span class="op">-</span><span class="dv">5</span>,<span class="op">-</span><span class="dv">5</span>])</span>
@@ -529,7 +529,7 @@ Test your function on the input below where <span class="math inline">B = \{-5,-
 </span> You do not have to return the integer points themselves, only the number of points. Do not use for-loops.<br>
 <em>Hint: Generate arrays representing the grid <span class="math inline">\{0,1,\dots,k\}^n</span> with <code>np.meshgrid()</code> and an unpacking argument (see Section 11.4). Then add them up along the appropriate axis.</em></li>
 </ol>
-<div id="107caef7" class="cell" data-execution_count="15">
+<div id="ff2affcc" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> count_sum_to_k(k,n):</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>    r <span class="op">=</span> np.tile(np.arange(<span class="dv">0</span>,k<span class="op">+</span><span class="dv">1</span>),(n,<span class="dv">1</span>))</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    grid <span class="op">=</span> np.meshgrid(<span class="op">*</span>r)</span>
@@ -538,7 +538,7 @@ Test your function on the input below where <span class="math inline">B = \{-5,-
 <span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.<span class="bu">sum</span>(mask)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Your function should give the following output on the input below.</p>
-<div id="d4e57367" class="cell" data-execution_count="16">
+<div id="fe1a5040" class="cell" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>k <span class="op">=</span> <span class="dv">2</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">3</span></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -555,7 +555,7 @@ Test your function on the input below where <span class="math inline">B = \{-5,-
 <em>Hint: To determine a suitable <span class="math inline">U</span>, depending on <span class="math inline">a</span> and <span class="math inline">b</span>, consider the following question: What is the largest possible value for <span class="math inline">x_i</span> when all other <span class="math inline">x_j</span> for <span class="math inline">j \neq i</span> equal zero?<br>
 Next, define the grid using an unpacking argument (see Section 11.4), and, finally, reshape <code>a</code> to an <span class="math inline">n</span>-dimensional array of shape <span class="math inline">(n,1,1,\dots,1)</span> and multiply it elementwise with <code>x</code>. To get a feeling for the last hint, try to understand the code below.</em></li>
 </ol>
-<div id="ce0cff79" class="cell" data-execution_count="17">
+<div id="bc5c0be1" class="cell" data-execution_count="17">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> np.array([</span>
@@ -582,7 +582,7 @@ Next, define the grid using an unpacking argument (see Section 11.4), and, final
   [40 50]]]</code></pre>
 </div>
 </div>
-<div id="703f45c3" class="cell" data-execution_count="18">
+<div id="8d19b960" class="cell" data-execution_count="18">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> solution_count(a,b):</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Number of variables</span></span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> np.size(a)</span>
@@ -603,7 +603,7 @@ Next, define the grid using an unpacking argument (see Section 11.4), and, final
 <span id="cb27-18"><a href="#cb27-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.<span class="bu">sum</span>(mask)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Your function should give the following output on the input below.</p>
-<div id="8f9252dc" class="cell" data-execution_count="19">
+<div id="d95daa7f" class="cell" data-execution_count="19">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> np.array([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>])</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="dv">5</span></span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a></span>

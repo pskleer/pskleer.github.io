@@ -321,7 +321,7 @@ Replace black by #c00000 to see changes in red
 <p><em>Use the following (MANDATORY) template for your answers, and upload it on the next page: <a href="python-ii-template-1.py">python-ii-template</a>.</em></p>
 <p><em><span class="revision">In addition to correctness, your submission will be assessed against the usual “Good coding” criteria: efficiency, avoidance of hard coding, DRY, single responsibility, coding style and documentation, and KISS.</span></em></p>
 <p>Packages seen in the course materials are included in the template.</p>
-<div id="daa91861" class="cell" data-execution_count="1">
+<div id="55644d09" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import any packages needed</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.optimize <span class="im">as</span> optimize</span>
@@ -369,9 +369,7 @@ f_{\max}(x)=n\cdot f(x)\cdot F(x)^{n-1}.
 \sum_{i=0}^{k-1}(x_{i+1}-x_i)\cdot x_i f_{\max}(x_i).
 </span><br>
 Write a function <code>expectation_max</code> that takes as input <span class="revision">the grid <span class="math inline">x</span> described above,</span> a continuous probability distribution (a <code>stats.rv_continuous</code> object) supported on <span class="math inline">[x_0,x_k]</span>, and <span class="revision">a positive integer <span class="math inline">n</span>.</span> It should output the <span class="revision">sum</span> above. <span class="revision">Do not use <code>for</code> loops, <code>while</code> loops, or <code>if</code> statements.</span></p></li>
-<li><p><strong>[3 pts]</strong> Test your function on a uniform distribution on <span class="math inline">[6,10]</span> <span class="revision">with <span class="math inline">n=3</span>, using <span class="math inline">500</span> equally spaced grid points (i.e., <span class="math inline">k=499</span>).</span> <em>The answer should be <span class="math inline">\approx8.97</span>.</em><br>
-<br>
-<span class="revision">This is the Riemann-sum approximation. The exact expectation is <span class="math inline">6+(10-6)\cdot3/4=9</span>, so your approximation should be close to <span class="math inline">9</span>.</span></p></li>
+<li><p><strong>[3 pts]</strong> Test your function on a uniform distribution on <span class="math inline">[6,10]</span> <span class="revision">with <span class="math inline">n=3</span>, using <span class="math inline">500</span> equally spaced grid points (i.e., <span class="math inline">k=499</span>).</span> <em>The answer should be <span class="math inline">\approx8.97</span>.</em></p></li>
 </ol>
 </section>
 <section id="question-4-11-1-5-17-pts" class="level3 unnumbered">
@@ -385,7 +383,7 @@ f(x,\beta)=\sum_{j=0}^{d-1}\beta_jx^j.
 <li><p><strong>[11 pts]</strong> Write a function <code>polynomial_fit</code> that takes as input an <span class="math inline">m\times2</span> matrix <span class="math inline">D</span> of <span class="math inline">m \geq d</span> data points, with one point <span class="math inline">(x_i,y_i)</span> on every row, and a positive integer <span class="math inline">d</span>. It should output the vector <span class="math inline">\beta</span> that best fits the data using <code>least_squares</code>, i.e., the vector that solves <span class="math inline">\min_\beta\sum_{i=0}^{m-1}(y_i-f(x_i,\beta))^2</span> (this formula is only mentioned to recall what <code>least_squares</code> does).<br><br> <span class="revision">As the initial guess</span> for <code>least_squares</code> you should take the all-ones vector. You may use a for-loop in your solution, but points will be deducted for this.</p></li>
 <li><p><span class="revision"><strong>[1 pt]</strong></span> <span class="revision">Test your function on the input data in the template with <span class="math inline">d=4</span>, and print the fitted coefficient vector <span class="math inline">\beta</span>.</span> <em>The solution should be <span class="math inline">\approx[2.77,5.08,1.02,-1.01]</span>.</em></p></li>
 </ol>
-<div id="061e3907" class="cell" data-execution_count="9">
+<div id="30f47f68" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> optimize</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>D <span class="op">=</span> np.array([</span>
@@ -416,7 +414,7 @@ f(x,\beta)=\sum_{j=0}^{d-1}\beta_jx^j.
   background-color: #ffffff;
 }
 </style>
-<div id="c2c1a00c" class="cell" data-execution_count="10">
+<div id="242987ab" class="cell" data-execution_count="10">
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
